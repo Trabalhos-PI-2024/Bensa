@@ -1,9 +1,21 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+    </script>
+    
+    <template>
+      <HeaderView />
+      <RouterView />
+     
+    </template>
+    
+    <style>
+    *{
+        padding: 0;
+        border: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    a{
+      text-decoration: none;
+    }
+    
+    </style>
