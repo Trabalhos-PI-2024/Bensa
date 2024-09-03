@@ -65,7 +65,7 @@ header {
     margin-right: 100px;
 }
 
-zheader .mainHeader .nav p {
+#header .mainHeader .nav p {
     color: #0d0d0d;
 }
 
