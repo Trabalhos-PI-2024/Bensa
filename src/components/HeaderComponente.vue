@@ -2,7 +2,7 @@
     <header>
         <div class="mainHeader">
             <div class="logo">
-                <RouterLink to="/"><img src="../assets/img/Design sem nome (3).png" alt=""></RouterLink>
+                <RouterLink to="/"><img src="../assets/img/logo.png" alt="Logo"></RouterLink>
             </div>
             <nav class="nav">
                 <RouterLink to="/">
@@ -16,73 +16,92 @@
                 </RouterLink>
             </nav>
             <div class="icon">
-                <button type="button">usuario</button>
-                <button type="button">carrinho</button>
-            </div>
-        </div>
-        <div class="allMarcas">
-            <div class="marcas">
-                <RouterLink to="/"><img src="../assets/img/nike.png" alt=""></RouterLink>
-            </div>
-            <div class="marcas">
-                <RouterLink to="/"><img src="../assets/img/adidas.jpg" alt=""></RouterLink>
-            </div>
-            <div class="marcas">
-                <RouterLink to="/"><img src="../assets/img/vans.jpg" alt=""></RouterLink>
-            </div>
-            <div class="marcas">
-                <RouterLink to="/"><img src="../assets/img/stussy.webp" alt=""></RouterLink>
+                <RouterLink to="/usuario">
+                    <img src="../assets/img/user.svg" alt="Usuário">
+                </RouterLink>
+                <RouterLink to="/carrinho">
+                    <img src="../assets/img/carrinho.svg" alt="Carrinho">
+                </RouterLink>
             </div>
         </div>
     </header>
 </template>
 
-<style scoped>
+<style>
 header {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    background-color: #ffffff;
 }
 
-#header .mainHeader {
+.mainHeader {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #0d0d0d;
+    border-bottom: 1px solid #e0dbdb;
+    background-color: #ffffff;
+    position: relative;
 }
 
-#header .mainHeader .logo img {
+.logo img {
     width: 150px;
 }
 
-#header .mainHeader .nav {
-    display: flex;
-    gap: 20px;
-    margin-right: 100px;
+.logo {
+    margin-left: 100px;
 }
 
-#header .mainHeader .nav p {
-    color: #0d0d0d;
-}
-
-#header .mainHeader .icon {
+.nav {
     display: flex;
-    gap: 10px;
-}
-
-#header .allMarcas {
-    display: flex;
-    width: 100%;
-    justify-content: center;
     align-items: center;
-    gap: 75px;
+    gap: 60px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
 }
 
-#header .allMarcas .marcas img {
-    width: 115px;
+.nav a {
+    text-decoration: none;
+}
+
+.nav p {
+    color: #0d0d0d;
+    margin: 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.icon {
+    display: flex;
+    gap: 30px;
+    position: absolute;
+    right: 200px;
+}
+
+.icon img {
+    width: 40px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .mainHeader {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav {
+        gap: 30px;
+        position: static;
+        transform: none;
+        max-width: none;
+    }
+
+    .icon img {
+        width: 24px;
+    }
 }
 </style>
