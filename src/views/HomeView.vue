@@ -1,21 +1,22 @@
-<script setup>
-    </script>
-    
-    <template>
-      <HeaderView />
-      <RouterView />
-     
-    </template>
-    
-    <style>
-    *{
-        padding: 0;
-        border: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    a{
-      text-decoration: none;
-    }
-    
-    </style>
+<template>
+  <div>
+    <HeaderComponente />
+    <MarcasComponente />
+  </div>
+</template>
+
+<script>
+import HeaderComponente from '@/components/HeaderComponente.vue';
+import MarcasComponente from '@/components/MarcasComponente.vue';
+
+export default {
+  components: {
+    HeaderComponente,
+    MarcasComponente
+  }
+}
+</script>
+
+<style>
+/* Adicione estilos específicos para a HomeView.vue aqui, se necessário */
+</style>
