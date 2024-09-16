@@ -27,8 +27,8 @@
 }
 
 .marcas img {
-    width: 105px;
-    height: auto;
+    width: 100px;
+    height: 100px;
     max-width: 100%;
 }
 
