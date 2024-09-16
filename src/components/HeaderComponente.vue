@@ -5,23 +5,19 @@
                 <RouterLink to="/"><img src="../assets/img/logo.png" alt="Logo"></RouterLink>
             </div>
             <nav class="nav">
-                <RouterLink to="/">
+                <RouterLink to="/roupas">
                     <p>Roupas</p>
                 </RouterLink>
-                <RouterLink to="/">
+                <RouterLink to="/calcados">
                     <p>Calçados</p>
                 </RouterLink>
-                <RouterLink to="/">
+                <RouterLink to="/acessorios">
                     <p>Acessórios</p>
                 </RouterLink>
             </nav>
             <div class="icon">
-                <RouterLink to="/usuario">
                     <img src="../assets/img/user.svg" alt="Usuário">
-                </RouterLink>
-                <RouterLink to="/carrinho">
                     <img src="../assets/img/carrinho.svg" alt="Carrinho">
-                </RouterLink>
             </div>
         </div>
     </header>

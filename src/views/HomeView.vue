@@ -1,21 +1,34 @@
-<script setup>
-    </script>
-    
-    <template>
-      <HeaderView />
-      <RouterView />
-     
-    </template>
-    
-    <style>
-    *{
-        padding: 0;
-        border: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    a{
-      text-decoration: none;
-    }
-    
-    </style>
+<template>
+  <div>
+    <MarcasComponente />
+    <div class="banner">
+      <img src="../assets/img/banner.jpg" alt="banner">
+    </div>
+  </div>
+</template>
+
+<script>
+import MarcasComponente from '@/components/MarcasComponente.vue';
+
+export default {
+  components: {
+    MarcasComponente
+  }
+}
+</script>
+
+<style>
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.banner img {
+  width: 100%;
+  max-height: 930px;;
+  object-fit: cover;
+}
+</style>
