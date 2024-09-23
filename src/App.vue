@@ -20,8 +20,8 @@ import { RouterLink, RouterView } from 'vue-router'
         </div>
         <form method="post" action="">
           <div class="form-header">
-            <a href="#" class="active">Login</a>
-            <a href="#cadastro">Sign Up</a>
+            <a href="#" class="active">Sign Up</a>
+            <a href="#cadastro">Login</a>
           </div>
           <div class="line"></div>
           <p>
@@ -53,6 +53,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
       <!-- FORMULÁRIO DE CADASTRO -->
       <div id="cadastro">
+        <div class="ImgLogin">
+          <img src="./assets/user.png" alt="Logo de Cadastro" class="logo" />
+        </div>
         <form method="post" action="">
           <div class="form-header">
             <a href="#login">Login</a>
@@ -151,8 +154,10 @@ a.links {
 .line {
   width: 70%;
   height: 1.8px;
-  background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%, rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
-  background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%, rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%,
+  rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%,
+  rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
   margin: 20px auto;
 }
 
@@ -168,7 +173,6 @@ p:first-child {
 /* placeholder */
 ::-webkit-input-placeholder {
   color: #a3a0a0;
-  font-style: italic;
   font-weight: 600;
 }
 
