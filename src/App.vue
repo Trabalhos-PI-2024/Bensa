@@ -1,14 +1,14 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
 import HeaderComponente from './components/HeaderComponente.vue';
-import FooterComponent from './components/FooterComponente.vue';
+
 
 </script>
 
 <template>
   <HeaderComponente />
   <router-view></router-view>
-  <FooterComponent />
+
 </template>
 
 <style>
