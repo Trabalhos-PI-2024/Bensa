@@ -1,34 +1,27 @@
 <template>
-  <div>
+  <section>
+  <div class="marcas">
     <MarcasComponente />
-    <div class="banner">
-      <img src="../assets/img/banner.jpg" alt="banner">
-    </div>
   </div>
+  <div class="lancamentos">
+    <LancamentosComponente/>
+  </div>
+  <div class="acessorios">
+    <AcessoriosComponente/>
+  </div>
+  <div class="ofertas">
+    <OfertasComponente />
+  </div>
+  </section>
 </template>
 
-<script>
-import MarcasComponente from '@/components/MarcasComponente.vue';
-
-export default {
-  components: {
-    MarcasComponente
-  }
-}
+<script setup>
+import MarcasComponente from '../components/MarcasComponente.vue'
+import LancamentosComponente from '../components/LancamentosComponente.vue'
+import AcessoriosComponente from '../components/AcessoriosComponente.vue'
+import OfertasComponente from '../components/OfertasComponente.vue';
 </script>
 
 <style>
-.banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0;
-}
 
-.banner img {
-  width: 100%;
-  max-height: 930px;;
-  object-fit: cover;
-}
 </style>
