@@ -5,19 +5,19 @@
       </div>
       <div class="mainProdutos">
         <div class="product">
-          <img src="" alt="" />
+          <img src="../assets/img/Lancamentos/adi2000.webp" alt="" />
         </div>
         <div class="product">
-          <img src="" alt="" />
+          <img src="../assets/img/Lancamentos/nb.webp" alt="" />
         </div>
         <div class="product">
-          <img src="" alt="" />
+          <img src="../assets/img/Lancamentos/jordan.webp" alt="" />
         </div>
         <div class="product">
-          <img src="" alt="" />
+          <img src="../assets/img/Lancamentos/samba.webp" alt="" />
         </div>
         <div class="product">
-          <img src="" alt="" />
+          <img src="../assets/img/Lancamentos/force.webp" alt="" />
         </div>
       </div>
     </div>
@@ -30,6 +30,8 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin-top: 40px;
+   
   }
   .lancamentos .title {
     display: flex;
@@ -50,10 +52,14 @@
   }
   
   .lancamentos .mainProdutos .product{
-      width: 150px;
-      height: 150px;
-      border: 1px solid;
-      margin: 0 30px;
-      background: #e7e7e7;
+      width: 210px;
+      height: 210px;
+      border: 1px solid #e7e7e7e7;
+      margin: 0 40px;
+      
+  }
+  .lancamentos .mainProdutos .product img{
+    width: 207px;
+    height: 207px;
   }
   </style>

@@ -1,6 +1,7 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
 import HeaderComponente from './components/HeaderComponente.vue';
+import FooterComponente from './components/FooterComponente.vue';
 
 
 </script>
@@ -8,7 +9,7 @@ import HeaderComponente from './components/HeaderComponente.vue';
 <template>
   <HeaderComponente />
   <router-view></router-view>
-
+  <FooterComponente/>
 </template>
 
 <style>
