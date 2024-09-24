@@ -40,9 +40,9 @@ body, html {
     overflow-y: auto;
 }
   .banner img {
-    width: 100%;  /* Ocupe toda a largura da tela */
-    height: 800px; /* Altura ajustada para ser menor */
-    object-fit: cover; /* Mantém a imagem cortada proporcionalmente */
+    width: 100%;  
+    height: 800px; 
+    object-fit: cover; 
     
   }
   hr{
