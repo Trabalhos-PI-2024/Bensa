@@ -1,0 +1,43 @@
+{
+    "catalogo": {
+        
+      "camisas": [
+        {
+          "id": 1,
+          "modelo": "",
+          "price": "89,99"
+        }
+      ],
+      "calcas": [
+        {
+          "id": 1,
+          "modelo": "",
+          "price": "99,99"
+        }
+      ],
+      "agasalhos": [
+        {
+          "id": 1,
+          "modelo": "",
+          "price": "179,99"
+        }
+      ]
+    },
+
+    "status": [
+      {
+        "id": 1,
+        "tipo": "Solicitado"
+      },
+      {
+        "id": 2,
+        "tipo": "Em Produção"
+      },
+      {
+        "id": 3,
+        "tipo": "Finalizado"
+      }
+    ],
+
+    "clientes": []
+  }

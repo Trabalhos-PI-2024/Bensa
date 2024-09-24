@@ -1,6 +1,36 @@
-<script setup>
-import { computed, reactive, ref } from 'vue';
+<script>
 import HeaderComponente from './components/HeaderComponente.vue';
+
+export default {
+  components: {
+    HeaderComponente
+  },
+  data(){
+    return{
+      camisas: null,
+      calcas: null,
+      agasalhos: null,
+      camisa: null,
+      calca: null,
+      agasalho: null,
+      status: "Solicitado",
+    }
+  },
+  methods: {
+    async getCatalogo(){
+      const req = await fetch("http://localhost:3000/catalogo");
+      const data = await req.json();
+
+      this.camisas = data.camisas;
+      this.calcas = data.calcas;
+      this.agasalhos = data.agasalhos;
+
+    }
+  },
+  mounted() {
+    this.getCatalogo()
+  }
+}
 
 </script>
 
