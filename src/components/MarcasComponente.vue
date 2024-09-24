@@ -23,6 +23,7 @@
     align-items: center;
     padding: 10px 200px;
     background-color: #ffffff;
+    border-bottom: 1px solid #e7e7e7e7;
 }
 
 .marcas img {
@@ -30,6 +31,7 @@
     height: auto;
     max-width: 100%;
 }
+
 
 .banner {
 display: flex;

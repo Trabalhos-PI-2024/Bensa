@@ -1,11 +1,12 @@
 <template>
   <section>
   <div class="marcas">
-    <MarcasComponente />
   </div>
+  <MarcasComponente />
   <div class="banner">
     <img src="../assets/img/BENSA STREETWEAR.png" alt="banner">
   </div>
+  
   <div class="lancamentos">
     <LancamentosComponente/>
   </div>
@@ -40,9 +41,9 @@ body, html {
 }
   .banner img {
     width: 100%;  /* Ocupe toda a largura da tela */
-    height: 730px; /* Altura ajustada para ser menor */
+    height: 800px; /* Altura ajustada para ser menor */
     object-fit: cover; /* Mantém a imagem cortada proporcionalmente */
-    margin-top: 30px;
+    
   }
   hr{
     border: 1px solid #e7e7e7; 
