@@ -7,12 +7,20 @@ export default {
   },
   data(){
     return{
-      camisas: null,
-      calcas: null,
-      agasalhos: null,
-      camisa: null,
-      calca: null,
-      agasalho: null,
+      nike: null,
+      adidas: null,
+      vans: null,
+      stussy: null,
+      roupas: null,
+      acessorios: null,
+      calcados: null,
+      nikes: null,
+      adida: null,
+      van: null,
+      stussys: null,
+      roupa: null,
+      acessorio: null,
+      calcado: null,
       status: "Solicitado",
     }
   },
@@ -21,9 +29,13 @@ export default {
       const req = await fetch("http://localhost:3000/catalogo");
       const data = await req.json();
 
-      this.camisas = data.camisas;
-      this.calcas = data.calcas;
-      this.agasalhos = data.agasalhos;
+      this.nike = data.nike;
+      this.adidas = data.adidas;
+      this.vans = data.vans;
+      this.stussy = data.stussy;
+      this.roupas = data.roupas;
+      this.acessorios = data.acessorios;
+      this.calcados = data.calcados;
 
     }
   },

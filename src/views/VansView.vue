@@ -26,6 +26,18 @@
   
   <script>
   import ProductItem from '../components/ProductItem.vue';
+  import tenis1vans from '../assets/produtos.vans/tenis1vans.webp'
+import chapeu1vans from '../assets/produtos.vans/chapeu1vans.webp'
+import mochila1vans from '../assets/produtos.vans/mochila1vans.webp'
+import bag1vans from '../assets/produtos.vans/bag1vans.webp'
+import chapeu2vans from '../assets/produtos.vans/chapeu2vans.webp'
+import oculos1vans from '../assets/produtos.vans/oculos1vans.webp'
+import tenis2vans from '../assets/produtos.vans/tenis2vans.webp'
+import tenis3vans from '../assets/produtos.vans/tenis3vans.webp'
+import tenis4vans from '../assets/produtos.vans/tenis4vans.webp'
+import tenis5vans from '../assets/produtos.vans/tenis5vans.webp'
+import oculos2vans from '../assets/produtos.vans/oculos2vans.webp'
+import camisa3nike from '../assets/produtos.nike/camisa3nike.webp'
 
   
   export default {
@@ -35,26 +47,18 @@
     data() {
       return {
         products: [
-          { name: 'Produto 1', description: 'Descrição do produto 1', image: 'img1.jpg' },
-          { name: 'Produto 2', description: 'Descrição do produto 2', image: 'img2.jpg' },
-          { name: 'Produto 3', description: 'Descrição do produto 3', image: 'img3.jpg' },
-          { name: 'Produto 4', description: 'Descrição do produto 4', image: 'img4.jpg' },
-          { name: 'Produto 5', description: 'Descrição do produto 5', image: 'img5.jpg' },
-          { name: 'Produto 6', description: 'Descrição do produto 6', image: 'img6.jpg' },
-          { name: 'Produto 7', description: 'Descrição do produto 7', image: 'img7.jpg' },
-          { name: 'Produto 8', description: 'Descrição do produto 8', image: 'img8.jpg' },
-          { name: 'Produto 9', description: 'Descrição do produto 9', image: 'img9.jpg' },
-          { name: 'Produto 10', description: 'Descrição do produto 10', image: 'img10.jpg' },
-          { name: 'Produto 11', description: 'Descrição do produto 11', image: 'img11.jpg' },
-          { name: 'Produto 12', description: 'Descrição do produto 12', image: 'img12.jpg' },
-          { name: 'Produto 13', description: 'Descrição do produto 13', image: 'img13.jpg' },
-          { name: 'Produto 14', description: 'Descrição do produto 14', image: 'img14.jpg' },
-          { name: 'Produto 15', description: 'Descrição do produto 15', image: 'img15.jpg' },
-          { name: 'Produto 16', description: 'Descrição do produto 16', image: 'img16.jpg' },
-          { name: 'Produto 17', description: 'Descrição do produto 17', image: 'img17.jpg' },
-          { name: 'Produto 18', description: 'Descrição do produto 18', image: 'img18.jpg' },
-          { name: 'Produto 19', description: 'Descrição do produto 19', image: 'img19.jpg' },
-          { name: 'Produto 20', description: 'Descrição do produto 20', image: 'img20.jpg' },
+        { name: 'Produto 1', description: 'Descrição do produto 1', image: tenis1vans },
+        { name: 'Produto 2', description: 'Descrição do produto 2', image: chapeu1vans },
+        { name: 'Produto 3', description: 'Descrição do produto 3', image: bag1vans },
+        { name: 'Produto 4', description: 'Descrição do produto 5', image: tenis2vans },
+        { name: 'Produto 5', description: 'Descrição do produto 6', image: oculos1vans },
+        { name: 'Produto 6', description: 'Descrição do produto 7', image: chapeu2vans },
+        { name: 'Produto 7', description: 'Descrição do produto 8', image: tenis3vans },
+        { name: 'Produto 8', description: 'Descrição do produto 11', image: tenis4vans  },
+        { name: 'Produto 9', description: 'Descrição do produto 12', image: tenis5vans  },
+        { name: 'Produto 10', description: 'Descrição do produto 13', image: mochila1vans  },
+        { name: 'Produto 11', description: 'Descrição do produto 14', image: oculos2vans  },
+        { name: 'Produto 12', description: 'Descrição do produto 3', image: camisa3nike },
         ],
       };
     },

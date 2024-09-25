@@ -3,7 +3,7 @@
    
   
       <div class="logo-container">
-        <img src="" alt="" class="" />
+        <h1>Calçados</h1>
       </div>
   
       <div class="main-content">
@@ -26,6 +26,18 @@
   
   <script>
   import ProductItem from '../components/ProductItem.vue';
+  import tenis1nike from '../assets/produtos.nike/tenis1nike.webp'
+import tenis2nike from '../assets/produtos.nike/tenis2nike.webp'
+import tenis3nike from '../assets/produtos.nike/tenis3nike.webp'
+import tenis4nike from '../assets/produtos.nike/tenis4nike.webp'
+import tenis5nike from '../assets/produtos.nike/tenis5nike.webp'
+import tenis6nike from '../assets/produtos.nike/tenis6nike.webp'
+  import tenis1adidas from '../assets/produtos.adidas/tenis1adidas.webp'
+import tenis2adidas from '../assets/produtos.adidas/tenis2adidas.webp'
+import tenis3adidas from '../assets/produtos.adidas/tenis3adidas.avif'
+import tenis4adidas from '../assets/produtos.adidas/tenis4adidas.avif'
+import tenis5adidas from '../assets/produtos.adidas/tenis5adidas.avif'
+import tenis6adidas from '../assets/produtos.adidas/tenis6adidas.avif'
   
   export default {
     components: {
@@ -34,26 +46,18 @@
     data() {
       return {
         products: [
-          { name: 'Produto 1', description: 'Descrição do produto 1', image: 'img1.jpg' },
-          { name: 'Produto 2', description: 'Descrição do produto 2', image: 'img2.jpg' },
-          { name: 'Produto 3', description: 'Descrição do produto 3', image: 'img3.jpg' },
-          { name: 'Produto 4', description: 'Descrição do produto 4', image: 'img4.jpg' },
-          { name: 'Produto 5', description: 'Descrição do produto 5', image: 'img5.jpg' },
-          { name: 'Produto 6', description: 'Descrição do produto 6', image: 'img6.jpg' },
-          { name: 'Produto 7', description: 'Descrição do produto 7', image: 'img7.jpg' },
-          { name: 'Produto 8', description: 'Descrição do produto 8', image: 'img8.jpg' },
-          { name: 'Produto 9', description: 'Descrição do produto 9', image: 'img9.jpg' },
-          { name: 'Produto 10', description: 'Descrição do produto 10', image: 'img10.jpg' },
-          { name: 'Produto 11', description: 'Descrição do produto 11', image: 'img11.jpg' },
-          { name: 'Produto 12', description: 'Descrição do produto 12', image: 'img12.jpg' },
-          { name: 'Produto 13', description: 'Descrição do produto 13', image: 'img13.jpg' },
-          { name: 'Produto 14', description: 'Descrição do produto 14', image: 'img14.jpg' },
-          { name: 'Produto 15', description: 'Descrição do produto 15', image: 'img15.jpg' },
-          { name: 'Produto 16', description: 'Descrição do produto 16', image: 'img16.jpg' },
-          { name: 'Produto 17', description: 'Descrição do produto 17', image: 'img17.jpg' },
-          { name: 'Produto 18', description: 'Descrição do produto 18', image: 'img18.jpg' },
-          { name: 'Produto 19', description: 'Descrição do produto 19', image: 'img19.jpg' },
-          { name: 'Produto 20', description: 'Descrição do produto 20', image: 'img20.jpg' },
+        { name: 'Produto 1', description: 'Descrição do produto 1', image: tenis1nike },
+        { name: 'Produto 2', description: 'Descrição do produto 2', image: tenis1adidas },
+        { name: 'Produto 3', description: 'Descrição do produto 3', image: tenis6adidas },
+        { name: 'Produto 4', description: 'Descrição do produto 4', image: tenis5adidas },
+        { name: 'Produto 5', description: 'Descrição do produto 5', image: tenis2nike },
+        { name: 'Produto 6', description: 'Descrição do produto 6', image: tenis4adidas },
+        { name: 'Produto 7', description: 'Descrição do produto 7', image: tenis2adidas },
+        { name: 'Produto 8', description: 'Descrição do produto 8', image: tenis3nike },
+        { name: 'Produto 9', description: 'Descrição do produto 11', image: tenis4nike  },
+        { name: 'Produto 10', description: 'Descrição do produto 12', image: tenis5nike  },
+        { name: 'Produto 11', description: 'Descrição do produto 13', image: tenis3adidas  },
+        { name: 'Produto 12', description: 'Descrição do produto 14', image: tenis6nike  },
         ],
       };
     },

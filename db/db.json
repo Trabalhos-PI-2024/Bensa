@@ -1,21 +1,49 @@
 {
     "catalogo": {
         
-      "camisas": [
+      "nike": [
         {
           "id": 1,
           "modelo": "",
           "price": "89,99"
         }
       ],
-      "calcas": [
+      "adidas": [
         {
           "id": 1,
           "modelo": "",
           "price": "99,99"
         }
       ],
-      "agasalhos": [
+      "vans": [
+        {
+          "id": 1,
+          "modelo": "",
+          "price": "179,99"
+        }
+      ],
+      "stussy": [
+        {
+          "id": 1,
+          "modelo": "",
+          "price": "179,99"
+        }
+      ],
+      "roupas": [
+        {
+          "id": 1,
+          "modelo": "",
+          "price": "179,99"
+        }
+      ],
+      "calcados": [
+        {
+          "id": 1,
+          "modelo": "",
+          "price": "179,99"
+        }
+      ],
+      "acessorios": [
         {
           "id": 1,
           "modelo": "",
