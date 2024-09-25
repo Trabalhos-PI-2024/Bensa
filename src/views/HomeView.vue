@@ -16,8 +16,16 @@
         <div class="footer-section">
           <h3>Redes Sociais</h3>
           <ul>
-            <li>Twitter</li>
-            <li>Instagram</li>
+            <li class="logo-social">
+              <a href="https://www.twitter.com">
+                <img src="@/assets/img/twitter.svg" alt="Logo" />
+              </a>
+            </li>
+            <li id="insta" class="logo-social">
+              <a href="https://www.instagram.com">
+                <img src="@/assets/img/insta.png" alt="Logo" />
+              </a>
+            </li>
           </ul>
         </div>
         <div class="footer-section">
@@ -107,6 +115,21 @@ export default {
 .logo img {
   height: 210px; /* Altura da logo */
   margin-right: 120px; /* Margem à esquerda */
+}
+
+.logo-social {
+  display: flex;
+  justify-content: flex-end; /* Alinha a logo à direita */
+}
+
+.logo-social img {
+  height: 30px; /* Altura da logo */
+  padding-top: 5px; /* Margem à esquerda */
+  margin-right: 70px;
+}
+
+#insta{
+  margin-right: 5px;
 }
 
 .middle-footer {
