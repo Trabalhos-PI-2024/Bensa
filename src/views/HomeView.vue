@@ -23,6 +23,7 @@
 </template>
 
 <script setup>
+
 import MarcasComponente from '../components/MarcasComponente.vue'
 import LancamentosComponente from '../components/LancamentosComponente.vue'
 import AcessoriosComponente from '../components/AcessoriosComponente.vue'

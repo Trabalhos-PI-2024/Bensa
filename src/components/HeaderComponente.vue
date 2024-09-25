@@ -8,7 +8,7 @@
                 <RouterLink to="/roupas">
                     <p>Roupas</p>
                 </RouterLink>
-                <RouterLink to="/calcados">
+                <RouterLink to="/sneakers">
                     <p>Calçados</p>
                 </RouterLink>
                 <RouterLink to="/acessorios">
