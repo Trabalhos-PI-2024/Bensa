@@ -1,13 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import AcessoriosView from '../views/AcessoriosView.vue';
-import AdidasView from '../views/AdidasView.vue';
-import CadastroView from '../views/CadastroView.vue';
-import NikeView from '../views/NikeView.vue';
-import RoupasView from '../views/RoupasView.vue';
-import SneakersView from '../views/SneakersView.vue';
-import StussyView from '../views/StussyView.vue';
-import VansView from '../views/VansView.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import AcessoriosView from '../views/AcessoriosView.vue'
+import AdidasView from '../views/AdidasView.vue'
+import CadastroView from '../views/CadastroView.vue'
+import NikeView from '../views/NikeView.vue'
+import RoupasView from '../views/RoupasView.vue'
+import SneakersView from '../views/SneakersView.vue'
+import StussyView from '../views/StussyView.vue'
+import VansView from '../views/VansView.vue'
+
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
     path: '/cadastro',
     name: 'cadastro',
     component: CadastroView,
-  
+    meta: { showHeader: false }
   },
   {
     path: '/nike',
@@ -55,12 +56,13 @@ const routes = [
     path: '/vans',
     name: 'vans',
     component: VansView
-  }
-];
+  },
+ 
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
-});
+})
 
-export default router;
+export default router

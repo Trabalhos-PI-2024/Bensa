@@ -1,54 +1,59 @@
 <script setup>
-import { ref } from 'vue';
-
-
-const isOpen = ref(true);
-
-function closeModal() {
-  isOpen.value = false;
-}
-
-
-</script>
-
-<template>
-  <RouterView />
-  <div v-if="isOpen" class="login-overlay">
-    <div class="content">
-      <button class="close-button" @click="closeModal">X</button>
-      <div class="ImgLogin">
-        <img src="../assets/img/user.svg" alt="Logo de Cadastro" class="logo" />
-      </div>
-      <form method="post" action="">
-        <div class="form-header">
-          <a href="#" class="active">Login</a>
-          <a href="../views/CadastroView.vue" class="sign-up" >Sign Up</a> <!-- Redireciona para Cadastro -->
-        </div>
-        <div class="line"></div>
-        <p>
-          <input id="email_login" name="email_login" required type="text" placeholder="EMAIL" />
-        </p>
-        <p>
-          <input id="senha_login" name="senha_login" required type="password" placeholder="SENHA" />
-        </p>
-        <div class="login-options">
-          <div class="login-options-group">
-            <input type="checkbox" id="manterlogado" />
-            <label for="manterlogado" class="manterLogado">Remember-me</label>
+    import { ref } from 'vue';
+    import { useRouter } from 'vue-router'; // Importa useRouter
+    
+    const router = useRouter(); // Cria uma instância do router
+    const isOpen = ref(true);
+    
+    function closeModal() {
+      isOpen.value = false;
+    }
+    
+    function goToCadastro() {
+      closeModal(); // Fecha o modal
+      router.push('/cadastro'); // Navega para a página de cadastro
+    }
+    </script>
+    
+    <template>
+      <RouterView />
+      <div v-if="isOpen" class="login-overlay">
+        <div class="content">
+          <button class="close-button" @click="closeModal">X</button>
+          <div class="ImgLogin">
+            <img src="../assets/img/user.svg" alt="Logo de Cadastro" class="logo" />
           </div>
-          <a href="#forgot-password" class="forgot-password">Esqueci a Senha</a>
+          <form method="post" action="">
+            <div class="form-header">
+              <a href="#" class="active">Login</a>
+              <a href="#" @click="goToCadastro" class="sign-up">Sign Up</a> <!-- Chama goToCadastro -->
+            </div>
+            <div class="line"></div>
+            <p>
+              <input id="email_login" name="email_login" required type="text" placeholder="EMAIL" />
+            </p>
+            <p>
+              <input id="senha_login" name="senha_login" required type="password" placeholder="SENHA" />
+            </p>
+            <div class="login-options">
+              <div class="login-options-group">
+                <input type="checkbox" id="manterlogado" />
+                <label for="manterlogado" class="manterLogado">Remember-me</label>
+              </div>
+              <a href="#forgot-password" class="forgot-password">Esqueci a Senha</a>
+            </div>
+            <p>
+              <input type="submit" value="ENTRAR" />
+            </p>
+            <p class="link">
+              Ainda não tem conta?
+              <a href="#" @click="goToCadastro">Cadastre-se</a> <!-- Chama goToCadastro -->
+            </p>
+          </form>
         </div>
-        <p>
-          <input type="submit" value="ENTRAR" />
-        </p>
-        <p class="link">
-          Ainda não tem conta?
-          <a href="../views/CadastroView.vue" >Cadastre-se</a> <!-- Redireciona para Cadastro -->
-        </p>
-      </form>
-    </div>
-  </div>
-</template>
+      </div>
+    </template>
+    
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');

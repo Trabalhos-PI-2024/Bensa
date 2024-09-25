@@ -4,10 +4,12 @@ import HeaderComponente from './components/HeaderComponente.vue';
 import FooterComponente from './components/FooterComponente.vue';
 
 
+
+
 </script>
 
 <template>
-  <HeaderComponente />
+  <HeaderComponente  />
   <router-view></router-view>
   <FooterComponente/>
 </template>
