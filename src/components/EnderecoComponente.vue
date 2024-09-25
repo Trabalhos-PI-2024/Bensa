@@ -21,7 +21,8 @@
                     </div>
                     <div class="endereco-container">
                         <label for="endereco">Endereço</label>
-                        <input v-model="form.endereco" type="text" id="endereco" required placeholder="Ex: Rua das Flores" />
+                        <input v-model="form.endereco" type="text" id="endereco" required
+                            placeholder="Ex: Rua das Flores" />
                     </div>
                 </div>
 
@@ -141,7 +142,8 @@ const formCadastro = () => {
 .form-grid {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Espaçamento de 30px entre linhas */
+    gap: 30px;
+    /* Espaçamento de 30px entre linhas */
 }
 
 .form-grupo {
@@ -166,52 +168,59 @@ const formCadastro = () => {
 /* Estilos para o CEP e Endereço */
 .inline-group {
     display: flex;
-    flex-direction: row; /* Mantém os inputs na mesma linha */
-    gap: 20px; /* Espaçamento entre os inputs */
+    flex-direction: row;
+    /* Mantém os inputs na mesma linha */
+    gap: 20px;
+    /* Espaçamento entre os inputs */
 }
 
 /* Estilos para o CEP e Endereço */
 .cep-container {
-    width: 50%; /* CEP ocupa 50% da largura */
+    width: 50%;
+    /* CEP ocupa 50% da largura */
 }
 
 .endereco-container {
-    width: 50%; /* Endereço ocupa 50% da largura */
+    width: 50%;
+    /* Endereço ocupa 50% da largura */
 }
 
 /* Estilos para o Número e Complemento */
 .numero-container {
-    width: 50%; /* Número ocupa 50% da largura */
+    width: 50%;
+    /* Número ocupa 50% da largura */
 }
 
 .complemento-container {
-    width: 50%; /* Complemento ocupa 50% da largura */
+    width: 50%;
+    /* Complemento ocupa 50% da largura */
 }
 
 /* Estilos para Bairro, Cidade e Estado */
 .bairro-container,
 .cidade-container,
 .estado-container {
-    width: 33%; /* Cada um ocupa 33% da largura */
+    width: 33%;
+    /* Cada um ocupa 33% da largura */
 }
 
 /* Estilos para o botão do router link */
 .large-button {
     width: 40%;
-  /* Tornado menor */
-  cursor: pointer;
-  background: #000000;
-  padding: 8px 5px;
-  color: #fff;
-  font-size: 16px;
-  /* Ajustado para um tamanho mais apropriado */
-  border: 1px solid #fff;
-  margin: 40px auto;
-  /* Centralizado com margem */
-  border-radius: 12px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+    /* Tornado menor */
+    cursor: pointer;
+    background: #000000;
+    padding: 8px 5px;
+    color: #fff;
+    font-size: 16px;
+    /* Ajustado para um tamanho mais apropriado */
+    border: 1px solid #fff;
+    margin: 40px auto;
+    /* Centralizado com margem */
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .large-button:hover {

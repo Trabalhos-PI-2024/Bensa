@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 .allMarcas {
     display: flex;
     flex-wrap: wrap;
@@ -32,30 +32,30 @@
     max-width: 100%;
 }
 
-
 .banner {
-display: flex;
-justify-content: center;
-align-items: center;
-  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .banner .banner-image {
-width: 65%;
-  object-fit: cover;
-  opacity: 1;
+    width: 65%;
+    object-fit: cover;
+    opacity: 1;
 }
 
 @media (max-width: 1200px) {
-    .allMarcas{
+    .allMarcas {
         padding: 10px 100px;
     }
 }
 
 @media (max-width: 768px) {
-    .allMarcas{
+    .allMarcas {
         padding: 10px;
     }
+
     .marcas img {
         width: 80px;
     }

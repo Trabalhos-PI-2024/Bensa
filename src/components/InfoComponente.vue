@@ -29,11 +29,13 @@
                 <div class="user-form-grupo inline-group">
                     <div class="telefone-container">
                         <label for="telefone">Telefone</label>
-                        <input v-model="form.telefone" type="text" id="telefone" required placeholder="Ex: (11) 91234-5678" />
+                        <input v-model="form.telefone" type="text" id="telefone" required
+                            placeholder="Ex: (11) 91234-5678" />
                     </div>
                     <div class="email-container">
                         <label for="email">E-mail</label>
-                        <input v-model="form.email" type="email" id="email" required placeholder="Ex: exemplo@dominio.com" />
+                        <input v-model="form.email" type="email" id="email" required
+                            placeholder="Ex: exemplo@dominio.com" />
                     </div>
                 </div>
 
@@ -146,7 +148,8 @@ const formCadastro = () => {
 .user-form-grid {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Espaçamento de 30px entre linhas */
+    gap: 30px;
+    /* Espaçamento de 30px entre linhas */
 }
 
 .user-form-grupo {
@@ -172,27 +175,32 @@ const formCadastro = () => {
 /* Estilos para o Nome e Sobrenome */
 .inline-group {
     display: flex;
-    flex-direction: row; /* Mantém os inputs na mesma linha */
-    gap: 20px; /* Espaçamento entre os inputs */
+    flex-direction: row;
+    /* Mantém os inputs na mesma linha */
+    gap: 20px;
+    /* Espaçamento entre os inputs */
 }
 
 /* Estilos para o Nome e Sobrenome */
 .nome-container,
 .sobrenome-container {
-    width: 50%; /* Cada um ocupa 50% da largura */
+    width: 50%;
+    /* Cada um ocupa 50% da largura */
 }
 
 /* Estilos para o Telefone e E-mail */
 .telefone-container,
 .email-container {
-    width: 50%; /* Cada um ocupa 50% da largura */
+    width: 50%;
+    /* Cada um ocupa 50% da largura */
 }
 
 /* Estilos para CPF, Data de Nascimento e Sexo */
 .cpf-container,
 .data-nascimento-container,
 .sexo-container {
-    width: 33%; /* Cada um ocupa 33% da largura */
+    width: 33%;
+    /* Cada um ocupa 33% da largura */
 }
 
 /* Estilos para o botão do router link */
