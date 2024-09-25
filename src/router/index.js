@@ -28,7 +28,8 @@ const routes = [
   {
     path: '/cadastro',
     name: 'cadastro',
-    component: CadastroView
+    component: CadastroView,
+  
   },
   {
     path: '/nike',

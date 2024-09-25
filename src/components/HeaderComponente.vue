@@ -16,12 +16,32 @@
                 </RouterLink>
             </nav>
             <div class="icon">
+                <button @click="showLogin = !showLogin" class="icon-button">
                     <img src="../assets/img/user.svg" alt="Usuário">
-                    <img src="../assets/img/carrinho.svg" alt="Carrinho">
+                </button>
+                <img src="../assets/img/carrinho.svg" alt="Carrinho">
             </div>
         </div>
+        
+        <LoginComponente v-if="showLogin" />
     </header>
 </template>
+
+<script>
+import LoginComponente from './LoginComponente.vue';
+
+export default {
+    components: {
+        LoginComponente
+    },
+    data() {
+        return {
+            showLogin: false 
+        }
+    }
+}
+</script>
+
 
 <style>
 header {
@@ -79,6 +99,17 @@ header {
 }
 
 .icon img {
+    width: 40px;
+    height: auto;
+}
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.icon-button img {
     width: 40px;
     height: auto;
 }
