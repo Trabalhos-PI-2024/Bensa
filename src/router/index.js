@@ -8,7 +8,8 @@ import RoupasView from '../views/RoupasView.vue'
 import SneakersView from '../views/SneakersView.vue'
 import StussyView from '../views/StussyView.vue'
 import VansView from '../views/VansView.vue'
-
+import EnderecoView from '../views/EnderecoView.vue'
+import InfoView from '../views/InfoView.vue'
 
 const routes = [
   {
@@ -30,7 +31,6 @@ const routes = [
     path: '/cadastro',
     name: 'cadastro',
     component: CadastroView,
-    meta: { showHeader: false }
   },
   {
     path: '/nike',
@@ -57,7 +57,17 @@ const routes = [
     name: 'vans',
     component: VansView
   },
- 
+  {
+    path: '/endereco',
+    name: 'endereco',
+    component: EnderecoView
+  },
+  {
+    path: '/info',
+    name: 'info',
+    component: InfoView
+  },
+
 ]
 
 const router = createRouter({

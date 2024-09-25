@@ -16,7 +16,6 @@
     </script>
     
     <template>
-      <RouterView />
       <div v-if="isOpen" class="login-overlay">
         <div class="content">
           <button class="close-button" @click="closeModal">X</button>
@@ -42,9 +41,9 @@
               </div>
               <a href="#forgot-password" class="forgot-password">Esqueci a Senha</a>
             </div>
-            <p>
-              <input type="submit" value="ENTRAR" />
-            </p>
+            <div class="user-form-buttons">
+                <button @click="closeModal" class="large-button">Próximo</button>
+            </div>
             <p class="link">
               Ainda não tem conta?
               <a href="#" @click="goToCadastro">Cadastre-se</a> <!-- Chama goToCadastro -->
@@ -102,7 +101,7 @@
   display: flex;
   justify-content: center; 
   margin-bottom: 30px; 
-  margin-right: 80px;
+  margin-right: 100px;
 }
 
 .logo {
@@ -140,7 +139,7 @@ input {
   border-radius: 8px;
 }
 
-input[type="submit"] {
+.user-form-buttons button {
   width: 100%;
   padding: 15px; 
   background: #000; 

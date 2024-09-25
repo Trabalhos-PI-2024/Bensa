@@ -1,9 +1,9 @@
 <script setup>
-import CadastroComponente from '@/components/CadastroComponente.vue';
+import CadastroComponente from '../components/CadastroComponente.vue';
 </script>
 <template>
     <div class="form">
-        <CadastroComponente/>
+        <CadastroComponente />
     </div>
 </template>
 <style scoped>
