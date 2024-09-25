@@ -22,7 +22,7 @@
                 <img src="../assets/img/carrinho.svg" alt="Carrinho">
             </div>
         </div>
-        
+
         <LoginComponente v-if="showLogin" />
     </header>
 </template>
@@ -36,7 +36,7 @@ export default {
     },
     data() {
         return {
-            showLogin: false 
+            showLogin: false
         }
     }
 }
@@ -102,6 +102,7 @@ header {
     width: 40px;
     height: auto;
 }
+
 .icon-button {
     background: none;
     border: none;

@@ -1,135 +1,194 @@
 <template>
-    <footer class="footer">
+  <footer class="footer">
+    <div class="top-footer">
       <div class="footer-content">
-        <!-- Seções de Marcas, Redes Sociais e Sobre Nós -->
-        <div class="footer-sections">
-          <!-- Seção de Marcas -->
-          <div class="footer-section brands">
-            <h3>Marcas</h3>
-            <ul>
+        <div class="footer-section">
+          <h3>Marcas</h3>
+          <ul>
+            <router-link to="/nike">
               <li>Nike</li>
+            </router-link>
+            <router-link to="/adidas">
               <li>Adidas</li>
+            </router-link>
+            <router-link to="/vans">
               <li>Vans</li>
-              <li>Puma</li>
-              <li>High</li>
+            </router-link>
+            <router-link to="/stussy">
               <li>Stussy</li>
-            </ul>
-          </div>
-  
-          <!-- Seção Redes Sociais -->
-          <div class="footer-section social">
-            <h3>Redes Sociais</h3>
-            <ul>
-              <li><a href="https://twitter.com">Twitter</a></li>
-              <li><a href="https://instagram.com">Instagram</a></li>
-            </ul>
-          </div>
-  
-          <!-- Seção Sobre Nós -->
-          <div class="footer-section about">
-            <h3>Sobre Nós</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
+            </router-link>
+
+          </ul>
         </div>
-  
-        <!-- Logo -->
-        <div class="footer-section logo">
-          
+        <div class="footer-section">
+          <h3>Redes Sociais</h3>
+          <ul>
+            <li class="logo-social">
+              <a href="https://www.twitter.com">
+                <img src="../assets/img/icons8-twitter.svg" alt="Logo" />
+              </a>
+            </li>
+            <li id="insta" class="logo-social">
+              <a href="https://www.instagram.com">
+                <img src="../assets/img/icons8-insta.svg" alt="Logo" />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Sobre nós</h3>
+          <p> Este site foi criado por um grupo de alunos do curso de informática como um projeto para o Hackaton do
+            Instituto Federal Catarinense - Campus Araquari de 2024.</p>
         </div>
       </div>
-  
-      <!-- Linha de Separação -->
-      <hr />
-  
-      <!-- Seção Informações Adicionais -->
-      <div class="footer-info">
-        <p>&copy; 2024 Sua Loja Virtual. Todos os direitos reservados.</p>
-        <p>Email: contato@sualoja.com</p>
+      <div class="logo">
+        <img src="@/assets/img/hands.png" alt="Logo" />
       </div>
-    </footer>
-  </template>
-  
-  <script>
-  export default {
-    name: 'Footer-Bensa',
-  };
-  </script>
-  
-  <style scoped>
-  /* Estilo Global */
-  * {
-    font-size: 1.03em;
-    color: white; /* Muda todas as letras para branco */
-    background-color: #1e1e1e; /* Fundo escuro */
-  }
-  
-  .footer {
-    background-color: #1e1e1e; /* Fundo do footer */
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
+    </div>
+    <hr />
+    <hr />
+    <div class="bottom-footer">
+      <p>Copyright © 2024 Bença. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</template>
+
+<script>
+export default {
+  name: 'FooterComponent',
+};
+</script>
+
+<style scoped>
+.footer {
+  background-color: #000;
+  /* Fundo preto */
+  color: #fff;
+  /* Texto branco */
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+.top-footer {
+  display: flex;
+  flex-wrap: wrap;
+  /* Permite que os itens se ajustem em várias linhas se necessário */
+  justify-content: space-between;
+  /* Espaço entre os itens */
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.footer-content {
+  display: flex;
+  /* Permite que as seções fiquem na horizontal */
+  align-items: flex-start;
+  /* Alinha as seções ao topo */
+  padding-left: 120px;
+  /* Margem reduzida para dispositivos menores */
+  flex: 1;
+  /* Permite que ocupe o espaço disponível */
+}
+
+.footer-section {
+  margin-right: 80px;
+  /* Espaçamento entre seções */
+  padding-bottom: 10px;
+  /* Espaçamento abaixo do texto */
+
+}
+
+.footer-section h3 {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #444;
+  /* Linha abaixo da seção */
+}
+
+.footer-section ul {
+  padding-left: 0;
+  /* Remove a indentação da lista */
+  list-style-type: none;
+  /* Remove os marcadores da lista */
+}
+
+.footer-section li {
+  padding: 8px;
+  color: #fff;
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-end;
+  /* Alinha a logo à direita */
+}
+
+.logo img {
+  height: 210px;
+  /* Altura da logo */
+  margin-right: 120px;
+  /* Margem à esquerda */
+  width: 210px;
+}
+
+.logo-social {
+  display: flex;
+  justify-content: flex-end;
+  /* Alinha a logo à direita */
+}
+
+.logo-social img {
+  height: 40px;
+  /* Altura da logo */
+  padding-top: 5px;
+  /* Margem à esquerda */
+  margin-right: 70px;
+}
+
+#insta {
+  margin-right: 5px;
+}
+
+.bottom-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: grey;
+}
+
+/* Estilo das linhas */
+hr {
+  border: 1px solid #444;
+  /* Cor das linhas */
+  margin: auto;
+  /* Margem acima e abaixo das linhas */
+  max-width: 1650px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
   .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    /* Alinha as seções verticalmente em telas menores */
+    padding-left: 0;
+    /* Remove o padding em telas menores */
   }
-  
-  .footer-sections {
-    display: flex;
-    gap: 10px; /* Define o espaço entre as seções */
-  }
-  
+
   .footer-section {
-    margin: 0;
-    padding: 50px;
+    margin-right: 0;
+    /* Remove o espaçamento entre seções */
+    margin-bottom: 20px;
+    /* Adiciona margem abaixo das seções */
   }
-  
-  .footer-section h3 {
-    margin-bottom: 10px;
-    border-bottom: 2px solid white; /* Linha abaixo do título em branco */
-    padding-bottom: 5px;
+
+  .middle-footer {
+    flex-direction: column;
+    /* Alinha os itens verticalmente */
+    align-items: flex-start;
+    /* Alinhamento ao topo */
   }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
+
+  .email-signup {
+    text-align: left;
+    /* Alinha o texto à esquerda em telas menores */
   }
-  
-  .footer-section ul li {
-    margin: 5px 0;
-  }
-  
-  .footer-section a {
-    text-decoration: none;
-    color: white; /* Links em branco */
-  }
-  
-  .footer-section.brands {
-    margin-left: 20px;
-  }
-  .footer-section.about {
-    color: white; /* Garante que o texto da seção 'Sobre Nós' seja branco */
-  }
-  
-  /* Ajuste da logo */
-  .footer-section.logo img {
-    max-width: 50%;
-    margin-left: 500px;
-  }
-  
-  hr {
-    margin: 20px 0;
-    border: 0;
-    border-top: 1px solid white; /* Linha de separação em branco */
-  }
-  
-  .footer-info {
-    font-size: 0.9em;
-    text-align: center;
-  }
-  
-  .footer-info p {
-    margin: 5px 0;
-  }
-  </style>
+}
+</style>

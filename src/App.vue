@@ -1,53 +1,6 @@
-<script>
+<script setup>
 import HeaderComponente from './components/HeaderComponente.vue';
 import FooterComponente from './components/FooterComponente.vue';
-
-
-
-
-export default {
-  components: {
-    HeaderComponente
-  },
-  data(){
-    return{
-      nike: null,
-      adidas: null,
-      vans: null,
-      stussy: null,
-      roupas: null,
-      acessorios: null,
-      calcados: null,
-      nikes: null,
-      adida: null,
-      van: null,
-      stussys: null,
-      roupa: null,
-      acessorio: null,
-      calcado: null,
-      status: "Solicitado",
-    }
-  },
-  methods: {
-    async getCatalogo(){
-      const req = await fetch("http://localhost:3000/catalogo");
-      const data = await req.json();
-
-      this.nike = data.nike;
-      this.adidas = data.adidas;
-      this.vans = data.vans;
-      this.stussy = data.stussy;
-      this.roupas = data.roupas;
-      this.acessorios = data.acessorios;
-      this.calcados = data.calcados;
-
-    }
-  },
-  mounted() {
-    this.getCatalogo()
-  }
-}
-
 </script>
 
 <template>

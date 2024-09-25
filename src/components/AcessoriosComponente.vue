@@ -26,58 +26,58 @@
 </template>
 
 <style>
-    .acessorios {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        padding: 20px 0;
-        gap: 10px;
-    }
+.acessorios {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    gap: 10px;
+}
 
-    .acessorios .mainAcessorios {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 30px;
-    }
+.acessorios .mainAcessorios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
 
-    .acessorios .mainAcessorios .title h3 {
-        font-size: 22px;
-    }
+.acessorios .mainAcessorios .title h3 {
+    font-size: 22px;
+}
 
-    .acessorios .mainAcessorios .mainProdutos {
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        flex-wrap: wrap;
-    }
+.acessorios .mainAcessorios .mainProdutos {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
 
-    .acessorios .mainAcessorios .mainProdutos .produtos {
-        width: 280px;
-        height: 280px;
-        border: 1px solid #e7e7e7;
-    }
+.acessorios .mainAcessorios .mainProdutos .produtos {
+    width: 280px;
+    height: 280px;
+    border: 1px solid #e7e7e7;
+}
 
-    .acessorios .mainAcessorios .mainProdutos .produtos img {
-        width: 278px;
-        height: 278px;
-    }
+.acessorios .mainAcessorios .mainProdutos .produtos img {
+    width: 278px;
+    height: 278px;
+}
 
-    .acessorios .imgAcessorios {
-        border: 1px solid #e7e7e7;
-        width: 550px;
-        height: 572px;
-        transform: translateX(-120px); 
-        margin-top: 20px;
-    }
+.acessorios .imgAcessorios {
+    border: 1px solid #e7e7e7;
+    width: 550px;
+    height: 572px;
+    transform: translateX(-120px);
+    margin-top: 20px;
+}
 
-    .acessorios .imgAcessorios img {
-        width: 550px;
-        height: 570px;
-    }
+.acessorios .imgAcessorios img {
+    width: 550px;
+    height: 570px;
+}
 </style>
