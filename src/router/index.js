@@ -10,6 +10,7 @@ import StussyView from '../views/StussyView.vue'
 import VansView from '../views/VansView.vue'
 import EnderecoView from '../views/EnderecoView.vue'
 import InfoView from '../views/InfoView.vue'
+import HistoricoView from '..views/HistoricoView.vue'
 
 const routes = [
   {
@@ -67,6 +68,12 @@ const routes = [
     name: 'info',
     component: InfoView
   },
+  {
+    path: '/historico',
+    name: 'historico',
+    component: HistoricoView
+  }
+
 
 ]
 
