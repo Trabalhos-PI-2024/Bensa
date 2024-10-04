@@ -40,14 +40,11 @@ body, html {
 }
 
 section {
+  background: #ffffff;
   width: 100%;
-  padding: 0;
-  margin: 0;
 }
 
 .banner {
-  padding: 0;
-  margin: 0;
   width: 100%;
 }
 
@@ -63,8 +60,6 @@ hr {
   margin: 20px 0;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+
 
 </style>

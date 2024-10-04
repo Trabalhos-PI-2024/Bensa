@@ -112,6 +112,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .lancamentos .mainProdutos .product {

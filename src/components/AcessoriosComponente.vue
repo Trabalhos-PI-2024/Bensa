@@ -2,6 +2,7 @@
   <div class="acessorios">
     <div class="mainAcessorios">
       <div class="title">
+        <img src="../assets/img/hat.png" alt="">
         <h3>Acessórios</h3>
       </div>
       <div class="mainProdutos">
@@ -44,7 +45,7 @@
       </div>
     </div>
     <div class="imgAcessorios">
-      <img src="../assets/img/Acessorios/Acessorios.webp" alt="Acessórios" />
+      <img src="../assets/img/Acessorios/Acessorios.jpg" alt="Acessórios" />
     </div>
   </div>
 </template>
@@ -86,12 +87,22 @@
   gap: 30px;
 }
 
+.acessorios .mainAcessorios .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.acessorios .mainAcessorios .title img{
+  width: 40px;
+}
 .acessorios .mainAcessorios .title h3 {
   font-size: 22px;
 }
 
 .acessorios .mainAcessorios .mainProdutos {
-  width: 50%;
+  width: 45dvw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,10 +151,6 @@
 }
 
 .acessorios .imgAcessorios {
-  border: 1px solid #e7e7e7;
-  width: 550px;
-  height: 572px;
-  transform: translateX(-120px);
   margin-top: 20px;
 }
 

@@ -5,21 +5,31 @@
                 <RouterLink to="/"><img src="../assets/img/logo.png" alt="Logo"></RouterLink>
             </div>
             <nav class="nav">
-                <RouterLink to="/roupas">
+                <RouterLink to="/roupas" class="routerLink">
+                    
                     <p>Roupas</p>
                 </RouterLink>
-                <RouterLink to="/sneakers">
+                <RouterLink to="/sneakers" class="routerLink"> 
+                    
                     <p>Calçados</p>
                 </RouterLink>
-                <RouterLink to="/acessorios">
+                <RouterLink to="/acessorios" class="routerLink">
+                    
                     <p>Acessórios</p>
+                </RouterLink>
+                <RouterLink to="/comunidade" class="routerLink">
+
+                    <p>Comunidade</p>
                 </RouterLink>
             </nav>
             <div class="icon">
+        
                 <button @click="showLogin = !showLogin" class="icon-button">
                     <img src="../assets/img/user.svg" alt="Usuário">
                 </button>
+                <button class="icon-button">
                 <img src="../assets/img/carrinho.svg" alt="Carrinho">
+            </button>
             </div>
         </div>
 
@@ -50,6 +60,7 @@ header {
     flex-direction: column;
     align-items: center;
     background-color: #ffffff;
+    z-index: 1000;
 }
 
 .mainHeader {
@@ -112,7 +123,17 @@ header {
 
 .icon-button img {
     width: 40px;
-    height: auto;
+}
+
+.routerLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.routerLink img{
+    width: 30px;
 }
 
 @media (max-width: 768px) {

@@ -3,6 +3,7 @@
       <div class="mainAcessorios">
         <div class="title">
           <h3>Roupas</h3>
+          <img src="../assets/img/t-shirt.png" alt="">
         </div>
         <div class="mainProdutos">
           <div class="produtos">
@@ -85,6 +86,17 @@
     flex-direction: column;
     gap: 30px;
   }
+
+  .acessorios .mainAcessorios .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.acessorios .mainAcessorios .title img{
+  width: 40px;
+}
   
   .acessorios .mainAcessorios .title h3 {
     font-size: 22px;
