@@ -42,11 +42,35 @@
             </button>
           </div>
         </div>
+        <div class="produtos">
+          <img src="../assets/img/Acessorios/bolsa.webp" alt="Bolsa" />
+          <div class="infoProdutos">
+            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+            <button class="btn-cart" @click="addToCart">
+              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+            </button>
+          </div>
+        </div>
+        <div class="produtos">
+          <img src="../assets/img/Acessorios/touca.webp" alt="Touca" />
+          <div class="infoProdutos">
+            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+            <button class="btn-cart" @click="addToCart">
+              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="imgAcessorios">
       <img src="../assets/img/Acessorios/Acessorios.jpg" alt="Acessórios" />
     </div>
+  </div>
+  <div class="line">
+    <img src="../assets/img/Lancamentos/truck-loading-load-a-truck-svgrepo-com.svg" alt="">
+    <p>Frete grátis para a região sul e sudeste a partir de R$ 299</p>
+    <img src="../assets/img/Lancamentos/label-svgrepo-com.svg" alt="">
+    <p>5% Desconto no PIX</p>
   </div>
 </template>
 <script>
@@ -74,7 +98,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding: 20px 0;
   gap: 10px;
 }
@@ -102,7 +126,7 @@
 }
 
 .acessorios .mainAcessorios .mainProdutos {
-  width: 45dvw;
+  width: 55dvw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,7 +140,9 @@
   align-items: center;
   flex-direction: column;
   border: 1px solid #e7e7e7;
+  padding: 10px 20px 0 20px;
   transition: all .5s ease;
+  border-radius: 5px;
 }
 
 .acessorios .mainAcessorios .mainProdutos .produtos:hover{
@@ -129,7 +155,7 @@
     justify-content: space-between;
     width: 100%;
     transition: all .5s ease;
-    padding: 0 45px 20px 45px;
+    padding: 10px 45px 20px 45px;
 }
 
 .acessorios .mainAcessorios .mainProdutos .produtos .infoProdutos .cart-image {
@@ -146,8 +172,8 @@
 }
 
 .acessorios .mainAcessorios .mainProdutos .produtos img {
-  width: 278px;
-  height: 278px;
+  width: 225px;
+  height: 225px;
 }
 
 .acessorios .imgAcessorios {
@@ -158,5 +184,31 @@
   width: 550px;
   height: 570px;
   border: 1px solid #e7e7e7;
+}
+
+.line{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #920404;
+  padding: 5px 0;
+  color: #e7e7e7;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+
+.line img{
+  width: 30px;
+}
+
+.line p{
+  margin: 0 20px 0 0;
+}
+
+@media (max-width: 1200px) {
+  .acessorios {
+    flex-direction: column;
+}
 }
 </style>

@@ -10,10 +10,15 @@
         <img class="img2" src="../assets/img/Lancamentos/adidas2000.webp" alt="" />
       </div>
         <div class="infoProdutos">
+          <div class="divInfoProduto">
+            <p>Tênis Adidas Adi2000</p>
             <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+          </div>
+            <div class="divButtonCart">
             <button class="btn-cart" @click="addToCart">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
+          </div>
           </div>
       </div>
       <div class="product">
@@ -21,11 +26,16 @@
           <img class="img1" src="../assets/img/Lancamentos/nb.webp" alt="" />
         <img class="img2" src="../assets/img/Lancamentos/nbb.webp" alt="" />
       </div>
-        <div class="infoProdutos">
+      <div class="infoProdutos">
+          <div class="divInfoProduto">
+            <p>Tênis NewBalance 9060</p>
             <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+          </div>
+            <div class="divButtonCart">
             <button class="btn-cart" @click="addToCart">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
+          </div>
           </div>
       </div>
       <div class="product">
@@ -34,10 +44,15 @@
         <img class="img2" src="../assets/img/Lancamentos/jordan1.webp" alt="" />
       </div>
         <div class="infoProdutos">
+          <div class="divInfoProduto">
+            <p>Tênis Nike Air Jordan</p>
             <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+          </div>
+            <div class="divButtonCart">
             <button class="btn-cart" @click="addToCart">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
+          </div>
           </div>
       </div>
       <div class="product">
@@ -46,10 +61,15 @@
         <img class="img2" src="../assets/img/Lancamentos/samba1.webp" alt="" />
       </div>
         <div class="infoProdutos">
+          <div class="divInfoProduto">
+            <p>Tênis Adidas Bad Bunny</p>
             <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+          </div>
+            <div class="divButtonCart">
             <button class="btn-cart" @click="addToCart">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
+          </div>
           </div>
       </div>
       <div class="product">
@@ -58,13 +78,24 @@
         <img class="img2" src="../assets/img/Lancamentos/force1.webp" alt="" />
       </div>
         <div class="infoProdutos">
+          <div class="divInfoProduto">
+            <p>Tênis Nike Air Force</p>
             <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+          </div>
+            <div class="divButtonCart">
             <button class="btn-cart" @click="addToCart">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
           </div>
+          </div>
       </div>
     </div>
+  </div>
+  <div class="line">
+    <img src="../assets/img/Lancamentos/truck-loading-load-a-truck-svgrepo-com.svg" alt="">
+    <p>Frete grátis para a região sul e sudeste a partir de R$ 299</p>
+    <img src="../assets/img/Lancamentos/label-svgrepo-com.svg" alt="">
+    <p>5% Desconto no PIX</p>
   </div>
 </template>
 <script>
@@ -151,13 +182,33 @@
     display: flex;
     opacity: 0;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     transition: all .5s ease;
-    padding: 0 30px 10px 30px;
+    padding: 0 10px 10px 10px;
 }
 .lancamentos .mainProdutos  .product .infoProdutos .cart-image {
     width: 36px;
     height: 36px;
+  }
+
+  .lancamentos .mainProdutos  .product .infoProdutos .divInfoProduto{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .lancamentos .mainProdutos  .product .infoProdutos .divInfoProduto p{
+    font-size: 12px;
+    letter-spacing: .5px;
+  }
+
+  .lancamentos .mainProdutos  .product .infoProdutos .divInfoProduto .btn-more{
+    background: #e7e7e7;
+    padding: 5px 10px;
+    border-radius: 10px;
   }
 
   .lancamentos .mainProdutos  .product .infoProdutos button{
@@ -165,6 +216,45 @@
   }
   .lancamentos .mainProdutos  .product:hover .infoProdutos {
   opacity: 1;  
+}
+
+.line{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #920404;
+  padding: 5px 0;
+  color: #e7e7e7;
+  gap: 10px;
+  letter-spacing: 1px;
+}
+
+.line img{
+  width: 30px;
+}
+
+.line p{
+  margin: 0 20px 0 0;
+}
+
+@media (max-width: 1200px) {
+  .lancamentos {
+    flex-direction: column;
+}
+
+.lancamentos .title h3 {
+  transform: rotate(0deg);
+  border-bottom: 1.5px solid transparent;
+  margin: 0 0 10px 0;
+}
+
+}
+
+@media (max-width: 985px) {
+  .lancamentos .mainProdutos {
+flex-direction: column;
+}
 }
 
 </style>

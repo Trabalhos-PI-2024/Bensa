@@ -107,12 +107,13 @@ import mochila1adidas from '../assets/produtos.adidas/mochila1adidas.avif'
   }
   
   .product-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-  }
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1500px;
+}
   </style>
   

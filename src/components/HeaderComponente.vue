@@ -34,6 +34,40 @@
         </div>
 
         <LoginComponente v-if="showLogin" />
+        <div class="divCarrinho">
+            <div class="fecharCarrinho">X</div>
+            <div class="titleCarrinho">
+                <h2>CARRINHO</h2>
+            </div>
+            <div class="produtosCarrinho">
+                <div class="closeProduto">
+                    X
+                </div>
+                <div class="infoProduto">
+                    <div>
+                        <p>CAMISETA NIKE NRG MAX90 BT2</p>
+                        <p>R$174,99</p>
+                    </div>
+                    <div>
+                        <input type="number">
+                    </div>
+                </div>
+                <div class="imgProduto"><img src="../assets/produtos.nike/camisa3nike.webp" alt=""></div>
+            </div>
+            <div class="infoCarrinho">
+                <div class="boxFrete">
+                    <label>Calcular Frete:</label>
+                    <input type="text" value="00000-000">
+                </div>
+                <div class="boxTotalaPagar">
+                    <label>Total a Pagar: R$</label>
+                    <input type="text" value="174,99">
+                </div>
+            </div>
+            <div class="buttonComprarCarrinho">
+                <button>COMPRAR</button>
+            </div>
+        </div>
     </header>
 </template>
 
@@ -54,6 +88,101 @@ export default {
 
 
 <style>
+.divCarrinho{
+    position: fixed;
+    right: 0;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    padding: 40px 60px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #0d0d0d;
+}
+
+.divCarrinho .titleCarrinho{
+    font-size: 25px;
+}
+
+.divCarrinho .produtosCarrinho{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.divCarrinho .produtosCarrinho .closeProduto{
+    padding: 20px;
+}
+
+.divCarrinho .produtosCarrinho .infoProduto{
+    display: flex;
+    gap: 20px;
+    background: #e7e7e7;
+    padding: 20px;
+}
+
+.divCarrinho .produtosCarrinho .infoProduto input{
+    width: 20px;
+}
+
+.divCarrinho .produtosCarrinho .imgProduto img{
+    width: 100px;
+}
+
+.divCarrinho .infoCarrinho{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 7.3px;
+}
+
+.divCarrinho .infoCarrinho div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7.5px;
+}
+
+.divCarrinho .infoCarrinho .boxFrete{
+    font-size: 17px;
+}
+
+.divCarrinho .infoCarrinho .boxFrete input{
+    background: #e7e7e7;
+    padding: 5px 10px;
+    width: 95px;
+}
+
+.divCarrinho .infoCarrinho .boxTotalaPagar{
+    font-size: 13px;
+}
+
+.divCarrinho .buttonComprarCarrinho button{
+    padding: 10px 20px;
+    background: #e7e7e7;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: 600;
+    transition: all .5s;
+}
+
+.divCarrinho .buttonComprarCarrinho:hover button{
+    transform: scale(1.1);
+}
+
+.fecharCarrinho{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 20px;
+}
+
 header {
     width: 100%;
     display: flex;
@@ -67,28 +196,22 @@ header {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-around;
     padding: 10px;
     border-bottom: 1px solid #e0dbdb;
     background-color: #ffffff;
-    position: relative;
 }
 
 .logo img {
     width: 150px;
 }
 
-.logo {
-    margin-left: 100px;
-}
-
 .nav {
     display: flex;
     align-items: center;
-    gap: 60px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 600px;
+    justify-content: center;
+    gap: 60px; 
+    flex-wrap: wrap;
 }
 
 .nav a {
@@ -105,13 +228,10 @@ header {
 .icon {
     display: flex;
     gap: 30px;
-    position: absolute;
-    right: 200px;
 }
 
 .icon img {
     width: 40px;
-    height: auto;
 }
 
 .icon-button {
@@ -136,21 +256,20 @@ header {
     width: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .mainHeader {
         flex-direction: column;
-        text-align: center;
     }
 
-    .nav {
-        gap: 30px;
-        position: static;
-        transform: none;
-        max-width: none;
-    }
+    .icon {
+position: absolute;
+top: 30px;
+right: 30px;
+gap: 20px;
+}
 
-    .icon img {
-        width: 24px;
-    }
+.icon img{
+    width: 30px;
+}
 }
 </style>
