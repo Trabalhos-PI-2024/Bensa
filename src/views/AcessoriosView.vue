@@ -101,12 +101,13 @@ import chapeu2stussy from '../assets/produtos.stussy/chapeu2stussy.webp'
   }
   
   .product-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-  }
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1500px;
+}
   </style>
   

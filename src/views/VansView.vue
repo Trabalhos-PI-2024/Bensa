@@ -110,12 +110,13 @@ import camisa1vans from '../assets/produtos.vans/camisa1vans.webp'
   }
   
   .product-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-  }
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1500px;
+}
   </style>
   
