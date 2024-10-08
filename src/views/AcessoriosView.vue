@@ -27,16 +27,13 @@
   <script>
   import ProductItem from '../components/ProductItem.vue';
 import chapeu1vans from '../assets/produtos.vans/chapeu1vans.webp'
-import mochila1vans from '../assets/produtos.vans/mochila1vans.webp'
-import bag1vans from '../assets/produtos.vans/bag1vans.webp'
-import chapeu2vans from '../assets/produtos.vans/chapeu2vans.webp'
-import oculos1vans from '../assets/produtos.vans/oculos1vans.webp'
-import oculos2vans from '../assets/produtos.vans/oculos2vans.webp'
+import bag1adidas from '../assets/produtos.adidas/bag1adidas.webp'
 import mochila2nike from '../assets/produtos.nike/mochila2nike.webp'
 import mochila3nike from '../assets/produtos.nike/mochila3nike.webp'
 import mochila4nike from '../assets/produtos.nike/mochila4nike.avif'
-import mochila2adidas from '../assets/produtos.adidas/mochila2adidas.avif'
-import mochila1adidas from '../assets/produtos.adidas/mochila1adidas.avif'
+import mochila2adidas from '../assets/produtos.adidas/mochila2adidas.jpg'
+import chapeu1stussy from '../assets/produtos.stussy/chapeu1stussy.webp'
+import chapeu2stussy from '../assets/produtos.stussy/chapeu2stussy.webp'
   
   export default {
     components: {
@@ -47,15 +44,12 @@ import mochila1adidas from '../assets/produtos.adidas/mochila1adidas.avif'
         products: [
         { name: 'Produto 1', description: 'Descrição do produto 2', image: mochila2nike },
         { name: 'Produto 2', description: 'Descrição do produto 2', image: chapeu1vans },
-        { name: 'Produto 3', description: 'Descrição do produto 3', image: bag1vans },
-        { name: 'Produto 5', description: 'Descrição do produto 6', image: oculos1vans },
-        { name: 'Produto 6', description: 'Descrição do produto 7', image: chapeu2vans },
+        { name: 'Produto 3', description: 'Descrição do produto 3', image: chapeu1stussy },
+        { name: 'Produto 5', description: 'Descrição do produto 6', image: chapeu2stussy },
+        { name: 'Produto 6', description: 'Descrição do produto 7', image: bag1adidas },
         { name: 'Produto 7', description: 'Descrição do produto 7', image: mochila3nike },
         { name: 'Produto 11', description: 'Descrição do produto 13', image: mochila4nike  },
         { name: 'Produto 9', description: 'Descrição do produto 12', image: mochila2adidas  },
-        { name: 'Produto 10', description: 'Descrição do produto 13', image: mochila1vans  },
-        { name: 'Produto 11', description: 'Descrição do produto 14', image: oculos2vans  },
-        { name: 'Produto 12', description: 'Descrição do produto 3', image: mochila1adidas },
         ],
       };
     },

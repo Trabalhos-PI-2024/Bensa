@@ -27,17 +27,17 @@
   <script>
   import ProductItem from '../components/ProductItem.vue';
   import tenis1adidas from '../assets/produtos.adidas/tenis1adidas.webp'
-import mochila2adidas from '../assets/produtos.adidas/mochila2adidas.avif'
-import mochila1adidas from '../assets/produtos.adidas/mochila1adidas.avif'
-import camisa3adidas from '../assets/produtos.adidas/camisa3adidas.avif'
-import camisa1adidas from '../assets/produtos.adidas/camisa1adidas.avif'
-import camisa2adidas from '../assets/produtos.adidas/camisa2adidas.avif'
+import mochila2adidas from '../assets/produtos.adidas/mochila2adidas.jpg'
+import mochila1adidas from '../assets/produtos.adidas/mochila1adidas.webp'
+import camisa3adidas from '../assets/produtos.adidas/camisa3adidas.webp'
+import camisa1adidas from '../assets/produtos.adidas/camisa1adidas.webp'
+import camisa2adidas from '../assets/produtos.adidas/camisa2adidas.webp'
 import tenis2adidas from '../assets/produtos.adidas/tenis2adidas.webp'
-import tenis3adidas from '../assets/produtos.adidas/tenis3adidas.avif'
-import tenis4adidas from '../assets/produtos.adidas/tenis4adidas.avif'
-import tenis5adidas from '../assets/produtos.adidas/tenis5adidas.avif'
-import tenis6adidas from '../assets/produtos.adidas/tenis6adidas.avif'
-import camisa3nike from '../assets/produtos.nike/camisa3nike.webp'
+import tenis3adidas from '../assets/produtos.adidas/tenis3adidas.webp'
+import tenis4adidas from '../assets/produtos.adidas/tenis4adidas.jpg'
+import tenis5adidas from '../assets/produtos.adidas/tenis5adidas.webp'
+import tenis6adidas from '../assets/produtos.adidas/tenis6adidas.webp'
+import bag1adidas from '../assets/produtos.adidas/bag1adidas.webp'
 
   
   export default {
@@ -58,7 +58,7 @@ import camisa3nike from '../assets/produtos.nike/camisa3nike.webp'
         { name: 'Produto 9', description: 'Descrição do produto 12', image: tenis5adidas  },
         { name: 'Produto 10', description: 'Descrição do produto 13', image: mochila1adidas  },
         { name: 'Produto 11', description: 'Descrição do produto 14', image: tenis6adidas  },
-        { name: 'Produto 12', description: 'Descrição do produto 3', image: camisa3nike },
+        { name: 'Produto 12', description: 'Descrição do produto 3', image: bag1adidas },
         ],
       };
     },
