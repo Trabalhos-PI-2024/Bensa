@@ -94,20 +94,19 @@ const formCadastro = () => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0px 35px 0px 35px;
+    margin: -100px 35px 0px 35px;
 }
 
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
+  
 }
 
 .logo {
     width: 80px;
-    margin-bottom: 20px;
-    margin-right: 100px;
+    
 }
 
 .titulo-section {

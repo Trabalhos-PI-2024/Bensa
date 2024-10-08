@@ -101,7 +101,7 @@ function goToCadastro() {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  margin-right: 100px;
+ 
 }
 
 .logo {
