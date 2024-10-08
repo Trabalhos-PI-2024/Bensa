@@ -66,12 +66,6 @@
       <img src="../assets/img/Acessorios/Acessorios.jpg" alt="Acessórios" />
     </div>
   </div>
-  <div class="line">
-    <img src="../assets/img/Lancamentos/truck-loading-load-a-truck-svgrepo-com.svg" alt="">
-    <p>Frete grátis para a região sul e sudeste a partir de R$ 299</p>
-    <img src="../assets/img/Lancamentos/label-svgrepo-com.svg" alt="">
-    <p>5% Desconto no PIX</p>
-  </div>
 </template>
 <script>
   export default {
@@ -186,25 +180,6 @@
   border: 1px solid #e7e7e7;
 }
 
-.line{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #920404;
-  padding: 5px 0;
-  color: #e7e7e7;
-  gap: 10px;
-  letter-spacing: 1px;
-}
-
-.line img{
-  width: 30px;
-}
-
-.line p{
-  margin: 0 20px 0 0;
-}
 
 @media (max-width: 1200px) {
   .acessorios {

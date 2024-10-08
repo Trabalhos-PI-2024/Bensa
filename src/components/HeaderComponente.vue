@@ -27,21 +27,27 @@
                 <button @click="showLogin = !showLogin" class="icon-button">
                     <img src="../assets/img/user.svg" alt="Usuário">
                 </button>
-                <button class="icon-button">
+                <button @click="mostrarEsconder" class="icon-button">
                 <img src="../assets/img/carrinho.svg" alt="Carrinho">
             </button>
             </div>
         </div>
 
         <LoginComponente v-if="showLogin" />
-        <div class="divCarrinho">
-            <div class="fecharCarrinho">X</div>
+        <div class="divCarrinho" v-if="mostrar">
+            <div class="fecharCarrinho">
+                <button  @click="mostrarEsconder">
+                <img src="../assets/img/excluir.png" alt="">
+            </button>
+            </div>
             <div class="titleCarrinho">
                 <h2>CARRINHO</h2>
             </div>
             <div class="produtosCarrinho">
                 <div class="closeProduto">
-                    X
+                    <button>
+                <img src="../assets/img/excluir (1).png" alt="">
+            </button>
                 </div>
                 <div class="infoProduto">
                     <div>
@@ -80,14 +86,21 @@ export default {
     },
     data() {
         return {
-            showLogin: false
+            showLogin: false,
+            mostrar: false,
         }
-    }
+    },
+      methods: {
+        mostrarEsconder() {
+          this.mostrar = !this.mostrar
+        }
+      }
 }
 </script>
 
 
-<style>
+<style scoped>
+
 .divCarrinho{
     position: fixed;
     right: 0;
@@ -101,6 +114,7 @@ export default {
     background: #fff;
     border-radius: 10px;
     border: 1px solid #0d0d0d;
+    z-index: 1000000;
 }
 
 .divCarrinho .titleCarrinho{
@@ -114,8 +128,12 @@ export default {
     gap: 15px;
 }
 
-.divCarrinho .produtosCarrinho .closeProduto{
-    padding: 20px;
+.divCarrinho .produtosCarrinho .closeProduto button{
+    background: transparent;
+}
+
+.divCarrinho .produtosCarrinho .closeProduto img{
+    width: 25px;
 }
 
 .divCarrinho .produtosCarrinho .infoProduto{
@@ -180,7 +198,14 @@ export default {
     position: absolute;
     top: 40px;
     right: 40px;
-    font-size: 20px;
+}
+
+.fecharCarrinho button{
+    background: transparent;
+}
+
+.fecharCarrinho img{
+    width: 40px;
 }
 
 header {
