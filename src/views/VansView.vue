@@ -37,7 +37,7 @@ import tenis3vans from '../assets/produtos.vans/tenis3vans.webp'
 import tenis4vans from '../assets/produtos.vans/tenis4vans.webp'
 import tenis5vans from '../assets/produtos.vans/tenis5vans.webp'
 import oculos2vans from '../assets/produtos.vans/oculos2vans.webp'
-import camisa3nike from '../assets/produtos.nike/camisa3nike.webp'
+import camisa1vans from '../assets/produtos.vans/camisa1vans.webp'
 
   
   export default {
@@ -58,7 +58,7 @@ import camisa3nike from '../assets/produtos.nike/camisa3nike.webp'
         { name: 'Produto 9', description: 'Descrição do produto 12', image: tenis5vans  },
         { name: 'Produto 10', description: 'Descrição do produto 13', image: mochila1vans  },
         { name: 'Produto 11', description: 'Descrição do produto 14', image: oculos2vans  },
-        { name: 'Produto 12', description: 'Descrição do produto 3', image: camisa3nike },
+        { name: 'Produto 12', description: 'Descrição do produto 3', image: camisa1vans },
         ],
       };
     },

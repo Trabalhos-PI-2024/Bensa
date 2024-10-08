@@ -34,10 +34,10 @@ import tenis5nike from '../assets/produtos.nike/tenis5nike.webp'
 import tenis6nike from '../assets/produtos.nike/tenis6nike.webp'
   import tenis1adidas from '../assets/produtos.adidas/tenis1adidas.webp'
 import tenis2adidas from '../assets/produtos.adidas/tenis2adidas.webp'
-import tenis3adidas from '../assets/produtos.adidas/tenis3adidas.avif'
-import tenis4adidas from '../assets/produtos.adidas/tenis4adidas.avif'
-import tenis5adidas from '../assets/produtos.adidas/tenis5adidas.avif'
-import tenis6adidas from '../assets/produtos.adidas/tenis6adidas.avif'
+import tenis3adidas from '../assets/produtos.adidas/tenis3adidas.webp'
+import tenis4adidas from '../assets/produtos.adidas/tenis4adidas.jpg'
+import tenis5adidas from '../assets/produtos.adidas/tenis5adidas.webp'
+import tenis6adidas from '../assets/produtos.adidas/tenis6adidas.webp'
   
   export default {
     components: {

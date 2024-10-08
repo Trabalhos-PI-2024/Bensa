@@ -1,7 +1,7 @@
 <template>
     <div class="roupas">
         <div class="imgRoupas">
-            <img src="../assets/img/Roupas/Roupa.jpg" alt="Imagem de Roupas">
+            <img src="../assets/img/roupas/Roupa.jpg" alt="Imagem de Roupas">
         </div>
         <div class="mainRoupas">
             <div class="title">
@@ -9,16 +9,16 @@
             </div>
             <div class="mainProdutos">
                 <div class="produtos">
-                    <img src="../assets/img/Roupas/fuck.webp" alt="" />
+                    <img src="../assets/img/roupas/fuck.webp" alt="" />
                 </div>
                 <div class="produtos">
-                    <img src="../assets/img/Roupas/jacket.webp" alt="" />
+                    <img src="../assets/img/roupas/jacket.webp" alt="" />
                 </div>
                 <div class="produtos">
-                    <img src="../assets/img/Roupas/calca.webp" alt="" />
+                    <img src="../assets/img/roupas/calca.webp" alt="" />
                 </div>
                 <div class="produtos">
-                    <img src="../assets/img/Roupas/moletom.webp" alt="" />
+                    <img src="../assets/img/roupas/moletom.webp" alt="" />
                 </div>
             </div>
         </div>
