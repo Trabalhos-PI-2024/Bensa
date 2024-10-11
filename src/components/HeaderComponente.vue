@@ -6,39 +6,34 @@
             </div>
             <nav class="nav">
                 <RouterLink to="/roupas" class="routerLink">
-                    
                     <p>Roupas</p>
                 </RouterLink>
-                <RouterLink to="/sneakers" class="routerLink"> 
-                    
+                <RouterLink to="/sneakers" class="routerLink">
                     <p>Calçados</p>
                 </RouterLink>
                 <RouterLink to="/acessorios" class="routerLink">
-                    
                     <p>Acessórios</p>
                 </RouterLink>
                 <RouterLink to="/comunidade" class="routerLink">
-
                     <p>Comunidade</p>
                 </RouterLink>
             </nav>
             <div class="icon">
-        
-                <button @click="showLogin = !showLogin" class="icon-button">
+                <button @click="toggleLogin" class="icon-button">
                     <img src="../assets/img/user.svg" alt="Usuário">
                 </button>
-                <button @click="mostrarEsconder" class="icon-button">
-                <img src="../assets/img/carrinho.svg" alt="Carrinho">
-            </button>
+                <button @click="toggleCarrinho" class="icon-button">
+                    <img src="../assets/img/carrinho.svg" alt="Carrinho">
+                </button>
             </div>
         </div>
 
         <LoginComponente v-if="showLogin" />
-        <div class="divCarrinho" v-if="mostrar">
+        <div class="divCarrinho" v-if="mostrarCarrinho">
             <div class="fecharCarrinho">
-                <button  @click="mostrarEsconder">
-                <img src="../assets/img/excluir.png" alt="">
-            </button>
+                <button @click="toggleCarrinho">
+                    <img src="../assets/img/excluir.png" alt="">
+                </button>
             </div>
             <div class="titleCarrinho">
                 <h2>CARRINHO</h2>
@@ -46,8 +41,8 @@
             <div class="produtosCarrinho">
                 <div class="closeProduto">
                     <button>
-                <img src="../assets/img/excluir (1).png" alt="">
-            </button>
+                        <img src="../assets/img/excluir (1).png" alt="">
+                    </button>
                 </div>
                 <div class="infoProduto">
                     <div>
@@ -77,30 +72,26 @@
     </header>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import LoginComponente from './LoginComponente.vue';
 
-export default {
-    components: {
-        LoginComponente
-    },
-    data() {
-        return {
-            showLogin: false,
-            mostrar: false,
-        }
-    },
-      methods: {
-        mostrarEsconder() {
-          this.mostrar = !this.mostrar
-        }
-      }
-}
+// Variáveis reativas
+const showLogin = ref(false);
+const mostrarCarrinho = ref(false);
+
+// Funções para alternar a visibilidade
+const toggleLogin = () => {
+    showLogin.value = !showLogin.value;
+};
+
+const toggleCarrinho = () => {
+    mostrarCarrinho.value = !mostrarCarrinho.value;
+};
 </script>
 
-
 <style scoped>
-
+/* Seu CSS permanece o mesmo */
 .divCarrinho{
     position: fixed;
     right: 0;
@@ -235,7 +226,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 60px; 
+    gap: 60px;
     flex-wrap: wrap;
 }
 
@@ -287,14 +278,14 @@ header {
     }
 
     .icon {
-position: absolute;
-top: 30px;
-right: 30px;
-gap: 20px;
-}
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        gap: 20px;
+    }
 
-.icon img{
-    width: 30px;
-}
+    .icon img{
+        width: 30px;
+    }
 }
 </style>

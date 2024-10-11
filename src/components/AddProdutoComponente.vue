@@ -4,8 +4,7 @@
 
         <div class="input-container">
             <label for="product-title">Título do Produto</label>
-            <input type="text" id="product-title" v-model="product.title" placeholder="Ex: Camiseta Estampada"
-                required />
+            <input type="text" id="product-title" v-model="product.title" placeholder="Ex: Camiseta Estampada" required />
         </div>
 
         <div class="input-container">
@@ -15,8 +14,7 @@
 
         <div class="input-container">
             <label for="description">Descrição do Produto (até 350 caracteres)</label>
-            <textarea id="description" v-model="product.description" maxlength="350"
-                placeholder="Descreva o produto aqui..." required></textarea>
+            <textarea id="description" v-model="product.description" maxlength="350" placeholder="Descreva o produto aqui..." required></textarea>
         </div>
 
         <div class="input-container">
@@ -66,64 +64,64 @@
                     <span>+</span>
                 </label>
             </div>
-            <p class="image-instructions">Tire fotos de diferentes ângulos do produto, isso vai aumentar suas chances de
-                vendê-lo.</p>
+            <p class="image-instructions">Tire fotos de diferentes ângulos do produto, isso vai aumentar suas chances de vendê-lo.</p>
         </div>
+
         <router-link to="/minhaloja">
             <button class="submit-button">Enviar</button>
         </router-link>
-
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            product: {
-                title: '',
-                brand: '',
-                description: '',
-                category: '',
-                price: '',
-                size: '',
-                images: Array(5).fill(null), // Array para armazenar as imagens
-            },
-            sizeOptions: [], // Array para armazenar as opções de tamanho
-        };
-    },
-    methods: {
-        handleImageChange(index) {
+<script setup>
+import { ref, computed } from "vue";
+ 
+        const product = ref({
+            title: '',
+            brand: '',
+            description: '',
+            category: '',
+            price: '',
+            size: '',
+            images: Array(5).fill(null),
+        });
+
+        const sizeOptions = ref([]);
+
+        const handleImageChange = (index) => {
             const input = event.target;
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    this.$set(this.product.images, index, e.target.result); // Armazena a imagem no array
+                    product.value.images[index] = e.target.result;
                 };
                 reader.readAsDataURL(input.files[0]);
             }
-        },
-        resetSize() {
-            this.product.size = ''; // Reseta o tamanho quando a categoria muda
-            this.updateSizeOptions(); // Atualiza as opções de tamanho
-        },
-        updateSizeOptions() {
-            switch (this.product.category) {
+        };
+
+        const resetSize = () => {
+            product.value.size = ''; // Reseta o tamanho quando a categoria muda
+            updateSizeOptions(); // Atualiza as opções de tamanho
+        };
+
+        const updateSizeOptions = () => {
+            switch (product.value.category) {
                 case 'roupas':
-                    this.sizeOptions = ['P', 'M', 'G', 'GG', 'XGG'];
+                    sizeOptions.value = ['P', 'M', 'G', 'GG', 'XGG'];
                     break;
                 case 'calçados':
-                    this.sizeOptions = ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47'];
+                    sizeOptions.value = ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47'];
                     break;
                 case 'acessórios':
-                    this.sizeOptions = ['Tamanho Único'];
+                    sizeOptions.value = ['Tamanho Único'];
                     break;
                 default:
-                    this.sizeOptions = [];
+                    sizeOptions.value = [];
             }
-        },
-    },
-};
+        };
+
+    
+    
 </script>
 
 <style scoped>

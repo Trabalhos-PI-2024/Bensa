@@ -22,12 +22,12 @@
 </template>
 
 <script setup>
-
 import MarcasComponente from '../components/MarcasComponente.vue'
 import LancamentosComponente from '../components/LancamentosComponente.vue'
 import AcessoriosComponente from '../components/AcessoriosComponente.vue'
 import OfertasComponente from '../components/OfertasComponente.vue';
 import RoupasComponente from '../components/RoupasComponente.vue';
+
 </script>
 
 <style>
@@ -50,7 +50,7 @@ section {
 
 .banner img {
   width: 100%;
-  height: 700px;
+  height: 75dvh;
   object-fit: cover;
 }
 </style>
