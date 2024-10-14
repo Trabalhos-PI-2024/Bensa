@@ -29,47 +29,15 @@
       </div>
   
       <LoginComponente v-if="showLogin" />
-      <div class="divCarrinho" v-if="showCart">
-        <div class="fecharCarrinho">
-          <button @click="toggleCart">
-            <img src="../assets/img/excluir.png" alt="Fechar Carrinho">
-          </button>
-        </div>
-        <div class="titleCarrinho">
-          <h2>CARRINHO</h2>
-        </div>
-        <div class="produtosCarrinho">
-          <!-- Renderizar dinamicamente os produtos no carrinho -->
-          <div v-for="(item, index) in cartItems" :key="index" class="produto">
-            <div class="infoProduto">
-              <p>{{ item.name }}</p>
-              <p>R$ {{ item.price.toFixed(2) }}</p>
-            </div>
-            <div class="imgProduto">
-              <img :src="item.image" :alt="item.name">
-            </div>
-          </div>
-        </div>
-        <div class="infoCarrinho">
-          <div class="boxFrete">
-            <label>Calcular Frete:</label>
-            <input type="text" value="00000-000">
-          </div>
-          <div class="boxTotalaPagar">
-            <label>Total a Pagar: R$</label>
-            <input type="text" :value="totalPrice.toFixed(2)">
-          </div>
-        </div>
-        <div class="buttonComprarCarrinho">
-          <button>COMPRAR</button>
-        </div>
-      </div>
+      <CarrinhoComponente v-if="showCart" :cartItems="cartItems" @close="toggleCart" />
+     
     </header>
   </template>
   
   <script setup>
   import { ref, computed, provide } from 'vue';
   import LoginComponente from './LoginComponente.vue';
+  import CarrinhoComponente from './CarrinhoComponente.vue'
   
   const showLogin = ref(false);
   const showCart = ref(false);
