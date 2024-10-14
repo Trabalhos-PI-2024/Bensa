@@ -35,7 +35,7 @@
   </template>
   
   <script setup>
-  import { ref, computed, provide } from 'vue';
+  import { ref } from 'vue';
   import LoginComponente from './LoginComponente.vue';
   import CarrinhoComponente from './CarrinhoComponente.vue'
   
@@ -48,128 +48,13 @@
   };
   
   const toggleCart = () => {
-    showCart.value = !showCart.value;
-  };
-  const addToCart = (product) => {
-    console.log('Produto recebido pelo carrinho:', product);
-    cartItems.value.push(product); 
-    console.log('Carrinho atualizado:', cartItems.value);
-  };
+  showCart.value = !showCart.value;
+};
+
   
-  const totalPrice = computed(() => {
-    return cartItems.value.reduce((total, item) => total + item.price, 0);
-  });
-  
-  provide('addToCart', addToCart);
   </script>
   
 <style scoped>
-.divCarrinho {
-    position: fixed;
-    right: 0;
-    top: 10px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
-    padding: 40px 60px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #e7e7e7;
-    z-index: 1000000;
-}
-
-.divCarrinho .titleCarrinho {
-    font-size: 25px;
-}
-
-.divCarrinho .produtosCarrinho {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-.divCarrinho .produtosCarrinho .closeProduto button {
-    background: transparent;
-}
-
-.divCarrinho .produtosCarrinho .closeProduto img {
-    width: 25px;
-}
-
-.divCarrinho .produtosCarrinho .infoProduto {
-    display: flex;
-    gap: 20px;
-    background: #e7e7e7;
-    padding: 20px;
-}
-
-.divCarrinho .produtosCarrinho .infoProduto input {
-    width: 20px;
-}
-
-.divCarrinho .produtosCarrinho .imgProduto img {
-    width: 100px;
-}
-
-.divCarrinho .infoCarrinho {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
-    gap: 7.3px;
-}
-
-.divCarrinho .infoCarrinho div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7.5px;
-}
-
-.divCarrinho .infoCarrinho .boxFrete {
-    font-size: 17px;
-}
-
-.divCarrinho .infoCarrinho .boxFrete input {
-    background: #e7e7e7;
-    padding: 5px 10px;
-    width: 95px;
-}
-
-.divCarrinho .infoCarrinho .boxTotalaPagar {
-    font-size: 13px;
-}
-
-.divCarrinho .buttonComprarCarrinho button {
-    padding: 10px 20px;
-    background: #e7e7e7;
-    border-radius: 12px;
-    font-size: 19px;
-    font-weight: 600;
-    transition: all 0.5s;
-}
-
-.divCarrinho .buttonComprarCarrinho:hover button {
-    transform: scale(1.1);
-}
-
-.fecharCarrinho {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-}
-
-.fecharCarrinho button {
-    background: transparent;
-}
-
-.fecharCarrinho img {
-    width: 40px;
-}
-
 header {
     width: 100%;
     display: flex;
