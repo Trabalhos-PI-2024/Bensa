@@ -3,62 +3,50 @@
     <div class="logo-container">
       <img src="../assets/img/stussy.svg" alt="Stussy Logo" class="stussy-logo" />
     </div>
-
     <div class="main-content">
-      <!-- Filtro -->
       <aside class="filter-container">
         <input type="text" placeholder="Filtrar produtos" class="filter-input" />
       </aside>
-
-      <!-- Lista de produtos -->
       <div class="product-list">
-        <ProductItem v-for="(product, index) in products" :key="index" :product="product" />
+        <ProductItem v-for="product in products" :key="product.id" :product="product" />
       </div>
     </div>
   </div>
 </template>
-  
-  <script>
-import ProductItem from '../components/ProductItem.vue'
-import camisa1stussy from '../assets/produtos.stussy/camisa1stussy.webp'
-import chapeu2stussy from '../assets/produtos.stussy/chapeu2stussy.webp'
-import camisa2stussy from '../assets/produtos.stussy/camisa2stussy.webp'
-import shorts2stussy from '../assets/produtos.stussy/shorts2stussy.webp'
-import shorts1stussy from '../assets/produtos.stussy/shorts1stussy.webp'
-import chapeu1stussy from '../assets/produtos.stussy/chapeu1stussy.webp'
-import moletom1stussy from '../assets/produtos.stussy/moletom1stussy.webp'
-import moletom2stussy from '../assets/produtos.stussy/moletom2stussy.webp'
-import camisa3stussy from '../assets/produtos.stussy/camisa3stussy.webp'
-import camisa4stussy from '../assets/produtos.stussy/camisa4stussy.webp'
-import camisa5stussy from '../assets/produtos.stussy/camisa5stussy.webp'
-import moletom3stussy from '../assets/produtos.stussy/moletom3stussy.webp'
 
-export default {
-  components: {
-    ProductItem
-  },
-  data() {
-    return {
-      products: [
-        { name: 'Produto 1', description: 'Descrição do produto 1', image: camisa1stussy },
-        { name: 'Produto 2', description: 'Descrição do produto 2', image: chapeu2stussy },
-        { name: 'Produto 3', description: 'Descrição do produto 3', image: camisa3stussy },
-        { name: 'Produto 4', description: 'Descrição do produto 4', image: chapeu1stussy },
-        { name: 'Produto 5', description: 'Descrição do produto 5', image: camisa2stussy },
-        { name: 'Produto 6', description: 'Descrição do produto 6', image: moletom1stussy },
-        { name: 'Produto 7', description: 'Descrição do produto 7', image: shorts1stussy },
-        { name: 'Produto 8', description: 'Descrição do produto 8', image: moletom2stussy },
-        { name: 'Produto 9', description: 'Descrição do produto 11', image: camisa4stussy },
-        { name: 'Produto 10', description: 'Descrição do produto 12', image: camisa5stussy },
-        { name: 'Produto 11', description: 'Descrição do produto 13', image: shorts2stussy },
-        { name: 'Produto 12', description: 'Descrição do produto 14', image: moletom3stussy }
-      ]
-    }
-  }
-}
+<script setup>
+import { ref } from 'vue';
+import ProductItem from '../components/ProductItem.vue';
+import camisa1stussy from '../assets/produtos.stussy/camisa1stussy.webp';
+import chapeu2stussy from '../assets/produtos.stussy/chapeu2stussy.webp';
+import camisa2stussy from '../assets/produtos.stussy/camisa2stussy.webp';
+import shorts2stussy from '../assets/produtos.stussy/shorts2stussy.webp';
+import shorts1stussy from '../assets/produtos.stussy/shorts1stussy.webp';
+import chapeu1stussy from '../assets/produtos.stussy/chapeu1stussy.webp';
+import moletom1stussy from '../assets/produtos.stussy/moletom1stussy.webp';
+import moletom2stussy from '../assets/produtos.stussy/moletom2stussy.webp';
+import camisa3stussy from '../assets/produtos.stussy/camisa3stussy.webp';
+import camisa4stussy from '../assets/produtos.stussy/camisa4stussy.webp';
+import camisa5stussy from '../assets/produtos.stussy/camisa5stussy.webp';
+import moletom3stussy from '../assets/produtos.stussy/moletom3stussy.webp';
+
+const products = ref([
+  { id: 85, name: 'Produto 1', description: 'Descrição do produto 1', image: camisa1stussy },
+  { id: 86, name: 'Produto 2', description: 'Descrição do produto 2', image: chapeu2stussy },
+  { id: 87, name: 'Produto 3', description: 'Descrição do produto 3', image: camisa3stussy },
+  { id: 88, name: 'Produto 4', description: 'Descrição do produto 4', image: chapeu1stussy },
+  { id: 89, name: 'Produto 5', description: 'Descrição do produto 5', image: camisa2stussy },
+  { id: 90, name: 'Produto 6', description: 'Descrição do produto 6', image: moletom1stussy },
+  { id: 91, name: 'Produto 7', description: 'Descrição do produto 7', image: shorts1stussy },
+  { id: 92, name: 'Produto 8', description: 'Descrição do produto 8', image: moletom2stussy },
+  { id: 93, name: 'Produto 9', description: 'Descrição do produto 11', image: camisa4stussy },
+  { id: 94, name: 'Produto 10', description: 'Descrição do produto 12', image: camisa5stussy },
+  { id: 95, name: 'Produto 11', description: 'Descrição do produto 13', image: shorts2stussy },
+  { id: 96, name: 'Produto 12', description: 'Descrição do produto 14', image: moletom3stussy }
+]);
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .page-container {
   display: flex;
   flex-direction: column;
@@ -68,7 +56,6 @@ export default {
 
 header {
   width: 100%;
-  /* Adicione o estilo do header aqui */
 }
 
 .logo-container {
@@ -99,17 +86,16 @@ header {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  margin-bottom: 20px; /* Espaço abaixo do campo de filtro */
+  margin-bottom: 20px;
 }
 
 .product-list {
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
   max-width: 1500px;
 }
 </style>
-  
