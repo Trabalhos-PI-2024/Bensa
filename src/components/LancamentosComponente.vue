@@ -4,7 +4,7 @@
       <h3>Lançamentos</h3>
     </div>
     <div class="mainProdutos">
-      <div class="product" v-for="product in products" :key="product.id">
+      <div class="product" v-for="product in productStore.products" :key="product.id">
         <div class="imgProdutos">
           <img class="img1" :src="product.image1" alt="" />
           <img class="img2" :src="product.image2" alt="" />
@@ -26,50 +26,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import adi2000Img1 from '../assets/img/Lancamentos/adi2000.webp';
-import adi2000Img2 from '../assets/img/Lancamentos/adidas2000.webp';
-import nbImg1 from '../assets/img/Lancamentos/nb.webp';
-import nbImg2 from '../assets/img/Lancamentos/nbb.webp';
-import jordanImg1 from '../assets/img/Lancamentos/jordan.webp';
-import jordanImg2 from '../assets/img/Lancamentos/jordan1.webp';
-import sambaImg1 from '../assets/img/Lancamentos/samba.webp';
-import sambaImg2 from '../assets/img/Lancamentos/samba1.webp';
-import forceImg1 from '../assets/img/Lancamentos/force.webp';
-import forceImg2 from '../assets/img/Lancamentos/force1.webp';
+import { useProductStore } from '../stores/products.js';
+import { onMounted } from 'vue';
 
-const products = ref([
-  {
-    id: 1,
-    name: 'Tênis Adidas Adi2000',
-    image1: adi2000Img1,
-    image2: adi2000Img2
-  },
-  {
-    id: 2,
-    name: 'Tênis NewBalance 9060',
-    image1: nbImg1,
-    image2: nbImg2
-  },
-  {
-    id: 3,
-    name: 'Tênis Nike Air Jordan',
-    image1: jordanImg1,
-    image2: jordanImg2
-  },
-  {
-    id: 4,
-    name: 'Tênis Adidas Bad Bunny',
-    image1: sambaImg1,
-    image2: sambaImg2
-  },
-  {
-    id: 5,
-    name: 'Tênis Nike Air Force',
-    image1: forceImg1,
-    image2: forceImg2
-  },
-]);
+const productStore = useProductStore();
 
 const showMoreDetails = (productName) => {
   alert(`Mais detalhes sobre: ${productName}`);
@@ -78,6 +38,8 @@ const showMoreDetails = (productName) => {
 const addToCart = (productName) => {
   alert(`${productName} foi adicionado ao carrinho!`);
 };
+
+console.log(productStore.products)  
 </script>
 
 <style scoped>

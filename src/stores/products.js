@@ -1,5 +1,86 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+// Imagens de lançamentos
+import adi2000Img1 from '../assets/img/Lancamentos/adi2000.webp';
+import adi2000Img2 from '../assets/img/Lancamentos/adidas2000.webp';
+import nbImg1 from '../assets/img/Lancamentos/nb.webp';
+import nbImg2 from '../assets/img/Lancamentos/nbb.webp';
+import jordanImg1 from '../assets/img/Lancamentos/jordan.webp';
+import jordanImg2 from '../assets/img/Lancamentos/jordan1.webp';
+import sambaImg1 from '../assets/img/Lancamentos/samba.webp';
+import sambaImg2 from '../assets/img/Lancamentos/samba1.webp';
+import forceImg1 from '../assets/img/Lancamentos/force.webp';
+import forceImg2 from '../assets/img/Lancamentos/force1.webp';
+
+// Imagens de acessórios
+import bagImage from '../assets/img/Acessorios/bag.jpg';
+import capImage from '../assets/img/Acessorios/cap.webp';
+import bolsaImage from '../assets/img/Acessorios/bolsa.webp';
+import toucaImage from '../assets/img/Acessorios/touca.webp';
+
+// Imagens de roupas
+import calcaImg from '../assets/img/roupas/calca.webp';
+import fuckImg from '../assets/img/roupas/fuck.webp';
+import jacketImg from '../assets/img/roupas/jacket.webp';
+import moletomImg from '../assets/img/roupas/moletom.webp';
+
+// Imagens de produtos Nike
+import tenis1nike from '../assets/produtos.nike/tenis1nike.webp';
+import mochila2nike from '../assets/produtos.nike/mochila2nike.webp';
+import camisa3nike from '../assets/produtos.nike/camisa3nike.webp';
+import calca4nike from '../assets/produtos.nike/calca4nike.webp';
+import camisa2nike from '../assets/produtos.nike/camisa2nike.png';
+import mochila3nike from '../assets/produtos.nike/mochila3nike.webp';
+import mochila4nike from '../assets/produtos.nike/mochila4nike.avif';
+import tenis2nike from '../assets/produtos.nike/tenis2nike.webp';
+import tenis3nike from '../assets/produtos.nike/tenis3nike.webp';
+import tenis4nike from '../assets/produtos.nike/tenis4nike.webp';
+import tenis5nike from '../assets/produtos.nike/tenis5nike.webp';
+import tenis6nike from '../assets/produtos.nike/tenis6nike.webp';
+
+// Imagens de produtos Adidas
+import tenis1adidas from '../assets/produtos.adidas/tenis1adidas.webp';
+import mochila2adidas from '../assets/produtos.adidas/mochila2adidas.jpg';
+import mochila1adidas from '../assets/produtos.adidas/mochila1adidas.webp';   
+import camisa3adidas from '../assets/produtos.adidas/camisa3adidas.webp';
+import camisa1adidas from '../assets/produtos.adidas/camisa1adidas.webp';
+import camisa2adidas from '../assets/produtos.adidas/camisa2adidas.webp';
+import tenis2adidas from '../assets/produtos.adidas/tenis2adidas.webp';
+import tenis3adidas from '../assets/produtos.adidas/tenis3adidas.webp';
+import tenis4adidas from '../assets/produtos.adidas/tenis4adidas.jpg';
+import tenis5adidas from '../assets/produtos.adidas/tenis5adidas.webp';
+import tenis6adidas from '../assets/produtos.adidas/tenis6adidas.webp';
+import bag1adidas from '../assets/produtos.adidas/bag1adidas.webp';
+
+// Imagens de produtos Vans
+import tenis1vans from '../assets/produtos.vans/tenis1vans.webp';
+import chapeu1vans from '../assets/produtos.vans/chapeu1vans.webp';
+import mochila1vans from '../assets/produtos.vans/mochila1vans.webp';
+import bag1vans from '../assets/produtos.vans/bag1vans.webp';
+import chapeu2vans from '../assets/produtos.vans/chapeu2vans.webp';
+import oculos1vans from '../assets/produtos.vans/oculos1vans.webp';
+import tenis2vans from '../assets/produtos.vans/tenis2vans.webp';
+import tenis3vans from '../assets/produtos.vans/tenis3vans.webp';
+import tenis4vans from '../assets/produtos.vans/tenis4vans.webp';
+import tenis5vans from '../assets/produtos.vans/tenis5vans.webp';
+import oculos2vans from '../assets/produtos.vans/oculos2vans.webp';
+import camisa1vans from '../assets/produtos.vans/camisa1vans.webp';
+
+// Imagens de produtos Stussy
+import camisa1stussy from '../assets/produtos.stussy/camisa1stussy.webp';
+import chapeu2stussy from '../assets/produtos.stussy/chapeu2stussy.webp';
+import camisa2stussy from '../assets/produtos.stussy/camisa2stussy.webp';
+import shorts2stussy from '../assets/produtos.stussy/shorts2stussy.webp';
+import shorts1stussy from '../assets/produtos.stussy/shorts1stussy.webp';
+import chapeu1stussy from '../assets/produtos.stussy/chapeu1stussy.webp';
+import moletom1stussy from '../assets/produtos.stussy/moletom1stussy.webp';
+import moletom2stussy from '../assets/produtos.stussy/moletom2stussy.webp';
+import camisa3stussy from '../assets/produtos.stussy/camisa3stussy.webp';
+import camisa4stussy from '../assets/produtos.stussy/camisa4stussy.webp';
+import camisa5stussy from '../assets/produtos.stussy/camisa5stussy.webp';
+import moletom3stussy from '../assets/produtos.stussy/moletom3stussy.webp';
+
+
 
 export const useProductStore = defineStore('product', () => {
   const products = ref([
@@ -7,31 +88,36 @@ export const useProductStore = defineStore('product', () => {
       id: 1,
       name: 'Tênis Adidas Adi2000',
       image1: adi2000Img1,
-      image2: adi2000Img2
+      image2: adi2000Img2,
+      lancamento: true,
     },
     {
       id: 2,
       name: 'Tênis NewBalance 9060',
       image1: nbImg1,
-      image2: nbImg2
+      image2: nbImg2,
+      lancamento: true,
     },
     {
       id: 3,
       name: 'Tênis Nike Air Jordan',
       image1: jordanImg1,
-      image2: jordanImg2
+      image2: jordanImg2,
+      lancamento: true,
     },
     {
       id: 4,
       name: 'Tênis Adidas Bad Bunny',
       image1: sambaImg1,
-      image2: sambaImg2
+      image2: sambaImg2,
+      lancamento: true,
     },
     {
       id: 5,
       name: 'Tênis Nike Air Force',
       image1: forceImg1,
-      image2: forceImg2
+      image2: forceImg2,
+      lancamento: true,
     },
     {
       id: 6,
@@ -49,7 +135,7 @@ export const useProductStore = defineStore('product', () => {
       id: 8,
       name: 'Bolsa Nike',
       price: 'R$299,99',
-      image: bolsaImage
+      image: mochila1vans     
     },
     {
       id: 9,
@@ -389,129 +475,27 @@ export const useProductStore = defineStore('product', () => {
     },
     { 
       id: 65, 
-      name: 'Tênis Vans 6', 
+      name: 'Oculos Vans 2', 
       price: 'R$249,99', 
-      image: tenis6vans 
-    },
-    { 
-      id: 66, 
-      name: 'Camiseta Puma 1', 
-      price: 'R$69,99', 
-      image: camiseta1puma 
-    },
-    { 
-      id: 67, 
-      name: 'Camiseta Puma 2', 
-      price: 'R$79,99', 
-      image: camiseta2puma 
-    },
-    { 
-      id: 68, 
-      name: 'Camiseta Puma 3', 
-      price: 'R$89,99', 
-      image: camiseta3puma 
-    },
-    { 
-      id: 69, 
-      name: 'Moletom Puma 1', 
-      price: 'R$159,99', 
-      image: moletom1puma 
-    },
-    { 
-      id: 70, 
-      name: 'Moletom Puma 2', 
-      price: 'R$169,99', 
-      image: moletom2puma 
-    },
-    { 
-      id: 71, 
-      name: 'Calça Puma 1', 
-      price: 'R$119,99', 
-      image: calca1puma 
-    },
-    { 
-      id: 72, 
-      name: 'Calça Puma 2', 
-      price: 'R$129,99', 
-      image: calca2puma 
-    },
-    { 
-      id: 73, 
-      name: 'Chapéu Puma 1', 
-      price: 'R$59,99', 
-      image: chapeu1puma 
-    },
-    { 
-      id: 74, 
-      name: 'Chapéu Puma 2', 
-      price: 'R$69,99', 
-      image: chapeu2puma 
-    },
-    { 
-      id: 75, 
-      name: 'Bag Puma 1', 
-      price: 'R$149,99', 
-      image: bag1puma 
-    },
-    { 
-      id: 76, 
-      name: 'Bag Puma 2', 
-      price: 'R$159,99', 
-      image: bag2puma 
-    },
-    { 
-      id: 77, 
-      name: 'Tênis Puma 1', 
-      price: 'R$199,99', 
-      image: tenis1puma 
-    },
-    { 
-      id: 78, 
-      name: 'Tênis Puma 2', 
-      price: 'R$209,99', 
-      image: tenis2puma 
-    },
-    { 
-      id: 79, 
-      name: 'Tênis Puma 3', 
-      price: 'R$219,99', 
-      image: tenis3puma 
-    },
-    { 
-      id: 80, 
-      name: 'Tênis Puma 4', 
-      price: 'R$229,99', 
-      image: tenis4puma 
-    },
-    { 
-      id: 81, 
-      name: 'Tênis Puma 5', 
-      price: 'R$239,99', 
-      image: tenis5puma 
-    },
-    { 
-      id: 82, 
-      name: 'Tênis Puma 6', 
-      price: 'R$249,99', 
-      image: tenis6puma 
+      image: oculos2vans 
     },
     { 
       id: 83, 
       name: 'Camiseta Stussy 1', 
       price: 'R$99,99', 
-      image: camiseta1stussy 
+      image: camisa1stussy 
     },
     { 
       id: 84, 
       name: 'Camiseta Stussy 2', 
       price: 'R$109,99', 
-      image: camiseta2stussy 
+      image: camisa2stussy 
     },
     { 
       id: 85, 
       name: 'Camiseta Stussy 3', 
       price: 'R$119,99', 
-      image: camiseta3stussy 
+      image: camisa3stussy 
     },
     { 
       id: 86, 
@@ -530,56 +514,15 @@ export const useProductStore = defineStore('product', () => {
       name: 'Moletom Stussy 3', 
       price: 'R$159,99', 
       image: moletom3stussy 
-    },
-    { 
-      id: 89, 
-      name: 'Shorts Adidas 1', 
-      price: 'R$79,99', 
-      image: shorts1adidas 
-    },
-    { 
-      id: 90, 
-      name: 'Shorts Adidas 2', 
-      price: 'R$89,99', 
-      image: shorts2adidas 
-    },
-    { 
-      id: 91, 
-      name: 'Shorts Nike 1', 
-      price: 'R$99,99', 
-      image: shorts1nike 
-    },
-    { 
-      id: 92, 
-      name: 'Shorts Nike 2', 
-      price: 'R$109,99', 
-      image: shorts2nike 
-    },
-    { 
-      id: 93, 
-      name: 'Shorts Stussy 1', 
-      price: 'R$69,99', 
-      image: shorts1stussy 
-    },
-    { 
-      id: 94, 
-      name: 'Shorts Stussy 2', 
-      price: 'R$79,99', 
-      image: shorts2stussy 
-    },
-    { 
-      id: 95, 
-      name: 'Bag Stussy 1', 
-      price: 'R$129,99', 
-      image: bag1stussy 
-    },
-    { 
-      id: 96, 
-      name: 'Bag Stussy 2', 
-      price: 'R$139,99', 
-      image: bag2stussy 
-    },
+    },  
+
   ])
+
+  const carrinho = ref([])
+
+  function addCarrinho(item){
+    carrinho.value.push(item)
+  }
 
   function getProductById(id) {
     for (let product of products.value) {
@@ -590,5 +533,5 @@ export const useProductStore = defineStore('product', () => {
     return null
   }
 
-  return { products, getProductById }
+  return { products, getProductById, carrinho, addCarrinho }
 })

@@ -4,7 +4,7 @@
     <div class="buttons">
       <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
       <!-- Passa o produto ao carrinho -->
-      <button @click="handleAddToCart" class="btt-cart">
+      <button @click="productsStore.addCarrinho(product)" class="btt-cart">
         <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
       </button>
     </div>
@@ -12,7 +12,10 @@
 </template>
 
 <script setup>
+import { useProductStore } from '@/stores/products';
 import { defineProps, inject } from 'vue';
+ 
+
 
 // Recebe as props do produto
 const props = defineProps({
@@ -21,6 +24,7 @@ const props = defineProps({
     required: true,
   },
 });
+
 
 // Recebe a função `addToCart` do componente pai via provide/inject
 const addToCart = inject('addToCart');
