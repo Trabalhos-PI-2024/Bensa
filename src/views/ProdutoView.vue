@@ -2,7 +2,7 @@
     <div class="product-page">
       <div class="product-container">
         <div class="product-image">
-          <img :src="product.images[0]" alt="Product Image" />
+          <img src="../assets/img/roupas/calca.webp" alt="Product Image" />
         </div>
         <div class="product-details">
           <div class="product-rating">
@@ -39,7 +39,7 @@
         <h2>Outros Produtos</h2>
         <div class="carousel-container" ref="carousel">
           <div class="carousel-item" v-for="otherProduct in otherProducts" :key="otherProduct.id">
-            <img :src="otherProduct.image" alt="Other Product" />
+            <img :src="otherProducts.image" alt="Other Product" />
             <h3>{{ otherProduct.name }}</h3>
             <p>${{ otherProduct.price.toFixed(2) }}</p>
           </div>
@@ -70,7 +70,7 @@
   };
   
   const otherProducts = ref([
-    { id: 1, name: 'Camiseta Básica', price: 19.99, image: 'https://example.com/camiseta-basica.jpg' },
+    { id: 1, name: 'Camiseta Básica', price: 19.99, image: '../assets/img/carrinho.svg' },
     { id: 2, name: 'Camiseta Colorida', price: 24.99, image: 'https://example.com/camiseta-colorida.jpg' },
     { id: 3, name: 'Camiseta de Estampa', price: 34.99, image: 'https://example.com/camiseta-estampada.jpg' },
     { id: 4, name: 'Camiseta de Manga Longa', price: 39.99, image: 'https://example.com/camiseta-manga-longa.jpg' },
@@ -91,28 +91,42 @@
   <style scoped>
   .product-page {
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    margin: 30px auto;
+    padding: 10px;
   }
   
-  .product-container {
-    display: flex;
-  }
+ .product-container {
+  display: flex;
+  justify-content: space-between; /* Garante que a imagem e os detalhes fiquem afastados */
+}
+
+.product-image {
+  flex: 1;
+  margin-right: 20px; /* Adiciona um espaçamento entre a imagem e os detalhes */
+}
+
+.product-details {
+  flex: 2; /* Aumenta o espaço do lado direito */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Garante que o conteúdo seja espaçado verticalmente */
+  margin-left: 5%;
+}
+
+.product-description {
+  margin: 80px 0px 30px 0px;
+  max-width: 100%; /* Garante que a descrição se alinhe à largura da imagem */
+}
+
   
-  .product-image {
-    flex: 1; /* Aumenta o espaço da imagem */
-  }
   
   .product-image img {
-    max-width: 100%;
-    height: auto;
+    max-width: 115%;
+    height: 125%;
     border-radius: 8px;
   }
   
-  .product-details {
-    margin-left: 20px;
-    flex: 1.5; /* Aumenta ainda mais o espaço do lado direito */
-  }
+  
   
   .product-rating {
     display: flex;
@@ -144,9 +158,36 @@
   }
   
   .size-options {
-    display: flex;
-    gap: 10px; /* Espaçamento entre as opções de tamanho */
-  }
+  display: flex;
+  gap: 10px; /* Espaçamento entre as opções de tamanho */
+}
+
+.size-options label {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px; /* Um leve arredondamento nos cantos para um estilo quadrangular */
+  cursor: pointer;
+  text-align: center;
+  background-color: white;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.size-options input[type="radio"] {
+  display: none; /* Esconde o botão de rádio padrão */
+}
+
+.size-options input[type="radio"]:checked + label {
+  background-color: #000; /* Cor de fundo preta quando selecionado */
+  color: white; /* Cor do texto em branco quando selecionado */
+  border-color: #000; /* Borda preta quando selecionado */
+}
+
+.size-options label:hover {
+  background-color: #f0f0f0;
+  border-color: #000; /* Borda preta ao passar o mouse */
+}
+
   
   .buy-button {
     background-color: black;
@@ -161,9 +202,7 @@
     background-color: #333;
   }
   
-  .product-description {
-    margin-top: 20px;
-  }
+
   
   .carousel {
     margin-top: 20px;
