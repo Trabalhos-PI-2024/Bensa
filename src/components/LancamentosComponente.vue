@@ -4,7 +4,7 @@
       <h3>Lançamentos</h3>
     </div>
     <div class="mainProdutos">
-      <div class="product" v-for="product in productStore.products" :key="product.id">
+      <div class="product" v-for="product in lancamentos" :key="product.id">
         <div class="imgProdutos">
           <img class="img1" :src="product.image1" alt="" />
           <img class="img2" :src="product.image2" alt="" />
@@ -26,10 +26,14 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useProductStore } from '../stores/products.js';
-import { onMounted } from 'vue';
 
 const productStore = useProductStore();
+
+const lancamentos = computed(() =>
+      productStore.products.filter(product => product.lancamento)
+    );
 
 const showMoreDetails = (productName) => {
   alert(`Mais detalhes sobre: ${productName}`);
