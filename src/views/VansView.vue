@@ -8,42 +8,30 @@
         <input type="text" placeholder="Filtrar produtos" class="filter-input" />
       </aside>
       <div class="product-list">
-        <ProductItem v-for="product in products" :key="product.id" :product="product" />
+        <div class="product-item" v-for="product in van" :key="product.id" :product="product">
+    <img :src="product.image1" :alt="product.name" class="product-image" />
+    <div class="buttons">
+      <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+      <!-- Passa o produto ao carrinho -->
+      <button @click="productsStore.addCarrinho(product)" class="btt-cart">
+        <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+      </button>
+    </div>
+  </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import ProductItem from '../components/ProductItem.vue';
-import tenis1vans from '../assets/produtos.vans/tenis1vans.webp';
-import chapeu1vans from '../assets/produtos.vans/chapeu1vans.webp';
-import mochila1vans from '../assets/produtos.vans/mochila1vans.webp';
-import bag1vans from '../assets/produtos.vans/bag1vans.webp';
-import chapeu2vans from '../assets/produtos.vans/chapeu2vans.webp';
-import oculos1vans from '../assets/produtos.vans/oculos1vans.webp';
-import tenis2vans from '../assets/produtos.vans/tenis2vans.webp';
-import tenis3vans from '../assets/produtos.vans/tenis3vans.webp';
-import tenis4vans from '../assets/produtos.vans/tenis4vans.webp';
-import tenis5vans from '../assets/produtos.vans/tenis5vans.webp';
-import oculos2vans from '../assets/produtos.vans/oculos2vans.webp';
-import camisa1vans from '../assets/produtos.vans/camisa1vans.webp';
+import { computed } from 'vue';
+import { useProductStore } from '../stores/products.js';
 
-const products = ref([
-  { id: 73, name: 'Produto 1', description: 'Descrição do produto 1', image: tenis1vans },
-  { id: 74, name: 'Produto 2', description: 'Descrição do produto 2', image: chapeu1vans },
-  { id: 75, name: 'Produto 3', description: 'Descrição do produto 3', image: bag1vans },
-  { id: 76, name: 'Produto 4', description: 'Descrição do produto 5', image: tenis2vans },
-  { id: 77, name: 'Produto 5', description: 'Descrição do produto 6', image: oculos1vans },
-  { id: 78, name: 'Produto 6', description: 'Descrição do produto 7', image: chapeu2vans },
-  { id: 79, name: 'Produto 7', description: 'Descrição do produto 8', image: tenis3vans },
-  { id: 80, name: 'Produto 8', description: 'Descrição do produto 11', image: tenis4vans },
-  { id: 81, name: 'Produto 9', description: 'Descrição do produto 12', image: tenis5vans },
-  { id: 82, name: 'Produto 10', description: 'Descrição do produto 13', image: mochila1vans },
-  { id: 83, name: 'Produto 11', description: 'Descrição do produto 14', image: oculos2vans },
-  { id: 84, name: 'Produto 12', description: 'Descrição do produto 3', image: camisa1vans }
-]);
+const productStore = useProductStore();
+
+const van = computed(() =>
+      productStore.products.filter(product => product.vans)
+    );
 </script>
 
 <style scoped>
@@ -97,5 +85,56 @@ header {
   gap: 20px;
   padding: 20px;
   max-width: 1500px;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  padding: 20px;
+  margin: 15px;
+  width: 250px;
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-more {
+  color: black;
+  padding: 10px 20px;
+  background-color: #ffff;
+}
+
+.btn-cart {
+  background: none;
+  padding: 0;
+}
+
+.cart-image {
+  width: 36px;
+  height: 36px;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 </style>

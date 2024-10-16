@@ -6,8 +6,8 @@
         <h3>Acessórios</h3>
       </div>
       <div class="mainProdutos">
-        <div class="produtos" v-for="product in products" :key="product.id">
-          <img :src="product.image" :alt="product.name" />
+        <div class="produtos" v-for="product in acessorio" :key="product.id">
+          <img :src="product.image1" :alt="product.name" />
           <div class="infoProdutos">
             <div>
               <h3>{{ product.name }}</h3>
@@ -27,53 +27,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import bagImage from '../assets/img/Acessorios/bag.jpg';
-import capImage from '../assets/img/Acessorios/cap.webp';
-import bolsaImage from '../assets/img/Acessorios/bolsa.webp';
-import toucaImage from '../assets/img/Acessorios/touca.webp';
+import { computed } from 'vue';
+import { useProductStore } from '../stores/products.js';
 
-const products = ref([
-  {
-    id: 6,
-    name: 'Bag Nike',
-    price: 'R$199,99',
-    image: bagImage
-  },
-  {
-    id: 7,
-    name: 'Cap Nike',
-    price: 'R$99,99',
-    image: capImage
-  },
-  {
-    id: 8,
-    name: 'Bolsa Nike',
-    price: 'R$299,99',
-    image: bolsaImage
-  },
-  {
-    id: 9,
-    name: 'Touca Nike',
-    price: 'R$79,99',
-    image: toucaImage
-  },
-  {
-    id: 10,
-    name: 'Touca Nike',
-    price: 'R$79,99',
-    image: toucaImage
-  },
-  {
-    id: 11,
-    name: 'Touca Nike',
-    price: 'R$79,99',
-    image: toucaImage
-  }
-]);
+const productStore = useProductStore();
 
-
-
+const acessorio = computed(() =>
+      productStore.products.filter(product => product.acessorios)
+    );
 </script>
 
 <style scoped>

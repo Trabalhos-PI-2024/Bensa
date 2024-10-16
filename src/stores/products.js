@@ -90,6 +90,7 @@ export const useProductStore = defineStore('product', () => {
       image1: adi2000Img1,
       image2: adi2000Img2,
       lancamento: true,
+      adidas: true,
     },
     {
       id: 2,
@@ -104,6 +105,7 @@ export const useProductStore = defineStore('product', () => {
       image1: jordanImg1,
       image2: jordanImg2,
       lancamento: true,
+      nike: true,
     },
     {
       id: 4,
@@ -111,6 +113,7 @@ export const useProductStore = defineStore('product', () => {
       image1: sambaImg1,
       image2: sambaImg2,
       lancamento: true,
+      adidas: true,
     },
     {
       id: 5,
@@ -118,96 +121,124 @@ export const useProductStore = defineStore('product', () => {
       image1: forceImg1,
       image2: forceImg2,
       lancamento: true,
+      nike: true,
     },
     {
       id: 6,
       name: 'Bag Nike',
       price: 'R$199,99',
-      image1: bagImage
+      image1: bagImage,
+      nike: true,
+      acessorios: true,
     },
     {
       id: 7,
       name: 'Cap Nike',
       price: 'R$99,99',
-      image1: capImage
+      image1: capImage,
+      nike: true,
+      acessorios: true,
     },
     {
       id: 8,
       name: 'Bolsa Nike',
       price: 'R$299,99',
-      image1: mochila1vans     
+      image1: mochila1vans,
+      nike: true,
+      acessorios: true,    
     },
     {
       id: 9,
       name: 'Touca Nike',
       price: 'R$79,99',
-      image1: toucaImage
+      image1: toucaImage,
+      nike: true,
+      acessorios: true,
     },
     {
       id: 10,
       name: 'Touca Nike',
       price: 'R$79,99',
-      image1: toucaImage
+      image1: toucaImage,
+      nike: true,
+      acessorios: true,
     },
     {
       id: 11,
       name: 'Touca Nike',
       price: 'R$79,99',
-      image1: toucaImage
+      image1: toucaImage,
+      nike: true,
+      acessorios: true,
     },
     {
       id: 12,
       name: 'Calça Nike',
       price: 'R$199,99',
-      image1: calcaImg
+      image1: calcaImg,
+      nike: true,
+      roupas: true,
     },
     {
       id: 13,
       name: 'Camiseta Nike',
       price: 'R$99,99',
-      image1: fuckImg
+      image1: fuckImg,
+      nike: true,
+      roupas: true,
     },
     {
       id: 14,
       name: 'Jaqueta Nike',
       price: 'R$299,99',
-      image1: jacketImg
+      image1: jacketImg,
+      nike: true,
+      roupas: true,
     },
     {
       id: 15,
       name: 'Moletom Nike',
       price: 'R$79,99',
-      image1: moletomImg
+      image1: moletomImg,
+      nike: true,
+      roupas: true,
     },
     {
       id: 16,
       name: 'Moletom Nike',
       price: 'R$79,99',
-      image1: moletomImg
+      image1: moletomImg,
+      nike: true,
+      roupas: true,
     },
     { 
       id: 17, 
       name: 'Chapéu Vans 1', 
       price: 'R$59,99', 
-      image1: chapeu1vans 
+      image1: chapeu1vans,
+      vans: true,
+      roupas: true,
     },
     { 
       id: 18, 
       name: 'Camisa Nike 3', 
       price: 'R$89,99', 
-      image1: camisa3nike 
+      image1: camisa3nike,
+      nike: true, 
     },
     { 
       id: 19, 
       name: 'Calça Nike 4', 
       price: 'R$119,99', 
-      image1: calca4nike 
+      image1: calca4nike,
+      nike: true, 
     },
     { 
       id: 20, 
       name: 'Camisa Nike 2', 
       price: 'R$79,99', 
-      image1: camisa2nike 
+      image1: camisa2nike,
+      nike: true, 
     },
     { 
       id: 21, 
@@ -219,73 +250,85 @@ export const useProductStore = defineStore('product', () => {
       id: 22, 
       name: 'Camisa Adidas 1', 
       price: 'R$89,99', 
-      image1: camisa1adidas 
+      image1: camisa1adidas,
+      adidas: true, 
     },
     { 
       id: 23, 
       name: 'Camisa Adidas 2', 
       price: 'R$89,99', 
-      image1: camisa2adidas 
+      image1: camisa2adidas,
+      adidas: true, 
     },
     { 
       id: 24, 
       name: 'Camisa Adidas 3', 
       price: 'R$99,99', 
-      image1: camisa3adidas 
+      image1: camisa3adidas,
+      adidas: true, 
     },
     { 
       id: 25, 
       name: 'Camisa Stussy 4', 
       price: 'R$109,99', 
-      image1: camisa4stussy 
+      image1: camisa4stussy,
+      stussy: true, 
     },
     { 
       id: 26, 
       name: 'Camisa Stussy 5', 
       price: 'R$119,99', 
-      image1: camisa5stussy 
+      image1: camisa5stussy,
+      stussy: true, 
     },
     { 
       id: 27, 
       name: 'Shorts Stussy 2', 
       price: 'R$79,99', 
-      image1: shorts2stussy 
+      image1: shorts2stussy,
+      stussy: true, 
     },
     { 
       id: 28, 
       name: 'Moletom Stussy 3', 
       price: 'R$139,99', 
-      image1: moletom3stussy 
+      image1: moletom3stussy,
+      stussy: true, 
     },
     { 
       id: 29, 
       name: 'Tênis Nike 1', 
       price: 'R$199,99', 
-      image1: tenis1nike 
+      image1: tenis1nike,
+      nike: true,
     },
     { 
       id: 30, 
       name: 'Tênis Adidas 1', 
       price: 'R$189,99', 
-      image1: tenis1adidas 
+      image1: tenis1adidas,
+      adidas: true, 
     },
     { 
       id: 31, 
       name: 'Tênis Adidas 6', 
       price: 'R$249,99', 
-      image1: tenis6adidas 
+      image1: tenis6adidas,
+      adidas: true, 
     },
     { 
       id: 32, 
       name: 'Tênis Adidas 5', 
       price: 'R$239,99', 
-      image1: tenis5adidas 
+      image1: tenis5adidas,
+      adidas: true, 
     },
     { 
       id: 33, 
       name: 'Tênis Nike 2', 
       price: 'R$209,99', 
-      image1: tenis2nike 
+      image1: tenis2nike,
+      nike: true, 
     },
     { 
       id: 34, 
@@ -303,217 +346,296 @@ export const useProductStore = defineStore('product', () => {
       id: 36, 
       name: 'Tênis Nike 3', 
       price: 'R$219,99', 
-      image1: tenis3nike 
+      image1: tenis3nike,
+      nike: true, 
     },
     { 
       id: 37, 
       name: 'Tênis Nike 4', 
       price: 'R$229,99', 
-      image1: tenis4nike 
+      image1: tenis4nike,
+      nike: true, 
     },
     { 
       id: 38, 
       name: 'Tênis Nike 5', 
       price: 'R$239,99', 
-      image1: tenis5nike 
+      image1: tenis5nike,
+      nike: true, 
     },
     { 
       id: 39, 
       name: 'Tênis Adidas 3', 
       price: 'R$209,99', 
-      image1: tenis3adidas 
+      image1: tenis3adidas,
+      adidas: true, 
     },
     { 
       id: 40, 
       name: 'Tênis Nike 6', 
       price: 'R$249,99', 
-      image1: tenis6nike 
+      image1: tenis6nike,
+      nike: true, 
     },
     { 
       id: 41, 
       name: 'Mochila Nike 2', 
       price: 'R$139,99', 
-      image1: mochila2nike 
+      image1: mochila2nike,
+      nike: true, 
     },
     { 
       id: 42, 
       name: 'Chapéu Vans 1', 
       price: 'R$59,99', 
-      image1: chapeu1vans 
+      image1: chapeu1vans,
+      vans: true, 
     },
     { 
       id: 43, 
       name: 'Chapéu Stussy 1', 
       price: 'R$69,99', 
-      image1: chapeu1stussy 
+      image1: chapeu1stussy,
+      stussy: true, 
     },
     { 
       id: 44, 
       name: 'Chapéu Stussy 2', 
       price: 'R$79,99', 
-      image1: chapeu2stussy 
+      image1: chapeu2stussy,
+      stussy: true, 
     },
     { 
       id: 45, 
       name: 'Bag Adidas 1', 
       price: 'R$149,99', 
-      image1: bag1adidas 
+      image1: bag1adidas,
+      adidas: true, 
     },
     { 
       id: 46, 
       name: 'Mochila Nike 3', 
       price: 'R$159,99', 
-      image1: mochila3nike 
+      image1: mochila3nike, 
+      nike: true, 
     },
     { 
       id: 47, 
       name: 'Mochila Nike 4', 
       price: 'R$169,99', 
-      image1: mochila4nike 
+      image1: mochila4nike,
+      nike: true, 
     },
     { 
       id: 48, 
       name: 'Mochila Adidas 2', 
       price: 'R$179,99', 
-      image1: mochila2adidas 
+      image1: mochila2adidas,
+      adidas: true, 
     },
     { 
       id: 49, 
       name: 'Tênis Vans 1', 
       price: 'R$199,99', 
-      image1: tenis1vans 
+      image1: tenis1vans,
+      vans: true, 
     },
     { 
       id: 50, 
       name: 'Mochila Nike 2', 
       price: 'R$139,99', 
-      image1: mochila2nike 
+      image1: mochila2nike,
+      nike: true, 
     },
     { 
       id: 51, 
       name: 'Camisa Nike 3', 
       price: 'R$89,99', 
-      image1: camisa3nike 
+      image1: camisa3nike,
+      nike: true, 
     },
     { 
       id: 52, 
       name: 'Calça Nike 4', 
       price: 'R$119,99', 
-      image1: calca4nike 
+      image1: calca4nike,
+      nike: true, 
     },
     { 
       id: 53, 
       name: 'Tênis Nike 2', 
       price: 'R$209,99', 
-      image1: tenis2nike 
+      image1: tenis2nike,
+      nike: true, 
     },
     { 
       id: 54, 
       name: 'Camisa Nike 2', 
       price: 'R$79,99', 
-      image1: camisa2nike 
+      image1: camisa2nike,
+      nike: true, 
     },
     { 
       id: 55, 
       name: 'Mochila Nike 3', 
       price: 'R$159,99', 
-      image1: mochila3nike 
+      image1: mochila3nike,
+      nike: true, 
     },
     { 
       id: 56, 
       name: 'Tênis Nike 3', 
       price: 'R$219,99', 
-      image1: tenis3nike 
+      image1: tenis3nike,
+      nike: true, 
     },
     { 
       id: 57, 
       name: 'Tênis Nike 4', 
       price: 'R$229,99', 
-      image1: tenis4nike 
+      image1: tenis4nike,
+      nike: true, 
     },
     { 
       id: 58, 
       name: 'Tênis Nike 5', 
       price: 'R$239,99', 
-      image1: tenis5nike 
+      image1: tenis5nike,
+      nike: true, 
     },
     { 
       id: 59, 
       name: 'Mochila Nike 4', 
       price: 'R$169,99', 
-      image1: mochila4nike 
+      image1: mochila4nike,
+      nike: true, 
     },
     { 
       id: 60, 
       name: 'Tênis Nike 6', 
       price: 'R$249,99', 
-      image1: tenis6nike 
+      image1: tenis6nike,
+      nike: true, 
     },
     { 
       id: 61, 
       name: 'Tênis Vans 2', 
       price: 'R$209,99', 
-      image1: tenis2vans 
+      image1: tenis2vans,
+      vans: true, 
     },
     { 
       id: 62, 
       name: 'Tênis Vans 3', 
       price: 'R$219,99', 
-      image1: tenis3vans 
+      image1: tenis3vans,
+      vans: true, 
     },
     { 
       id: 63, 
       name: 'Tênis Vans 4', 
       price: 'R$229,99', 
-      image1: tenis4vans 
+      image1: tenis4vans,
+      vans: true, 
     },
     { 
       id: 64, 
       name: 'Tênis Vans 5', 
       price: 'R$239,99', 
-      image1: tenis5vans 
+      image1: tenis5vans,
+      vans: true, 
     },
     { 
       id: 65, 
       name: 'Oculos Vans 2', 
       price: 'R$249,99', 
-      image1: oculos2vans 
+      image1: oculos2vans,
+      vans: true,
+      
     },
     { 
-      id: 83, 
+      id: 66, 
       name: 'Camiseta Stussy 1', 
       price: 'R$99,99', 
-      image1: camisa1stussy 
+      image1: camisa1stussy,
+      stussy: true, 
     },
     { 
-      id: 84, 
+      id: 67, 
       name: 'Camiseta Stussy 2', 
       price: 'R$109,99', 
-      image1: camisa2stussy 
+      image1: camisa2stussy, 
+      stussy: true,
     },
     { 
-      id: 85, 
+      id: 68, 
       name: 'Camiseta Stussy 3', 
       price: 'R$119,99', 
-      image1: camisa3stussy 
+      image1: camisa3stussy,
+      stussy: true, 
     },
     { 
-      id: 86, 
+      id: 69, 
       name: 'Moletom Stussy 1', 
       price: 'R$139,99', 
-      image1: moletom1stussy 
+      image1: moletom1stussy,
+      stussy: true, 
     },
     { 
-      id: 87, 
+      id: 70, 
       name: 'Moletom Stussy 2', 
       price: 'R$149,99', 
-      image1: moletom2stussy 
+      image1: moletom2stussy,
+      stussy: true, 
     },
     { 
-      id: 88, 
+      id: 71, 
       name: 'Moletom Stussy 3', 
       price: 'R$159,99', 
-      image1: moletom3stussy 
+      image1: moletom3stussy,
+      stussy: true, 
+    },  
+    { 
+      id: 72, 
+      name: 'Moletom Stussy 3', 
+      price: 'R$159,99', 
+      image1: bolsaImage, 
+      stussy: true, 
+    },  
+    { 
+      id: 73, 
+      name: 'Moletom Stussy 3', 
+      price: 'R$159,99', 
+      image1: bag1vans,
+      vans: true, 
+    },
+    { 
+      id: 74, 
+      name: 'Moletom Stussy 3', 
+      price: 'R$159,99', 
+      image1: shorts1stussy,
+      stussy: true, 
+    },
+    { 
+      id: 75, 
+      name: 'Moletom Stussy 3', 
+      price: 'R$159,99', 
+      image1: oculos1vans,
+      vans: true, 
+    },
+    { 
+      id: 76, 
+      name: 'Moletom Stussy 3', 
+      price: 'R$159,99', 
+      image1: mochila1adidas, 
+      adidas: true, 
+    },
+    { 
+      id: 77, 
+      name: 'Moletom Stussy 3', 
+      price: 'R$159,99', 
+      image1: camisa1vans,
+      vans: true, 
     },  
 
   ])

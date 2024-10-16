@@ -6,8 +6,8 @@
         <img src="../assets/img/t-shirt.png" alt="">
       </div>
       <div class="mainProdutos">
-        <div class="produtos" v-for="product in products" :key="product.id">
-          <img :src="product.image" :alt="product.name" />
+        <div class="produtos" v-for="product in roupa" :key="product.id">
+          <img :src="product.image1" :alt="product.name" />
           <div class="infoProdutos">
             <div>
               <h3>{{ product.name }}</h3>
@@ -33,50 +33,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import calcaImg from '../assets/img/roupas/calca.webp';
-import fuckImg from '../assets/img/roupas/fuck.webp';
-import jacketImg from '../assets/img/roupas/jacket.webp';
-import moletomImg from '../assets/img/roupas/moletom.webp';
+import { computed } from 'vue';
+import { useProductStore } from '../stores/products.js';
 
-const products = ref([
-  {
-    id: 12,
-    name: 'Calça Nike',
-    price: 'R$199,99',
-    image: calcaImg
-  },
-  {
-    id: 13,
-    name: 'Camiseta Nike',
-    price: 'R$99,99',
-    image: fuckImg
-  },
-  {
-    id: 14,
-    name: 'Jaqueta Nike',
-    price: 'R$299,99',
-    image: jacketImg
-  },
-  {
-    id: 15,
-    name: 'Moletom Nike',
-    price: 'R$79,99',
-    image: moletomImg
-  },
-  {
-    id: 16,
-    name: 'Moletom Nike',
-    price: 'R$79,99',
-    image: moletomImg
-  },
-  {
-    id: 17,
-    name: 'Moletom Nike',
-    price: 'R$79,99',
-    image: moletomImg
-  },
-]);
+const productStore = useProductStore();
+
+const roupa = computed(() =>
+      productStore.products.filter(product => product.roupas)
+    );
+
 
 const addToCart = (productName) => {
   alert(`${productName} foi adicionado ao carrinho!`);
