@@ -13,7 +13,6 @@
             </div>
             <h1>Informações Pessoais</h1>
             <div class="user-form-grid">
-                <!-- Primeira linha (Nome e Sobrenome) -->
                 <div class="user-form-grupo inline-group">
                     <div class="nome-container">
                         <label for="nome">Nome</label>
@@ -24,8 +23,6 @@
                         <input v-model="form.sobrenome" type="text" id="sobrenome" required placeholder="Ex: Silva" />
                     </div>
                 </div>
-
-                <!-- Segunda linha (Telefone e E-mail) -->
                 <div class="user-form-grupo inline-group">
                     <div class="telefone-container">
                         <label for="telefone">Telefone</label>
@@ -38,8 +35,6 @@
                             placeholder="Ex: exemplo@dominio.com" />
                     </div>
                 </div>
-
-                <!-- Terceira linha (CPF, Data de Nascimento e Sexo) -->
                 <div class="user-form-grupo inline-group">
                     <div class="cpf-container">
                         <label for="cpf">CPF</label>
@@ -80,9 +75,7 @@ const form = ref({
     sexo: ''
 });
 
-// O método formCadastro deve ser definido conforme a lógica que você precisa
 const formCadastro = () => {
-    // Lógica para processar o cadastro, se necessário
 };
 </script>
 
@@ -149,7 +142,6 @@ const formCadastro = () => {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    /* Espaçamento de 30px entre linhas */
 }
 
 .user-form-grupo {
@@ -172,38 +164,28 @@ const formCadastro = () => {
     background-color: #D9D9D9;
 }
 
-/* Estilos para o Nome e Sobrenome */
 .inline-group {
     display: flex;
     flex-direction: row;
-    /* Mantém os inputs na mesma linha */
     gap: 20px;
-    /* Espaçamento entre os inputs */
 }
 
-/* Estilos para o Nome e Sobrenome */
 .nome-container,
 .sobrenome-container {
     width: 50%;
-    /* Cada um ocupa 50% da largura */
 }
 
-/* Estilos para o Telefone e E-mail */
 .telefone-container,
 .email-container {
     width: 50%;
-    /* Cada um ocupa 50% da largura */
 }
 
-/* Estilos para CPF, Data de Nascimento e Sexo */
 .cpf-container,
 .data-nascimento-container,
 .sexo-container {
     width: 33%;
-    /* Cada um ocupa 33% da largura */
 }
 
-/* Estilos para o botão do router link */
 .large-button {
     width: 40%;
     cursor: pointer;
