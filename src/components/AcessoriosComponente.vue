@@ -28,7 +28,14 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useProductStore } from '../stores/products.js';
+import { useProductStore } from '@/stores/products';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function visualizar(id){
+  router.push(`/produto/${id}`)
+}
 
 const productStore = useProductStore();
 

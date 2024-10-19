@@ -12,7 +12,7 @@
         <div class="infoProdutos">
           <div class="divInfoProduto">
             <p>{{ product.name }}</p>
-            <button class="btn-more" @click="showMoreDetails(product.name)">Saiba Mais</button>
+            <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
           </div>
           <div class="divButtonCart">
             <button class="btn-cart" @click="addToCart(product.name)">
@@ -27,7 +27,14 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useProductStore } from '../stores/products.js';
+import { useProductStore } from '@/stores/products';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function visualizar(id){
+  router.push(`/produto/${id}`)
+}
 
 const productStore = useProductStore();
 
@@ -35,9 +42,6 @@ const lancamentos = computed(() =>
       productStore.products.filter(product => product.lancamento)
     );
 
-const showMoreDetails = (productName) => {
-  alert(`Mais detalhes sobre: ${productName}`);
-};
 
 const addToCart = (productName) => {
   alert(`${productName} foi adicionado ao carrinho!`);

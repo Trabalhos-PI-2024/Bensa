@@ -11,7 +11,7 @@
         <div class="product-item" v-for="product in tenis" :key="product.id" :product="product">
     <img :src="product.image1" :alt="product.name" class="product-image" />
     <div class="buttons">
-      <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+      <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
       <!-- Passa o produto ao carrinho -->
       <button @click="productsStore.addCarrinho(product)" class="btt-cart">
         <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
@@ -25,9 +25,17 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useProductStore } from '../stores/products.js';
+import { useProductStore } from '@/stores/products';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function visualizar(id){
+  router.push(`/produto/${id}`)
+}
 
 const productStore = useProductStore();
+
 
 const tenis = computed(() =>
       productStore.products.filter(product => product.sneakers)

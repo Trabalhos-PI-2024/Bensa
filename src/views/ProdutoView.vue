@@ -34,34 +34,20 @@
         <h2>Descrição</h2>
         <p>{{ product.description }}</p>
       </div>
-  
-      <div class="carousel">
-        <h2>Outros Produtos</h2>
-        <div class="carousel-container" ref="carousel">
-          <div class="carousel-item" v-for="otherProduct in otherProducts" :key="otherProduct.id">
-            <img :src="otherProducts.image" alt="Other Product" />
-            <h3>{{ otherProduct.name }}</h3>
-            <p>${{ otherProduct.price.toFixed(2) }}</p>
-          </div>
-        </div>
-        <button @click="scrollLeft" class="scroll-button">←</button>
-        <button @click="scrollRight" class="scroll-button">→</button>
-      </div>
     </div>
   </template>
   
   <script setup>
-  import { ref } from 'vue';
-  
-  const product = {
-    name: 'Camiseta Estilosa',
-    price: 29.99,
-    ratingCount: 120,
-    images: ['https://example.com/camiseta.jpg'],
-    installments: 3,
-    sizes: ['P', 'M', 'G', 'GG'],
-    description: 'Esta camiseta tem um caimento perfeito, é feita de algodão 100% e pode ser lavada à máquina. Estrutura leve e confortável, ideal para o dia a dia.'
-  };
+    import { onMounted, ref } from 'vue';
+    import { useProductStore } from '@/stores/products';
+
+    const productStore = useProductStore()
+    const product = ref({})
+    const props = defineProps(['id'])
+
+    onMounted(() =>{
+        product.value = productStore.getProductById(props.id)
+    })
   
   const selectedSize = ref('M');
   
@@ -69,23 +55,6 @@
     console.log(`Produto ${product.name} de tamanho ${selectedSize.value} adicionado ao carrinho!`);
   };
   
-  const otherProducts = ref([
-    { id: 1, name: 'Camiseta Básica', price: 19.99, image: '../assets/img/carrinho.svg' },
-    { id: 2, name: 'Camiseta Colorida', price: 24.99, image: 'https://example.com/camiseta-colorida.jpg' },
-    { id: 3, name: 'Camiseta de Estampa', price: 34.99, image: 'https://example.com/camiseta-estampada.jpg' },
-    { id: 4, name: 'Camiseta de Manga Longa', price: 39.99, image: 'https://example.com/camiseta-manga-longa.jpg' },
-    { id: 5, name: 'Camiseta com Capuz', price: 44.99, image: 'https://example.com/camiseta-capuz.jpg' },
-  ]);
-  
-  const scrollLeft = () => {
-    const carousel = document.querySelector('.carousel-container');
-    carousel.scrollBy({ left: -200, behavior: 'smooth' });
-  };
-  
-  const scrollRight = () => {
-    const carousel = document.querySelector('.carousel-container');
-    carousel.scrollBy({ left: 200, behavior: 'smooth' });
-  };
   </script>
   
   <style scoped>
