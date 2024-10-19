@@ -8,35 +8,32 @@
         <input type="text" placeholder="Filtrar produtos" class="filter-input" />
       </aside>
       <div class="product-list">
-        <ProductItem v-for="product in products" :key="product.id" :product="product" />
+        <div class="product-item" v-for="product in acessorios" :key="product.id" :product="product">
+    <img :src="product.image1" :alt="product.name" class="product-image" />
+    <div class="buttons">
+      <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+      <!-- Passa o produto ao carrinho -->
+      <button @click="productsStore.addCarrinho(product)" class="btt-cart">
+        <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+      </button>
+    </div>
+  </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import ProductItem from '../components/ProductItem.vue';
-import chapeu1vans from '../assets/produtos.vans/chapeu1vans.webp';
-import bag1adidas from '../assets/produtos.adidas/bag1adidas.webp';
-import mochila2nike from '../assets/produtos.nike/mochila2nike.webp';
-import mochila3nike from '../assets/produtos.nike/mochila3nike.webp';
-import mochila4nike from '../assets/produtos.nike/mochila4nike.avif';
-import mochila2adidas from '../assets/produtos.adidas/mochila2adidas.jpg';
-import chapeu1stussy from '../assets/produtos.stussy/chapeu1stussy.webp';
-import chapeu2stussy from '../assets/produtos.stussy/chapeu2stussy.webp';
+import { computed } from 'vue';
+import { useProductStore } from '../stores/products.js';
 
-const products = ref([
-  { id: 41, name: 'Produto 1', description: 'Descrição do produto 1', image: mochila2nike },
-  { id: 42, name: 'Produto 2', description: 'Descrição do produto 2', image: chapeu1vans },
-  { id: 43, name: 'Produto 3', description: 'Descrição do produto 3', image: chapeu1stussy },
-  { id: 44, name: 'Produto 4', description: 'Descrição do produto 4', image: chapeu2stussy },
-  { id: 45, name: 'Produto 5', description: 'Descrição do produto 5', image: bag1adidas },
-  { id: 46, name: 'Produto 6', description: 'Descrição do produto 6', image: mochila3nike },
-  { id: 47, name: 'Produto 7', description: 'Descrição do produto 7', image: mochila4nike },
-  { id: 48, name: 'Produto 8', description: 'Descrição do produto 8', image: mochila2adidas },
-]);
+const productStore = useProductStore();
+
+const acessorios = computed(() =>
+      productStore.products.filter(product => product.acessoriosView)
+    );
 </script>
+
 
 <style scoped>
 .page-container {
@@ -80,5 +77,56 @@ const products = ref([
   gap: 20px;
   padding: 20px;
   max-width: 1500px;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  padding: 20px;
+  margin: 15px;
+  width: 250px;
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-more {
+  color: black;
+  padding: 10px 20px;
+  background-color: #ffff;
+}
+
+.btn-cart {
+  background: none;
+  padding: 0;
+}
+
+.cart-image {
+  width: 36px;
+  height: 36px;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 </style>
