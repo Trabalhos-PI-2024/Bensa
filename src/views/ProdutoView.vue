@@ -8,7 +8,7 @@
           <div class="product-rating">
             <span>★★★★★</span>
             <span class="rating-count">({{ product.ratingCount }})</span>
-            <router-link to="/avaliacoes" class="rating-link">Avaliações</router-link>
+            <p class="rating-link">Avaliações</p>
           </div>
           <h1 class="product-name">{{ product.name }}</h1>
           <p class="product-price">
@@ -139,8 +139,6 @@
   
   .rating-link {
     margin-left: 10px;
-    color: blue;
-    text-decoration: underline;
   }
   
   .product-name {
