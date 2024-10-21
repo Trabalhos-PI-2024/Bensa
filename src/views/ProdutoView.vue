@@ -2,26 +2,38 @@
     <div class="product-page">
       <div class="product-container">
         <div class="product-image">
-          <img src="../assets/img/roupas/calca.webp" alt="Product Image" />
+          <img :src="product.image1" alt="Product Image" />
         </div>
         <div class="product-details">
           <div class="product-rating">
             <span>★★★★★</span>
-            <span class="rating-count">({{ product.ratingCount }})</span>
+            <span class="rating-count">(120)</span>
             <p class="rating-link">Avaliações</p>
           </div>
-          <h1 class="product-name">{{ product.name }}</h1>
+          <h1 class="product-name">{{product.name}}</h1>
           <p class="product-price">
-            ${{ product.price.toFixed(2) }} 
-            <span class="installments">ou em até {{ product.installments }}x de ${{ (product.price / product.installments).toFixed(2) }}</span>
+            R${{product.price}},99
+            <span class="installments">ou em até 12x de R${{ (product.price / 12).toFixed(2) }}</span>
           </p>
           
           <div class="size-selection">
             <label>Tamanho:</label>
             <div class="size-options">
-              <label v-for="size in product.sizes" :key="size">
+              <label>
                 <input type="radio" v-model="selectedSize" :value="size" />
-                {{ size }}
+                P
+              </label>
+              <label>
+                <input type="radio" v-model="selectedSize"/>
+                M
+              </label>
+              <label>
+                <input type="radio" v-model="selectedSize" :value="size" />
+                G
+              </label>
+              <label>
+                <input type="radio" v-model="selectedSize" :value="size" />
+                GG
               </label>
             </div>
           </div>
@@ -32,7 +44,7 @@
   
       <div class="product-description">
         <h2>Descrição</h2>
-        <p>{{ product.description }}</p>
+        <p>{{ product.descricao }}</p>
       </div>
     </div>
   </template>
@@ -83,19 +95,23 @@
 }
 
 .product-description {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 10px;
   margin: 80px 0px 30px 0px;
-  max-width: 100%; /* Garante que a descrição se alinhe à largura da imagem */
+  border: 1px solid;
 }
 
-  
-  
+.product-description p{
+  width: 100%;
+}
+
   .product-image img {
-    max-width: 115%;
-    height: 125%;
+    width: 20dvw;
     border-radius: 8px;
   }
-  
-  
   
   .product-rating {
     display: flex;
@@ -167,47 +183,6 @@
   
   .buy-button:hover {
     background-color: #333;
-  }
-  
-
-  
-  .carousel {
-    margin-top: 20px;
-    position: relative;
-  }
-  
-  .carousel-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-  }
-  
-  .carousel-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-right: 10px;
-    padding: 10px;
-    text-align: center;
-    min-width: 150px;
-  }
-  
-  .scroll-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .scroll-button:first-of-type {
-    left: 10px;
-  }
-  
-  .scroll-button:last-of-type {
-    right: 10px;
   }
   </style>
   

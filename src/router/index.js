@@ -69,7 +69,7 @@ const routes = [
     component: InfoView
   },
   {
-    path: '/produto:id',
+    path: '/produto/:id',
     name: 'produto',
     component: ProdutoView,
     props: true,
