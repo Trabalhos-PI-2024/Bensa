@@ -10,6 +10,7 @@ import StussyView from '../views/StussyView.vue'
 import VansView from '../views/VansView.vue'
 import EnderecoView from '../views/EnderecoView.vue'
 import InfoView from '../views/InfoView.vue'
+import ProdutoView from '../views/ProdutoView.vue'
 
 const routes = [
   {
@@ -67,6 +68,12 @@ const routes = [
     name: 'info',
     component: InfoView
   },
+  {
+    path: '/produto/:id',
+    name: 'produto',
+    component: ProdutoView,
+    props: true,
+  }
 
 ]
 

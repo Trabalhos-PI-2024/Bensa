@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router'; // Importa useRouter
+import { useRouter } from 'vue-router';
 
-const router = useRouter(); // Cria uma instância do router
+const router = useRouter();
 const isOpen = ref(true);
 
 function closeModal() {
@@ -10,8 +10,8 @@ function closeModal() {
 }
 
 function goToCadastro() {
-  closeModal(); // Fecha o modal
-  router.push('/cadastro'); // Navega para a página de cadastro
+  closeModal(); 
+  router.push('/cadastro');
 }
 </script>
 
@@ -46,7 +46,7 @@ function goToCadastro() {
         </div>
         <p class="link">
           Ainda não tem conta?
-          <a href="#" @click="goToCadastro">Cadastre-se</a> <!-- Chama goToCadastro -->
+          <a href="#" @click="goToCadastro">Cadastre-se</a>
         </p>
       </form>
     </div>
@@ -101,7 +101,7 @@ function goToCadastro() {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  margin-right: 100px;
+ 
 }
 
 .logo {
@@ -169,13 +169,11 @@ input {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  /* Adicionado para evitar quebras de linha */
 }
 
 .manterLogado {
   font-size: 14px;
   margin-left: 10px;
-  /* Espaçamento entre a checkbox e o texto */
   margin-top: 15px;
 }
 </style>

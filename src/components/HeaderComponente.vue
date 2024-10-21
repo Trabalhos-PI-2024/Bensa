@@ -1,83 +1,89 @@
 <template>
     <header>
-        <div class="mainHeader">
-            <div class="logo">
-                <RouterLink to="/"><img src="../assets/img/logo.png" alt="Logo"></RouterLink>
-            </div>
-            <nav class="nav">
-                <RouterLink to="/roupas">
-                    <p>Roupas</p>
-                </RouterLink>
-                <RouterLink to="/sneakers">
-                    <p>Calçados</p>
-                </RouterLink>
-                <RouterLink to="/acessorios">
-                    <p>Acessórios</p>
-                </RouterLink>
-            </nav>
-            <div class="icon">
-                <button @click="showLogin = !showLogin" class="icon-button">
-                    <img src="../assets/img/user.svg" alt="Usuário">
-                </button>
-                <img src="../assets/img/carrinho.svg" alt="Carrinho">
-            </div>
+      <div class="mainHeader">
+        <div class="logo">
+          <RouterLink to="/"><img src="../assets/img/logo.png" alt="Logo"></RouterLink>
         </div>
-
-        <LoginComponente v-if="showLogin" />
+        <nav class="nav">
+          <RouterLink to="/roupas" class="routerLink">
+            <p>Roupas</p>
+          </RouterLink>
+          <RouterLink to="/sneakers" class="routerLink">
+            <p>Calçados</p>
+          </RouterLink>
+          <RouterLink to="/acessorios" class="routerLink">
+            <p>Acessórios</p>
+          </RouterLink>
+          <RouterLink to="/comunidade" class="routerLink">
+            <p>Comunidade</p>
+          </RouterLink>
+        </nav>
+        <div class="icon">
+          <button @click="toggleLogin" class="icon-button">
+            <img src="../assets/img/user.svg" alt="Usuário">
+          </button>
+          <button @click="toggleCart" class="icon-button">
+            <img src="../assets/img/carrinho.svg" alt="Carrinho">
+          </button>
+        </div>
+      </div>
+  
+      <LoginComponente v-if="showLogin" />
+      <CarrinhoComponente v-if="showCart" :cartItems="cartItems" @close="toggleCart" />
+     
     </header>
-</template>
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+  import LoginComponente from './LoginComponente.vue';
+  import CarrinhoComponente from './CarrinhoComponente.vue'
+  
+  const showLogin = ref(false);
+  const showCart = ref(false);
+  const cartItems = ref([]);
+  
+  const toggleLogin = () => {
+    showLogin.value = !showLogin.value;
+  };
+  
+  const toggleCart = () => {
+  showCart.value = !showCart.value;
+};
 
-<script>
-import LoginComponente from './LoginComponente.vue';
-
-export default {
-    components: {
-        LoginComponente
-    },
-    data() {
-        return {
-            showLogin: false
-        }
-    }
-}
-</script>
-
-
-<style>
+  
+  </script>
+  
+<style scoped>
 header {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #ffffff;
+    z-index: 1000;
 }
 
 .mainHeader {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-around;
     padding: 10px;
     border-bottom: 1px solid #e0dbdb;
     background-color: #ffffff;
-    position: relative;
 }
 
 .logo img {
     width: 150px;
 }
 
-.logo {
-    margin-left: 100px;
-}
-
 .nav {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 60px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 600px;
+    flex-wrap: wrap;
 }
 
 .nav a {
@@ -94,13 +100,10 @@ header {
 .icon {
     display: flex;
     gap: 30px;
-    position: absolute;
-    right: 200px;
 }
 
 .icon img {
     width: 40px;
-    height: auto;
 }
 
 .icon-button {
@@ -112,24 +115,33 @@ header {
 
 .icon-button img {
     width: 40px;
-    height: auto;
 }
 
-@media (max-width: 768px) {
+.routerLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.routerLink img {
+    width: 30px;
+}
+
+@media (max-width: 1100px) {
     .mainHeader {
         flex-direction: column;
-        text-align: center;
     }
 
-    .nav {
-        gap: 30px;
-        position: static;
-        transform: none;
-        max-width: none;
+    .icon {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        gap: 20px;
     }
 
     .icon img {
-        width: 24px;
+        width: 30px;
     }
 }
 </style>

@@ -3,62 +3,46 @@
     <div class="logo-container">
       <img src="../assets/img/stussy.svg" alt="Stussy Logo" class="stussy-logo" />
     </div>
-
     <div class="main-content">
-      <!-- Filtro -->
       <aside class="filter-container">
         <input type="text" placeholder="Filtrar produtos" class="filter-input" />
       </aside>
-
-      <!-- Lista de produtos -->
       <div class="product-list">
-        <ProductItem v-for="(product, index) in products" :key="index" :product="product" />
+        <div class="product-item" v-for="product in stussys" :key="product.id" :product="product">
+    <img :src="product.image1" :alt="product.name" class="product-image" />
+    <div class="buttons">
+      <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
+      <!-- Passa o produto ao carrinho -->
+      <button @click="productsStore.addCarrinho(product)" class="btt-cart">
+        <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+      </button>
+    </div>
+  </div>
       </div>
     </div>
   </div>
 </template>
-  
-  <script>
-import ProductItem from '../components/ProductItem.vue'
-import camisa1stussy from '../assets/produtos.stussy/camisa1stussy.webp'
-import chapeu2stussy from '../assets/produtos.stussy/chapeu2stussy.webp'
-import camisa2stussy from '../assets/produtos.stussy/camisa2stussy.webp'
-import shorts2stussy from '../assets/produtos.stussy/shorts2stussy.webp'
-import shorts1stussy from '../assets/produtos.stussy/shorts1stussy.webp'
-import chapeu1stussy from '../assets/produtos.stussy/chapeu1stussy.webp'
-import moletom1stussy from '../assets/produtos.stussy/moletom1stussy.webp'
-import moletom2stussy from '../assets/produtos.stussy/moletom2stussy.webp'
-import camisa3stussy from '../assets/produtos.stussy/camisa3stussy.webp'
-import camisa4stussy from '../assets/produtos.stussy/camisa4stussy.webp'
-import camisa5stussy from '../assets/produtos.stussy/camisa5stussy.webp'
-import moletom3stussy from '../assets/produtos.stussy/moletom3stussy.webp'
 
-export default {
-  components: {
-    ProductItem
-  },
-  data() {
-    return {
-      products: [
-        { name: 'Produto 1', description: 'Descrição do produto 1', image: camisa1stussy },
-        { name: 'Produto 2', description: 'Descrição do produto 2', image: chapeu2stussy },
-        { name: 'Produto 3', description: 'Descrição do produto 3', image: camisa3stussy },
-        { name: 'Produto 4', description: 'Descrição do produto 4', image: chapeu1stussy },
-        { name: 'Produto 5', description: 'Descrição do produto 5', image: camisa2stussy },
-        { name: 'Produto 6', description: 'Descrição do produto 6', image: moletom1stussy },
-        { name: 'Produto 7', description: 'Descrição do produto 7', image: shorts1stussy },
-        { name: 'Produto 8', description: 'Descrição do produto 8', image: moletom2stussy },
-        { name: 'Produto 9', description: 'Descrição do produto 11', image: camisa4stussy },
-        { name: 'Produto 10', description: 'Descrição do produto 12', image: camisa5stussy },
-        { name: 'Produto 11', description: 'Descrição do produto 13', image: shorts2stussy },
-        { name: 'Produto 12', description: 'Descrição do produto 14', image: moletom3stussy }
-      ]
-    }
-  }
+<script setup>
+import { computed } from 'vue';
+import { useProductStore } from '@/stores/products';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function visualizar(id){
+  router.push(`/produto/${id}`)
 }
+
+const productStore = useProductStore();
+;
+
+const stussys = computed(() =>
+      productStore.products.filter(product => product.stussy)
+    );
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .page-container {
   display: flex;
   flex-direction: column;
@@ -68,7 +52,6 @@ export default {
 
 header {
   width: 100%;
-  /* Adicione o estilo do header aqui */
 }
 
 .logo-container {
@@ -99,16 +82,67 @@ header {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  margin-bottom: 20px; /* Espaço abaixo do campo de filtro */
+  margin-bottom: 20px;
 }
 
 .product-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
+  max-width: 1500px;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  padding: 20px;
+  margin: 15px;
+  width: 250px;
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  max-width: 1200px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-more {
+  color: black;
+  padding: 10px 20px;
+  background-color: #ffff;
+}
+
+.btn-cart {
+  background: none;
+  padding: 0;
+}
+
+.cart-image {
+  width: 36px;
+  height: 36px;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 </style>
-  
