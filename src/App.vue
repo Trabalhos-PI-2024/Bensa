@@ -1,17 +1,17 @@
 <script setup>
-import HeaderComponente from './components/HeaderComponente.vue';
-import HeaderComunidadeComponente from './components/HeaderComunidadeComponente.vue';
-import FooterComponente from './components/FooterComponente.vue';
-import { useRoute } from 'vue-router'; 
+import HeaderComponente from './components/BensaComponents/HeaderComponente.vue';
+import HeaderComunidadeComponente from './components/ComunidadeComponents/HeaderComunidadeComponente.vue';
+import FooterComponente from './components/BensaComponents/FooterComponente.vue';
+import { useRoute } from 'vue-router';
 
 const route = useRoute(); 
 </script>
 
 <template>
-  <!-- Renderiza o HeaderComponente nas rotas que não são comunidade -->
+
   <HeaderComponente v-if="route.name !== 'comunidade' && route.name !== 'minhaloja' && route.name !== 'addproduto'" />
 
-  <!-- Renderiza o HeaderComunidadeComponente na rota comunidade -->
+
   <HeaderComunidadeComponente
     v-if="route.name === 'comunidade' || route.name === 'minhaloja' || route.name === 'addproduto'" />
 
