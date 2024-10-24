@@ -13,7 +13,7 @@
           <div class="buttons">
             <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
             <button @click="productsStore.addCarrinho(product)" class="btt-cart">
-              <img src="../assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
+              <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
           </div>
         </div>
