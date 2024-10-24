@@ -5,16 +5,15 @@
     <div class="banner">
       <img src="../assets/img/BENSA STREETWEAR.png" alt="banner">
     </div>
-  
+
     <div class="lancamentos">
-      <LancamentosComponente/>
+      <LancamentosComponente />
     </div>
     <div class="acessorios">
-      <AcessoriosComponente/>
+      <AcessoriosComponente />
     </div>
-    <hr>
     <div class="roupas">
-      <RoupasComponente/>
+      <RoupasComponente />
     </div>
     <div class="ofertas">
       <OfertasComponente />
@@ -23,16 +22,17 @@
 </template>
 
 <script setup>
-
 import MarcasComponente from '../components/MarcasComponente.vue'
 import LancamentosComponente from '../components/LancamentosComponente.vue'
 import AcessoriosComponente from '../components/AcessoriosComponente.vue'
 import OfertasComponente from '../components/OfertasComponente.vue';
 import RoupasComponente from '../components/RoupasComponente.vue';
+
 </script>
 
 <style>
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -50,16 +50,7 @@ section {
 
 .banner img {
   width: 100%;
-  height: 800px;
+  height: 75dvh;
   object-fit: cover;
 }
-
-hr {
-  border: 1px solid #e7e7e7;
-  width: 100%;
-  margin: 20px 0;
-}
-
-
-
 </style>

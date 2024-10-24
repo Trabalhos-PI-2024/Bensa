@@ -53,6 +53,7 @@ const acessorio = computed(() =>
   flex-wrap: nowrap;
   padding: 20px 0;
   gap: 10px;
+  border-bottom: transparent;
 }
 
 .acessorios .mainAcessorios {
