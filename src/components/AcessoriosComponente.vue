@@ -6,56 +6,14 @@
         <h3>Acessórios</h3>
       </div>
       <div class="mainProdutos">
-        <div class="produtos">
-          <img src="../assets/img/Acessorios/bag.jpg" alt="Bag" />
+        <div class="produtos" v-for="product in acessorio" :key="product.id">
+          <img :src="product.image1" :alt="product.name" />
           <div class="infoProdutos">
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-        <div class="produtos">
-          <img src="../assets/img/Acessorios/cap.webp" alt="Cap" />
-          <div class="infoProdutos">
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-        <div class="produtos">
-          <img src="../assets/img/Acessorios/bolsa.webp" alt="Bolsa" />
-          <div class="infoProdutos">
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-        <div class="produtos">
-          <img src="../assets/img/Acessorios/touca.webp" alt="Touca" />
-          <div class="infoProdutos">
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-        <div class="produtos">
-          <img src="../assets/img/Acessorios/bolsa.webp" alt="Bolsa" />
-          <div class="infoProdutos">
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-        <div class="produtos">
-          <img src="../assets/img/Acessorios/touca.webp" alt="Touca" />
-          <div class="infoProdutos">
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-            <button class="btn-cart" @click="addToCart">
+            <div>
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.price }}</p>
+            </div>
+            <button class="btn-cart">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
           </div>
@@ -67,23 +25,23 @@
     </div>
   </div>
 </template>
-<script>
-  export default {
-    props: {
-      product: {
-        type: Object,
-        required: true,
-      },
-    },
-    methods: {
-      showMoreDetails() {
-        alert(`Mais detalhes sobre: ${this.product.name}`);
-      },
-      addToCart() {
-        alert(`${this.product.name} foi adicionado ao carrinho!`);
-      },
-    },
-  };
+
+<script setup>
+import { computed } from 'vue';
+import { useProductStore } from '@/stores/products';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function visualizar(id){
+  router.push(`/produto/${id}`)
+}
+
+const productStore = useProductStore();
+
+const acessorio = computed(() =>
+      productStore.products.filter(product => product.acessorios)
+    );
 </script>
 
 <style scoped>
@@ -136,7 +94,7 @@
   flex-direction: column;
   border: 1px solid #e7e7e7;
   padding: 10px 20px 0 20px;
-  transition: all .5s ease;
+  transition: all .2s ease;
   border-radius: 5px;
 }
 
@@ -146,11 +104,19 @@
 
 .infoProdutos{
     display: flex;
-    opacity: 0;
     justify-content: space-between;
     width: 100%;
     transition: all .5s ease;
-    padding: 10px 45px 20px 45px;
+    padding: 10px 25px 20px 25px;
+}
+
+.infoProdutos div h3{
+  font-size: 15px;
+}
+
+.infoProdutos div p{
+  font-size: 12.5px;
+  font-weight: 600;
 }
 
 .acessorios .mainAcessorios .mainProdutos .produtos .infoProdutos .cart-image {
@@ -161,10 +127,6 @@
   .acessorios .mainAcessorios .mainProdutos .produtos .infoProdutos button{
     background: transparent;
   }
-
-.acessorios .mainAcessorios .mainProdutos .produtos:hover .infoProdutos {
-  opacity: 1;  
-}
 
 .acessorios .mainAcessorios .mainProdutos .produtos img {
   width: 225px;

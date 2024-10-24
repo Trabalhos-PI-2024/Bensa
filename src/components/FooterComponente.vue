@@ -56,9 +56,7 @@
 <style scoped>
 .footer {
   background-color: #000;
-  /* Fundo preto */
   color: #fff;
-  /* Texto branco */
   padding: 30px;
   font-family: Arial, sans-serif;
 }
@@ -66,43 +64,31 @@
 .top-footer {
   display: flex;
   flex-wrap: wrap;
-  /* Permite que os itens se ajustem em várias linhas se necessário */
   justify-content: space-between;
-  /* Espaço entre os itens */
   align-items: center;
   padding-bottom: 20px;
 }
 
 .footer-content {
   display: flex;
-  /* Permite que as seções fiquem na horizontal */
   align-items: flex-start;
-  /* Alinha as seções ao topo */
   padding-left: 120px;
-  /* Margem reduzida para dispositivos menores */
   flex: 1;
-  /* Permite que ocupe o espaço disponível */
 }
 
 .footer-section {
   margin-right: 80px;
-  /* Espaçamento entre seções */
   padding-bottom: 10px;
-  /* Espaçamento abaixo do texto */
-
 }
 
 .footer-section h3 {
   padding-bottom: 5px;
   border-bottom: 1px solid #444;
-  /* Linha abaixo da seção */
 }
 
 .footer-section ul {
   padding-left: 0;
-  /* Remove a indentação da lista */
   list-style-type: none;
-  /* Remove os marcadores da lista */
 }
 
 .footer-section li {
@@ -113,28 +99,22 @@
 .logo {
   display: flex;
   justify-content: flex-end;
-  /* Alinha a logo à direita */
 }
 
 .logo img {
   height: 210px;
-  /* Altura da logo */
   margin-right: 120px;
-  /* Margem à esquerda */
   width: 210px;
 }
 
 .logo-social {
   display: flex;
   justify-content: flex-end;
-  /* Alinha a logo à direita */
 }
 
 .logo-social img {
   height: 40px;
-  /* Altura da logo */
   padding-top: 5px;
-  /* Margem à esquerda */
   margin-right: 70px;
 }
 
@@ -148,12 +128,9 @@
   color: grey;
 }
 
-/* Estilo das linhas */
 hr {
   border: 1px solid #444;
-  /* Cor das linhas */
   margin: auto;
-  /* Margem acima e abaixo das linhas */
   max-width: 1650px;
 }
 
@@ -161,28 +138,21 @@ hr {
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
-    /* Alinha as seções verticalmente em telas menores */
     padding-left: 0;
-    /* Remove o padding em telas menores */
   }
 
   .footer-section {
     margin-right: 0;
-    /* Remove o espaçamento entre seções */
     margin-bottom: 20px;
-    /* Adiciona margem abaixo das seções */
   }
 
   .middle-footer {
     flex-direction: column;
-    /* Alinha os itens verticalmente */
     align-items: flex-start;
-    /* Alinhamento ao topo */
   }
 
   .email-signup {
     text-align: left;
-    /* Alinha o texto à esquerda em telas menores */
   }
 }
 </style>

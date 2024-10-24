@@ -4,86 +4,18 @@
       <h3>Lançamentos</h3>
     </div>
     <div class="mainProdutos">
-      <div class="product">
+      <div class="product" v-for="product in lancamentos" :key="product.id">
         <div class="imgProdutos">
-          <img class="img1" src="../assets/img/Lancamentos/adi2000.webp" alt="" />
-          <img class="img2" src="../assets/img/Lancamentos/adidas2000.webp" alt="" />
+          <img class="img1" :src="product.image1" alt="" />
+          <img class="img2" :src="product.image2" alt="" />
         </div>
         <div class="infoProdutos">
           <div class="divInfoProduto">
-            <p>Tênis Adidas Adi2000</p>
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
+            <p>{{ product.name }}</p>
+            <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
           </div>
           <div class="divButtonCart">
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="imgProdutos">
-          <img class="img1" src="../assets/img/Lancamentos/nb.webp" alt="" />
-          <img class="img2" src="../assets/img/Lancamentos/nbb.webp" alt="" />
-        </div>
-        <div class="infoProdutos">
-          <div class="divInfoProduto">
-            <p>Tênis NewBalance 9060</p>
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-          </div>
-          <div class="divButtonCart">
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="imgProdutos">
-          <img class="img1" src="../assets/img/Lancamentos/jordan.webp" alt="" />
-          <img class="img2" src="../assets/img/Lancamentos/jordan1.webp" alt="" />
-        </div>
-        <div class="infoProdutos">
-          <div class="divInfoProduto">
-            <p>Tênis Nike Air Jordan</p>
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-          </div>
-          <div class="divButtonCart">
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="imgProdutos">
-          <img class="img1" src="../assets/img/Lancamentos/samba.webp" alt="" />
-          <img class="img2" src="../assets/img/Lancamentos/samba1.webp" alt="" />
-        </div>
-        <div class="infoProdutos">
-          <div class="divInfoProduto">
-            <p>Tênis Adidas Bad Bunny</p>
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-          </div>
-          <div class="divButtonCart">
-            <button class="btn-cart" @click="addToCart">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="imgProdutos">
-          <img class="img1" src="../assets/img/Lancamentos/force.webp" alt="" />
-          <img class="img2" src="../assets/img/Lancamentos/force1.webp" alt="" />
-        </div>
-        <div class="infoProdutos">
-          <div class="divInfoProduto">
-            <p>Tênis Nike Air Force</p>
-            <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-          </div>
-          <div class="divButtonCart">
-            <button class="btn-cart" @click="addToCart">
+            <button class="btn-cart" @click="addToCart(product.name)">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
           </div>
@@ -92,24 +24,32 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    product: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    showMoreDetails() {
-      alert(`Mais detalhes sobre: ${this.product.name}`);
-    },
-    addToCart() {
-      alert(`${this.product.name} foi adicionado ao carrinho!`);
-    },
-  },
+
+<script setup>
+import { computed } from 'vue';
+import { useProductStore } from '@/stores/products';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function visualizar(id){
+  router.push(`/produto/${id}`)
+}
+
+const productStore = useProductStore();
+
+const lancamentos = computed(() =>
+      productStore.products.filter(product => product.lancamento)
+    );
+
+
+const addToCart = (productName) => {
+  alert(`${productName} foi adicionado ao carrinho!`);
 };
+
+console.log(productStore.products)  
 </script>
+
 <style scoped>
 .lancamentos {
   width: 100%;
@@ -118,7 +58,7 @@ export default {
   align-items: center;
   padding: 20px;
   margin-top: 40px;
-
+  border-bottom: 1px solid #e7e7e7;
 }
 
 .lancamentos .title {
@@ -214,7 +154,6 @@ export default {
   opacity: 1;
 }
 
-
 @media (max-width: 1200px) {
   .lancamentos {
     flex-direction: column;
@@ -225,7 +164,6 @@ export default {
     border-bottom: 1.5px solid transparent;
     margin: 0 0 10px 0;
   }
-
 }
 
 @media (max-width: 985px) {

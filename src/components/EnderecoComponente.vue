@@ -13,7 +13,6 @@
             </div>
             <h1>Endereço</h1>
             <div class="form-grid">
-                <!-- Primeira linha (CEP e Endereço) -->
                 <div class="form-grupo inline-group">
                     <div class="cep-container">
                         <label for="cep">CEP</label>
@@ -25,8 +24,6 @@
                             placeholder="Ex: Rua das Flores" />
                     </div>
                 </div>
-
-                <!-- Segunda linha (Número e Complemento) -->
                 <div class="form-grupo inline-group">
                     <div class="numero-container">
                         <label for="numero">Número</label>
@@ -37,8 +34,6 @@
                         <input v-model="form.complemento" type="text" id="complemento" placeholder="Ex: Apto 456" />
                     </div>
                 </div>
-
-                <!-- Terceira linha (Bairro, Cidade e Estado) -->
                 <div class="form-grupo inline-group">
                     <div class="bairro-container">
                         <label for="bairro">Bairro</label>
@@ -74,9 +69,8 @@ const form = ref({
     estado: ''
 });
 
-// O método formCadastro deve ser definido conforme a lógica que você precisa
 const formCadastro = () => {
-    // Lógica para processar o cadastro, se necessário
+
 };
 </script>
 
@@ -142,7 +136,6 @@ const formCadastro = () => {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    /* Espaçamento de 30px entre linhas */
 }
 
 .form-grupo {
@@ -164,58 +157,43 @@ const formCadastro = () => {
     background-color: #D9D9D9;
 }
 
-/* Estilos para o CEP e Endereço */
 .inline-group {
     display: flex;
     flex-direction: row;
-    /* Mantém os inputs na mesma linha */
     gap: 20px;
-    /* Espaçamento entre os inputs */
 }
 
-/* Estilos para o CEP e Endereço */
 .cep-container {
     width: 50%;
-    /* CEP ocupa 50% da largura */
 }
 
 .endereco-container {
     width: 50%;
-    /* Endereço ocupa 50% da largura */
 }
 
-/* Estilos para o Número e Complemento */
 .numero-container {
     width: 50%;
-    /* Número ocupa 50% da largura */
 }
 
 .complemento-container {
     width: 50%;
-    /* Complemento ocupa 50% da largura */
 }
 
-/* Estilos para Bairro, Cidade e Estado */
 .bairro-container,
 .cidade-container,
 .estado-container {
     width: 33%;
-    /* Cada um ocupa 33% da largura */
 }
 
-/* Estilos para o botão do router link */
 .large-button {
     width: 40%;
-    /* Tornado menor */
     cursor: pointer;
     background: #000000;
     padding: 8px 5px;
     color: #fff;
     font-size: 16px;
-    /* Ajustado para um tamanho mais apropriado */
     border: 1px solid #fff;
     margin: 40px auto;
-    /* Centralizado com margem */
     border-radius: 12px;
     align-items: center;
     justify-content: center;

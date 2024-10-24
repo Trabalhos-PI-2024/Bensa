@@ -3,7 +3,8 @@
     <img :src="product.image" :alt="product.name" class="product-image" />
     <div class="buttons">
       <button class="btn-more" @click="showMoreDetails">Saiba Mais</button>
-      <button class="btn-cart" @click="addToCart">
+      <!-- Passa o produto ao carrinho -->
+      <button @click="productsStore.addCarrinho(product)" class="btt-cart">
         <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
       </button>
     </div>
@@ -11,7 +12,12 @@
 </template>
 
 <script setup>
+import { useProductStore } from '@/stores/products';
+import { defineProps, inject } from 'vue';
+ 
 
+
+// Recebe as props do produto
 const props = defineProps({
   product: {
     type: Object,
@@ -19,12 +25,18 @@ const props = defineProps({
   },
 });
 
-const showMoreDetails = () => {
-  alert(`Mais detalhes sobre: ${props.product.name}`);
+
+// Recebe a função `addToCart` do componente pai via provide/inject
+const addToCart = inject('addToCart');
+
+// Função que chama o método addToCart e passa o produto
+const handleAddToCart = () => {
+  console.log('Adicionando ao carrinho:', props.product);  // Debug para verificar se o produto está correto
+  addToCart(props.product);
 };
 
-const addToCart = () => {
-  alert(`${props.product.name} foi adicionado ao carrinho!`);
+const showMoreDetails = () => {
+  alert(`Mais detalhes sobre: ${props.product.name}`);
 };
 </script>
 
