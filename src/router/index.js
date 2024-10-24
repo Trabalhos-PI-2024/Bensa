@@ -11,6 +11,9 @@ import VansView from '../views/VansView.vue'
 import EnderecoView from '../views/EnderecoView.vue'
 import InfoView from '../views/InfoView.vue'
 import ProdutoView from '../views/ProdutoView.vue'
+import ComunidadeView from '../views/ComunidadeView.vue'
+import MinhaLojaView from '@/views/MinhaLojaView.vue'
+import AddProdutoView from '@/views/AddProdutoView.vue'
 
 const routes = [
   {
@@ -69,10 +72,26 @@ const routes = [
     component: InfoView
   },
   {
+    path: '/comunidade',
+    name: 'comunidade',
+    component: ComunidadeView
+  },
+  {
+    path: '/minhaloja',
+    name: 'minhaloja',
+    component: MinhaLojaView
+  },
+  {
     path: '/produto/:id',
     name: 'produto',
     component: ProdutoView,
     props: true,
+  },
+  {
+    path: '/addproduto',
+    name: 'addproduto',
+    component: AddProdutoView,
+   
   }
 
 ]
