@@ -1,6 +1,6 @@
 <template>
     <div class="banner">
-        <img src="../assets/img/bannercomunidade.webp" alt="banner">
+        <img src="../assets/img/bannercomunidade.png" alt="banner">
     </div>
     <HomeComunidadeComponente/>
 </template>
@@ -10,6 +10,7 @@ import HomeComunidadeComponente from '@/components/HomeComunidadeComponente.vue'
 <style scoped>
 .banner {
     width: 100%;
+    border:1px solid #ccc;
 }
 
 .banner img {
