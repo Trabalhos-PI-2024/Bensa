@@ -9,13 +9,14 @@
       <h2>CARRINHO</h2>
     </div>
     <div class="produtosCarrinho">
-      <div v-for="(item, index) in cartItems" :key="index" class="produto">
+      <div v-for="carrinho in carrinhoStore.carrinho" :key="carrinho.id" class="produto">
+        <button class="close" @click="carrinhoStore.deleteProductById(carrinho.id)">X</button>
         <div class="infoProduto">
-          <p>{{ item.name }}</p>
-          <p>R$ {{ item.price.toFixed(2) }}</p>
+          <p>{{ carrinho.name }}</p>
+          <p>R$ {{ carrinho.price.toFixed(2) }}</p>
         </div>
         <div class="imgProduto">
-          <img :src="item.image" :alt="item.name">
+          <img :src="carrinho.image1" :alt="carrinho.name">
         </div>
       </div>
     </div>
@@ -26,7 +27,7 @@
       </div>
       <div class="boxTotalaPagar">
         <label>Total a Pagar: R$</label>
-        <input type="text" :value="totalPrice.toFixed(2)" readonly>
+        <input type="text" readonly>
       </div>
     </div>
     <div class="buttonComprarCarrinho">
@@ -36,16 +37,12 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps } from 'vue';
+import { computed, ref } from 'vue';
+import { useCarrinhoStore } from '@/stores/carrinho';
 
-const props = defineProps(['cartItems']);
+const carrinhoStore = useCarrinhoStore();
 const cep = ref('');
 const isOpen = ref(true);
-
-
-const totalPrice = computed(() => {
-  return props.cartItems.reduce((total, item) => total + item.price, 0);
-});
 
 function closeModal() {
   isOpen.value = false;
@@ -54,6 +51,7 @@ function closeModal() {
 
 <style scoped>
 .divCarrinho {
+  width: auto;
   position: fixed;
   right: 0;
   top: 10px;
@@ -72,8 +70,9 @@ function closeModal() {
   font-size: 25px;
 }
 
-.produtosCarrinho {
+.produtosCarrinho .produto {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 15px;

@@ -15,7 +15,7 @@
             <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
           </div>
           <div class="divButtonCart">
-            <button class="btn-cart" @click="addToCart(product.name)">
+            <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
               <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
           </div>
@@ -28,7 +28,10 @@
 <script setup>
 import { computed } from 'vue';
 import { useProductStore } from '@/stores/products';
+import { useCarrinhoStore } from '@/stores/carrinho';
 import { useRouter } from 'vue-router';
+
+const carrinhoStore = useCarrinhoStore();
 
 const router = useRouter()
 
@@ -42,10 +45,6 @@ const lancamentos = computed(() =>
       productStore.products.filter(product => product.lancamento)
     );
 
-
-const addToCart = (productName) => {
-  alert(`${productName} foi adicionado ao carrinho!`);
-};
 
 console.log(productStore.products)  
 </script>
