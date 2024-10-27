@@ -13,8 +13,8 @@
               <h3>{{ product.name }}</h3>
               <p>{{ product.price }}</p>
             </div>
-            <button class="btn-cart">
-              <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image">
+           <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
+              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
             </button>
           </div>
         </div>
@@ -29,7 +29,10 @@
 <script setup>
 import { computed } from 'vue';
 import { useProductStore } from '@/stores/products';
+import { useCarrinhoStore } from '@/stores/carrinho';
 import { useRouter } from 'vue-router';
+
+const carrinhoStore = useCarrinhoStore();
 
 const router = useRouter()
 

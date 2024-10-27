@@ -9,14 +9,15 @@
       </aside>
       <div class="product-list">
         <div class="product-item" v-for="product in acessorios" :key="product.id" :product="product">
-          <img :src="product.image1" :alt="product.name" class="product-image" />
-          <div class="buttons">
-            <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
-            <button @click="productsStore.addCarrinho(product)" class="btt-cart">
-              <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
-            </button>
-          </div>
-        </div>
+    <img :src="product.image1" :alt="product.name" class="product-image" />
+    <div class="buttons">
+      <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
+      <!-- Passa o produto ao carrinho -->
+      <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
+        <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+      </button>
+    </div>
+  </div>
       </div>
     </div>
   </div>
@@ -25,7 +26,10 @@
 <script setup>
 import { computed } from 'vue';
 import { useProductStore } from '@/stores/products';
+import { useCarrinhoStore } from '@/stores/carrinho';
 import { useRouter } from 'vue-router';
+
+const carrinhoStore = useCarrinhoStore();
 
 const router = useRouter()
 
