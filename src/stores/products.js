@@ -935,12 +935,6 @@ export const useProductStore = defineStore('product', () => {
 
   ])
 
-  const carrinho = ref([])
-
-  function addCarrinho(item){
-    carrinho.value.push(item)
-  }
-
   function getProductById(id) {
     for (let product of products.value) {
       if (product.id == id) {
@@ -950,5 +944,5 @@ export const useProductStore = defineStore('product', () => {
     return null
   }
 
-  return { products, getProductById, carrinho, addCarrinho }
+  return { products, getProductById }
 })
