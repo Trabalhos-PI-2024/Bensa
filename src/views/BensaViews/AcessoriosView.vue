@@ -14,7 +14,7 @@
       <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
       <!-- Passa o produto ao carrinho -->
       <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
-        <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+        <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
       </button>
     </div>
   </div>

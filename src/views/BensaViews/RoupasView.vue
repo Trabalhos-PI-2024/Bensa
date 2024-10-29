@@ -14,11 +14,7 @@
       <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
       <!-- Passa o produto ao carrinho -->
       <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
-<<<<<<< HEAD:src/views/RoupasView.vue
-        <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-=======
         <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
->>>>>>> 499edbd4cbd82f967f738c90d7f8f859996be076:src/views/BensaViews/RoupasView.vue
       </button>
     </div>
   </div>

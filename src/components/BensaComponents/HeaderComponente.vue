@@ -14,7 +14,7 @@
           <RouterLink to="/acessorios" class="routerLink">
             <p>Acessórios</p>
           </RouterLink>
-          <RouterLink to="/#" class="routerLink">
+          <RouterLink to="/comunidade" class="routerLink">
             <p>Comunidade</p>
           </RouterLink>
         </nav>

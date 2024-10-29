@@ -32,6 +32,10 @@
     max-width: 100%;
 }
 
+.marcas:nth-child(3) img{
+    width: 138px;
+}
+
 
 .banner {
     display: flex;

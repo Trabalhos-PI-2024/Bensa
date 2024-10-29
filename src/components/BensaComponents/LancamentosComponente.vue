@@ -16,7 +16,7 @@
           </div>
           <div class="divButtonCart">
             <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
-              <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
+              <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
             </button>
           </div>
         </div>
@@ -57,7 +57,6 @@ console.log(productStore.products)
   align-items: center;
   padding: 20px;
   margin-top: 40px;
-  border-bottom: 1px solid #e7e7e7;
 }
 
 .lancamentos .title {

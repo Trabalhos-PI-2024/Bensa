@@ -10,10 +10,10 @@
     </div>
     <div class="produtosCarrinho">
       <div v-for="carrinho in carrinhoStore.carrinho" :key="carrinho.id" class="produto">
-        <button class="close" @click="carrinhoStore.deleteProductById(carrinho.id)">X</button>
+        <button class="close" @click="carrinhoStore.deleteProductById(carrinho.id)"><img src="/src/assets/img/Icons/excluir (1).png" alt=""></button>
         <div class="infoProduto">
-          <p>{{ carrinho.name }}</p>
-          <p>R$ {{ carrinho.price.toFixed(2) }}</p>
+          <h3>{{ carrinho.name }}</h3>
+          <h4>R$ {{ carrinho.price.toFixed(2) }}</h4>
         </div>
         <div class="imgProduto">
           <img :src="carrinho.image1" :alt="carrinho.name">
@@ -21,13 +21,9 @@
       </div>
     </div>
     <div class="infoCarrinho">
-      <div class="boxFrete">
-        <label>Calcular Frete:</label>
-        <input type="text" v-model="cep" @input="validateCep">
-      </div>
       <div class="boxTotalaPagar">
         <label>Total a Pagar: R$</label>
-        <input type="text" readonly>
+        <input type="text" :value="totalAPagar" readonly>
       </div>
     </div>
     <div class="buttonComprarCarrinho">
@@ -44,11 +40,14 @@ const carrinhoStore = useCarrinhoStore();
 const cep = ref('');
 const isOpen = ref(true);
 
+const totalAPagar = computed(() => {
+  return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price, 0).toFixed(2);
+});
+
 function closeModal() {
   isOpen.value = false;
 }
 </script>
-
 <style scoped>
 .divCarrinho {
   width: auto;
@@ -79,16 +78,26 @@ function closeModal() {
 }
 
 .infoProduto {
+  width: 240px;
   display: flex;
-  gap: 20px;
-  background: #e7e7e7;
-  padding: 20px;
+  flex-direction: column;
+  background: #f6f6f9;
+  border-radius: 7px;
+  padding: 10px 20px;
+}
+
+.infoProduto h3{
+  font-size: 16px;
+}
+
+.infoProduto h4{
+  font-size: 14px;
+  color: #025213;
 }
 
 .imgProduto img {
   width: 100px;
 }
-
 .infoCarrinho {
   width: 100%;
   display: flex;
@@ -127,5 +136,13 @@ function closeModal() {
 
 .fecharCarrinho img {
   width: 40px;
+}
+
+.close {
+  background: transparent;
+}
+
+.close img {
+  width: 30px;
 }
 </style>
