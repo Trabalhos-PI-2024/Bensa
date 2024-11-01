@@ -54,15 +54,15 @@
         </nav>
 
         <div class="icon" v-if="!isSearchOpen || windowWidth > 768">
-          <button @click="showLogin = !showLogin" class="icon-button login-button">
+          <button @click="toggleLogin" class="icon-button">
             <img src="/src/assets/img/Icons/user.svg" alt="Usuário" />
           </button>
-          <button @click="mostrarEsconder" class="icon-button">
+          <button @click="toggleCart" class="icon-button">
             <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" />
           </button>
         </div>
       </div>
-
+      <CarrinhoComponente v-if="showCart" :cartItems="cartItems" @close="toggleCart" />
       <LoginComponente v-if="showLogin" />
     </div>
   </header>
@@ -71,16 +71,23 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
+import CarrinhoComponente from '../BensaComponents/CarrinhoComponente.vue'
 
 const showLogin = ref(false)
-const mostrar = ref(false)
+const showCart = ref(false)
+const cartItems = ref([])
+
+const toggleLogin = () => {
+  showLogin.value = !showLogin.value
+}
+
+const toggleCart = () => {
+  showCart.value = !showCart.value
+}
+
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
 const windowWidth = ref(window.innerWidth)
-
-const mostrarEsconder = () => {
-  mostrar.value = !mostrar.value
-}
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value

@@ -37,7 +37,7 @@ import { computed, ref } from 'vue';
 import { useCarrinhoStore } from '@/stores/carrinho';
 
 const carrinhoStore = useCarrinhoStore();
-const cep = ref('');
+
 const isOpen = ref(true);
 
 const totalAPagar = computed(() => {
