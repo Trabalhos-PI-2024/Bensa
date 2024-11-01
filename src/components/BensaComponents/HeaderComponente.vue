@@ -1,147 +1,275 @@
 <template>
-    <header>
+  <header>
+    <div class="header">
       <div class="mainHeader">
-        <div class="logo">
-          <RouterLink to="/"><img src="/src/assets/img/Logos/logo.png" alt="Logo"></RouterLink>
+        <div class="hamburger" @click="toggleMenu">
+          <div :class="{ open: isMenuOpen }">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
         </div>
-        <nav class="nav">
-          <RouterLink to="/roupas" class="routerLink">
+
+        <div class="logo" v-if="!isSearchOpen || windowWidth > 768">
+          <RouterLink to="/">
+            <img src="/src/assets/img/Logos/logo.png" alt="Logo" />
+          </RouterLink>
+        </div>
+
+        <nav class="nav" :class="{ active: isMenuOpen }">
+          <button class="close-menu" v-if="isMenuOpen" @click="toggleMenu">X</button>
+          <RouterLink to="/roupas" class="routerLink" @click="toggleMenu">
             <p>Roupas</p>
           </RouterLink>
-          <RouterLink to="/sneakers" class="routerLink">
+          <RouterLink to="/sneakers" class="routerLink" @click="toggleMenu">
             <p>Calçados</p>
           </RouterLink>
-          <RouterLink to="/acessorios" class="routerLink">
+          <RouterLink to="/acessorios" class="routerLink" @click="toggleMenu">
             <p>Acessórios</p>
           </RouterLink>
-          <RouterLink to="/comunidade" class="routerLink">
+          <RouterLink to="/comunidade" class="routerLink" @click="toggleMenu">
             <p>Comunidade</p>
           </RouterLink>
         </nav>
-        <div class="icon">
-          <button @click="toggleLogin" class="icon-button">
-            <img src="/src/assets/img/Icons/user.svg" alt="Usuário">
+
+        <div class="icon" v-if="!isSearchOpen || windowWidth > 768">
+          <button @click="showLogin = !showLogin" class="icon-button login-button">
+            <img src="/src/assets/img/Icons/user.svg" alt="Usuário" />
           </button>
-          <button @click="toggleCart" class="icon-button">
-            <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho">
+          <button @click="mostrarEsconder" class="icon-button">
+            <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" />
           </button>
         </div>
       </div>
-  
-      <LoginComponente v-if="showLogin" />
-      <CarrinhoComponente v-if="showCart" :cartItems="cartItems" @close="toggleCart" />
-     
-    </header>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import LoginComponente from '@/components/BensaComponents/LoginComponente.vue';
-  import CarrinhoComponente from '@/components/BensaComponents/CarrinhoComponente.vue'
-  
-  const showLogin = ref(false);
-  const showCart = ref(false);
-  const cartItems = ref([]);
-  
-  const toggleLogin = () => {
-    showLogin.value = !showLogin.value;
-  };
-  
-  const toggleCart = () => {
-  showCart.value = !showCart.value;
-};
 
-  
-  </script>
-  
+      <LoginComponente v-if="showLogin" />
+      <div class="divCarrinho" v-if="mostrar">
+        <div class="fecharCarrinho">
+          <button @click="mostrarEsconder">
+            <img src="/src/assets/img/Icons/excluir.png" alt="" />
+          </button>
+        </div>
+        <div class="titleCarrinho">
+          <h2>CARRINHO</h2>
+        </div>
+        <div class="produtosCarrinho">
+          <div class="closeProduto">
+            <button>
+              <img src="/src/assets/img/Icons/excluir (1).png" alt="" />
+            </button>
+          </div>
+          <div class="infoProduto">
+            <div>
+              <p>CAMISETA NIKE NRG MAX90 BT2</p>
+              <p>R$174,99</p>
+            </div>
+            <div>
+              <input type="number" />
+            </div>
+          </div>
+          <div class="imgProduto">
+            <img src="/src/assets/produtos.nike/camisa3nike.webp" alt="" />
+          </div>
+        </div>
+        <div class="infoCarrinho">
+          <div class="boxFrete">
+            <label>Calcular Frete:</label>
+            <input type="text" value="00000-000" />
+          </div>
+          <div class="boxTotalaPagar">
+            <label>Total a Pagar: R$</label>
+            <input type="text" value="174,99" />
+          </div>
+        </div>
+        <div class="buttonComprarCarrinho">
+          <button>COMPRAR</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <hr />
+</template>
+
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
+
+const showLogin = ref(false)
+const mostrar = ref(false)
+const isMenuOpen = ref(false)
+const isSearchOpen = ref(false)
+const windowWidth = ref(window.innerWidth)
+
+const mostrarEsconder = () => {
+  mostrar.value = !mostrar.value
+}
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+const updateWindowWidth = () => {
+  windowWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+  window.addEventListener('resize', updateWindowWidth)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWindowWidth)
+})
+</script>
+
 <style scoped>
-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    z-index: 1000;
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  z-index: 1000;
 }
 
 .mainHeader {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px;
-    border-bottom: 1px solid #e0dbdb;
-    background-color: #ffffff;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+hr {
+  border-bottom: 1px solid #e0dbdb;
 }
 
 .logo img {
-    width: 150px;
+  width: 150px;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  display: block;
+  width: 30px;
+  height: 3px;
+  margin: 6px 0;
+  background-color: #333;
+  transition: 0.4s;
 }
 
 .nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
-    flex-wrap: wrap;
-}
-
-.nav a {
-    text-decoration: none;
-}
-
-.nav p {
-    color: #0d0d0d;
-    margin: 0;
-    cursor: pointer;
-    font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  justify-content: center;
+  flex: 1;
+  font-size: 20px;
 }
 
 .icon {
-    display: flex;
-    gap: 30px;
-}
-
-.icon img {
-    width: 40px;
+  display: flex;
+  gap: 20px;
 }
 
 .icon-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .icon-button img {
-    width: 40px;
+  width: 35px;
 }
 
-.routerLink {
+@media (max-width: 768px) {
+  .mainHeader {
+    justify-content: space-between;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .logo {
+    margin-left: 20px;
+  }
+
+  .logo img {
+    width: 120px;
+  }
+  .icon {
+    gap: 12px;
+  }
+
+  .nav {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    display: none;
+    flex-direction: column;
+    z-index: 10;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav.active {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+  }
+
+  .close-menu {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    align-self: flex-end;
+  }
 }
 
-.routerLink img {
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mainHeader {
+    justify-content: space-between;
+  }
+
+  .nav {
+    gap: 40px;
+  }
+
+  .logo img {
+    width: 140px;
+  }
+
+  .icon-button img {
     width: 30px;
+  }
+  .nav {
+    font-size: 16px;
+  }
 }
 
-@media (max-width: 1100px) {
-    .mainHeader {
-        flex-direction: column;
-    }
+@media (min-width: 1025px) {
+  .nav {
+    gap: 60px;
+  }
 
-    .icon {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        gap: 20px;
-    }
+  .logo img {
+    width: 150px;
+  }
 
-    .icon img {
-        width: 30px;
-    }
+  .icon-button img {
+    width: 35px;
+  }
 }
 </style>

@@ -1,144 +1,160 @@
 <template>
   <header>
-    <div class="mainHeader">
-      <div class="hamburger" @click="toggleMenu">
-        <div :class="{'open': isMenuOpen}">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
+    <div class="header">
+      <div class="mainHeader">
+        <div class="hamburger" @click="toggleMenu">
+          <div :class="{ open: isMenuOpen }">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
         </div>
-      </div>
 
-      <button v-if="windowWidth <= 768 && !isSearchOpen" class="search-button" @click="toggleSearchBar">
-        <img src="/src/assets/img/Icons/search.png" alt="Pesquisar" />
-      </button>
+        <button
+          v-if="windowWidth <= 768 && !isSearchOpen"
+          class="search-button"
+          @click="toggleSearchBar"
+        >
+          <img src="/src/assets/img/Icons/search.png" alt="Pesquisar" />
+        </button>
 
-      <div class="logo" v-if="!isSearchOpen || windowWidth > 768">
-        <RouterLink to="/">
-          <img src="/src/assets/img/Logos/logo.png" alt="Logo" />
-        </RouterLink>
-      </div>
-
-      <div class="search-bar" :class="{'full-width': isSearchOpen || windowWidth > 768}">
-        <div v-if="isSearchOpen || windowWidth > 768" class="search-input-container">
-          <button v-if="windowWidth <= 768" @click="toggleSearchBar" class="close-search">X</button>
-          <input type="text" placeholder="Pesquisar..." :class="{'small-input': windowWidth > 768}" />
+        <div class="logo" v-if="!isSearchOpen || windowWidth > 768">
+          <RouterLink to="/">
+            <img src="/src/assets/img/Logos/logo.png" alt="Logo" />
+          </RouterLink>
         </div>
-      </div>
 
-      <nav class="nav" :class="{'active': isMenuOpen}">
-        <button class="close-menu" v-if="isMenuOpen" @click="toggleMenu">X</button>
-        <RouterLink to="/roupas" class="routerLink" @click="toggleMenu">
-          <p>Roupas</p>
-        </RouterLink>
-        <RouterLink to="/sneakers" class="routerLink" @click="toggleMenu">
-          <p>Calçados</p>
-        </RouterLink>
-        <RouterLink to="/acessorios" class="routerLink" @click="toggleMenu">
-          <p>Acessórios</p>
-        </RouterLink>
-        <router-link to="/minhaloja" @click="toggleMenu">
-          <button class="quero-vender-button">Quero Vender</button>
-        </router-link>
-      </nav>
+        <div class="search-bar" :class="{ 'full-width': isSearchOpen || windowWidth > 768 }">
+          <div v-if="isSearchOpen || windowWidth > 768" class="search-input-container">
+            <button v-if="windowWidth <= 768" @click="toggleSearchBar" class="close-search">
+              X
+            </button>
+            <input
+              type="text"
+              placeholder="Pesquisar..."
+              :class="{ 'small-input': windowWidth > 768 }"
+            />
+          </div>
+        </div>
 
-      <div class="icon" v-if="!isSearchOpen || windowWidth > 768">
-        <button @click="showLogin = !showLogin" class="icon-button login-button">
-          <img src="/src/assets/img/Icons/user.svg" alt="Usuário" />
-        </button>
-        <button @click="mostrarEsconder" class="icon-button">
-          <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" />
-        </button>
-      </div>
-    </div>
+        <nav class="nav" :class="{ active: isMenuOpen }">
+          <button class="close-menu" v-if="isMenuOpen" @click="toggleMenu">X</button>
+          <RouterLink to="/roupas" class="routerLink" @click="toggleMenu">
+            <p>Roupas</p>
+          </RouterLink>
+          <RouterLink to="/sneakers" class="routerLink" @click="toggleMenu">
+            <p>Calçados</p>
+          </RouterLink>
+          <RouterLink to="/acessorios" class="routerLink" @click="toggleMenu">
+            <p>Acessórios</p>
+          </RouterLink>
+          <router-link to="/minhaloja" @click="toggleMenu">
+            <button class="quero-vender-button">Quero Vender</button>
+          </router-link>
+        </nav>
 
-    <LoginComponente v-if="showLogin" />
-    <div class="divCarrinho" v-if="mostrar">
-      <div class="fecharCarrinho">
-        <button @click="mostrarEsconder">
-          <img src="/src/assets/img/Icons/excluir.png" alt="" />
-        </button>
-      </div>
-      <div class="titleCarrinho">
-        <h2>CARRINHO</h2>
-      </div>
-      <div class="produtosCarrinho">
-        <div class="closeProduto">
-          <button>
-            <img src="/src/assets/img/Icons/excluir (1).png" alt="" />
+        <div class="icon" v-if="!isSearchOpen || windowWidth > 768">
+          <button @click="showLogin = !showLogin" class="icon-button login-button">
+            <img src="/src/assets/img/Icons/user.svg" alt="Usuário" />
+          </button>
+          <button @click="mostrarEsconder" class="icon-button">
+            <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" />
           </button>
         </div>
-        <div class="infoProduto">
-          <div>
-            <p>CAMISETA NIKE NRG MAX90 BT2</p>
-            <p>R$174,99</p>
-          </div>
-          <div>
-            <input type="number" />
-          </div>
-        </div>
-        <div class="imgProduto">
-          <img src="/src/assets/produtos.nike/camisa3nike.webp" alt="" />
-        </div>
       </div>
-      <div class="infoCarrinho">
-        <div class="boxFrete">
-          <label>Calcular Frete:</label>
-          <input type="text" value="00000-000" />
+
+      <LoginComponente v-if="showLogin" />
+      <div class="divCarrinho" v-if="mostrar">
+        <div class="fecharCarrinho">
+          <button @click="mostrarEsconder">
+            <img src="/src/assets/img/Icons/excluir.png" alt="" />
+          </button>
         </div>
-        <div class="boxTotalaPagar">
-          <label>Total a Pagar: R$</label>
-          <input type="text" value="174,99" />
+        <div class="titleCarrinho">
+          <h2>CARRINHO</h2>
         </div>
-      </div>
-      <div class="buttonComprarCarrinho">
-        <button>COMPRAR</button>
+        <div class="produtosCarrinho">
+          <div class="closeProduto">
+            <button>
+              <img src="/src/assets/img/Icons/excluir (1).png" alt="" />
+            </button>
+          </div>
+          <div class="infoProduto">
+            <div>
+              <p>CAMISETA NIKE NRG MAX90 BT2</p>
+              <p>R$174,99</p>
+            </div>
+            <div>
+              <input type="number" />
+            </div>
+          </div>
+          <div class="imgProduto">
+            <img src="/src/assets/produtos.nike/camisa3nike.webp" alt="" />
+          </div>
+        </div>
+        <div class="infoCarrinho">
+          <div class="boxFrete">
+            <label>Calcular Frete:</label>
+            <input type="text" value="00000-000" />
+          </div>
+          <div class="boxTotalaPagar">
+            <label>Total a Pagar: R$</label>
+            <input type="text" value="174,99" />
+          </div>
+        </div>
+        <div class="buttonComprarCarrinho">
+          <button>COMPRAR</button>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import LoginComponente from '@/components/BensaComponents/LoginComponente.vue';
+import { ref, onMounted, onUnmounted } from 'vue'
+import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
 
-const showLogin = ref(false);
-const mostrar = ref(false);
-const isMenuOpen = ref(false);
-const isSearchOpen = ref(false);
-const windowWidth = ref(window.innerWidth);
+const showLogin = ref(false)
+const mostrar = ref(false)
+const isMenuOpen = ref(false)
+const isSearchOpen = ref(false)
+const windowWidth = ref(window.innerWidth)
 
 const mostrarEsconder = () => {
-  mostrar.value = !mostrar.value;
-};
+  mostrar.value = !mostrar.value
+}
 
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
+  isMenuOpen.value = !isMenuOpen.value
+}
 
 const toggleSearchBar = () => {
-  isSearchOpen.value = !isSearchOpen.value;
-};
+  isSearchOpen.value = !isSearchOpen.value
+}
 
 const updateWindowWidth = () => {
-  windowWidth.value = window.innerWidth;
-};
+  windowWidth.value = window.innerWidth
+}
 
 onMounted(() => {
-  window.addEventListener('resize', updateWindowWidth);
-});
+  window.addEventListener('resize', updateWindowWidth)
+})
 
 onUnmounted(() => {
-  window.removeEventListener('resize', updateWindowWidth);
-});
+  window.removeEventListener('resize', updateWindowWidth)
+})
 </script>
 
 <style scoped>
+.header {
+  max-width: 90%;
+  margin: 0 auto;
+}
 .mainHeader {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; /* Centraliza os elementos */
+  justify-content: center;
   padding: 10px 20px;
   border-bottom: 1px solid #e0dbdb;
   background-color: #ffffff;
@@ -164,7 +180,7 @@ onUnmounted(() => {
 
 .search-bar {
   position: relative;
-  margin-left: 10px; /* Ajustado para espaço entre logo e input */
+  margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,8 +213,8 @@ onUnmounted(() => {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  width: 100%; /* Remover a largura fixa */
-  max-width: 300px; /* Definindo a largura máxima para telas pequenas */
+  width: 100%;
+  max-width: 300px;
 }
 
 .search-input-container .close-search {
@@ -209,17 +225,16 @@ onUnmounted(() => {
   margin-right: 10px;
 }
 
-/* Estilo para telas maiores */
 .search-input-container input.small-input {
-  width: 400px; /* Aumentar tamanho do input somente em telas grandes */
+  max-width: 100%;
 }
 
 .nav {
   display: flex;
   align-items: center;
   gap: 30px;
-  justify-content: center; /* Centraliza os links de navegação */
-  flex: 1; /* Para ocupar o espaço disponível */
+  justify-content: center;
+  flex: 1;
 }
 
 .icon {
@@ -254,7 +269,7 @@ onUnmounted(() => {
 
 @media (max-width: 768px) {
   .mainHeader {
-    justify-content: space-between; /* Mudar para espaçamento entre elementos */
+    justify-content: space-between;
   }
 
   .search-bar {
@@ -275,7 +290,7 @@ onUnmounted(() => {
   }
 
   .search-button {
-    margin-left: 25px; /* Espaço entre o botão de pesquisa e o menu hamburguer */
+    margin-left: 25px;
   }
 
   .search-button img {
@@ -298,6 +313,10 @@ onUnmounted(() => {
 
   .nav.active {
     display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
   }
 
   .close-menu {
@@ -306,6 +325,20 @@ onUnmounted(() => {
     font-size: 24px;
     cursor: pointer;
     align-self: flex-end;
+  }
+}
+@media (max-width: 576px) {
+  .quero-vender-button {
+    width: 100%;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo img {
+    width: 120px;
+  }
+
+  .nav {
+    gap: 20px;
   }
 }
 </style>
