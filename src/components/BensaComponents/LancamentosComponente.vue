@@ -5,14 +5,16 @@
     </div>
     <div class="mainProdutos">
       <div class="product" v-for="product in lancamentos" :key="product.id">
+        <button class="btn-more" @click="visualizar(product.id)">
         <div class="imgProdutos">
           <img class="img1" :src="product.image1" alt="" />
           <img class="img2" :src="product.image2" alt="" />
         </div>
+      </button>
         <div class="infoProdutos">
           <div class="divInfoProduto">
-            <p>{{ product.name }}</p>
-            <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
+            <h3>{{ product.name }}</h3>
+            <p>R${{ product.price }}</p>
           </div>
           <div class="divButtonCart">
             <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
@@ -133,15 +135,21 @@ console.log(productStore.products)
   gap: 5px;
 }
 
+.lancamentos .mainProdutos .product .infoProdutos .divInfoProduto h3{
+  font-size: 13px;
+  letter-spacing: .5px;
+  color: #0d0d0d;
+  font-weight: 600;
+}
 .lancamentos .mainProdutos .product .infoProdutos .divInfoProduto p {
   font-size: 12px;
   letter-spacing: .5px;
+  color: #025213;
+  font-weight: 600;
 }
 
-.lancamentos .mainProdutos .product .infoProdutos .divInfoProduto .btn-more {
-  background: #e7e7e7;
-  padding: 5px 10px;
-  border-radius: 10px;
+.btn-more {
+  background: transparent;
 }
 
 .lancamentos .mainProdutos .product .infoProdutos button {
@@ -168,5 +176,20 @@ console.log(productStore.products)
   .lancamentos .mainProdutos {
     flex-direction: column;
   }
+  .lancamentos .mainProdutos .product .imgProdutos .img2 {
+  display: none;
+}
+
+.lancamentos .mainProdutos .product:hover .imgProdutos .img1 {
+  display: block;
+}
+
+.lancamentos .mainProdutos .product:hover .imgProdutos .img2 {
+  display: none;
+}
+
+.lancamentos .mainProdutos .product .infoProdutos {
+  opacity: 1;
+}
 }
 </style>

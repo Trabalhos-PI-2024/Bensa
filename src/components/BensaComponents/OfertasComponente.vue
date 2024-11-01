@@ -5,7 +5,7 @@
             <p>Quer saber das novidades na Bensa</p>
         </div>
         <div class="boxInputs">
-            <input type="text" value="Email:">
+            <input type="text" placeholder="Email">
             <button>Enviar</button>
         </div>
     </div>

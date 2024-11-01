@@ -46,7 +46,6 @@
       </div>
     </div>
     <hr />
-    <hr />
     <div class="bottom-footer">
       <p>Copyright © 2024 Bença. Todos os direitos reservados.</p>
     </div>

@@ -18,7 +18,7 @@ function goToCadastro() {
 <template>
   <div v-if="isOpen" class="login-overlay">
     <div class="content">
-      <button class="close-button" @click="closeModal">X</button>
+      <button class="close-button" @click="closeModal"><img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho"></button>
       <div class="ImgLogin">
         <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="logo" />
       </div>
@@ -85,9 +85,7 @@ function goToCadastro() {
 }
 
 .close-button {
-  color: red;
   border: none;
-  font-size: 30px;
   cursor: pointer;
   position: absolute;
   top: 10px;
@@ -95,6 +93,10 @@ function goToCadastro() {
   padding: 10px 15px;
   border-radius: 100px;
   background-color: #fff;
+}
+
+.close-button img{
+  width: 45px;
 }
 
 .ImgLogin {
