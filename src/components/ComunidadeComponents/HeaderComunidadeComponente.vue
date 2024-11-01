@@ -64,48 +64,6 @@
       </div>
 
       <LoginComponente v-if="showLogin" />
-      <div class="divCarrinho" v-if="mostrar">
-        <div class="fecharCarrinho">
-          <button @click="mostrarEsconder">
-            <img src="/src/assets/img/Icons/excluir.png" alt="" />
-          </button>
-        </div>
-        <div class="titleCarrinho">
-          <h2>CARRINHO</h2>
-        </div>
-        <div class="produtosCarrinho">
-          <div class="closeProduto">
-            <button>
-              <img src="/src/assets/img/Icons/excluir (1).png" alt="" />
-            </button>
-          </div>
-          <div class="infoProduto">
-            <div>
-              <p>CAMISETA NIKE NRG MAX90 BT2</p>
-              <p>R$174,99</p>
-            </div>
-            <div>
-              <input type="number" />
-            </div>
-          </div>
-          <div class="imgProduto">
-            <img src="/src/assets/produtos.nike/camisa3nike.webp" alt="" />
-          </div>
-        </div>
-        <div class="infoCarrinho">
-          <div class="boxFrete">
-            <label>Calcular Frete:</label>
-            <input type="text" value="00000-000" />
-          </div>
-          <div class="boxTotalaPagar">
-            <label>Total a Pagar: R$</label>
-            <input type="text" value="174,99" />
-          </div>
-        </div>
-        <div class="buttonComprarCarrinho">
-          <button>COMPRAR</button>
-        </div>
-      </div>
     </div>
   </header>
 </template>
