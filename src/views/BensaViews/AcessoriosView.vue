@@ -149,6 +149,7 @@ button {
 .buttons div p{
   color: #025213;
   font-weight: 600;
+  font-size: 13px;
 }
 
 

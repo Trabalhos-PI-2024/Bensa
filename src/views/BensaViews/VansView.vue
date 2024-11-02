@@ -13,7 +13,10 @@
     <img :src="product.image1" :alt="product.name" class="product-image" />
     </button>
     <div class="buttons">
+      <div>
       <h3>{{ product.name }}</h3>
+      <p>R${{ product.price }}</p>
+      </div>
       <button @click="carrinhoStore.addCarrinho(product)" class="btn-cart">
         <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
       </button>
@@ -137,6 +140,7 @@ header {
 .buttons div p{
   color: #025213;
   font-weight: 600;
+  font-size: 13px;
 }
 
 
