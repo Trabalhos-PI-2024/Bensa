@@ -7,11 +7,13 @@
       </div>
       <div class="mainProdutos">
         <div class="produtos" v-for="product in acessorio" :key="product.id">
+          <button class="btn-more" @click="visualizar(product.id)"> 
           <img :src="product.image1" :alt="product.name" />
+        </button>
           <div class="infoProdutos">
             <div>
               <h3>{{ product.name }}</h3>
-              <p>{{ product.price }}</p>
+              <p>R${{ product.price }}</p>
             </div>
            <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
             <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
@@ -121,6 +123,7 @@ const acessorio = computed(() =>
 .infoProdutos div p {
   font-size: 12.5px;
   font-weight: 600;
+  color: #025213;
 }
 
 .acessorios .mainAcessorios .mainProdutos .produtos .infoProdutos .cart-image {
@@ -145,6 +148,10 @@ const acessorio = computed(() =>
   width: 550px;
   height: 570px;
   border: 1px solid #e7e7e7;
+}
+
+.btn-more{
+  background: transparent;
 }
 
 

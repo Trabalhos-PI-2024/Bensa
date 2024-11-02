@@ -1,64 +1,38 @@
 <template>
   <div class="releases-container">
     <div class="releases-list">
-      <div v-for="(release, index) in releases" :key="index" class="release-item">
+      <div v-for="release in releases" :key="release.id" class="release-item">
+        <button class="btn-more" @click="visualizar(release.id)">
         <div class="release-details">
-          <img :src="release.image" alt="Tênis" class="release-image" />
+          <img :src="release.image1" alt="Tênis" class="release-image" />
           <div class="release-info">
             <span class="release-name">{{ release.name }}</span>
             <div class="release-price">R$ {{ release.price }}</div>
           </div>
         </div>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
+import { useComunidadeStore } from '@/stores/comunidade';
+import { useRouter } from 'vue-router';
 
-const releases = ref([
-  {
-    price: '1.499,00',
-    name: 'Travis Scott x Air Jordan 1 Low OG SP Velvet Brown',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-  {
-    price: '999,00',
-    name: 'New Balance 9060 Slate Grey Raincloud',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-  {
-    price: '999,00',
-    name: 'New Balance 9060 Sparrow Flat Taupe',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-  {
-    price: '749,00',
-    name: 'adidas Gazelle Indoor Collegiate Purple Cloud White',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-  {
-    price: '699,00',
-    name: 'Bob Marley x adidas SL 72 RS Core Black Cloud White',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-  {
-    price: '649,00',
-    name: 'Nike Dunk Low Twist Olive Black',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-  {
-    price: '799,00',
-    name: 'Bad Bunny x adidas Gazelle Indoor Messi Cardboard Cream White',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-  {
-    price: '299,00',
-    name: 'Slide Rider R Next Preto',
-    image: 'https://droper-media.us-southeast-1.linodeobjects.com/1972023192352558.webp',
-  },
-]);
+const comunidadeStore = useComunidadeStore();
+const router = useRouter();
+
+// Acesso aos produtos da loja e filtragem para apenas os lançamentos
+const releases = computed(() => {
+  return comunidadeStore.comunidade.filter(comunidade => comunidade.lancamento === true);
+});
+
+// Função para visualizar o produto
+function visualizar(id) {
+  router.push(`/produto/${id}`);
+}
 </script>
 
 <style scoped>
@@ -79,15 +53,12 @@ const releases = ref([
   flex-direction: column;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+  width: 500px;
 }
 
 .release-details {
   display: flex;
   align-items: center;
-}
-
-.release-item:nth-child(7), .release-item:last-child {
-  border-bottom: 1px solid transparent;
 }
 
 .release-image {
@@ -98,6 +69,8 @@ const releases = ref([
 .release-info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: start;
 }
 
 .release-name {
@@ -107,6 +80,18 @@ const releases = ref([
 
 .release-price {
   margin-top: 5px;
+  color: #025213;
+  font-weight: 600;
+}
+
+.btn-more {
+  background-color: #ffff;
+}
+
+@media (max-width: 1100px) {
+  .release-item {
+  width: auto;
+}
 }
 
 @media (max-width: 600px) {
