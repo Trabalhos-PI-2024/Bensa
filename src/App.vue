@@ -9,11 +9,11 @@ const route = useRoute();
 
 <template>
 
-  <HeaderComponente v-if="route.name !== 'comunidade' && route.name !== 'minhaloja' && route.name !== 'addproduto'" />
+  <HeaderComponente v-if="route.name !== 'comunidade' && route.name !== 'minhaloja' && route.name !== 'addproduto' && route.name !== 'sneakersComunidade' && route.name !== 'roupasComunidade' && route.name !== 'acessoriosComunidade'" />
 
 
   <HeaderComunidadeComponente
-    v-if="route.name === 'comunidade' || route.name === 'minhaloja' || route.name === 'addproduto'" />
+    v-if="route.name === 'comunidade' || route.name === 'minhaloja' || route.name === 'addproduto' || route.name === 'sneakersComunidade' || route.name === 'roupasComunidade' || route.name === 'acessoriosComunidade'" />
 
   <router-view></router-view>
   <FooterComponente />
