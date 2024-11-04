@@ -18,7 +18,7 @@
         <div class="cards-container">
           <div class="card-produto" v-for="produto in tenis" :key="produto.id">
             <button class="btn-more" @click="visualizar(produto.id)">
-            <img :src="produto.image1" alt="Produto" class="imagem-produto" />
+              <img :src="produto.image1" alt="Produto" class="imagem-produto" />
             </button>
             <div class="informacoes">
               <h4 class="nome-produto">{{ produto.name }}</h4>
@@ -27,6 +27,9 @@
                 <button class="botao-sacola" @click="adicionarNaSacola">
                   <img src="/src/assets/img/Icons/carrinho.svg" alt="Adicionar à Sacola" />
                 </button>
+                <router-link to="/chat">
+                  <button class="botao-chat"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -42,7 +45,7 @@
         <div class="cards-container">
           <div class="card-produto" v-for="produto in roupa" :key="produto.id">
             <button class="btn-more" @click="visualizar(produto.id)">
-            <img :src="produto.image1" alt="Produto" class="imagem-produto" />
+              <img :src="produto.image1" alt="Produto" class="imagem-produto" />
             </button>
             <div class="informacoes">
               <h4 class="nome-produto">{{ produto.name }}</h4>
@@ -51,6 +54,9 @@
                 <button class="botao-sacola" @click="adicionarNaSacola">
                   <img src="/src/assets/img/Icons/carrinho.svg" alt="Adicionar à Sacola" />
                 </button>
+                <router-link to="/chat">
+                  <button class="botao-chat"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -66,15 +72,18 @@
         <div class="cards-container">
           <div class="card-produto" v-for="produto in acessorios" :key="produto.id">
             <button class="btn-more" @click="visualizar(produto.id)">
-            <img :src="produto.image1" alt="Produto" class="imagem-produto" />
+              <img :src="produto.image1" alt="Produto" class="imagem-produto" />
             </button>
             <div class="informacoes">
               <h4 class="nome-produto">{{ produto.name }}</h4>
               <div class="preco-container">
                 <span class="preco">R$ {{ produto.price }}</span>
-                <button class="botao-sacola">
+                <button class="botao-sacola" @click="adicionarNaSacola">
                   <img src="/src/assets/img/Icons/carrinho.svg" alt="Adicionar à Sacola" />
                 </button>
+                <router-link to="/chat">
+                  <button class="botao-chat"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -88,15 +97,14 @@
 import { computed } from 'vue';
 import CarroselComponente from '@/components/ComunidadeComponents/CarroselComponente.vue';
 import MaisVendidosComponente from '@/components/ComunidadeComponents/MaisVendidosComponente.vue';
-import { useComunidadeStore } from '@/stores/comunidade'
-import { useRouter } from 'vue-router'
+import { useComunidadeStore } from '@/stores/comunidade';
+import { useRouter } from 'vue-router';
 
-const comunidadeStore = useComunidadeStore()
-
-const router = useRouter()
+const comunidadeStore = useComunidadeStore();
+const router = useRouter();
 
 function visualizar(id) {
-  router.push(`/produto/${id}`)
+  router.push(`/produto/${id}`);
 }
 
 const tenis = computed(() =>
@@ -167,27 +175,73 @@ const lancamento = computed(() =>
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 80px;
+  gap: 20px;
   width: 80%;
 }
 
-.imagem-produto{
-  width: 250px;
+.imagem-produto {
+  width: 220px;
 }
 
-.nome-produto{
+.nome-produto {
   font-weight: bold;
 }
 
-.preco{
+.preco {
   color: #025213;
   font-weight: 600;
 }
+
+.card-produto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  padding: 20px;
+  margin: 15px;
+  width: 250px;
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: all .5s ease;
+}
+
+.botao-chat {
+margin-left: 100px;
+ background-color: white;
+ cursor: pointer;
+}
+.botao-chat img{
+  width: 24px;
+  background-color: white;
+  
+}
+
 
 @media (max-width: 768px) {
   .cards-container {
     justify-content: space-around;
     gap: 0;
+  }
+
+  .item {
+    width: 100%;
+  }
+
+  .banner {
+    width: 100%;
+    box-shadow: none;
+    padding-bottom: 0px;
+  }
+
+  .banner img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+  }
+
+  .imagem-produto {
+    width: 180px;
   }
 }
 </style>
