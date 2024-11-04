@@ -12,13 +12,11 @@
     <img :src="product.image1" :alt="product.name" class="product-image" />
     <div class="buttons">
       <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
-      <!-- Passa o produto ao carrinho -->
       <button @click="carrinhoStore.addCarrinho(product)" class="btt-cart">
-<<<<<<< HEAD:src/views/VansView.vue
-        <img src="../assets/img/carrinho.svg" alt="Carrinho" class="cart-image" />
-=======
+
+        <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
         <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
->>>>>>> 499edbd4cbd82f967f738c90d7f8f859996be076:src/views/BensaViews/VansView.vue
+
       </button>
     </div>
   </div>
