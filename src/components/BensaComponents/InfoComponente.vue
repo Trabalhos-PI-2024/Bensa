@@ -26,13 +26,11 @@
                 <div class="user-form-grupo inline-group">
                     <div class="telefone-container">
                         <label for="telefone">Telefone</label>
-                        <input v-model="form.telefone" type="text" id="telefone" required
-                            placeholder="Ex: (11) 91234-5678" />
+                        <input v-model="form.telefone" type="text" id="telefone" required placeholder="Ex: (11) 91234-5678" />
                     </div>
                     <div class="email-container">
                         <label for="email">E-mail</label>
-                        <input v-model="form.email" type="email" id="email" required
-                            placeholder="Ex: exemplo@dominio.com" />
+                        <input v-model="form.email" type="email" id="email" required placeholder="Ex: exemplo@dominio.com" />
                     </div>
                 </div>
                 <div class="user-form-grupo inline-group">
@@ -85,7 +83,7 @@ const formCadastro = () => {
     align-items: center;
     justify-content: center;
     min-height: 80vh;
-    background-color: #e7e7e7e7;
+    background-color: #e7e7e7;
 }
 
 .user-form {
@@ -106,7 +104,6 @@ const formCadastro = () => {
 .user-logo {
     width: 80px;
     margin-bottom: 20px;
-    margin-right: 0px;
 }
 
 .user-title-section {
@@ -127,15 +124,11 @@ const formCadastro = () => {
     color: #000000;
 }
 
-.user-titulo.active {
-    color: #007bff;
-}
-
 .user-underline {
-    width: 60vh;
+    width: 60%; 
     height: 2px;
     background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%, rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
-    margin: 20px auto;
+    margin: 5px auto; 
 }
 
 .user-form-grid {
@@ -171,19 +164,13 @@ const formCadastro = () => {
 }
 
 .nome-container,
-.sobrenome-container {
-    width: 50%;
-}
-
+.sobrenome-container,
 .telefone-container,
-.email-container {
-    width: 50%;
-}
-
+.email-container,
 .cpf-container,
 .data-nascimento-container,
 .sexo-container {
-    width: 33%;
+    flex: 1;
 }
 
 .large-button {
@@ -203,5 +190,30 @@ const formCadastro = () => {
 
 .large-button:hover {
     transform: scale(1.04);
+}
+
+@media (max-width: 598px) {
+    .user-form {
+        margin: 20px 20px;
+    }
+
+    .inline-group {
+        flex-direction: column;
+    }
+
+    .nome-container,
+    .sobrenome-container,
+    .telefone-container,
+    .email-container,
+    .cpf-container,
+    .data-nascimento-container,
+    .sexo-container {
+        width: 100%;
+    }
+
+    .user-underline {
+        width: 80%;
+    }
+  
 }
 </style>

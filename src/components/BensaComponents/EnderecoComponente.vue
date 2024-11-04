@@ -8,8 +8,8 @@
                         <RouterLink to="/" class="titulo">Sign Up</RouterLink>
                         <RouterLink to="/" class="titulo">Login</RouterLink>
                     </div>
-                    <div class="underline"></div>
                 </div>
+                <div class="underline"></div>
             </div>
             <h1>Endereço</h1>
             <div class="form-grid">
@@ -80,7 +80,7 @@ const formCadastro = () => {
     align-items: center;
     justify-content: center;
     min-height: 80vh;
-    background-color: #e7e7e7e7;
+    background-color: #e7e7e7;
 }
 
 .form {
@@ -95,12 +95,10 @@ const formCadastro = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-  
 }
 
 .logo {
     width: 80px;
-    
 }
 
 .titulo-section {
@@ -122,14 +120,14 @@ const formCadastro = () => {
 }
 
 .titulo.active {
-    color: #007bff;
+    color: #252627;
 }
 
 .underline {
-    width: 60vh;
+    width: 60%; 
     height: 2px;
     background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%, rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
-    margin: 20px auto;
+    margin: 5px auto; 
 }
 
 .form-grid {
@@ -142,6 +140,7 @@ const formCadastro = () => {
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center; 
 }
 
 .form-grupo label {
@@ -157,24 +156,16 @@ const formCadastro = () => {
     background-color: #D9D9D9;
 }
 
+
 .inline-group {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.cep-container {
-    width: 50%;
-}
-
-.endereco-container {
-    width: 50%;
-}
-
-.numero-container {
-    width: 50%;
-}
-
+.cep-container,
+.endereco-container,
+.numero-container,
 .complemento-container {
     width: 50%;
 }
@@ -183,6 +174,13 @@ const formCadastro = () => {
 .cidade-container,
 .estado-container {
     width: 33%;
+}
+
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .large-button {
@@ -202,5 +200,40 @@ const formCadastro = () => {
 
 .large-button:hover {
     transform: scale(1.04);
+}
+
+
+@media (max-width: 598px) {
+    .form-grid {
+        flex-direction: column; 
+    }
+
+    .inline-group {
+        flex-direction: column; 
+    }
+
+    .cep-container,
+    .endereco-container,
+    .numero-container,
+    .complemento-container,
+    .bairro-container,
+    .cidade-container,
+    .estado-container {
+        width: 90%; 
+    }
+
+    .form-grupo {
+        align-items: center; 
+    }
+
+    .titulo {
+        font-size: 1.2rem; 
+    }
+   
+.container {
+    padding-top:140px ;
+   
+}
+
 }
 </style>
