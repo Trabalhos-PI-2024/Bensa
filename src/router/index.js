@@ -17,6 +17,7 @@ import AddProdutoView from '../views/ComunidadeViews/AddProdutoView.vue';
 import AcessoriosComunidadeView from '@/views/ComunidadeViews/AcessoriosComunidadeView.vue'
 import RoupasComunidadeView from '@/views/ComunidadeViews/RoupasComunidadeView.vue'
 import SneakersComunidadeView from '@/views/ComunidadeViews/SneakersComunidadeView.vue'
+import ChatView from '@/views/ComunidadeViews/ChatView.vue'
 
 const routes = [
   {
@@ -110,6 +111,11 @@ const routes = [
     path: '/sneakersComunidade',
     name: 'sneakersComunidade',
     component: SneakersComunidadeView
+  },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: ChatView
   },
 
 ]

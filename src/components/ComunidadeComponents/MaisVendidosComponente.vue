@@ -24,12 +24,12 @@ import { useRouter } from 'vue-router';
 const comunidadeStore = useComunidadeStore();
 const router = useRouter();
 
-// Acesso aos produtos da loja e filtragem para apenas os lançamentos
+
 const releases = computed(() => {
   return comunidadeStore.comunidade.filter(comunidade => comunidade.lancamento === true);
 });
 
-// Função para visualizar o produto
+
 function visualizar(id) {
   router.push(`/produto/${id}`);
 }
@@ -40,6 +40,7 @@ function visualizar(id) {
   padding: 0 20px 10px 20px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  
 }
 
 .releases-list {
@@ -62,7 +63,7 @@ function visualizar(id) {
 }
 
 .release-image {
-  width: 100px;
+  width: 120px;
   margin-right: 10px;
 }
 
@@ -91,6 +92,9 @@ function visualizar(id) {
 @media (max-width: 1100px) {
   .release-item {
   width: auto;
+}
+.release-image{
+  width: 120px;
 }
 }
 

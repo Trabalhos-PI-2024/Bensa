@@ -112,7 +112,7 @@ onUnmounted(() => {
 
 <style scoped>
 .header {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
 }
 .mainHeader {
@@ -314,5 +314,10 @@ onUnmounted(() => {
   .nav {
     gap: 20px;
   }
-}
+  .quero-vender-button{
+    padding: 5px 10px 5px 10px;
+    font-size: 14px;
+    }
+  }
+
 </style>

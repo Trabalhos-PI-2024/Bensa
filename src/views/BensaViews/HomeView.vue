@@ -53,4 +53,29 @@ section {
   height: 75dvh;
   object-fit: cover;
 }
+
+
+@media (max-width: 480px) {
+  .banner {
+    height: 40vh; 
+  }
+
+  .banner img {
+    height: 100%; 
+  }
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .banner {
+    height: 50vh; 
+  }
+
+  .banner img {
+    height: 100%; 
+  }
+}
+
+
+
 </style>
