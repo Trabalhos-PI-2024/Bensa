@@ -9,10 +9,14 @@
       </aside>
       <div class="product-list">
         <div class="product-item" v-for="product in adida" :key="product.id" :product="product">
+          <button class="btn-more" @click="visualizar(product.id)">
     <img :src="product.image1" :alt="product.name" class="product-image" />
+  </button>
     <div class="buttons">
-      <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
-      <!-- Passa o produto ao carrinho -->
+      <div>
+      <h3>{{ product.name }}</h3>
+      <p>R${{ product.price }}</p>
+      </div>
       <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
         <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
       </button>
@@ -73,6 +77,17 @@ const adida = computed(() =>
   align-items: center;
 }
 
+.buttons div h3{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.buttons div p{
+  color: #025213;
+  font-weight: 600;
+  font-size: 13px;
+}
+
 .filter-container {
   width: 100%;
   max-width: 600px;
@@ -127,6 +142,11 @@ button {
   border: none;
   cursor: pointer;
   font-size: 14px;
+}
+
+.buttons h3{
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .btn-more {

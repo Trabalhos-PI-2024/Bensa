@@ -9,14 +9,16 @@
       </aside>
       <div class="product-list">
         <div class="product-item" v-for="product in van" :key="product.id" :product="product">
+          <button class="btn-more" @click="visualizar(product.id)">
     <img :src="product.image1" :alt="product.name" class="product-image" />
+    </button>
     <div class="buttons">
-      <button class="btn-more" @click="visualizar(product.id)">Saiba Mais</button>
-      <button @click="carrinhoStore.addCarrinho(product)" class="btt-cart">
-
-        <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
+      <div>
+      <h3>{{ product.name }}</h3>
+      <p>R${{ product.price }}</p>
+      </div>
+      <button @click="carrinhoStore.addCarrinho(product)" class="btn-cart">
         <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
-
       </button>
     </div>
   </div>
@@ -125,6 +127,23 @@ header {
   width: 100%;
 }
 
+.buttons h3{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.buttons div h3{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.buttons div p{
+  color: #025213;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+
 button {
   border: none;
   cursor: pointer;
@@ -138,7 +157,7 @@ button {
 }
 
 .btn-cart {
-  background: none;
+  background: transparent;
   padding: 0;
 }
 

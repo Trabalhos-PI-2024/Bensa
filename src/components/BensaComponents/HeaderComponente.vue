@@ -140,6 +140,10 @@ hr {
   font-size: 20px;
 }
 
+.nav p{
+  color: #0d0d0d;
+}
+
 .icon {
   display: flex;
   gap: 20px;
@@ -155,6 +159,10 @@ hr {
 .icon-button img {
   width: 35px;
 }
+
+.close-menu {
+  display: none;
+  }
 
 @media (max-width: 768px) {
   .mainHeader {
@@ -178,9 +186,8 @@ hr {
 
   .nav {
     position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
+    top: 0;
+    gap: 40px;
     background: #fff;
     display: none;
     flex-direction: column;
@@ -188,6 +195,7 @@ hr {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all .5s ease;
   }
 
   .nav.active {
@@ -195,10 +203,11 @@ hr {
     top: 0;
     left: 0;
     right: 0;
-    height: 100vh;
+    height: calc(50dvh - 1px);
   }
 
   .close-menu {
+    display: block;
     background: none;
     border: none;
     font-size: 24px;
