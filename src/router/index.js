@@ -1,16 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AcessoriosView from '../views/AcessoriosView.vue'
-import AdidasView from '../views/AdidasView.vue'
-import CadastroView from '../views/CadastroView.vue'
-import NikeView from '../views/NikeView.vue'
-import RoupasView from '../views/RoupasView.vue'
-import SneakersView from '../views/SneakersView.vue'
-import StussyView from '../views/StussyView.vue'
-import VansView from '../views/VansView.vue'
-import EnderecoView from '../views/EnderecoView.vue'
-import InfoView from '../views/InfoView.vue'
-import ProdutoView from '../views/ProdutoView.vue'
+import HomeView from '../views/BensaViews/HomeView.vue'
+import AcessoriosView from '../views/BensaViews/AcessoriosView.vue'
+import AdidasView from '../views/BensaViews/AdidasView.vue'
+import CadastroView from '../views/BensaViews/CadastroView.vue'
+import NikeView from '../views/BensaViews/NikeView.vue'
+import RoupasView from '../views/BensaViews/RoupasView.vue'
+import SneakersView from '../views/BensaViews/SneakersView.vue'
+import StussyView from '../views/BensaViews/StussyView.vue'
+import VansView from '../views/BensaViews/VansView.vue'
+import EnderecoView from '../views/BensaViews/EnderecoView.vue'
+import InfoView from '../views/BensaViews/InfoView.vue'
+import ProdutoView from '../views/ComunidadeViews/ProdutoView.vue'
+import ComunidadeView from '../views/ComunidadeViews/ComunidadeView.vue'
+import MinhaLojaView from '../views/ComunidadeViews/MinhaLojaView.vue'
+import AddProdutoView from '../views/ComunidadeViews/AddProdutoView.vue';
+
 
 const routes = [
   {
@@ -69,10 +73,26 @@ const routes = [
     component: InfoView
   },
   {
+    path: '/comunidade',
+    name: 'comunidade',
+    component: ComunidadeView
+  },
+  {
+    path: '/minhaloja',
+    name: 'minhaloja',
+    component: MinhaLojaView
+  },
+  {
     path: '/produto/:id',
     name: 'produto',
     component: ProdutoView,
     props: true,
+  },
+  {
+    path: '/addproduto',
+    name: 'addproduto',
+    component: AddProdutoView,
+   
   }
 
 ]
