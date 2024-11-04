@@ -39,13 +39,13 @@
 
         <nav class="nav" :class="{ active: isMenuOpen }">
           <button class="close-menu" v-if="isMenuOpen" @click="toggleMenu">X</button>
-          <RouterLink to="/roupas" class="routerLink" @click="toggleMenu">
+          <RouterLink to="/roupasComunidade" class="routerLink" @click="toggleMenu">
             <p>Roupas</p>
           </RouterLink>
-          <RouterLink to="/sneakers" class="routerLink" @click="toggleMenu">
+          <RouterLink to="/sneakersComunidade" class="routerLink" @click="toggleMenu">
             <p>Calçados</p>
           </RouterLink>
-          <RouterLink to="/acessorios" class="routerLink" @click="toggleMenu">
+          <RouterLink to="/acessoriosComunidade" class="routerLink" @click="toggleMenu">
             <p>Acessórios</p>
           </RouterLink>
           <router-link to="/minhaloja" @click="toggleMenu">
@@ -202,6 +202,10 @@ onUnmounted(() => {
   flex: 1;
 }
 
+.nav p{
+  color: #0d0d0d;
+}
+
 .icon {
   display: flex;
   gap: 20px;
@@ -230,6 +234,10 @@ onUnmounted(() => {
 
 .quero-vender-button:hover {
   background-color: #69160b;
+}
+
+.close-menu{
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -264,7 +272,7 @@ onUnmounted(() => {
 
   .nav {
     position: absolute;
-    top: 60px;
+    top: 0;
     left: 0;
     right: 0;
     background: #fff;
@@ -281,10 +289,11 @@ onUnmounted(() => {
     top: 0;
     left: 0;
     right: 0;
-    height: 100vh;
+    height: 50vh;
   }
 
   .close-menu {
+    display: block;
     background: none;
     border: none;
     font-size: 24px;
