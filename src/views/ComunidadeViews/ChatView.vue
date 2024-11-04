@@ -28,7 +28,7 @@
         </button>
       </div>
   
-      <button @click="finalizePurchase" class="finalize-button">Finalizar Compra</button>
+     <router-link to="/revisar"> <button @click="finalizePurchase" class="finalize-button">Finalizar Compra</button></router-link>
     </div>
   </template>
   
