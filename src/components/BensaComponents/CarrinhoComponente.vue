@@ -26,9 +26,11 @@
         <input type="text" :value="totalAPagar" readonly>
       </div>
     </div>
+    <router-link to="/revisar">
     <div class="buttonComprarCarrinho">
       <button>COMPRAR</button>
     </div>
+  </router-link>
   </div>
 </template>
 
