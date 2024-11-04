@@ -1,106 +1,144 @@
 <template>
   <div class="pagina-perfil">
     <div class="banner">
-      <input type="file" id="banner-input" @change="atualizarBanner" accept="image/*" v-show="editar" />
-      <label v-show="editar" for="banner-input" class="botao-escolher-arquivo banner-button">+</label>
+      <input
+        type="file"
+        id="banner-input"
+        @change="atualizarBanner"
+        accept="image/*"
+        v-show="editar"
+      />
+      <label v-show="editar" for="banner-input" class="botao-escolher-arquivo banner-button"
+        >+</label
+      >
       <img v-if="banner" :src="banner" alt="Banner" />
     </div>
-
-    <div class="perfil-conteudo">
-      <div class="perfil-info">
-        <div class="imagem-bola">
-          <div class="bola">
-            <input type="file" id="imagem-bola-input" @change="atualizarImagemBola" accept="image/*"
-              style="display: none;" />
-            <label v-if="editar" for="imagem-bola-input" class="botao-escolher-arquivo bola-button">+</label>
-            <img v-if="imagemBola" :src="imagemBola" alt="Imagem do Usuário" />
+      <div class="perfil-conteudo">
+        <div class="mainUsuario">
+        <div class="perfil-info">
+          <div class="imagem-bola">
+            <div class="bola">
+              <input
+                type="file"
+                id="imagem-bola-input"
+                @change="atualizarImagemBola"
+                accept="image/*"
+                style="display: none"
+              />
+              <label
+                v-if="editar"
+                for="imagem-bola-input"
+                class="botao-escolher-arquivo bola-button"
+                >+</label
+              >
+              <img v-if="imagemBola" :src="imagemBola" alt="Imagem do Usuário" />
+            </div>
+          </div>
+          <div class="informacoes-usuario">
+            <h2>{{ nome }}</h2>
+            <p>{{ cidade }}, {{ estado }}</p>
           </div>
         </div>
-        <div class="informacoes-usuario">
-          <h2>{{ nome }}</h2>
-          <p>{{ cidade }}, {{ estado }}</p>
+        <div class="botoes-perfil">
+          <button @click="toggleEditar" class="botao-editar-perfil">
+            {{ editar ? 'Salvar' : 'Editar Perfil' }}
+          </button>
+          <router-link to="/addproduto">
+            <button class="botao-produto">+ Produto</button>
+          </router-link>
         </div>
       </div>
-      <div class="botoes-perfil">
-        <button @click="toggleEditar" class="botao-editar-perfil">
-          {{ editar ? 'Salvar' : 'Editar Perfil' }}
-        </button>
-        <router-link to="/addproduto">
-          <button class="botao-produto">+ Produto</button>
-        </router-link>
-      </div>
-
-      <div class="avaliacoes">
-        <div class="estrelas">
-          <span v-for="star in 5" :key="star" class="estrela">&#9733;</span>
+        <div class="avaliacoes">
+          <div class="estrelas">
+            <span v-for="star in 5" :key="star" class="estrela">&#9733;</span>
+          </div>
+          <p>({{ numeroAvaliacoes }})</p>
         </div>
-        <p>({{ numeroAvaliacoes }})</p>
       </div>
-    </div>
-
     <h1 class="tittle">Produtos</h1>
     <div class="status-produtos">
-      <span :class="{ ativo: abaAtiva === 'venda' }" @click="mudarAba('venda')"> à venda
-      </span>
-      <span :class="{ ativo: abaAtiva === 'vendidos' }" @click="mudarAba('vendidos')"> vendidos
+      <span :class="{ ativo: abaAtiva === 'venda' }" @click="mudarAba('venda')"> à venda </span>
+      <span :class="{ ativo: abaAtiva === 'vendidos' }" @click="mudarAba('vendidos')">
+        vendidos
       </span>
     </div>
 
     <div class="produtos-container">
       <div v-if="abaAtiva === 'vendidos' && produtos.length > 0">
-        <CardVendidoComponente v-for="produto in produtos" :key="produto.id" :imagem="produto.imagem"
-          :titulo="produto.titulo" :preco="produto.preco" :vendidoPara="produto.vendidoPara" />
+        <CardVendidoComponente
+          v-for="produto in produtos"
+          :key="produto.id"
+          :imagem="produto.imagem"
+          :titulo="produto.titulo"
+          :preco="produto.preco"
+          :vendidoPara="produto.vendidoPara"
+        />
       </div>
       <div v-if="abaAtiva === 'venda' && produtos.length > 0">
-        <CardVendaComponente v-for="produto in produtos" :key="produto.id" :imagem="produto.imagem"
-          :titulo="produto.titulo" :preco="produto.preco" />
+        <CardVendaComponente
+          v-for="produto in produtos"
+          :key="produto.id"
+          :imagem="produto.imagem"
+          :titulo="produto.titulo"
+          :preco="produto.preco"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import CardVendidoComponente from '@/components/ComunidadeComponents/CardVendidoComponente.vue';
-import CardVendaComponente from '@/components/ComunidadeComponents/CardVendaComponente.vue';
+import { ref } from 'vue'
+import CardVendidoComponente from '@/components/ComunidadeComponents/CardVendidoComponente.vue'
+import CardVendaComponente from '@/components/ComunidadeComponents/CardVendaComponente.vue'
 
-
-const editar = ref(false);
-const banner = ref(null);
-const imagemBola = ref(null);
-const nome = ref('Nome do Usuário');
-const cidade = ref('Cidade');
-const estado = ref('Estado');
-const numeroAvaliacoes = ref(0);
-const abaAtiva = ref('venda');
+const editar = ref(false)
+const banner = ref(null)
+const imagemBola = ref(null)
+const nome = ref('Nome do Usuário')
+const cidade = ref('Cidade')
+const estado = ref('Estado')
+const numeroAvaliacoes = ref(0)
+const abaAtiva = ref('venda')
 const produtos = ref([
-  { id: 1, imagem: "https://droper-lapse.us-southeast-1.linodeobjects.com/20241018225641239-253.webp", titulo: 'Camiseta Nike', preco: 120.0, vendidoPara: 'Davi' },
-]);
+  {
+    id: 1,
+    imagem: 'https://droper-lapse.us-southeast-1.linodeobjects.com/20241018225641239-253.webp',
+    titulo: 'Camiseta Nike',
+    preco: 120.0,
+    vendidoPara: 'Davi'
+  }
+])
 
 const toggleEditar = () => {
-  editar.value = !editar.value;
-};
+  editar.value = !editar.value
+}
 
 const atualizarBanner = (event) => {
-  const file = event.target.files[0];
+  const file = event.target.files[0]
   if (file) {
-    banner.value = URL.createObjectURL(file);
+    banner.value = URL.createObjectURL(file)
   }
-};
+}
 
 const atualizarImagemBola = (event) => {
-  const file = event.target.files[0];
+  const file = event.target.files[0]
   if (file) {
-    imagemBola.value = URL.createObjectURL(file);
+    imagemBola.value = URL.createObjectURL(file)
   }
-};
+}
 
 const mudarAba = (aba) => {
-  abaAtiva.value = aba;
-};
+  abaAtiva.value = aba
+}
 </script>
 
 <style scoped>
+.mainUsuario{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
 .pagina-perfil {
   padding: 20px;
   width: 80%;
@@ -115,9 +153,13 @@ const mudarAba = (aba) => {
   margin-bottom: 20px;
 }
 
-
 .produtos-container {
   width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .banner input {
@@ -280,5 +322,21 @@ const mudarAba = (aba) => {
   width: 100%;
   height: 2px;
   background-color: #9c1e0e;
+}
+
+@media (max-width: 1200px) {
+  .mainUsuario{
+flex-direction: column;
+}
+}
+
+@media (max-width: 768px) {
+  .perfil-conteudo {
+  flex-direction: column-reverse;
+}
+.produtos-container {
+  justify-content: center;
+  gap: 20px;
+}
 }
 </style>

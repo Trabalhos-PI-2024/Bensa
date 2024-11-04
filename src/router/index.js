@@ -14,7 +14,13 @@ import ProdutoView from '../views/ComunidadeViews/ProdutoView.vue'
 import ComunidadeView from '../views/ComunidadeViews/ComunidadeView.vue'
 import MinhaLojaView from '../views/ComunidadeViews/MinhaLojaView.vue'
 import AddProdutoView from '../views/ComunidadeViews/AddProdutoView.vue';
-
+import AcessoriosComunidadeView from '@/views/ComunidadeViews/AcessoriosComunidadeView.vue'
+import RoupasComunidadeView from '../views/ComunidadeViews/RoupasComunidadeView.vue'
+import SneakersComunidadeView from '../views/ComunidadeViews/SneakersComunidadeView.vue'
+import ChatView from '../views/ComunidadeViews/ChatView.vue'
+import RevisarCarrinhoViewView from '../views/BensaViews/RevisarCarrinhoView.vue'
+import PagamentoView from '../views/BensaViews/PagamentoView.vue'
+import ConfirmaçãoView from '../views/BensaViews/ConfirmaçãoView.vue'
 
 const routes = [
   {
@@ -93,8 +99,42 @@ const routes = [
     name: 'addproduto',
     component: AddProdutoView,
    
-  }
-
+  },
+  {
+    path: '/acessoriosComunidade',
+    name: 'acessoriosComunidade',
+    component: AcessoriosComunidadeView
+  },
+  {
+    path: '/roupasComunidade',
+    name: 'roupasComunidade',
+    component: RoupasComunidadeView
+  },
+  {
+    path: '/sneakersComunidade',
+    name: 'sneakersComunidade',
+    component: SneakersComunidadeView
+  },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: ChatView
+  },
+  {
+    path: '/revisar',
+    name: 'revisar',
+    component: RevisarCarrinhoViewView
+  },
+  {
+    path: '/pagar',
+    name: 'pagar',
+    component: PagamentoView
+  },
+  {
+    path: '/confirmar',
+    name: 'confirmar',
+    component: ConfirmaçãoView
+  },
 ]
 
 const router = createRouter({

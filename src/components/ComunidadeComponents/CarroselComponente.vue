@@ -1,11 +1,10 @@
-
 <template>
   <div class="navegacao">
     <button @click="moverEsquerda" class="btn-navegacao">&#9664;</button>
     <div class="produtos-container">
       <div class="card-produto" v-for="produto in produtosVisiveis" :key="produto.id">
         <button class="btn-more" @click="visualizar(produto.id)">
-        <img :src="produto.image1" alt="Produto" class="imagem-produto" />
+          <img :src="produto.image1" alt="Produto" class="imagem-produto" />
         </button>
         <div class="informacoes">
           <h4 class="nome-produto">{{ produto.name }}</h4>
@@ -38,7 +37,6 @@ function visualizar(id) {
 const indexAtual = ref(0)
 const produtosPorPagina = ref(4)
 
-// Acessa a lista de produtos diretamente do store
 const produtosVisiveis = computed(() => {
   return comunidadeStore.comunidade.slice(indexAtual.value, indexAtual.value + produtosPorPagina.value)
 })
@@ -72,7 +70,6 @@ const atualizarProdutosPorPagina = () => {
 window.addEventListener('resize', atualizarProdutosPorPagina)
 atualizarProdutosPorPagina()
 </script>
-
 
 <style scoped>
 .navegacao {
@@ -153,5 +150,15 @@ atualizarProdutosPorPagina()
 .botao-sacola img {
   width: 20px;
   height: 20px;
+}
+
+@media (max-width: 768px) {
+  .imagem-produto {
+    width: 85%;
+  }
+
+  .card-produto {
+    width: 230px;
+  }
 }
 </style>
