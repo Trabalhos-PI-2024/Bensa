@@ -145,4 +145,23 @@ function closeModal() {
 .close img {
   width: 30px;
 }
+
+@media (max-width: 520px) {
+  .infoProduto {
+  width: 140px;
+}
+
+.infoProduto h3{
+  font-size: 12px;
+}
+
+.infoProduto h4{
+  font-size: 10px;
+  color: #025213;
+}
+.imgProduto img {
+  width: 70px;
+}
+
+}
 </style>

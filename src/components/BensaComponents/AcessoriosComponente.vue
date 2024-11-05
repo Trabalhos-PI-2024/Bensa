@@ -2,11 +2,13 @@
   <div class="acessorios">
     <div class="mainAcessorios">
       <div class="title">
-        <img src="/src/assets/img/Icons/hat.png" alt="">
         <h3>Acessórios</h3>
+        <img src="/src/assets/img/Icons/hat.png" alt="">
       </div>
-      <div class="mainProdutos">
-        <div class="produtos" v-for="product in acessorio" :key="product.id">
+      <div class="navegacao">
+      <button @click="moverEsquerda" class="btn-navegacao">&#9664;</button>
+      <div class="produtos-container">
+        <div class="produtos" v-for="product in produtosVisiveis" :key="product.id">
           <button class="btn-more" @click="visualizar(product.id)"> 
           <img :src="product.image1" :alt="product.name" />
         </button>
@@ -15,26 +17,28 @@
               <h3>{{ product.name }}</h3>
               <p>R${{ product.price }}</p>
             </div>
-           <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
-            <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
+            <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
+              <img src="/src/assets/img/Icons/carrinho.svg"  alt="Carrinho" class="cart-image" >
             </button>
           </div>
         </div>
       </div>
+      <button @click="moverDireita" class="btn-navegacao">&#9654;</button>
+    </div>
     </div>
     <div class="imgAcessorios">
-      <img src="/src/assets/img/Acessorios/Acessorios.jpg" alt="Acessórios" />
+      <img src="/src/assets/img/roupas/Roupa.jpg" alt="Acessórios" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useProductStore } from '@/stores/products';
-import { useCarrinhoStore } from '@/stores/carrinho';
-import { useRouter } from 'vue-router';
+import { computed, ref } from 'vue'
+import { useProductStore } from '@/stores/products'
+import { useCarrinhoStore } from '@/stores/carrinho'
+import { useRouter } from 'vue-router'
 
-const carrinhoStore = useCarrinhoStore();
+const carrinhoStore = useCarrinhoStore()
 
 const router = useRouter()
 
@@ -42,11 +46,45 @@ function visualizar(id) {
   router.push(`/produto/${id}`)
 }
 
-const productStore = useProductStore();
+const productStore = useProductStore()
 
-const acessorio = computed(() =>
-  productStore.products.filter(product => product.acessorios)
-);
+const indexAtual = ref(0)
+const produtosPorPagina = ref(4)
+
+const produtosVisiveis = computed(() => {
+  return productStore.products
+    .filter(products => products.acessorios === true)
+    .slice(indexAtual.value, indexAtual.value + produtosPorPagina.value)
+})
+
+const moverEsquerda = () => {
+  if (indexAtual.value > 0) {
+    indexAtual.value -= produtosPorPagina.value
+  }
+}
+
+const moverDireita = () => {
+  if (indexAtual.value + produtosPorPagina.value < productStore.products.length) {
+    indexAtual.value += produtosPorPagina.value
+  }
+}
+
+const atualizarProdutosPorPagina = () => {
+  const larguraTela = window.innerWidth
+
+  if (larguraTela >= 1700) {
+    produtosPorPagina.value = 6
+  } else if (larguraTela >= 1400) {
+    produtosPorPagina.value = 4
+  } else if (larguraTela >= 700) {
+    produtosPorPagina.value = 2
+  } else {
+    produtosPorPagina.value = 1
+  }
+}
+
+window.addEventListener('resize', atualizarProdutosPorPagina)
+atualizarProdutosPorPagina()
 </script>
 
 <style scoped>
@@ -57,8 +95,6 @@ const acessorio = computed(() =>
   align-items: center;
   flex-wrap: nowrap;
   padding: 20px 0;
-  gap: 10px;
-  border-bottom: transparent;
 }
 
 .acessorios .mainAcessorios {
@@ -84,7 +120,7 @@ const acessorio = computed(() =>
   font-size: 22px;
 }
 
-.acessorios .mainAcessorios .mainProdutos {
+.acessorios .mainAcessorios {
   width: 55dvw;
   display: flex;
   justify-content: center;
@@ -93,7 +129,7 @@ const acessorio = computed(() =>
   flex-wrap: wrap;
 }
 
-.acessorios .mainAcessorios .mainProdutos .produtos {
+.acessorios .mainAcessorios .produtos {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,7 +140,7 @@ const acessorio = computed(() =>
   border-radius: 5px;
 }
 
-.acessorios .mainAcessorios .mainProdutos .produtos:hover {
+.acessorios .mainAcessorios .produtos:hover {
   transform: scale(1.01);
 }
 
@@ -126,21 +162,28 @@ const acessorio = computed(() =>
   color: #025213;
 }
 
-.acessorios .mainAcessorios .mainProdutos .produtos .infoProdutos .cart-image {
+.acessorios .mainAcessorios .produtos .infoProdutos .cart-image {
   width: 36px;
   height: 36px;
 }
 
-.acessorios .mainAcessorios .mainProdutos .produtos .infoProdutos button {
+.acessorios .mainAcessorios .produtos .infoProdutos button {
   background: transparent;
 }
 
-.acessorios .mainAcessorios .mainProdutos .produtos img {
+.acessorios .mainAcessorios .produtos:hover .infoProdutos {
+  opacity: 1;
+}
+
+.acessorios .mainAcessorios .produtos img {
   width: 225px;
   height: 225px;
 }
 
 .acessorios .imgAcessorios {
+  border: 1px solid #e7e7e7;
+  width: 550px;
+  height: 570px;
   margin-top: 20px;
 }
 
@@ -154,10 +197,66 @@ const acessorio = computed(() =>
   background: transparent;
 }
 
+.navegacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-more {
+  background-color: #ffff;
+}
+
+.btn-navegacao {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  display: none;
+}
+
+.produtos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+@media (max-width: 1700px) {
+  .btn-navegacao {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  display: block;
+}
+}
+
+@media (max-width: 1400px) {
+  .produtos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 30px;
+}
+}
 
 @media (max-width: 1200px) {
   .acessorios {
     flex-direction: column;
   }
+
+  .acessorios .mainAcessorios {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
 }
 </style>
