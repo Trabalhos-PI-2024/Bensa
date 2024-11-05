@@ -38,7 +38,9 @@ const indexAtual = ref(0)
 const produtosPorPagina = ref(4)
 
 const produtosVisiveis = computed(() => {
-  return comunidadeStore.comunidade.slice(indexAtual.value, indexAtual.value + produtosPorPagina.value)
+  return comunidadeStore.comunidade
+    .filter(comunidade => comunidade.lancamento === true)
+    .slice(indexAtual.value, indexAtual.value + produtosPorPagina.value)
 })
 
 const moverEsquerda = () => {

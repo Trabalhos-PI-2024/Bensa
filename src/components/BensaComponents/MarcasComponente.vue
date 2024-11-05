@@ -53,17 +53,35 @@
 
 @media (max-width: 1200px) {
     .allMarcas {
-        padding: 10px 100px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e7e7e7e7;
+}
+
 }
 
 @media (max-width: 768px) {
-    .allMarcas {
-        padding: 10px;
-    }
 
-    .marcas img {
-        width: 80px;
-    }
+.marcas img {
+    width: 80px;
 }
+
+.marcas:nth-child(3) img{
+width: 108px;
+}
+}
+
+@media (max-width: 500px) {
+    .allMarcas {
+        padding: 25px;
+        gap: 10px 115px;
+}
+
+}
+
+
 </style>
