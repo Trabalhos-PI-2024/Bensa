@@ -27,7 +27,7 @@
     </div>
     </div>
     <div class="imgAcessorios">
-      <img src="/src/assets/img/roupas/Roupa.jpg" alt="Acessórios" />
+      <img src="/src/assets/img/Acessorios/Acessorios.jpg" alt="Acessórios" />
     </div>
   </div>
 </template>
