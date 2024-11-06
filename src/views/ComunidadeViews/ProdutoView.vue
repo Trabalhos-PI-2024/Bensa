@@ -12,33 +12,13 @@
         </div>
         <h1 class="product-name">{{ product.name }}</h1>
         <p class="product-price">
-          R${{ product.price }},99
+          R${{ product.price }}
           <span class="installments">ou em até 12x de R${{ (product.price / 12).toFixed(2) }}</span>
         </p>
 
-        <div class="size-selection">
-          <label>Tamanho:</label>
-          <div class="size-options">
-            <label>
-              <input type="radio" v-model="selectedSize" :value="size" />
-              P
-            </label>
-            <label>
-              <input type="radio" v-model="selectedSize" />
-              M
-            </label>
-            <label>
-              <input type="radio" v-model="selectedSize" :value="size" />
-              G
-            </label>
-            <label>
-              <input type="radio" v-model="selectedSize" :value="size" />
-              GG
-            </label>
-          </div>
-        </div>
 
-        <button @click="addToCart" class="buy-button">Adicionar ao Carrinho</button>
+
+        <button @click="carrinhoStore.addCarrinho(product)" class="buy-button">Adicionar ao Carrinho</button>
       </div>
     </div>
 
@@ -51,7 +31,11 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useCarrinhoStore } from '@/stores/carrinho';
 import { useProductStore } from '@/stores/products';
+  import { useRouter } from 'vue-router';
+  
+  const carrinhoStore = useCarrinhoStore();
 
 const productStore = useProductStore();
 const product = ref({});
@@ -61,36 +45,27 @@ onMounted(() => {
   product.value = productStore.getProductById(props.id);
 });
 
-const selectedSize = ref('M');
-
-const addToCart = () => {
-  console.log(`Produto ${product.name} de tamanho ${selectedSize.value} adicionado ao carrinho!`);
-};
 </script>
 
 <style scoped>
 .product-page {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 30px auto;
   padding: 10px;
 }
 
 .product-container {
   display: flex;
-  justify-content: space-between;
-}
-
-.product-image {
-  flex: 1;
-  margin-right: 20px;
+  justify-content: center;
+  gap: 30px;
 }
 
 .product-details {
-  flex: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-left: 5%;
+  justify-content: center;
+  gap: 10px;
+
 }
 
 .product-description {
@@ -99,17 +74,21 @@ const addToCart = () => {
   align-items: start;
   flex-direction: column;
   gap: 10px;
-  margin: 80px 0px 30px 0px;
-  border: 1px solid;
+  margin: 30px 0px 30px 0px;
 }
 
 .product-description p {
   width: 100%;
+  letter-spacing: 1.2px;
+  text-align: justify;
+}
+
+.product-image{
+  display: flex;
 }
 
 .product-image img {
-  width: 20dvw;
-  border-radius: 8px;
+  width: 400px;
 }
 
 .product-rating {
@@ -122,7 +101,7 @@ const addToCart = () => {
 }
 
 .rating-link {
-  margin-left: 10px;
+  margin-left: 4px;
 }
 
 .product-name {
@@ -133,41 +112,6 @@ const addToCart = () => {
 .product-price {
   font-weight: bold;
   margin: 10px 0;
-}
-
-.size-selection {
-  margin: 10px 0;
-}
-
-.size-options {
-  display: flex;
-  gap: 10px;
-}
-
-.size-options label {
-  display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  background-color: white;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.size-options input[type="radio"] {
-  display: none;
-}
-
-.size-options input[type="radio"]:checked+label {
-  background-color: #000;
-  color: white;
-  border-color: #000;
-}
-
-.size-options label:hover {
-  background-color: #f0f0f0;
-  border-color: #000;
 }
 
 .buy-button {
@@ -181,5 +125,39 @@ const addToCart = () => {
 
 .buy-button:hover {
   background-color: #333;
+}
+
+@media (max-width: 900px) {
+  .product-container {
+flex-direction: column;
+align-items: center;
+gap: 0;
+}
+
+.product-description h2{
+  font-size: 20px;
+}
+
+.product-description p {
+  font-size: 14px;
+}
+}
+
+@media (max-width: 500px) {
+  .product-details {
+    width: 100%;
+  justify-content: start;
+}
+  .product-details h1{
+    font-size: 24px;
+}
+
+.product-details p{
+    font-size: 13px;
+}
+
+.product-image img {
+  width: 250px;
+}
 }
 </style>

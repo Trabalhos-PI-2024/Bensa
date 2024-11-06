@@ -20,13 +20,13 @@
     </div>
 
     <div class="product-list">
-      <div class="product" v-for="(item, index) in products" :key="index">
-        <img :src="item.image" alt="Imagem do Produto" class="product-image" />
+      <div class="product" v-for="carrinho in carrinhoStore.carrinho" :key="carrinho.id">
+        <img :src="carrinho.image1" alt="Imagem do Produto" class="product-image" />
         <div class="product-info">
-          <h2>{{ item.name }}</h2>
-          <p class="product-price">R$ {{ item.price }}</p>
+          <h2>{{ carrinho.name }}</h2>
+          <p class="product-price">R$ {{ carrinho.price }}</p>
         </div>
-        <button @click="removeProduct(index)" class="remove-button">
+        <button @click="carrinhoStore.deleteProductById(carrinho.id)" class="remove-button">
           <img src="/src/assets/img/Icons/excluir (1).png" alt="Excluir">
         </button>
       </div>
@@ -37,21 +37,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useCarrinhoStore } from '@/stores/carrinho';
 import { useRouter } from 'vue-router';
-
-const products = ref([
-  {
-    name: "Nike Dunk Low GS Halloween Symbiote",
-    price: 1.098,
-    image: "https://droper-lapse.us-southeast-1.linodeobjects.com/20241028193608360-813.webp"
-  },
-  {
-    name: "Nike Dunk Low GS Halloween Symbiote",
-    price: 1.098,
-    image: "https://droper-lapse.us-southeast-1.linodeobjects.com/20241028193608360-813.webp"
-  }
-]);
+const carrinhoStore = useCarrinhoStore();
 
 const router = useRouter();
 

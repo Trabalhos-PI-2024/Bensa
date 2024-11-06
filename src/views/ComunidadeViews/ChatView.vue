@@ -1,7 +1,7 @@
 <template>
     <div class="chat-container">
       <div class="chat-header">
-        <img src="/src/assets/img/Icons/user.svg" class="seller-image" />
+        <img src="/src/assets/img/Icons/user-svgrepo-com.svg" class="seller-image" />
         <h2 class="seller-name">{{ seller.name }}</h2>
       </div>
   
@@ -24,7 +24,7 @@
           class="message-input"
         />
         <button @click="sendMessage" class="send-button">
-          <img src="/src/assets/img/Icons/comment.png" alt="">
+          <img src="/src/assets/img/Icons/comment.svg" alt="">
         </button>
       </div>
   

@@ -24,11 +24,9 @@
               <h4 class="nome-produto">{{ produto.name }}</h4>
               <div class="preco-container">
                 <span class="preco">R$ {{ produto.price }}</span>
-                <button class="botao-sacola" @click="adicionarNaSacola">
-                  <img src="/src/assets/img/Icons/carrinho.svg" alt="Adicionar à Sacola" />
-                </button>
+
                 <router-link to="/chat">
-                  <button class="botao-chat"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
+                  <button class="botao-chat" @click="carrinhoStore.addCarrinho(produto)"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
                 </router-link>
               </div>
             </div>
@@ -51,11 +49,9 @@
               <h4 class="nome-produto">{{ produto.name }}</h4>
               <div class="preco-container">
                 <span class="preco">R$ {{ produto.price }}</span>
-                <button class="botao-sacola" @click="adicionarNaSacola">
-                  <img src="/src/assets/img/Icons/carrinho.svg" alt="Adicionar à Sacola" />
-                </button>
+      
                 <router-link to="/chat">
-                  <button class="botao-chat"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
+                  <button class="botao-chat" @click="carrinhoStore.addCarrinho(produto)"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
                 </router-link>
               </div>
             </div>
@@ -78,11 +74,8 @@
               <h4 class="nome-produto">{{ produto.name }}</h4>
               <div class="preco-container">
                 <span class="preco">R$ {{ produto.price }}</span>
-                <button class="botao-sacola" @click="adicionarNaSacola">
-                  <img src="/src/assets/img/Icons/carrinho.svg" alt="Adicionar à Sacola" />
-                </button>
                 <router-link to="/chat">
-                  <button class="botao-chat"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
+                  <button class="botao-chat" @click="carrinhoStore.addCarrinho(produto)"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
                 </router-link>
               </div>
             </div>
@@ -98,7 +91,10 @@ import { computed } from 'vue';
 import CarroselComponente from '@/components/ComunidadeComponents/CarroselComponente.vue';
 import MaisVendidosComponente from '@/components/ComunidadeComponents/MaisVendidosComponente.vue';
 import { useComunidadeStore } from '@/stores/comunidade';
-import { useRouter } from 'vue-router';
+import { useCarrinhoStore } from '@/stores/carrinho';
+  import { useRouter } from 'vue-router';
+  
+  const carrinhoStore = useCarrinhoStore();
 
 const comunidadeStore = useComunidadeStore();
 const router = useRouter();
