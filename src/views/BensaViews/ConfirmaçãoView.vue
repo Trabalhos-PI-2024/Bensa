@@ -24,10 +24,9 @@
       <div class="order-details">
         <h3>Detalhes do Pedido</h3>
         <ul>
-          <li>Nike Dunk Low GS Halloween Symbiote - R$ 1.098</li>
-          <li>Nike Dunk Low GS Halloween Symbiote - R$ 1.098</li>
+          <li v-for="carrinho in carrinhoStore.carrinho" :key="carrinho.id">{{ carrinho.name }} - R$ {{ carrinho.price }}</li>
           <li>Frete - R$ 20,00</li>
-          <li><strong>Total: R$ 2.216</strong></li>
+          <li>Total a Pagar - R$<input type="text" :value="totalAPagar" readonly></li>
         </ul>
       </div>
      <router-link to="/"><button @click="returnToHome" class="return-button">Voltar à Página Inicial</button></router-link> 
@@ -36,11 +35,19 @@
   
   <script setup>
   import { useRouter } from 'vue-router';
+  import { computed, ref } from 'vue';
+import { useCarrinhoStore } from '@/stores/carrinho';
+
+const carrinhoStore = useCarrinhoStore();
   
   const router = useRouter();
   const returnToHome = () => {
     router.push('/');
   };
+
+  const totalAPagar = computed(() => {
+  return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price + 20, 0).toFixed(2);
+});
   </script>
   
   <style scoped>

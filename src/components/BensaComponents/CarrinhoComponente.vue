@@ -10,7 +10,9 @@
     </div>
     <div class="produtosCarrinho">
       <div v-for="carrinho in carrinhoStore.carrinho" :key="carrinho.id" class="produto">
-        <button class="close" @click="carrinhoStore.deleteProductById(carrinho.id)"><img src="/src/assets/img/Icons/excluir (1).png" alt=""></button>
+        <button class="close" @click="carrinhoStore.deleteProductById(carrinho.id)">
+          <img src="/src/assets/img/Icons/excluir (1).png" alt="Fechar">
+        </button>
         <div class="infoProduto">
           <h3>{{ carrinho.name }}</h3>
           <h4>R$ {{ carrinho.price.toFixed(2) }}</h4>
@@ -20,17 +22,22 @@
         </div>
       </div>
     </div>
-    <div class="infoCarrinho">
+
+    <div class="infoCarrinhoContainer">
       <div class="boxTotalaPagar">
         <label>Total a Pagar: R$</label>
-        <input type="text" :value="totalAPagar" readonly>
+        <span class="preco">{{ totalAPagar }}</span>
+      </div>
+      <div class="historico">
+        <router-link to="/historico">Histórico de Compras</router-link>
       </div>
     </div>
+
     <router-link to="/revisar">
-    <div class="buttonComprarCarrinho">
-      <button>COMPRAR</button>
-    </div>
-  </router-link>
+      <div class="buttonComprarCarrinho">
+        <button>COMPRAR</button>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -50,12 +57,12 @@ function closeModal() {
   isOpen.value = false;
 }
 </script>
+
 <style scoped>
 .divCarrinho {
   width: auto;
   position: fixed;
   right: 0;
-  top: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -88,11 +95,11 @@ function closeModal() {
   padding: 10px 20px;
 }
 
-.infoProduto h3{
+.infoProduto h3 {
   font-size: 16px;
 }
 
-.infoProduto h4{
+.infoProduto h4 {
   font-size: 14px;
   color: #025213;
 }
@@ -100,17 +107,41 @@ function closeModal() {
 .imgProduto img {
   width: 100px;
 }
-.infoCarrinho {
+
+.infoCarrinhoContainer {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 7.3px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.boxFrete input {
-  background: #e7e7e7;
-  padding: 5px 10px;
-  width: 95px;
+.boxTotalaPagar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.boxTotalaPagar label {
+  font-weight: bold;
+}
+
+.preco {
+  font-weight: bold;
+  color: #025213;
+}
+
+.historico {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #007bff;
+}
+
+.historico a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .buttonComprarCarrinho button {
@@ -128,8 +159,8 @@ function closeModal() {
 
 .fecharCarrinho {
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 10px;
+  right: 10px;
 }
 
 .fecharCarrinho button {
@@ -147,23 +178,51 @@ function closeModal() {
 .close img {
   width: 30px;
 }
-
+@media (max-width: 768px) {
+  .infoCarrinhoContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .boxTotalaPagar,
+  .historico {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  .fecharCarrinho {
+    right: 5px;
+  }
+}
 @media (max-width: 520px) {
+  .infoCarrinhoContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .boxTotalaPagar {
+    flex-direction: row;
+ 
+  }
+
+  .fecharCarrinho {
+    right: 5px;
+  }
   .infoProduto {
-  width: 140px;
-}
+    width: 140px;
+  }
 
-.infoProduto h3{
-  font-size: 12px;
-}
+  .infoProduto h3 {
+    font-size: 12px;
+  }
 
-.infoProduto h4{
-  font-size: 10px;
-  color: #025213;
-}
-.imgProduto img {
-  width: 70px;
-}
+  .infoProduto h4 {
+    font-size: 10px;
+    color: #025213;
+  }
 
+  .imgProduto img {
+    width: 70px;
+  }
 }
 </style>

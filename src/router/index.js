@@ -21,7 +21,7 @@ import ChatView from '../views/ComunidadeViews/ChatView.vue'
 import RevisarCarrinhoViewView from '../views/BensaViews/RevisarCarrinhoView.vue'
 import PagamentoView from '../views/BensaViews/PagamentoView.vue'
 import ConfirmaçãoView from '../views/BensaViews/ConfirmaçãoView.vue'
-
+import HistoricoView from '../views/BensaViews/HistoricoView.vue'
 const routes = [
   {
     path: '/',
@@ -135,6 +135,11 @@ const routes = [
     name: 'confirmar',
     component: ConfirmaçãoView
   },
+  {
+    path: '/historico',
+    name: 'historico',
+    component: HistoricoView
+  }
 ]
 
 const router = createRouter({

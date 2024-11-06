@@ -189,10 +189,6 @@ atualizarProdutosPorPagina()
   justify-content: center;
 }
 
-.btn-more {
-  background-color: #ffff;
-}
-
 .btn-navegacao {
   background-color: transparent;
   border: none;
@@ -204,7 +200,6 @@ atualizarProdutosPorPagina()
 .produtos-container {
   display: flex;
   overflow: hidden;
-  padding: 10px;
   transition: all 0.5s ease;
 }
 
@@ -240,5 +235,12 @@ atualizarProdutosPorPagina()
   .lancamentos .mainProdutos .product .infoProdutos {
     opacity: 1;
   }
+  .btn-navegacao {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0px;
+}
 }
 </style>
