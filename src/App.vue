@@ -33,4 +33,9 @@ const route = useRoute();
 a {
   text-decoration: none;
 }
+
+html {
+	scroll-behavior: smooth;
+  overflow-x: hidden;
+  }
 </style>
