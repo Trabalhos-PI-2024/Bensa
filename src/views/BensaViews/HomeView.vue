@@ -3,7 +3,12 @@
     <div class="marcas"></div>
     <MarcasComponente />
     <div class="banner">
-      <img src="/src/assets/img/Banners/BENSA STREETWEAR.png" alt="banner">
+      <img src="/src/assets/img/Banners/BENSA STREETWEAR.jpg" alt="banner">
+      <img src="/src/assets/img/Banners/BENSA STREETWEAR1.jpg" alt="banner">
+      <div class="subtitles">
+        <h1>BENSA - STREETWEAR</h1>
+      <p>Onde o Caos Reina o Estilo Prevalece</p>
+    </div>
     </div>
 
     <div class="lancamentos">
@@ -44,38 +49,82 @@ section {
   width: 100%;
 }
 
+.subtitles{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  color: #fff;
+  margin: 45dvh 0 0 0;
+}
+
+.subtitles h1{
+  font-size: 3dvw;
+  letter-spacing: 2px;
+}
+
+.subtitles p{
+  font-size: 1.9dvw;
+  letter-spacing: 1.5px;
+}
+
 .banner {
+  background: #0E0E0E;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner img:nth-child(1){
+  display: none;
+}
+
+.banner img:nth-child(2){
+  display: block;
 }
 
 .banner img {
-  width: 100%;
-  height: 75dvh;
+  width: 80%;
+  height: 70dvh;
   object-fit: cover;
 }
 
-
-@media (max-width: 480px) {
-  .banner {
-    height: 40vh; 
-  }
-
+@media (max-width: 1400px) {
   .banner img {
-    height: 100%; 
+  width: 100%;
+  object-fit: cover;
+}
+.banner img:nth-child(1){
+  display: block;
+}
+.banner img:nth-child(2){
+  display: none;
+}
   }
+  
+@media (max-width: 800px) {
+  .subtitles h1{
+  font-size: 22px;
+  letter-spacing: 2px;
 }
 
-
-@media (min-width: 481px) and (max-width: 1024px) {
-  .banner {
-    height: 50vh; 
+.subtitles p{
+  font-size: 16px;
+  letter-spacing: 1.5px;
+}
   }
 
-  .banner img {
-    height: 100%; 
-  }
+  @media (max-width: 360px) {
+  .subtitles h1{
+  font-size: 18px;
+  letter-spacing: 2px;
 }
 
-
-
+.subtitles p{
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+  }
 </style>
