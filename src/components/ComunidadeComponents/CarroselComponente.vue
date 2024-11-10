@@ -10,9 +10,9 @@
           <h4 class="nome-produto">{{ produto.name }}</h4>
           <div class="preco-container">
             <span class="preco">R$ {{ produto.price }}</span>
-            <button class="botao-sacola" @click="adicionarNaSacola">
-              <img src="/src/assets/img/Icons/carrinho.svg" alt="Adicionar à Sacola" />
-            </button>
+                <router-link to="/chat">
+                  <button class="botao-sacola" @click="carrinhoStore.addCarrinho(produto)"><img src="/src/assets/img/Icons/comment.png" alt=""></button>
+                </router-link>
           </div>
         </div>
       </div>
@@ -24,7 +24,11 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useComunidadeStore } from '@/stores/comunidade'
-import { useRouter } from 'vue-router'
+import { useCarrinhoStore } from '@/stores/carrinho';
+  import { useRouter } from 'vue-router';
+  
+  const carrinhoStore = useCarrinhoStore();
+
 
 const comunidadeStore = useComunidadeStore()
 

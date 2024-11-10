@@ -204,6 +204,15 @@ onUnmounted(() => {
 
 .nav p{
   color: #0d0d0d;
+  transition: all .5s ease-in-out;
+  padding: 5px 10px; 
+}
+
+.nav p:hover{
+  background: #0d0d0d;
+  color: #fff;
+  border-radius: 10px;
+  transform: scale(1.1) translateY(-5px);
 }
 
 .icon {
@@ -222,7 +231,7 @@ onUnmounted(() => {
   width: 35px;
 }
 
-.quero-vender-button {
+.nav .quero-vender-button {
   background-color: #9c1e0e;
   color: #fff;
   padding: 10px 15px;
@@ -232,7 +241,7 @@ onUnmounted(() => {
   font-size: 16px;
 }
 
-.quero-vender-button:hover {
+.nav .quero-vender-button:hover {
   background-color: #69160b;
 }
 

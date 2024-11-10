@@ -202,6 +202,10 @@ const lancamento = computed(() =>
   transition: all .5s ease;
 }
 
+.card-produto:hover{
+  transform: scale(1.01) translateY(-5px);
+}
+
 .botao-chat {
 margin-left: 100px;
  background-color: white;

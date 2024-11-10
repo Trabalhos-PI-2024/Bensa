@@ -140,8 +140,17 @@ hr {
   font-size: 20px;
 }
 
-.nav p{
+.nav a{
   color: #0d0d0d;
+  transition: all .5s ease-in-out;
+  padding: 5px 10px; 
+}
+
+.nav a:hover{
+  background: #0d0d0d;
+  color: #fff;
+  border-radius: 10px;
+  transform: scale(1.1) translateY(-5px);
 }
 
 .icon {
@@ -214,6 +223,7 @@ hr {
     cursor: pointer;
     align-self: flex-end;
   }
+
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {

@@ -36,6 +36,13 @@
     width: 138px;
 }
 
+.marcas{
+    transition: all .45s ease-in-out;
+}
+
+.marcas:hover{
+    transform: scale(1.14);
+}
 
 .banner {
     display: flex;

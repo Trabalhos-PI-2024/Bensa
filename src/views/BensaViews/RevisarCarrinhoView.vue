@@ -64,7 +64,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 60vh; 
+  min-height: 60vh; 
   padding: 20px;
   background-color: #f9f9f9;
 }

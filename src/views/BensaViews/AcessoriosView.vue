@@ -105,6 +105,11 @@ const acessorios = computed(() =>
   height: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  transition: all .3s ease-in-out;
+}
+
+.product-item:hover{
+  transform: scale(1.01) translateY(-5px);
 }
 
 .product-image {
@@ -156,9 +161,5 @@ button {
 .cart-image {
   width: 36px;
   height: 36px;
-}
-
-button:hover {
-  opacity: 0.9;
 }
 </style>

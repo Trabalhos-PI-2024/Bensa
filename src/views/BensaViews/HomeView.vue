@@ -35,7 +35,7 @@ import RoupasComponente from '@/components/BensaComponents/RoupasComponente.vue'
 
 </script>
 
-<style>
+<style scoped>
 body,
 html {
   margin: 0;

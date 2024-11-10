@@ -62,6 +62,7 @@ function closeModal() {
 .divCarrinho {
   width: auto;
   position: fixed;
+  top: 0;
   right: 0;
   display: flex;
   align-items: center;
@@ -76,6 +77,11 @@ function closeModal() {
 
 .titleCarrinho {
   font-size: 25px;
+}
+
+.produtosCarrinho{
+  max-height: 55dvh;
+  overflow-y: auto;
 }
 
 .produtosCarrinho .produto {
