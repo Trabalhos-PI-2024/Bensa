@@ -16,36 +16,36 @@
                 <div class="form-grupo inline-group">
                     <div class="cep-container">
                         <label for="cep">CEP</label>
-                        <input v-model="form.cep" type="text" id="cep" required placeholder="Ex: 12345-678" />
+                        <input  type="text" id="cep" required placeholder="Ex: 12345-678" />
                     </div>
                     <div class="endereco-container">
                         <label for="endereco">Endereço</label>
-                        <input v-model="form.endereco" type="text" id="endereco" required
+                        <input  type="text" id="endereco" required
                             placeholder="Ex: Rua das Flores" />
                     </div>
                 </div>
                 <div class="form-grupo inline-group">
                     <div class="numero-container">
                         <label for="numero">Número</label>
-                        <input v-model="form.numero" type="text" id="numero" required placeholder="Ex: 123" />
+                        <input type="text" id="numero" required placeholder="Ex: 123" />
                     </div>
                     <div class="complemento-container">
                         <label for="complemento">Complemento</label>
-                        <input v-model="form.complemento" type="text" id="complemento" placeholder="Ex: Apto 456" />
+                        <input type="text" id="complemento" placeholder="Ex: Apto 456" />
                     </div>
                 </div>
                 <div class="form-grupo inline-group">
                     <div class="bairro-container">
                         <label for="bairro">Bairro</label>
-                        <input v-model="form.bairro" type="text" id="bairro" required placeholder="Ex: Centro" />
+                        <input type="text" id="bairro" required placeholder="Ex: Centro" />
                     </div>
                     <div class="cidade-container">
                         <label for="cidade">Cidade</label>
-                        <input v-model="form.cidade" type="text" id="cidade" required placeholder="Ex: São Paulo" />
+                        <input v-model="loginStore.clienteInfo.cidade" type="text" id="cidade" required placeholder="Ex: São Paulo" />
                     </div>
                     <div class="estado-container">
                         <label for="estado">Estado</label>
-                        <input v-model="form.estado" type="text" id="estado" required placeholder="Ex: SP" />
+                        <input v-model="loginStore.clienteInfo.estado" type="text" id="estado" required placeholder="Ex: SP" />
                     </div>
                 </div>
             </div>
@@ -58,20 +58,17 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useLoginStore } from '@/stores/login';
 
-const form = ref({
-    cep: '',
-    endereco: '',
-    numero: '',
-    complemento: '',
-    bairro: '',
-    cidade: '',
-    estado: ''
-});
+const loginStore = useLoginStore();
 
-const formCadastro = () => {
-
-};
+  const formCadastro = () => {
+    loginStore.atualizarCliente({
+      estado: loginStore.clienteInfo.estado,
+      cidade: loginStore.clienteInfo.cidade,
+    });
+    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
+  };
 </script>
 
 <style scoped>

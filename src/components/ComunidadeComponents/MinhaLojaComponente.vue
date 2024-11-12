@@ -35,8 +35,9 @@
             </div>
           </div>
           <div class="informacoes-usuario">
-            <h2>{{ nome }}</h2>
-            <p>{{ cidade }}, {{ estado }}</p>
+            <!-- Acesso correto ao primeiro item do array cliente -->
+            <h2>{{ loginStore.cliente[0]?.nome }} {{ loginStore.cliente[0]?.sobrenome }}</h2>
+            <p>{{ loginStore.cliente[0]?.cidade }}, {{ loginStore.cliente[0]?.estado }}</p>
           </div>
         </div>
         <div class="botoes-perfil">
@@ -91,13 +92,13 @@
 import { ref } from 'vue'
 import CardVendidoComponente from '@/components/ComunidadeComponents/CardVendidoComponente.vue'
 import CardVendaComponente from '@/components/ComunidadeComponents/CardVendaComponente.vue'
+import { useLoginStore } from '@/stores/login';
+
+const loginStore = useLoginStore();
 
 const editar = ref(false)
 const banner = ref(null)
 const imagemBola = ref(null)
-const nome = ref('Nome do Usuário')
-const cidade = ref('Cidade')
-const estado = ref('Estado')
 const numeroAvaliacoes = ref(0)
 const abaAtiva = ref('venda')
 const produtos = ref([

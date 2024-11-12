@@ -18,16 +18,16 @@
 
         <nav class="nav" :class="{ active: isMenuOpen }">
           <button class="close-menu" v-if="isMenuOpen" @click="toggleMenu">X</button>
-          <RouterLink to="/roupas" class="routerLink" @click="toggleMenu">
+          <RouterLink to="/roupas" class="routerLink">
             <p>Roupas</p>
           </RouterLink>
-          <RouterLink to="/sneakers" class="routerLink" @click="toggleMenu">
+          <RouterLink to="/sneakers" class="routerLink">
             <p>Calçados</p>
           </RouterLink>
-          <RouterLink to="/acessorios" class="routerLink" @click="toggleMenu">
+          <RouterLink to="/acessorios" class="routerLink">
             <p>Acessórios</p>
           </RouterLink>
-          <RouterLink to="/comunidade" class="routerLink" @click="toggleMenu">
+          <RouterLink to="/comunidade" class="routerLink">
             <p>Comunidade</p>
           </RouterLink>
         </nav>
@@ -142,14 +142,13 @@ hr {
 
 .nav a{
   color: #0d0d0d;
-  transition: all .5s ease-in-out;
-  padding: 5px 10px; 
+  transition: all .3s ease-in-out;
+  padding: 2.5px; 
+  border-bottom: 1px solid transparent;
 }
 
 .nav a:hover{
-  background: #0d0d0d;
-  color: #fff;
-  border-radius: 10px;
+  border-bottom: 1px solid #0d0d0d;
   transform: scale(1.1) translateY(-5px);
 }
 

@@ -204,17 +204,15 @@ onUnmounted(() => {
 
 .nav p{
   color: #0d0d0d;
-  transition: all .5s ease-in-out;
-  padding: 5px 10px; 
+  transition: all .3s ease-in-out;
+  padding: 2.5px; 
+  border-bottom: 1px solid transparent;
 }
 
 .nav p:hover{
-  background: #0d0d0d;
-  color: #fff;
-  border-radius: 10px;
+  border-bottom: 1px solid #0d0d0d;
   transform: scale(1.1) translateY(-5px);
 }
-
 .icon {
   display: flex;
   gap: 20px;
