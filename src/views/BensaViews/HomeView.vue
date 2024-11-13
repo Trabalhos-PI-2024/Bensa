@@ -2,9 +2,9 @@
   <section>
     <div class="marcas"></div>
     <MarcasComponente />
-    <div class="banner">
-      <img src="/src/assets/img/Banners/BENSA STREETWEAR.jpg" alt="banner">
-      <img src="/src/assets/img/Banners/BENSA STREETWEAR1.jpg" alt="banner">
+    <div class="bannerHome">
+      <img src="/src/assets/img/Banners/BENSA STREETWEAR.jpg" alt="bannerHome">
+      <img src="/src/assets/img/Banners/BENSA STREETWEAR1.jpg" alt="bannerHome">
       <div class="subtitles">
         <h1>BENSA - STREETWEAR</h1>
       <p>Onde o Caos Reina o Estilo Prevalece</p>
@@ -34,8 +34,7 @@ import OfertasComponente from '@/components/BensaComponents/OfertasComponente.vu
 import RoupasComponente from '@/components/BensaComponents/RoupasComponente.vue';
 
 </script>
-
-<style scoped>
+<style scoped> 
 body,
 html {
   margin: 0;
@@ -69,7 +68,7 @@ section {
   letter-spacing: 1.5px;
 }
 
-.banner {
+.bannerHome {
   background: #0E0E0E;
   width: 100%;
   display: flex;
@@ -77,29 +76,29 @@ section {
   align-items: center;
 }
 
-.banner img:nth-child(1){
+.bannerHome img:nth-child(1){
   display: none;
 }
 
-.banner img:nth-child(2){
+.bannerHome img:nth-child(2){
   display: block;
 }
 
-.banner img {
+.bannerHome img {
   width: 80%;
   height: 70dvh;
   object-fit: cover;
 }
 
 @media (max-width: 1400px) {
-  .banner img {
+  .bannerHome img {
   width: 100%;
   object-fit: cover;
 }
-.banner img:nth-child(1){
+.bannerHome img:nth-child(1){
   display: block;
 }
-.banner img:nth-child(2){
+.bannerHome img:nth-child(2){
   display: none;
 }
   }
