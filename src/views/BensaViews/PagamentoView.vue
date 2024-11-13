@@ -90,10 +90,11 @@ const submitPayment = () => {
 .payment-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;justify-content: center;
   padding: 20px;
   background-color: #f1f1f1;
   padding-bottom: 100px;
+  min-height: 60dvh;
 }
 
 h1 {
