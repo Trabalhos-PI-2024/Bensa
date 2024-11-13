@@ -34,7 +34,6 @@ import OfertasComponente from '@/components/BensaComponents/OfertasComponente.vu
 import RoupasComponente from '@/components/BensaComponents/RoupasComponente.vue';
 
 </script>
-
 <style scoped> 
 body,
 html {

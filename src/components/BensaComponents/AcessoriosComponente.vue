@@ -136,12 +136,12 @@ atualizarProdutosPorPagina()
   flex-direction: column;
   border: 1px solid #e7e7e7;
   padding: 10px 20px 0 20px;
-  transition: all .2s ease;
+  transition: all .3s ease;
   border-radius: 5px;
 }
 
 .acessorios .mainAcessorios .produtos:hover {
-  transform: scale(1.01);
+  transform: scale(1.01) translateY(-5px);
 }
 
 .infoProdutos {

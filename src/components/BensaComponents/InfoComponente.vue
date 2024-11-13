@@ -1,81 +1,88 @@
 <template>
     <div class="user-container">
-        <form @submit.prevent="formCadastro" class="user-form">
-            <div class="user-header">
-                <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="user-logo" />
-                <div class="user-title-section">
-                    <div class="user-titulos">
-                        <RouterLink to="/" class="user-titulo">Sign Up</RouterLink>
-                        <RouterLink to="/" class="user-titulo">Login</RouterLink>
-                    </div>
-                    <div class="user-underline"></div>
-                </div>
+      <form @submit.prevent="formCadastro" class="user-form">
+        <div class="user-header">
+          <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="user-logo" />
+          <div class="user-title-section">
+            <div class="user-titulos">
+              <RouterLink to="/" class="user-titulo">Sign Up</RouterLink>
+              <RouterLink to="/" class="user-titulo">Login</RouterLink>
             </div>
-            <h1>Informações Pessoais</h1>
-            <div class="user-form-grid">
-                <div class="user-form-grupo inline-group">
-                    <div class="nome-container">
-                        <label for="nome">Nome</label>
-                        <input v-model="form.nome" type="text" id="nome" required placeholder="Ex: João" />
-                    </div>
-                    <div class="sobrenome-container">
-                        <label for="sobrenome">Sobrenome</label>
-                        <input v-model="form.sobrenome" type="text" id="sobrenome" required placeholder="Ex: Silva" />
-                    </div>
-                </div>
-                <div class="user-form-grupo inline-group">
-                    <div class="telefone-container">
-                        <label for="telefone">Telefone</label>
-                        <input v-model="form.telefone" type="text" id="telefone" required placeholder="Ex: (11) 91234-5678" />
-                    </div>
-                    <div class="email-container">
-                        <label for="email">E-mail</label>
-                        <input v-model="form.email" type="email" id="email" required placeholder="Ex: exemplo@dominio.com" />
-                    </div>
-                </div>
-                <div class="user-form-grupo inline-group">
-                    <div class="cpf-container">
-                        <label for="cpf">CPF</label>
-                        <input v-model="form.cpf" type="text" id="cpf" required placeholder="Ex: 123.456.789-00" />
-                    </div>
-                    <div class="data-nascimento-container">
-                        <label for="data-nascimento">Data de Nascimento</label>
-                        <input v-model="form.dataNascimento" type="date" id="data-nascimento" required />
-                    </div>
-                    <div class="sexo-container">
-                        <label for="sexo">Sexo</label>
-                        <select v-model="form.sexo" id="sexo" required>
-                            <option value="">Selecione</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="user-underline"></div>
+          </div>
+        </div>
+        <h1>Informações Pessoais</h1>
+        <div class="user-form-grid">
+          <div class="user-form-grupo inline-group">
+            <div class="nome-container">
+              <label for="nome">Nome</label>
+              <input v-model="loginStore.clienteInfo.nome" type="text" id="nome" required placeholder="Ex: João" />
             </div>
-            <div class="user-form-buttons">
-                <router-link to="/" class="large-button">Próximo</router-link>
+            <div class="sobrenome-container">
+              <label for="sobrenome">Sobrenome</label>
+              <input v-model="loginStore.clienteInfo.sobrenome" type="text" id="sobrenome" required placeholder="Ex: Silva" />
             </div>
-        </form>
+          </div>
+          <div class="user-form-grupo inline-group">
+            <div class="telefone-container">
+              <label for="telefone">Telefone</label>
+              <input v-model="loginStore.clienteInfo.telefone" type="text" id="telefone" required placeholder="Ex: (11) 91234-5678" />
+            </div>
+            <div class="email-container">
+              <label for="email">E-mail</label>
+              <input v-model="loginStore.clienteInfo.email" type="email" id="email" required placeholder="Ex: exemplo@dominio.com" />
+            </div>
+          </div>
+          <div class="user-form-grupo inline-group">
+            <div class="cpf-container">
+              <label for="cpf">CPF</label>
+              <input v-model="loginStore.clienteInfo.cpf" type="text" id="cpf" required placeholder="Ex: 123.456.789-00" />
+            </div>
+            <div class="data-nascimento-container">
+              <label for="data-nascimento">Data de Nascimento</label>
+              <input v-model="loginStore.clienteInfo.dataNascimento" type="date" id="data-nascimento" required />
+            </div>
+            <div class="sexo-container">
+              <label for="sexo">Sexo</label>
+              <select v-model="loginStore.clienteInfo.sexo" id="sexo" required>
+                <option value="">Selecione</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="user-form-buttons">
+            <router-link to="/">
+          <button type="submit" class="large-button">Salvar</button>
+        </router-link>
+        </div>
+      </form>
     </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const form = ref({
-    nome: '',
-    sobrenome: '',
-    telefone: '',
-    email: '',
-    cpf: '',
-    dataNascimento: '',
-    sexo: ''
-});
-
-const formCadastro = () => {
-};
-</script>
+  </template>
+  
+  <script setup>
+  import { ref, computed } from 'vue'
+  import { useLoginStore } from '@/stores/login';
+  
+  const loginStore = useLoginStore();
+  
+  // Função que será chamada no submit do formulário
+  const formCadastro = () => {
+    // Aqui podemos chamar a action para atualizar o cliente se necessário
+    loginStore.atualizarCliente({
+      nome: loginStore.clienteInfo.nome,
+      sobrenome: loginStore.clienteInfo.sobrenome,
+      telefone: loginStore.clienteInfo.telefone,
+      email: loginStore.clienteInfo.email,
+      cpf: loginStore.clienteInfo.cpf,
+      dataNascimento: loginStore.clienteInfo.dataNascimento,
+      sexo: loginStore.clienteInfo.sexo
+    });
+    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
+  };
+  </script>
 
 <style scoped>
 .user-container {

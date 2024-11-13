@@ -8,7 +8,8 @@ const carrinho = ref([
 ])
 
 function addCarrinho(item){
-  carrinho.value.push(item)
+  carrinho.value.push(item);
+  alert(`Seu produto foi adicionado ao carrinho!`);
 }
 
 function deleteProductById(id){

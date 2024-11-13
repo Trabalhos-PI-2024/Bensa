@@ -3,7 +3,7 @@
     <div class="ImgLogin">
       <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="logo" />
     </div>
-    <form method="post" action="">
+    <form method="post" @submit.prevent="formCadastro" >
       <div class="form-header">
         <router-link to="/">Sign Up</router-link>
         <router-link to="/">Login</router-link>
@@ -14,12 +14,12 @@
 
       <p>
         <label for="nome_cad">Seu e-mail</label>
-        <input id="nome_cad" name="nome_cad" type="text" placeholder="xaolinmatador@gmail.com" />
+        <input v-model="loginStore.clienteInfo.email" id="nome_cad" name="nome_cad" type="text" placeholder="xaolinmatador@gmail.com" />
       </p>
 
       <p>
         <label for="email_cad">Sua Senha</label>
-        <input id="email_cad" name="email_cad" type="email" placeholder="1234" />
+        <input v-model="loginStore.clienteInfo.senha" id="email_cad" name="email_cad" type="email" placeholder="1234" />
       </p>
 
       <p>
@@ -40,6 +40,20 @@
     </form>
   </div>
 </template>
+<script setup>
+import { ref } from 'vue';
+import { useLoginStore } from '@/stores/login';
+
+const loginStore = useLoginStore();
+
+  const formCadastro = () => {
+    loginStore.atualizarCliente({
+      estado: loginStore.clienteInfo.estado,
+      cidade: loginStore.clienteInfo.cidade,
+    });
+    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
+  };
+</script>
 
 <style scoped>
 * {

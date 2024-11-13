@@ -30,12 +30,14 @@
       <img src="/src/assets/img/roupas/Roupa.jpg" alt="Acessórios" />
     </div>
   </div>
-  <div class="line">
+  <marquee direction="right" class="line">
+    <div class="line">
     <img src="/src/assets/img/Lancamentos/truck-loading-load-a-truck-svgrepo-com.svg" alt="">
     <p>Frete grátis para a região sul e sudeste a partir de R$ 299</p>
     <img src="/src/assets/img/Lancamentos/label-svgrepo-com.svg" alt="">
     <p>5% Desconto no PIX</p>
   </div>
+  </marquee>
 </template>
 
 <script setup>
@@ -143,12 +145,12 @@ atualizarProdutosPorPagina()
   flex-direction: column;
   border: 1px solid #e7e7e7;
   padding: 10px 20px 0 20px;
-  transition: all .2s ease;
+  transition: all .3s ease;
   border-radius: 5px;
 }
 
 .acessorios .mainAcessorios .produtos:hover {
-  transform: scale(1.01);
+  transform: scale(1.01) translateY(-5px);
 }
 
 .infoProdutos {
@@ -200,8 +202,11 @@ atualizarProdutosPorPagina()
   border: 1px solid #e7e7e7;
 }
 
-.line {
+marquee{
   width: 100%;
+}
+
+.line {
   display: flex;
   justify-content: center;
   align-items: center;
