@@ -9,6 +9,8 @@ export const useLoginStore = defineStore('login', () => {
       sobrenome: "",
       cidade: "",
       estado: "",
+      email: "",
+      senha: "",
     }
   ]);
 
