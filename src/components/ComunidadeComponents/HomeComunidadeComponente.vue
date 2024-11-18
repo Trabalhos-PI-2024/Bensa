@@ -1,5 +1,9 @@
 <template>
   <div class="comunidade-page">
+    <LoginAlert v-if="showAlert" @close="showAlert = false" />
+  </div>
+
+  <div class="comunidade-page">
     <h1>Em Alta</h1>
     <CarroselComponente />
 
@@ -87,17 +91,18 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import CarroselComponente from '@/components/ComunidadeComponents/CarroselComponente.vue';
 import MaisVendidosComponente from '@/components/ComunidadeComponents/MaisVendidosComponente.vue';
+import LoginAlert from "@/components/BensaComponents/AlertaComponente.vue";
 import { useComunidadeStore } from '@/stores/comunidade';
 import { useCarrinhoStore } from '@/stores/carrinho';
-  import { useRouter } from 'vue-router';
-  
-  const carrinhoStore = useCarrinhoStore();
+import { useRouter } from 'vue-router';
 
+const carrinhoStore = useCarrinhoStore();
 const comunidadeStore = useComunidadeStore();
 const router = useRouter();
+const showAlert = ref(true); 
 
 function visualizar(id) {
   router.push(`/produto/${id}`);
@@ -116,6 +121,7 @@ const lancamento = computed(() =>
   comunidadeStore.comunidade.filter(comunidade => comunidade.lancamento)
 );
 </script>
+
 
 <style scoped>
 .comunidade-page {
