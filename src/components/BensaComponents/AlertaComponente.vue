@@ -1,28 +1,24 @@
 <template>
     <div class="alert-container">
       <div class="alert-card">
-        <img src="/src/assets/img/Icons/globe.png" alt="Sirene" class="alert-image" />
+        <img src="/src/assets/img/Icons/alarm.png" alt="Sirene" class="alert-image" />
         <p class="alert-text">
           Se quiser utilizar a comunidade, faça login ou registre-se.
         </p>
         <div class="alert-buttons">
-          <!-- Botão que exibe o componente de Login -->
           <button class="alert-button" @click="showLogin = true">Fazer Login</button>
-          <!-- Botão de Voltar que fecha o Login -->
           <button class="voltar-button" @click="showLogin = false">Voltar</button>
         </div>
       </div>
   
-      <!-- Aqui o LoginComponente será exibido quando showLogin for true -->
       <LoginComponente v-if="showLogin" />
     </div>
   </template>
   
   <script setup>
   import { ref } from "vue";
-  import LoginComponente from "./LoginComponente.vue"; // Importe o componente de login
+  import LoginComponente from "./LoginComponente.vue"; 
   
-  // Controla a exibição do LoginComponente
   const showLogin = ref(false);
   </script>
   
@@ -64,18 +60,19 @@
   .alert-buttons {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 90px;
   }
   
   .alert-button,
   .voltar-button {
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+  
   }
   
   .alert-button:hover {
