@@ -7,7 +7,7 @@
         </p>
         <div class="alert-buttons">
           <button class="alert-button" @click="showLogin = true">Fazer Login</button>
-          <button class="voltar-button" @click="showLogin = false">Voltar</button>
+          <router-link to="/"><button class="voltar-button" @click="showLogin = false">Voltar</button></router-link>
         </div>
       </div>
   
