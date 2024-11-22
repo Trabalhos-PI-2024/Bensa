@@ -120,7 +120,7 @@ atualizarProdutosPorPagina()
 }
 
 .lancamentos .product:hover {
-  transform: scale(1.03);
+  transform: scale(1.03) translateY(-5px);
 }
 
 .lancamentos .product img {

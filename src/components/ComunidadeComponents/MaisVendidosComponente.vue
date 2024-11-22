@@ -55,6 +55,11 @@ function visualizar(id) {
   padding: 10px;
   border-bottom: 1px solid #ccc;
   width: 500px;
+  transition: all .5s ease;
+}
+
+.release-item:hover{
+  transform: translateY(-5px);
 }
 
 .release-details {
