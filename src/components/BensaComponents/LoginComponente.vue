@@ -1,9 +1,22 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useLoginStore } from '@/stores/login';
+import AlertaComponente from './AlertaComponente.vue';
 
+const loginStore = useLoginStore();
 const router = useRouter();
+
 const isOpen = ref(true);
+const email = loginStore.clienteInfo.email;
+const senha = loginStore.clienteInfo.senha;
+const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
+const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
+
+// Função para fechar o componente de alerta
+const closeComponent = () => {
+  loginStore.closeComponent(); // Chama a função da store para esconder o alerta
+};
 
 function closeModal() {
   isOpen.value = false;
@@ -13,6 +26,23 @@ function goToCadastro() {
   closeModal();
   router.push('/cadastro');
 }
+
+function validacao() {
+  if (confirmarEmail === email && confirmarSenha === senha) {
+    closeModal();
+    closeComponent(); // Fecha o componente de alerta ao realizar a validação
+  } else {
+    alert('Erro!! Verifique se digitou seu Email ou Senha certo.');
+  }
+}
+
+const formCadastro = () => {
+  loginStore.atualizarCliente({
+    confirmarEmail: loginStore.clienteInfo.confirmarEmail,
+    confirmarSenha: loginStore.clienteInfo.confirmarSenha,
+  });
+  console.log('Dados do cliente atualizados', loginStore.clienteInfo);
+};
 </script>
 
 <template>
@@ -22,17 +52,17 @@ function goToCadastro() {
       <div class="ImgLogin">
         <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="logo" />
       </div>
-      <form method="post" action="">
+      <form method="post"  @submit.prevent="formCadastro" >
         <div class="form-header">
           <a href="#" class="active">Login</a>
           <a href="#" @click="goToCadastro" class="sign-up">Sign Up</a>
         </div>
         <div class="line"></div>
         <p>
-          <input id="email_login" name="email_login" required type="text" placeholder="EMAIL" />
+          <input id="email_login" name="email_login" required type="text" v-model="loginStore.clienteInfo.confirmarEmail" placeholder="EMAIL" />
         </p>
         <p>
-          <input id="senha_login" name="senha_login" required type="password" placeholder="SENHA" />
+          <input id="senha_login" name="senha_login" required type="password" v-model="loginStore.clienteInfo.confirmarSenha" placeholder="SENHA" />
         </p>
         <div class="login-options">
           <div class="login-options-group">
@@ -42,7 +72,7 @@ function goToCadastro() {
           <a href="#forgot-password" class="forgot-password">Esqueci a Senha</a>
         </div>
         <div class="user-form-buttons">
-          <button @click="closeModal" class="large-button">Próximo</button>
+          <button class="large-button" @click="validacao()">Próximo</button>
         </div>
         <p class="link">
           Ainda não tem conta?
@@ -52,7 +82,6 @@ function goToCadastro() {
     </div>
   </div>
 </template>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');

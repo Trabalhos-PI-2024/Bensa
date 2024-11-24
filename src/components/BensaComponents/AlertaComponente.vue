@@ -1,26 +1,30 @@
 <template>
-    <div class="alert-container">
-      <div class="alert-card">
-        <img src="/src/assets/img/Icons/alarm.png" alt="Sirene" class="alert-image" />
-        <p class="alert-text">
-          Se quiser utilizar a comunidade, faça login ou registre-se.
-        </p>
-        <div class="alert-buttons">
-          <button class="alert-button" @click="showLogin = true">Fazer Login</button>
-          <router-link to="/"><button class="voltar-button" @click="showLogin = false">Voltar</button></router-link>
-        </div>
+  <div class="alert-container" v-if="loginStore.isComponentVisible">
+    <div class="alert-card"> 
+      <img src="/src/assets/img/Icons/alarm.png" alt="Sirene" class="alert-image" />
+      <p class="alert-text">
+        Se quiser utilizar a comunidade, faça login ou registre-se.
+      </p>
+      <div class="alert-buttons">
+        <button class="alert-button" @click="showLogin = true">Fazer Login</button>
+        <router-link to="/">
+          <button class="voltar-button" @click="showLogin = false">Voltar</button>
+        </router-link>
       </div>
-  
-      <LoginComponente v-if="showLogin" />
     </div>
-  </template>
-  
-  <script setup>
-  import { ref } from "vue";
-  import LoginComponente from "./LoginComponente.vue"; 
-  
-  const showLogin = ref(false);
-  </script>
+
+    <LoginComponente v-if="showLogin" />
+  </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import LoginComponente from "./LoginComponente.vue"; 
+import { useLoginStore } from '@/stores/login';
+
+const loginStore = useLoginStore();
+const showLogin = ref(false);
+</script>
   
   <style scoped>
   .alert-container {
