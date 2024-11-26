@@ -80,7 +80,7 @@ function closeModal() {
 }
 
 .produtosCarrinho{
-  max-height: 55dvh;
+  max-height: 50dvh;
   overflow-y: auto;
 }
 
@@ -199,6 +199,10 @@ function closeModal() {
   .fecharCarrinho {
     right: 5px;
   }
+  .produtosCarrinho{
+  max-height: 30dvh;
+  overflow-y: auto;
+}
 }
 @media (max-width: 520px) {
   .infoCarrinhoContainer {

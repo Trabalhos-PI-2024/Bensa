@@ -160,8 +160,9 @@ const lancamento = computed(() =>
 
 .banner img {
   width: 100%;
-  height: 57vh;
+  height: 57vh;   
   border-radius: 8px;
+  object-fit: cover;  
 }
 
 .titulo-calçados {

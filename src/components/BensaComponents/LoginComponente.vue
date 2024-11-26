@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useLoginStore } from '@/stores/login';
-import AlertaComponente from './AlertaComponente.vue';
 
 const loginStore = useLoginStore();
 const router = useRouter();
@@ -10,12 +9,9 @@ const router = useRouter();
 const isOpen = ref(true);
 const email = loginStore.clienteInfo.email;
 const senha = loginStore.clienteInfo.senha;
-const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
-const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
 
-// Função para fechar o componente de alerta
 const closeComponent = () => {
-  loginStore.closeComponent(); // Chama a função da store para esconder o alerta
+  loginStore.closeComponent();
 };
 
 function closeModal() {
@@ -27,15 +23,6 @@ function goToCadastro() {
   router.push('/cadastro');
 }
 
-function validacao() {
-  if (confirmarEmail === email && confirmarSenha === senha) {
-    closeModal();
-    closeComponent(); // Fecha o componente de alerta ao realizar a validação
-  } else {
-    alert('Erro!! Verifique se digitou seu Email ou Senha certo.');
-  }
-}
-
 const formCadastro = () => {
   loginStore.atualizarCliente({
     confirmarEmail: loginStore.clienteInfo.confirmarEmail,
@@ -43,6 +30,18 @@ const formCadastro = () => {
   });
   console.log('Dados do cliente atualizados', loginStore.clienteInfo);
 };
+
+const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
+const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
+
+function validacao() {
+  if (confirmarEmail == !email && confirmarSenha == !senha) {
+    closeModal();
+    closeComponent();
+  } else {
+    alert('Erro!! Verifique se digitou seu Email ou Senha certo.');
+  }
+}
 </script>
 
 <template>

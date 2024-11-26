@@ -18,12 +18,13 @@
 <style scoped>
 .allMarcas {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     padding: 10px 200px;
     background-color: #ffffff;
     border-bottom: 1px solid #e7e7e7e7;
+    min-width: 700px;
+    overflow-x: auto;
 }
 
 .marcas img {
@@ -61,12 +62,12 @@
 @media (max-width: 1200px) {
     .allMarcas {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 0px;
     background-color: #ffffff;
     border-bottom: 1px solid #e7e7e7e7;
+    overflow-x: auto;
 }
 
 }
@@ -81,14 +82,5 @@
 width: 108px;
 }
 }
-
-@media (max-width: 500px) {
-    .allMarcas {
-        padding: 25px;
-        gap: 10px 115px;
-}
-
-}
-
 
 </style>
