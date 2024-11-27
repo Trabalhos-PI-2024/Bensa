@@ -25,12 +25,12 @@
           <ul>
             <li class="logo-social">
               <a href="https://www.twitter.com">
-                <img src="/src/assets/img/Icons/icons8-twitter.svg" alt="Logo" />
+                <img src="/src/assets/img/Icons/twitter.png" alt="Logo" />
               </a>
             </li>
             <li id="insta" class="logo-social">
               <a href="https://www.instagram.com">
-                <img src="/src/assets/img/Icons/icons8-insta.svg" alt="Logo" />
+                <img src="/src/assets/img/Icons/facebook.png" alt="Logo" />
               </a>
             </li>
           </ul>
@@ -76,13 +76,14 @@
 }
 
 .footer-section {
-  margin-right: 80px;
+  margin-right: 90px;
   padding-bottom: 10px;
 }
 
 .footer-section h3 {
-  padding-bottom: 5px;
+  padding: 5px;
   border-bottom: 1px solid #444;
+  
 }
 
 .footer-section ul {
@@ -91,7 +92,7 @@
 }
 
 .footer-section li {
-  padding: 8px;
+  padding: 4px;
   color: #fff;
 }
 
@@ -112,13 +113,9 @@
 }
 
 .logo-social img {
-  height: 40px;
+  height: 30px;
   padding-top: 5px;
   margin-right: 70px;
-}
-
-#insta {
-  margin-right: 5px;
 }
 
 .bottom-footer {
@@ -132,7 +129,6 @@ hr {
   margin: auto;
   max-width: 1650px;
 }
-
 
 @media (max-width: 768px) {
   .footer-content {

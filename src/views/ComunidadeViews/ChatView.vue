@@ -58,6 +58,8 @@
     width: 50%;
     height: 70vh;
     margin: auto;
+    margin-top: 30px;
+    margin-bottom:30px ;
     display: flex;
     flex-direction: column;
     background-color: #f9f9f9;
@@ -168,7 +170,7 @@
   .finalize-button {
     margin: 10px;
     padding: 10px 15px;
-    background-color: #28a745;
+    background-color: #7a1616;
     color: white;
     border: none;
     border-radius: 20px;
@@ -178,7 +180,7 @@
   }
   
   .finalize-button:hover {
-    background-color: #218838;
+    background-color: #5a0f0f;
   }
   
   
