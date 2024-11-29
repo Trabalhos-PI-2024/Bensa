@@ -138,7 +138,7 @@
     flex: 1;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 12px;
     margin-right: 10px;
     transition: border-color 0.3s ease;
   }
@@ -173,7 +173,7 @@
     background-color: #7a1616;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 12px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -187,6 +187,8 @@
   @media (max-width: 768px) {
     .chat-container {
       width: 100%;
+      margin: 0;
+      border-radius: 0;
     }
   
     .seller-name {
@@ -200,6 +202,11 @@
     .send-button,
     .finalize-button {
       padding: 8px;
+      transform: scale(.9);
+    }
+
+    .finalize-button{
+      margin: 10px 10px 10px 0;
     }
   }
   

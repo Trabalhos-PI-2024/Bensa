@@ -162,7 +162,7 @@ export const useProductStore = defineStore('product', () => {
     },
     {
       id: 8,
-      name: 'Bolsa Nike',
+      name: 'Tênis Vans',
       price: 'R$299,99',
       image1: mochila1vans,
       price: 299,
@@ -261,7 +261,7 @@ export const useProductStore = defineStore('product', () => {
     },
     { 
       id: 17, 
-      name: 'Chapéu Vans 1', 
+      name: 'Boné Vans', 
       price: 'R$59,99', 
       image1: chapeu1vans,
       price: 150,

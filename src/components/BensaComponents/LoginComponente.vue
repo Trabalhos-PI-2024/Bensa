@@ -2,6 +2,26 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useLoginStore } from '@/stores/login';
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
+
+const exibirErro = () => {
+  toast.error("Erro!! Verifique se digitou seu Email ou Senha certo.", {
+    position: "top-center",
+    timeout: 3143,
+    closeOnClick: true,
+    pauseOnFocusLoss: true,
+    pauseOnHover: true,
+    draggable: true,
+    draggablePercent: 0.93,
+    showCloseButtonOnHover: false,
+    hideProgressBar: true,
+    closeButton: "button",
+    icon: true,
+    rtl: false,
+  });
+};
 
 const loginStore = useLoginStore();
 const router = useRouter();
@@ -39,7 +59,7 @@ function validacao() {
     closeModal();
     closeComponent();
   } else {
-    alert('Erro!! Verifique se digitou seu Email ou Senha certo.');
+    exibirErro();
   }
 }
 </script>
