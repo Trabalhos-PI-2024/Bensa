@@ -43,6 +43,7 @@ const carrinhoStore = useCarrinhoStore();
   const router = useRouter();
   const returnToHome = () => {
     router.push('/');
+    carrinhoStore.deleteAllProductById();
   };
 
   const totalAPagar = computed(() => {

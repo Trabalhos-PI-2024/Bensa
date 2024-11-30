@@ -29,6 +29,8 @@ const router = useRouter();
 const isOpen = ref(true);
 const email = loginStore.clienteInfo.email;
 const senha = loginStore.clienteInfo.senha;
+const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
+const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
 
 const closeComponent = () => {
   loginStore.closeComponent();
@@ -50,9 +52,6 @@ const formCadastro = () => {
   });
   console.log('Dados do cliente atualizados', loginStore.clienteInfo);
 };
-
-const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
-const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
 
 function validacao() {
   if (confirmarEmail == !email && confirmarSenha == !senha) {

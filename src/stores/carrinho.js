@@ -37,6 +37,18 @@ function deleteProductById(id){
     carrinho.value.splice(pos, 1)
   }
 
-return { carrinho, addCarrinho, deleteProductById }
+  function deleteAllProductById(){
+    carrinho.value = []
+  }
+
+  let isOpen = ref(false);
+
+  function closeModal() {
+    console.log("Fechando o modal...", isOpen.value);
+    $patch({ isOpen: false });
+    console.log("Novo estado:", isOpen.value);
+  }
+
+return { carrinho, addCarrinho, deleteProductById, deleteAllProductById, closeModal, isOpen }
 
 })
