@@ -12,6 +12,7 @@
     "backend": "json-server --watch db/db.json"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "json-server": "^1.0.0-beta.3",
     "pinia": "^2.2.5",
     "swiper": "^11.1.14",
