@@ -5,19 +5,10 @@
         <div class="footer-section">
           <h3>Marcas</h3>
           <ul>
-            <router-link to="/nike">
-              <li>Nike</li>
-            </router-link>
-            <router-link to="/adidas">
-              <li>Adidas</li>
-            </router-link>
-            <router-link to="/vans">
-              <li>Vans</li>
-            </router-link>
-            <router-link to="/stussy">
-              <li>Stussy</li>
-            </router-link>
-
+              <li @click="handleScrollToHeader('/nike')">Nike</li>
+              <li @click="handleScrollToHeader('/adidas')">Adidas</li>
+              <li @click="handleScrollToHeader('/vans')">Vans</li>
+              <li @click="handleScrollToHeader('/stussy')">Stussy</li>
           </ul>
         </div>
         <div class="footer-section">
@@ -51,6 +42,28 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const mainHeader = ref(null);
+
+function handleScrollToHeader(path) {
+  setTimeout(() => {
+    if (mainHeader.value) {
+      mainHeader.value.scrollIntoView({ behavior: 'smooth' });
+      console.log("vai tomando");
+    } else {
+      console.log("Elemento mainHeader não encontrado.");
+    }
+    router.push(path);
+  }, 500);
+}
+
+</script>
 
 <style scoped>
 .footer {

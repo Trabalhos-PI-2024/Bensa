@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="header">
+    <div class="header" ref="mainHeader">
       <div class="mainHeader">
         <div class="hamburger" @click="toggleMenu">
           <div :class="{ open: isMenuOpen }">
