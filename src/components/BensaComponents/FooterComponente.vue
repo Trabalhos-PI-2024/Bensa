@@ -5,19 +5,10 @@
         <div class="footer-section">
           <h3>Marcas</h3>
           <ul>
-            <router-link to="/nike">
-              <li>Nike</li>
-            </router-link>
-            <router-link to="/adidas">
-              <li>Adidas</li>
-            </router-link>
-            <router-link to="/vans">
-              <li>Vans</li>
-            </router-link>
-            <router-link to="/stussy">
-              <li>Stussy</li>
-            </router-link>
-
+              <li @click="handleScrollToHeader('/nike')">Nike</li>
+              <li @click="handleScrollToHeader('/adidas')">Adidas</li>
+              <li @click="handleScrollToHeader('/vans')">Vans</li>
+              <li @click="handleScrollToHeader('/stussy')">Stussy</li>
           </ul>
         </div>
         <div class="footer-section">
@@ -25,12 +16,12 @@
           <ul>
             <li class="logo-social">
               <a href="https://www.twitter.com">
-                <img src="/src/assets/img/Icons/icons8-twitter.svg" alt="Logo" />
+                <img src="/src/assets/img/Icons/twitter.png" alt="Logo" />
               </a>
             </li>
             <li id="insta" class="logo-social">
               <a href="https://www.instagram.com">
-                <img src="/src/assets/img/Icons/icons8-insta.svg" alt="Logo" />
+                <img src="/src/assets/img/Icons/facebook.png" alt="Logo" />
               </a>
             </li>
           </ul>
@@ -41,9 +32,9 @@
             Instituto Federal Catarinense - Campus Araquari de 2024.</p>
         </div>
       </div>
-      <div class="logo">
+      <a class="logo" href="https://youtu.be/vj4hp9XCT6A">
         <img src="/src/assets/img/Logos/hands.png" alt="Logo" />
-      </div>
+      </a>
     </div>
     <hr />
     <div class="bottom-footer">
@@ -51,6 +42,28 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const mainHeader = ref(null);
+
+function handleScrollToHeader(path) {
+  setTimeout(() => {
+    if (mainHeader.value) {
+      mainHeader.value.scrollIntoView({ behavior: 'smooth' });
+      console.log("vai tomando");
+    } else {
+      console.log("Elemento mainHeader não encontrado.");
+    }
+    router.push(path);
+  }, 500);
+}
+
+</script>
 
 <style scoped>
 .footer {
@@ -76,13 +89,14 @@
 }
 
 .footer-section {
-  margin-right: 80px;
+  margin-right: 90px;
   padding-bottom: 10px;
 }
 
 .footer-section h3 {
-  padding-bottom: 5px;
+  padding: 5px;
   border-bottom: 1px solid #444;
+  
 }
 
 .footer-section ul {
@@ -91,7 +105,7 @@
 }
 
 .footer-section li {
-  padding: 8px;
+  padding: 4px;
   color: #fff;
 }
 
@@ -112,13 +126,9 @@
 }
 
 .logo-social img {
-  height: 40px;
+  height: 30px;
   padding-top: 5px;
   margin-right: 70px;
-}
-
-#insta {
-  margin-right: 5px;
 }
 
 .bottom-footer {
@@ -132,7 +142,6 @@ hr {
   margin: auto;
   max-width: 1650px;
 }
-
 
 @media (max-width: 768px) {
   .footer-content {

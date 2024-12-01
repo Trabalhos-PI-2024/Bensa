@@ -4,7 +4,8 @@ import HeaderComunidadeComponente from './components/ComunidadeComponents/Header
 import FooterComponente from './components/BensaComponents/FooterComponente.vue';
 import { useRoute } from 'vue-router';
 
-const route = useRoute(); 
+const route = useRoute();
+
 </script>
 
 <template>

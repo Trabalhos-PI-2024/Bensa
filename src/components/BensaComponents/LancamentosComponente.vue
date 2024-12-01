@@ -143,16 +143,19 @@ atualizarProdutosPorPagina()
 .infoProdutos {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
   width: 100%;
   transition: all 0.5s ease;
   padding: 0 10px 10px 10px;
 }
 
 .lancamentos .product .infoProdutos .cart-image {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
 }
+
+
+
 
 .lancamentos .product .infoProdutos .divInfoProduto {
   display: flex;
@@ -181,6 +184,11 @@ atualizarProdutosPorPagina()
 
 .lancamentos .product .infoProdutos button {
   background: transparent;
+}
+
+.lancamentos .product .infoProdutos .divButtonCart{
+  position: relative;
+  top: 5px;
 }
 
 .navegacao {

@@ -1,7 +1,7 @@
 <template>
-  <div v-if="isOpen" class="divCarrinho">
+  <div v-if="carrinhoStore.isOpen" class="divCarrinho">
     <div class="fecharCarrinho">
-      <button @click="closeModal">
+      <button @click="carrinhoStore.closeModal()">
         <img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho">
       </button>
     </div>
@@ -29,13 +29,13 @@
         <span class="preco">{{ totalAPagar }}</span>
       </div>
       <div class="historico">
-        <router-link to="/historico">Histórico de Compras</router-link>
+        <router-link to="/historico" @click="carrinhoStore.closeModal()">Histórico de Compras</router-link>
       </div>
     </div>
 
     <router-link to="/revisar">
       <div class="buttonComprarCarrinho">
-        <button>COMPRAR</button>
+        <button @click="carrinhoStore.closeModal()">COMPRAR</button>
       </div>
     </router-link>
   </div>
@@ -47,15 +47,9 @@ import { useCarrinhoStore } from '@/stores/carrinho';
 
 const carrinhoStore = useCarrinhoStore();
 
-const isOpen = ref(true);
-
 const totalAPagar = computed(() => {
   return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price, 0).toFixed(2);
 });
-
-function closeModal() {
-  isOpen.value = false;
-}
 </script>
 
 <style scoped>
@@ -80,7 +74,7 @@ function closeModal() {
 }
 
 .produtosCarrinho{
-  max-height: 55dvh;
+  max-height: 50dvh;
   overflow-y: auto;
 }
 
@@ -199,6 +193,10 @@ function closeModal() {
   .fecharCarrinho {
     right: 5px;
   }
+  .produtosCarrinho{
+  max-height: 30dvh;
+  overflow-y: auto;
+}
 }
 @media (max-width: 520px) {
   .infoCarrinhoContainer {

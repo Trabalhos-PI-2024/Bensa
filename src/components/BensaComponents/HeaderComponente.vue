@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="header">
+    <div class="header" ref="mainHeader">
       <div class="mainHeader">
         <div class="hamburger" @click="toggleMenu">
           <div :class="{ open: isMenuOpen }">
@@ -43,7 +43,7 @@
       </div>
       
       <LoginComponente v-if="showLogin" />
-      <CarrinhoComponente v-if="showCart" :cartItems="cartItems" @close="toggleCart" />
+      <CarrinhoComponente v-if="carrinhoStore.isOpen" :cartItems="cartItems" @click="toggleCart" />
       
      
     </div>
@@ -55,10 +55,12 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
 import CarrinhoComponente from '../BensaComponents/CarrinhoComponente.vue'
+import { useCarrinhoStore } from '@/stores/carrinho';
+
+const carrinhoStore = useCarrinhoStore();
 
 
 const showLogin = ref(false)
-const showCart = ref(false)
 const cartItems = ref([])
 
 const toggleLogin = () => {
@@ -66,7 +68,7 @@ const toggleLogin = () => {
 }
 
 const toggleCart = () => {
-  showCart.value = !showCart.value
+  carrinhoStore.isOpen = !carrinhoStore.isOpen
 }
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)

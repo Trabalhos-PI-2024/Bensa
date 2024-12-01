@@ -58,6 +58,8 @@
     width: 50%;
     height: 70vh;
     margin: auto;
+    margin-top: 30px;
+    margin-bottom:30px ;
     display: flex;
     flex-direction: column;
     background-color: #f9f9f9;
@@ -136,7 +138,7 @@
     flex: 1;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 12px;
     margin-right: 10px;
     transition: border-color 0.3s ease;
   }
@@ -168,23 +170,25 @@
   .finalize-button {
     margin: 10px;
     padding: 10px 15px;
-    background-color: #28a745;
+    background-color: #7a1616;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 12px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
   .finalize-button:hover {
-    background-color: #218838;
+    background-color: #5a0f0f;
   }
   
   
   @media (max-width: 768px) {
     .chat-container {
       width: 100%;
+      margin: 0;
+      border-radius: 0;
     }
   
     .seller-name {
@@ -198,6 +202,11 @@
     .send-button,
     .finalize-button {
       padding: 8px;
+      transform: scale(.9);
+    }
+
+    .finalize-button{
+      margin: 10px 10px 10px 0;
     }
   }
   
