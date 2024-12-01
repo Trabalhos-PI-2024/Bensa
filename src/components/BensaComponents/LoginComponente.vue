@@ -54,7 +54,7 @@ const formCadastro = () => {
 };
 
 function validacao() {
-  if (confirmarEmail == !email && confirmarSenha == !senha) {
+  if (confirmarEmail == email && confirmarSenha == senha) {
     closeModal();
     closeComponent();
   } else {

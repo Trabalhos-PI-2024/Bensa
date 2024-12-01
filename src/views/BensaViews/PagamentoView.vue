@@ -66,6 +66,12 @@
       <h2>Pagamento via Pix</h2>
       <p>Escaneie o código QR abaixo com seu app de banco para realizar o pagamento.</p>
       <img src="/src/assets/img/Logos/WhatsApp Image 2024-11-04 at 19.59.54.jpeg" alt="QR Code Pix" class="qr-code">
+      <div class="pix-code-container">
+        <span class="pix-code">34191.79001 01043.510047 91020.150008 8 72170000001000</span>
+        <button class="copy-icon" @click="copyToClipboard">
+          <i class="fas fa-copy"></i> <img src="/src/assets/img/Icons/copy.png" alt="">
+        </button>
+      </div>
     </div>
     <div v-if="selectedPayment === 'boleto'" class="payment-boleto">
       <h2>Pagamento via Boleto</h2>
@@ -79,10 +85,21 @@
 <script setup>
 import { ref } from 'vue';
 
-const selectedPayment = ref('');
+const selectedPayment = ref(''); // Método de pagamento selecionado
 
 const submitPayment = () => {
   alert("Pagamento realizado com sucesso!");
+};
+
+const downloadBoleto = () => {
+  alert("Boleto para pagamento gerado com sucesso!");
+};
+
+// Função para copiar o código Pix para a área de transferência
+const copyToClipboard = () => {
+  const pixCode = document.querySelector('.pix-code');
+  navigator.clipboard.writeText(pixCode.textContent)
+
 };
 </script>
 
@@ -90,7 +107,8 @@ const submitPayment = () => {
 .payment-page {
   display: flex;
   flex-direction: column;
-  align-items: center;justify-content: center;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   background-color: #f1f1f1;
   padding-bottom: 100px;
@@ -209,36 +227,43 @@ h1 {
   margin: 20px auto;
 }
 
+.pix-code-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.pix-code {
+  font-family: monospace;
+  font-size: 18px;
+ 
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.copy-icon img {
+ width: 30px;
+ cursor: pointer;
+}
+
+.copy-icon:hover {
+  color: #7e201d;
+}
+
 .boleto-code {
   font-family: monospace;
   font-size: 18px;
-  margin: 10px 0;
+  color: #333;
+  background-color: #e8f5e9;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
 }
 
-@media (max-width: 1024px) {
-  .card-form {
-    width: 80%;
-  }
-}
-
-@media (max-width: 768px) {
-  .card-form {
-    width: 90%;
-  }
-  .steps {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .card-form {
-    width: 100%;
-  }
-  .steps {
-    flex-direction: column;
-  }
+.payment-boleto {
+  margin-top: 20px;
+  text-align: center;
 }
 </style>

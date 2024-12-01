@@ -20,16 +20,16 @@
   <script setup>
   import { ref } from 'vue';
   import { useEmailStore } from '@/stores/email';
-  import { useToast } from 'vue-toastification';  // Importando o Toastification
+  import { useToast } from 'vue-toastification';  
   
   const email = ref('');
   const emailStore = useEmailStore();
-  const toast = useToast();  // Usando a instância do Toast
+  const toast = useToast();  
   
   const enviarEmail = async () => {
     if (!email.value) {
       toast.error('Por favor, insira um e-mail válido.', {
-        position: "top-center",  // Alterado para "top-center"
+        position: "top-center",  
         timeout: 5000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
@@ -48,7 +48,7 @@
     try {
       await emailStore.enviarEmail(email.value);
       toast.success("E-mail enviado com sucesso!", {
-        position: "top-center",  // Alterado para "top-center"
+        position: "top-center",  
         timeout: 5000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
@@ -61,11 +61,11 @@
         icon: true,
         rtl: false
       });
-      email.value = ''; // Limpa o campo após envio
+      email.value = ''; 
     } catch (error) {
       console.error(error);
       toast.error("Erro ao enviar o e-mail.", {
-        position: "top-center",  // Alterado para "top-center"
+        position: "top-center",  
         timeout: 5000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
@@ -109,7 +109,7 @@
   
   .boxInputs .input-container {
     display: flex;
-    gap: 10px; /* Espaço entre o input e o botão */
+    gap: 10px; 
   }
   
   .boxInputs input {
@@ -118,7 +118,7 @@
     border-radius: 12px;
     border: 1px solid transparent;
     transition: all 0.5s ease;
-    flex-grow: 1; /* Faz o input crescer para ocupar o espaço disponível */
+    flex-grow: 1; 
   }
   
   .boxInputs input:hover {
