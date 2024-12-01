@@ -5,12 +5,14 @@
         <p>Quer saber das novidades na Bensa</p>
       </div>
       <div class="boxInputs">
-        <input
-          type="text"
-          v-model="email"
-          placeholder="Email"
-        />
-        <button @click="enviarEmail">Enviar</button>
+        <div class="input-container">
+          <input
+            type="text"
+            v-model="email"
+            placeholder="Email"
+          />
+          <button @click="enviarEmail">Enviar</button>
+        </div>
       </div>
     </div>
   </template>
@@ -27,7 +29,7 @@
   const enviarEmail = async () => {
     if (!email.value) {
       toast.error('Por favor, insira um e-mail válido.', {
-        position: "top-center",
+        position: "top-center",  // Alterado para "top-center"
         timeout: 5000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
@@ -45,8 +47,8 @@
   
     try {
       await emailStore.enviarEmail(email.value);
-      toast.success("E-mail cadastrado com sucesso!", {
-        position: "top-center",
+      toast.success("E-mail enviado com sucesso!", {
+        position: "top-center",  // Alterado para "top-center"
         timeout: 5000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
@@ -63,7 +65,7 @@
     } catch (error) {
       console.error(error);
       toast.error("Erro ao enviar o e-mail.", {
-        position: "top-center",
+        position: "top-center",  // Alterado para "top-center"
         timeout: 5000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
@@ -105,19 +107,25 @@
     gap: 10px;
   }
   
-  .boxOferta .boxInputs input {
+  .boxInputs .input-container {
+    display: flex;
+    gap: 10px; /* Espaço entre o input e o botão */
+  }
+  
+  .boxInputs input {
     padding: 8px;
     font-size: 16px;
     border-radius: 12px;
     border: 1px solid transparent;
     transition: all 0.5s ease;
+    flex-grow: 1; /* Faz o input crescer para ocupar o espaço disponível */
   }
   
-  .boxOferta .boxInputs input:hover {
+  .boxInputs input:hover {
     border: 1px solid #0d0d0d;
   }
   
-  .boxOferta .boxInputs button {
+  .boxInputs button {
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 12px;
@@ -126,7 +134,7 @@
     transition: all 0.5s ease;
   }
   
-  .boxOferta .boxInputs button:hover {
+  .boxInputs button:hover {
     border: 1px solid #0d0d0d;
     transform: scale(1.05);
   }
