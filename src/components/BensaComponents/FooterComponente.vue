@@ -32,9 +32,9 @@
             Instituto Federal Catarinense - Campus Araquari de 2024.</p>
         </div>
       </div>
-      <div class="logo">
+      <a class="logo" href="https://youtu.be/vj4hp9XCT6A">
         <img src="/src/assets/img/Logos/hands.png" alt="Logo" />
-      </div>
+      </a>
     </div>
     <hr />
     <div class="bottom-footer">

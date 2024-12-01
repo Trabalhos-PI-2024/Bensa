@@ -49,7 +49,7 @@
       await emailStore.enviarEmail(email.value);
       toast.success("E-mail enviado com sucesso!", {
         position: "top-center",  
-        timeout: 5000,
+        timeout: 3000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
         pauseOnHover: true,
@@ -64,9 +64,9 @@
       email.value = ''; 
     } catch (error) {
       console.error(error);
-      toast.error("Erro ao enviar o e-mail.", {
+      toast.error("E-mail inválido.", {
         position: "top-center",  
-        timeout: 5000,
+        timeout: 3000,
         closeOnClick: true,
         pauseOnFocusLoss: true,
         pauseOnHover: true,
