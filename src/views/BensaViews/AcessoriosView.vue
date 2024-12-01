@@ -5,10 +5,15 @@
     </div>
     <div class="main-content">
       <aside class="filter-container">
-        <input type="text" placeholder="Filtrar produtos" class="filter-input" />
+        <input
+          type="text"
+          placeholder="Filtrar produtos"
+          class="filter-input"
+          v-model="filterText"
+        />
       </aside>
       <div class="product-list">
-        <div class="product-item" v-for="product in acessorios" :key="product.id" :product="product">
+        <div class="product-item" v-for="product in filteredProducts" :key="product.id" :product="product">
           <button class="btn-more" @click="visualizar(product.id)">
     <img :src="product.image1" :alt="product.name" class="product-image" />
   </button>
@@ -28,7 +33,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useProductStore } from '@/stores/products';
 import { useCarrinhoStore } from '@/stores/carrinho';
 import { useRouter } from 'vue-router';
@@ -43,9 +48,13 @@ function visualizar(id) {
 
 const productStore = useProductStore();
 
+const filterText = ref('')
 
-const acessorios = computed(() =>
-  productStore.products.filter(product => product.acessoriosView)
+const filteredProducts = computed(() => 
+  productStore.products.filter(product => 
+    product.acessoriosView && 
+    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
+  )
 );
 </script>
 

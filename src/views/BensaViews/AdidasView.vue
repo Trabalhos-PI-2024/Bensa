@@ -5,49 +5,65 @@
     </div>
     <div class="main-content">
       <aside class="filter-container">
-        <input type="text" placeholder="Filtrar produtos" class="filter-input" />
+        <input
+          type="text"
+          placeholder="Filtrar produtos"
+          class="filter-input"
+          v-model="filterText"
+        />
       </aside>
       <div class="product-list">
-        <div class="product-item" v-for="product in adida" :key="product.id" :product="product">
+        <div
+          class="product-item"
+          v-for="product in filteredProducts"
+          :key="product.id"
+          :product="product"
+        >
           <button class="btn-more" @click="visualizar(product.id)">
-    <img :src="product.image1" :alt="product.name" class="product-image" />
-  </button>
-    <div class="buttons">
-      <div>
-      <h3>{{ product.name }}</h3>
-      <p>R${{ product.price }}</p>
-      </div>
-      <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
-        <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
-      </button>
-    </div>
-  </div>
+            <img :src="product.image1" :alt="product.name" class="product-image" />
+          </button>
+          <div class="buttons">
+            <div>
+              <h3>{{ product.name }}</h3>
+              <p>R${{ product.price }}</p>
+            </div>
+            <button class="btn-cart" @click="carrinhoStore.addCarrinho(product)">
+              <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" class="cart-image" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useProductStore } from '@/stores/products';
-import { useCarrinhoStore } from '@/stores/carrinho';
-import { useRouter } from 'vue-router';
+import { ref, computed } from 'vue'
+import { useProductStore } from '@/stores/products'
+import { useCarrinhoStore } from '@/stores/carrinho'
+import { useRouter } from 'vue-router'
 
-const carrinhoStore = useCarrinhoStore();
-
+const carrinhoStore = useCarrinhoStore()
 const router = useRouter()
 
 function visualizar(id) {
   router.push(`/produto/${id}`)
 }
 
-const productStore = useProductStore();
+const productStore = useProductStore()
 
+// Propriedade reativa para o texto de filtro
+const filterText = ref('')
 
-const adida = computed(() =>
-  productStore.products.filter(product => product.adidas)
+const filteredProducts = computed(() => 
+  productStore.products.filter(product => 
+    product.adidas && 
+    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
+  )
 );
+
 </script>
+
 
 <style scoped>
 .page-container {
@@ -77,12 +93,12 @@ const adida = computed(() =>
   align-items: center;
 }
 
-.buttons div h3{
+.buttons div h3 {
   font-size: 14px;
   font-weight: 600;
 }
 
-.buttons div p{
+.buttons div p {
   color: #025213;
   font-weight: 600;
   font-size: 13px;
@@ -124,10 +140,10 @@ const adida = computed(() =>
   height: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.product-item:hover{
+.product-item:hover {
   transform: scale(1.01) translateY(-5px);
 }
 
@@ -149,7 +165,7 @@ button {
   font-size: 14px;
 }
 
-.buttons h3{
+.buttons h3 {
   font-size: 14px;
   font-weight: 600;
 }
