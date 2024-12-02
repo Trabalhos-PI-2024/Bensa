@@ -23,7 +23,7 @@
     padding: 10px 200px;
     background-color: #ffffff;
     border-bottom: 1px solid #e7e7e7e7;
-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .marcas img {
@@ -73,11 +73,11 @@ flex-wrap: wrap;
 @media (max-width: 768px) {
 
 .marcas img {
-    width: 40px;
+    width: 57px;
 }
 
 .marcas:nth-child(3) img{
-width: 60px;
+width: 80px;
 }
 }
 
