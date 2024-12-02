@@ -2,29 +2,40 @@
   <footer class="footer">
     <div class="top-footer">
       <div class="footer-content">
-        <div class="footer-section">
-          <h3>Marcas</h3>
-          <ul>
-              <li @click="handleScrollToHeader('/nike')">Nike</li>
-              <li @click="handleScrollToHeader('/adidas')">Adidas</li>
-              <li @click="handleScrollToHeader('/vans')">Vans</li>
-              <li @click="handleScrollToHeader('/stussy')">Stussy</li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Redes Sociais</h3>
-          <ul>
-            <li class="logo-social">
-              <a href="https://www.twitter.com">
-                <img src="/src/assets/img/Icons/twitter.png" alt="Logo" />
-              </a>
-            </li>
-            <li id="insta" class="logo-social">
-              <a href="https://www.instagram.com">
-                <img src="/src/assets/img/Icons/facebook.png" alt="Logo" />
-              </a>
-            </li>
-          </ul>
+        <div class="mainFooter">
+          <div class="footer-section">
+            <h3>Marcas</h3>
+            <ul>
+              <router-link to="/nike">
+                <li>Nike</li>
+              </router-link>
+              <router-link to="/adidas">
+                <li>Adidas</li>
+              </router-link>
+              <router-link to="/vans">
+                <li>Vans</li>
+              </router-link>
+              <router-link to="/stussy">
+                <li>Stussy</li>
+              </router-link>
+
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Redes Sociais</h3>
+            <ul>
+              <li class="logo-social">
+                <a href="https://www.twitter.com">
+                  <img src="/src/assets/img/Icons/twitter.png" alt="Logo" />
+                </a>
+              </li>
+              <li id="insta" class="logo-social">
+                <a href="https://www.instagram.com">
+                  <img src="/src/assets/img/Icons/facebook.png" alt="Logo" />
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="footer-section">
           <h3>Sobre nós</h3>
@@ -32,38 +43,20 @@
             Instituto Federal Catarinense - Campus Araquari de 2024.</p>
         </div>
       </div>
-      <a class="logo" href="https://youtu.be/vj4hp9XCT6A">
-        <img src="/src/assets/img/Logos/hands.png" alt="Logo" />
-      </a>
+      <div class="logo">
+        <a href="https://youtu.be/vj4hp9XCT6A?feature=shared">
+          <img src="/src/assets/img/Logos/hands.png" alt="Logo" />
+        </a>
+      </div>
     </div>
     <hr />
+
     <div class="bottom-footer">
       <p>Copyright © 2024 Bença. Todos os direitos reservados.</p>
     </div>
+
   </footer>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
-const mainHeader = ref(null);
-
-function handleScrollToHeader(path) {
-  setTimeout(() => {
-    if (mainHeader.value) {
-      mainHeader.value.scrollIntoView({ behavior: 'smooth' });
-      console.log("vai tomando");
-    } else {
-      console.log("Elemento mainHeader não encontrado.");
-    }
-    router.push(path);
-  }, 500);
-}
-
-</script>
 
 <style scoped>
 .footer {
@@ -81,6 +74,11 @@ function handleScrollToHeader(path) {
   padding-bottom: 20px;
 }
 
+.mainFooter {
+  display: flex;
+  width: 100%;
+}
+
 .footer-content {
   display: flex;
   align-items: flex-start;
@@ -96,7 +94,7 @@ function handleScrollToHeader(path) {
 .footer-section h3 {
   padding: 5px;
   border-bottom: 1px solid #444;
-  
+
 }
 
 .footer-section ul {
@@ -161,6 +159,12 @@ hr {
 
   .email-signup {
     text-align: left;
+  }
+
+  .mainFooter {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 }
 </style>

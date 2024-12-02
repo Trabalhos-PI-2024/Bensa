@@ -9,7 +9,7 @@
       <h2>CARRINHO</h2>
     </div>
     <div class="produtosCarrinho">
-      <div v-for="carrinho in carrinhoStore.carrinho" :key="carrinho.id" class="produto">
+      <div v-for="carrinho in carrinhoStore.carrinho" :key="carrinho.id" @click.stop class="produto">
         <button class="close" @click="carrinhoStore.deleteProductById(carrinho.id)">
           <img src="/src/assets/img/Icons/excluir (1).png" alt="Fechar">
         </button>
@@ -173,6 +173,7 @@ const totalAPagar = computed(() => {
 
 .close {
   background: transparent;
+  cursor: pointer;
 }
 
 .close img {
