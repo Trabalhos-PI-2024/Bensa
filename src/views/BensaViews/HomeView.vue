@@ -94,6 +94,7 @@ section {
   .bannerHome img {
   width: 100%;
   object-fit: cover;
+  height: 80dvh;
 }
 .bannerHome img:nth-child(1){
   display: block;

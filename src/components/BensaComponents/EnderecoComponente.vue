@@ -198,7 +198,11 @@ const loginStore = useLoginStore();
 .large-button:hover {
     transform: scale(1.04);
 }
-
+@media (max-width: 1400px){
+    .container{
+        min-height: 90dvh;
+    }
+}
 
 @media (max-width: 598px) {
     .form-grid {
