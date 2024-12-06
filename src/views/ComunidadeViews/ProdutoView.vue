@@ -15,10 +15,27 @@
           R${{ product.price }}
           <span class="installments">ou em até 12x de R${{ (product.price / 12).toFixed(2) }}</span>
         </p>
-
-
-
-        <button @click="carrinhoStore.addCarrinho(product)" class="buy-button">Adicionar ao Carrinho</button>
+        <div class="divSizes">
+          <div
+            class="size"
+            v-for="(tamanho, index) in product.sizes"
+            :key="index"
+          >
+            <button
+              :class="{ selected: selectedSize === tamanho }"
+              @click="() => selectSize(tamanho)"
+            >
+              {{ tamanho }}
+            </button>
+          </div>
+        </div>
+        <button
+          @click="addToCart"
+          :disabled="!selectedSize"
+          class="buy-button"
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     </div>
 
@@ -33,18 +50,33 @@
 import { onMounted, ref } from 'vue';
 import { useCarrinhoStore } from '@/stores/carrinho';
 import { useProductStore } from '@/stores/products';
-  import { useRouter } from 'vue-router';
-  
-  const carrinhoStore = useCarrinhoStore();
 
+const carrinhoStore = useCarrinhoStore();
 const productStore = useProductStore();
-const product = ref({});
+const product = ref({}); // Produto carregado
+const selectedSize = ref(null); // Estado do tamanho selecionado
+
 const props = defineProps(['id']);
 
+// Carrega o produto ao montar o componente
 onMounted(() => {
   product.value = productStore.getProductById(props.id);
 });
 
+// Define o tamanho selecionado
+const selectSize = (tamanho) => {
+  selectedSize.value = tamanho;
+};
+
+// Adiciona o produto ao carrinho com o tamanho selecionado
+const addToCart = () => {
+  if (selectedSize.value) {
+    carrinhoStore.addCarrinho({
+      ...product.value,
+      selectedSize: selectedSize.value,
+    });
+  }
+};
 </script>
 
 <style scoped>
@@ -65,7 +97,40 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+  min-width: 20dvw;
+}
 
+.product-details .divSizes{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 12px 30px;
+  flex-wrap: wrap;
+  max-width: 20dvw;
+}
+
+.product-details .divSizes .size button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.product-details .divSizes .size button:hover {
+  border: 1px solid #0d0d0d;
+}
+
+.product-details .divSizes .size button.selected {
+  border: 1px solid black;
+}
+
+.buy-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .product-description {
@@ -127,6 +192,12 @@ onMounted(() => {
   background-color: #333;
 }
 
+@media (max-width: 1200px) {
+  .product-details .divSizes{
+  max-width: 50dvw;
+}
+}
+
 @media (max-width: 900px) {
   .product-container {
 flex-direction: column;
@@ -140,6 +211,9 @@ gap: 0;
 
 .product-description p {
   font-size: 14px;
+}
+.product-details .divSizes{
+  max-width: 100%;
 }
 }
 

@@ -6,7 +6,7 @@
           <div class="purchase-details">
             <h2>{{ purchase.productName }}</h2>
             <p><strong>Data da Compra:</strong> {{ formatDate(purchase.date) }}</p>
-            <p><strong>Quantidade:</strong> {{ purchase.quantity }}</p>
+            <p><strong>Tamanho:</strong> {{ purchase.sizes }}</p>
             <p><strong>Valor Total:</strong> R$ {{ purchase.totalPrice.toFixed(2) }}</p>
           </div>
           <img :src="purchase.productImage" alt="Imagem do produto" class="product-image" />
@@ -25,9 +25,9 @@
   
   function fetchPurchaseHistory() {
     purchases.value = [
-      { id: 1, productName: 'Tênis Adidas', date: '2024-01-15', quantity: 2, totalPrice: 1220.90, productImage: 'https://droper-media.us-southeast-1.linodeobjects.com/2720240431943.webp' },
-      { id: 2, productName: 'Tênis Nike', date: '2024-03-22', quantity: 1, totalPrice: 1420.80, productImage: 'https://droper-media.us-southeast-1.linodeobjects.com/1972024202252349.webp' },
-      { id: 3, productName: 'Camiseta Supreme', date: '2024-05-05', quantity: 1, totalPrice: 329.90, productImage: 'https://droper-lapse.us-southeast-1.linodeobjects.com/20241015202245592-955.webp' },
+      { id: 1, productName: 'Tênis Adidas', date: '2024-01-15', sizes: 2, totalPrice: 1220.90, productImage: 'https://droper-media.us-southeast-1.linodeobjects.com/2720240431943.webp' },
+      { id: 2, productName: 'Tênis Nike', date: '2024-03-22', sizes: 1, totalPrice: 1420.80, productImage: 'https://droper-media.us-southeast-1.linodeobjects.com/1972024202252349.webp' },
+      { id: 3, productName: 'Camiseta Supreme', date: '2024-05-05', sizes: 1, totalPrice: 329.90, productImage: 'https://droper-lapse.us-southeast-1.linodeobjects.com/20241015202245592-955.webp' },
     ]
   }
   
