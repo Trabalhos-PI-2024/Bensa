@@ -45,7 +45,7 @@ function deleteProductById(id){
 
   function closeModal() {
     console.log("Fechando o modal...", isOpen.value);
-    $patch({ isOpen: false });
+    isOpen.value = false;
     console.log("Novo estado:", isOpen.value);
   }
 

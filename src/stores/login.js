@@ -21,7 +21,6 @@ export const useLoginStore = defineStore('login', () => {
     cliente.value[0] = { ...cliente.value[0], ...novosDados };
   };
 
-  // Variável reativa para controlar a visibilidade
   const isComponentVisible = ref(true);
 
   const toggleVisibility = () => {
@@ -29,7 +28,7 @@ export const useLoginStore = defineStore('login', () => {
   };
 
   const closeComponent = () => {
-    isComponentVisible.value = false; // Fecha o componente de alerta
+    isComponentVisible.value = false;
   };
 
   return { cliente, clienteInfo, atualizarCliente, isComponentVisible, toggleVisibility, closeComponent };

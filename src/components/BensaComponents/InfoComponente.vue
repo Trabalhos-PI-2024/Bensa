@@ -68,9 +68,7 @@
   
   const loginStore = useLoginStore();
   
-  // Função que será chamada no submit do formulário
   const formCadastro = () => {
-    // Aqui podemos chamar a action para atualizar o cliente se necessário
     loginStore.atualizarCliente({
       nome: loginStore.clienteInfo.nome,
       sobrenome: loginStore.clienteInfo.sobrenome,

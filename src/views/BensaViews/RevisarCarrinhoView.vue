@@ -24,6 +24,7 @@
         <img :src="carrinho.image1" alt="Imagem do Produto" class="product-image" />
         <div class="product-info">
           <h2>{{ carrinho.name }}</h2>
+          <h4>Tamanho: {{ carrinho.selectedSize }}</h4>
           <p class="product-price">R$ {{ carrinho.price }}</p>
         </div>
         <button @click="carrinhoStore.deleteProductById(carrinho.id)" class="remove-button">

@@ -5,14 +5,12 @@
         <p>Quer saber das novidades na Bensa</p>
       </div>
       <div class="boxInputs">
-        <div class="input-container">
           <input
             type="text"
             v-model="email"
             placeholder="Email"
           />
           <button @click="enviarEmail">Enviar</button>
-        </div>
       </div>
     </div>
   </template>
@@ -105,17 +103,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   gap: 10px;
   width: 100%;
   max-width: 400px;
-}
-
-.boxInputs .input-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 100%;
 }
 
 .boxInputs input {
@@ -125,8 +115,6 @@
   border: 1px solid transparent;
   transition: all 0.5s ease;
   flex-grow: 1;
-  width: calc(100% - 110px);
-  max-width: 300px;
 }
 
 .boxInputs input:hover {
@@ -134,7 +122,7 @@
 }
 
 .boxInputs button {
-  padding: 5px 10px;
+  padding: 8px 10px;
   font-size: 16px;
   border-radius: 12px;
   border: 1px solid transparent;
@@ -150,28 +138,19 @@
 
 @media (max-width: 768px) {
   .boxOferta {
-    flex-direction: column;
     gap: 20px;
-    padding: 30px 10px;
   }
 
   .boxOferta .boxText p {
     font-size: 18px;
   }
-
-  .boxInputs .input-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .boxInputs input {
-    width: 100%;
-    max-width: none;
-  }
-
-  .boxInputs button {
-    width: 100%;
-  }
+  .boxOferta .boxInputs {
+flex-direction: column;
+align-items: end;
+}
+.boxInputs input {
+  width: 100%;
+}
 }
 
   </style>
