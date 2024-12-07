@@ -6,7 +6,7 @@
     <div class="navegacao">
       <button @click="moverEsquerda" class="btn-navegacao">&#9664;</button>
       <div class="produtos-container">
-        <div class="product" v-for="product in produtosVisiveis" :key="product.id">
+        <div class="product toRight" v-for="product in produtosVisiveis" :key="product.id">
           <button class="btn-more" @click="visualizar(product.id)">
             <div class="imgProdutos">
               <img class="img1" :src="product.image1" alt="" />

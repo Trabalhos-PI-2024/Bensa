@@ -81,7 +81,7 @@ const carrinhoStore = useCarrinhoStore()
     align-items: center;
     padding: 10px 20px;
     border-radius: 7px;
-    border: 1px solid transparent;
+    border: 1px solid #0d0d0d;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
   }

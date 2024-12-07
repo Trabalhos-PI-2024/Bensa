@@ -8,7 +8,7 @@
       <div class="navegacao">
       <button @click="moverEsquerda" class="btn-navegacao">&#9664;</button>
       <div class="produtos-container">
-        <div class="produtos" v-for="product in produtosVisiveis" :key="product.id">
+        <div class="produtos toRight" v-for="product in produtosVisiveis" :key="product.id">
           <button class="btn-more" @click="visualizar(product.id)"> 
           <img :src="product.image1" :alt="product.name" />
         </button>
@@ -26,11 +26,11 @@
       <button @click="moverDireita" class="btn-navegacao">&#9654;</button>
     </div>
     </div>
-    <div class="imgAcessorios">
+    <div class="imgAcessorios toRight">
       <img src="/src/assets/img/roupas/Roupa.jpg" alt="Acessórios" />
     </div>
   </div>
-  <marquee direction="right" class="line">
+  <marquee direction="right" class="line hidden">
     <div class="line">
     <img src="/src/assets/img/Lancamentos/truck-loading-load-a-truck-svgrepo-com.svg" alt="">
     <p>Frete grátis para a região sul e sudeste a partir de R$ 299</p>
@@ -45,6 +45,9 @@ import { computed, ref } from 'vue'
 import { useProductStore } from '@/stores/products'
 import { useCarrinhoStore } from '@/stores/carrinho'
 import { useRouter } from 'vue-router'
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver();
 
 const carrinhoStore = useCarrinhoStore()
 

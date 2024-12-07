@@ -1,5 +1,5 @@
 <template>
-    <div class="boxOferta">
+    <div class="boxOferta hidden">
       <div class="boxText">
         <p>Receba ofertas e cupons em primeira mão.</p>
         <p>Quer saber das novidades na Bensa</p>
@@ -19,6 +19,9 @@
   import { ref } from 'vue';
   import { useEmailStore } from '@/stores/email';
   import { useToast } from 'vue-toastification';  
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver();
   
   const email = ref('');
   const emailStore = useEmailStore();

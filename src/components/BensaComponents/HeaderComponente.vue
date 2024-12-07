@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="hidden">
     <div class="header" ref="mainHeader">
       <div class="mainHeader">
         <div class="hamburger" @click="toggleMenu">
@@ -56,6 +56,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
 import CarrinhoComponente from '../BensaComponents/CarrinhoComponente.vue'
 import { useCarrinhoStore } from '@/stores/carrinho';
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver()
 
 const carrinhoStore = useCarrinhoStore();
 

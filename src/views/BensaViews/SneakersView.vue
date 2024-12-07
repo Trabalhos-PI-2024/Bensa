@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <div class="logo-container">
+    <div class="logo-container hidden">
       <h1>Calçados</h1>
     </div>
     <div class="main-content">
@@ -8,7 +8,7 @@
         <input type="text" placeholder="Filtrar produtos" v-model="filterText" class="filter-input" />
       </aside>
       <div class="product-list">
-        <div class="product-item" v-for="product in filteredProducts" :key="product.id" :product="product">
+        <div class="product-item hidden" v-for="product in filteredProducts" :key="product.id" :product="product">
           <button class="btn-more" @click="visualizar(product.id)">
     <img :src="product.image1" :alt="product.name" class="product-image" />
   </button>
