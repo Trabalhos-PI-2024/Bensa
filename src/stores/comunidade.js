@@ -87,6 +87,7 @@ export const useComunidadeStore = defineStore('comunity', () => {
       image1: adi2000Img1,
       image2: adi2000Img2,
       price: 499.99,
+      selectedSize: '41',
       lancamento: true,
       tenis: true,
     },

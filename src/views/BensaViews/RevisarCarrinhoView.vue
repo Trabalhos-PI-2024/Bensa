@@ -1,5 +1,5 @@
 <template>
-  <div class="order-review">
+  <div class="order-review" v-if="carrinhoStore.carrinho.length > 0">
     <h1>Revisão do Pedido</h1>
     <div class="steps">
       <div class="step active">
@@ -16,7 +16,10 @@
       </div>
     </div>
     <div class="current-step">
-      <p>Etapa atual: <strong>Revisar Pedido</strong> - Verifique se todos os produtos estão corretos antes de prosseguir para o pagamento.</p>
+      <p>
+        Etapa atual: <strong>Revisar Pedido</strong> - Verifique se todos os produtos estão corretos
+        antes de prosseguir para o pagamento.
+      </p>
     </div>
 
     <div class="product-list">
@@ -28,36 +31,50 @@
           <p class="product-price">R$ {{ carrinho.price }}</p>
         </div>
         <button @click="carrinhoStore.deleteProductById(carrinho.id)" class="remove-button">
-          <img src="/src/assets/img/Icons/excluir (1).png" alt="Excluir">
+          <img src="/src/assets/img/Icons/excluir (1).png" alt="Excluir" />
         </button>
       </div>
     </div>
 
-    <router-link to="/pagar"><button @click="proceedToPayment" class="pay-button">Ir para Pagamento</button></router-link>
+    <router-link to="/pagar"
+      ><button @click="proceedToPayment" class="pay-button">Ir para Pagamento</button></router-link
+    >
+  </div>
+  <div class="semProdutoCarrinho" v-else>
+    <h3>Ops, você não possui itens na Sacola</h3>
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useCarrinhoStore } from '@/stores/carrinho';
-import { useRouter } from 'vue-router';
-const carrinhoStore = useCarrinhoStore();
+import { computed, ref } from 'vue'
+import { useCarrinhoStore } from '@/stores/carrinho'
+import { useRouter } from 'vue-router'
+const carrinhoStore = useCarrinhoStore()
 
-const router = useRouter();
+const router = useRouter()
 
 const proceedToPayment = () => {
-  router.push({ name: 'PaymentPage' });
-};
+  router.push({ name: 'PaymentPage' })
+}
 
 const removeProduct = (index) => {
-  products.value.splice(index, 1); 
-};
+  products.value.splice(index, 1)
+}
 </script>
 
 <style scoped>
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
+}
+
+.semProdutoCarrinho {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  min-height: 70dvh;
 }
 
 .order-review {
@@ -65,7 +82,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh; 
+  min-height: 70dvh;
   padding: 20px;
   background-color: #f9f9f9;
 }
@@ -81,7 +98,7 @@ h1 {
   justify-content: space-between;
   width: 100%;
   max-width: 600px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .step {
@@ -90,7 +107,7 @@ h1 {
 }
 
 .step-number {
-  background-color: #7e201d; 
+  background-color: #7e201d;
   color: white;
   border-radius: 50%;
   width: 30px;
@@ -107,17 +124,17 @@ h1 {
 }
 
 .active .step-number {
-  background-color: #27ae60; 
+  background-color: #27ae60;
 }
 
 .current-step {
   width: 100%;
   max-width: 600px;
-  background-color: #e8f5e9; 
+  background-color: #e8f5e9;
   padding: 10px;
   border-radius: 4px;
   text-align: center;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .current-step p {
@@ -129,8 +146,8 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%; 
-  max-width: 600px; 
+  width: 100%;
+  max-width: 600px;
 }
 
 .product {
@@ -140,7 +157,7 @@ h1 {
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   transition: box-shadow 0.3s ease;
-  background-color: white; 
+  background-color: white;
 }
 
 .product:hover {
@@ -163,7 +180,7 @@ h1 {
 .product-price {
   font-size: 18px;
   font-weight: bold;
-  color: #27ae60; 
+  color: #27ae60;
 }
 
 .remove-button {
@@ -172,8 +189,8 @@ h1 {
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 15px; 
-  background-color: white; 
+  margin-left: 15px;
+  background-color: white;
 }
 
 .remove-button img {
@@ -181,7 +198,7 @@ h1 {
 }
 
 .pay-button {
-  background-color: #7e201d; 
+  background-color: #7e201d;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -189,19 +206,18 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%; 
-  max-width: 300px; 
-  margin-top: 20px; 
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
 }
 
 .pay-button:hover {
-  background-color: #ad2525; 
+  background-color: #ad2525;
 }
 
 @media (max-width: 768px) {
   .order-review {
     padding: 15px;
-    height: 70vh;
   }
 
   h1 {
@@ -227,7 +243,7 @@ h1 {
   }
 
   .current-step p {
-    font-size: 12px; 
+    font-size: 12px;
   }
 }
 
@@ -249,10 +265,7 @@ h1 {
   }
 
   .current-step p {
-    font-size: 10px; 
-  }
-  .order-review{
-    height: 90vh;
+    font-size: 10px;
   }
 }
 </style>

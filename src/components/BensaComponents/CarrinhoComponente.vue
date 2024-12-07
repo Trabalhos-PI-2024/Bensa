@@ -1,12 +1,12 @@
 <template>
   <div v-if="carrinhoStore.isOpen" class="divCarrinho">
     <div class="fecharCarrinho">
-        <img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho" />
+      <img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho" />
     </div>
     <div class="titleCarrinho">
       <h2>SACOLA</h2>
     </div>
-    <div class="produtosCarrinho">
+    <div class="produtosCarrinho" v-if="carrinhoStore.carrinho.length > 0">
       <div
         v-for="carrinho in carrinhoStore.carrinho"
         :key="carrinho.id"
@@ -26,26 +26,29 @@
               </template>
               <template v-else>
                 <div class="size-selection">
-      <button
-        v-for="size in carrinho.sizes"
-        :key="size"
-        @click="selectSize(carrinho.id, size)"
-        :class="{ active: carrinho.selectedSize === size }"
-      >
-        {{ size }}
-      </button>
-    </div>
+                  <button
+                    v-for="size in carrinho.sizes"
+                    :key="size"
+                    @click="selectSize(carrinho.id, size)"
+                    :class="{ active: carrinho.selectedSize === size }"
+                  >
+                    {{ size }}
+                  </button>
+                </div>
               </template>
             </h5>
           </div>
           <h4>R$ {{ carrinho.price.toFixed(2) }}</h4>
         </div>
+
         <div class="imgProduto">
           <img :src="carrinho.image1" :alt="carrinho.name" />
         </div>
       </div>
     </div>
-
+    <div class="semProdutoCarrinho" v-else>
+          <h3>Ops, você não possui itens na Sacola</h3>
+        </div>
     <div class="infoCarrinhoContainer">
       <div class="boxTotalaPagar">
         <label>Total a Pagar: R$</label>
@@ -57,19 +60,19 @@
         >
       </div>
     </div>
-      <div class="buttonComprarCarrinho" @click.stop>
-        <button @click="verificarCarrinho()">COMPRAR</button>
-      </div>
+    <div class="buttonComprarCarrinho" @click.stop>
+      <button @click="verificarCarrinho()">COMPRAR</button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue'
 import { useCarrinhoStore } from '@/stores/carrinho'
-import { useRouter } from 'vue-router';
-import { useToast } from 'vue-toastification';
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
-const toast = useToast();
+const toast = useToast()
 
 const router = useRouter()
 
@@ -77,7 +80,7 @@ const carrinhoStore = useCarrinhoStore()
 
 function showWarning(produtoSemTamanho) {
   toast.warning(`Escolha o tamanho de "${produtoSemTamanho.name}" antes de prosseguir.`, {
-    position: "top-center",
+    position: 'top-center',
     timeout: 5000,
     closeOnClick: true,
     pauseOnFocusLoss: true,
@@ -86,41 +89,37 @@ function showWarning(produtoSemTamanho) {
     draggablePercent: 0.6,
     showCloseButtonOnHover: false,
     hideProgressBar: false,
-    closeButton: "button",
+    closeButton: 'button',
     icon: true,
     rtl: false,
     zIndex: 9999
-  });
+  })
 }
 
 const totalAPagar = computed(() => {
   return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price, 0).toFixed(2)
-});
+})
 
 const selectSize = (productId, size) => {
-  const product = carrinhoStore.carrinho.find((item) => item.id === productId);
+  const product = carrinhoStore.carrinho.find((item) => item.id === productId)
   if (product) {
-    product.selectedSize = size;
+    product.selectedSize = size
   }
-};
+}
 
 const verificarCarrinho = () => {
-  const produtoSemTamanho = carrinhoStore.carrinho.find(
-    (produto) => !produto.selectedSize
-  );
+  const produtoSemTamanho = carrinhoStore.carrinho.find((produto) => !produto.selectedSize)
 
   if (produtoSemTamanho) {
-    showWarning(produtoSemTamanho);
-    return;
+    showWarning(produtoSemTamanho)
+    return
   }
 
   // Somente chama closeModal e redireciona se todos os tamanhos estiverem selecionados
-  router.push('/revisar');
-  console.log("vai tomando")
-  carrinhoStore.closeModal();
-};
-
-
+  router.push('/revisar')
+  console.log('vai tomando')
+  carrinhoStore.closeModal()
+}
 </script>
 
 <style scoped>
@@ -253,7 +252,7 @@ const verificarCarrinho = () => {
   width: 30px;
 }
 
-.size-selection{
+.size-selection {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -273,7 +272,7 @@ const verificarCarrinho = () => {
   background-color: #e7e7e7;
 }
 @media (max-width: 768px) {
-  .divCarrinho{
+  .divCarrinho {
     width: 100%;
   }
   .infoCarrinhoContainer {
@@ -329,9 +328,9 @@ const verificarCarrinho = () => {
     width: 70px;
   }
   .size-selection button {
-  font-size: 7px;
-  padding: 1.75px 2.5px;
-  border-radius: 2.5px;
-}
+    font-size: 7px;
+    padding: 1.75px 2.5px;
+    border-radius: 2.5px;
+  }
 }
 </style>

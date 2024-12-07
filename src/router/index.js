@@ -10,7 +10,7 @@ import StussyView from '../views/BensaViews/StussyView.vue'
 import VansView from '../views/BensaViews/VansView.vue'
 import EnderecoView from '../views/BensaViews/EnderecoView.vue'
 import InfoView from '../views/BensaViews/InfoView.vue'
-import ProdutoView from '../views/ComunidadeViews/ProdutoView.vue'
+import ProdutoView from '../views/BensaViews/ProdutoView.vue'
 import ComunidadeView from '../views/ComunidadeViews/ComunidadeView.vue'
 import MinhaLojaView from '../views/ComunidadeViews/MinhaLojaView.vue'
 import AddProdutoView from '../views/ComunidadeViews/AddProdutoView.vue';
@@ -22,6 +22,7 @@ import RevisarCarrinhoViewView from '../views/BensaViews/RevisarCarrinhoView.vue
 import PagamentoView from '../views/BensaViews/PagamentoView.vue'
 import ConfirmaçãoView from '../views/BensaViews/ConfirmaçãoView.vue'
 import HistoricoView from '../views/BensaViews/HistoricoView.vue'
+import ProductComunidade from '@/views/ComunidadeViews/ProductComunidade.vue'
 const routes = [
   {
     path: '/',
@@ -92,6 +93,12 @@ const routes = [
     path: '/produto/:id',
     name: 'produto',
     component: ProdutoView,
+    props: true,
+  },
+  {
+    path: '/produtoComunidade/:id',
+    name: 'produtoComunidade',
+    component: ProductComunidade,
     props: true,
   },
   {

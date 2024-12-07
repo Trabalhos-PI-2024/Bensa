@@ -37,11 +37,24 @@
   import { useRouter } from 'vue-router';
   import { computed, ref } from 'vue';
 import { useCarrinhoStore } from '@/stores/carrinho';
+import { useHistoricoStore } from '@/stores/historico'
+
+const historicoStore = useHistoricoStore()
 
 const carrinhoStore = useCarrinhoStore();
   
   const router = useRouter();
   const returnToHome = () => {
+    carrinhoStore.carrinho.forEach(product => {
+    historicoStore.addHistorico({
+      id: product.id,
+      name: product.name,
+      sizes: product.selectedSize,
+      price: product.price,
+      productImage: product.image1,
+      date: new Date().toISOString(), // Data da compra
+    });
+    });
     router.push('/');
     carrinhoStore.deleteAllProductById();
   };

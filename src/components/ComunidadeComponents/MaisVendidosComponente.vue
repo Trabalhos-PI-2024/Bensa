@@ -31,7 +31,7 @@ const releases = computed(() => {
 
 
 function visualizar(id) {
-  router.push(`/produto/${id}`);
+  router.push(`/produtoComunidade/${id}`);
 }
 </script>
 

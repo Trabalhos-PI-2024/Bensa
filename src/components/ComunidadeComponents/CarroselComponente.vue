@@ -35,7 +35,7 @@ const comunidadeStore = useComunidadeStore()
 const router = useRouter()
 
 function visualizar(id) {
-  router.push(`/produto/${id}`)
+  router.push(`/produtoComunidade/${id}`)
 }
 
 const indexAtual = ref(0)
