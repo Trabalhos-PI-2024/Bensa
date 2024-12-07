@@ -62,7 +62,7 @@
           </button>
         </div>
       </div>
-      <CarrinhoComponente v-if="showCart" :cartItems="cartItems" @close="toggleCart" />
+      <CarrinhoComponente v-if="carrinhoStore.isOpen" :cartItems="cartItems" @click="toggleCart" />
       <LoginComponente v-if="showLogin" />
     </div>
   </header>
@@ -72,9 +72,11 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
 import CarrinhoComponente from '../BensaComponents/CarrinhoComponente.vue'
+import { useCarrinhoStore } from '@/stores/carrinho';
+
+const carrinhoStore = useCarrinhoStore();
 
 const showLogin = ref(false)
-const showCart = ref(false)
 const cartItems = ref([])
 
 const toggleLogin = () => {
@@ -82,19 +84,15 @@ const toggleLogin = () => {
 }
 
 const toggleCart = () => {
-  showCart.value = !showCart.value
+  carrinhoStore.isOpen = !carrinhoStore.isOpen
 }
-
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
 const windowWidth = ref(window.innerWidth)
 
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
-}
-
-const toggleSearchBar = () => {
-  isSearchOpen.value = !isSearchOpen.value
 }
 
 const updateWindowWidth = () => {

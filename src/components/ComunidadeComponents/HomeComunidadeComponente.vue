@@ -105,7 +105,7 @@ const router = useRouter();
 const showAlert = ref(true); 
 
 function visualizar(id) {
-  router.push(`/produto/${id}`);
+  router.push(`/produtoComunidade/${id}`);
 }
 
 const tenis = computed(() =>

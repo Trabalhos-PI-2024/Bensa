@@ -82,7 +82,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
+  min-height: 70dvh;
   padding: 20px;
   background-color: #f9f9f9;
 }
@@ -218,7 +218,6 @@ h1 {
 @media (max-width: 768px) {
   .order-review {
     padding: 15px;
-    height: 70vh;
   }
 
   h1 {
@@ -267,9 +266,6 @@ h1 {
 
   .current-step p {
     font-size: 10px;
-  }
-  .order-review {
-    height: 90vh;
   }
 }
 </style>

@@ -38,7 +38,7 @@
   const router = useRouter()
   
   function visualizar(id) {
-    router.push(`/produto/${id}`)
+    router.push(`/produtoComunidade/${id}`)
   }
   
   const comunidadeStore = useComunidadeStore();
