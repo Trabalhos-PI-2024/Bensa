@@ -30,10 +30,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useProductStore } from '@/stores/products';
-import { useCarrinhoStore } from '@/stores/carrinho';
 import { useRouter } from 'vue-router';
-
-const carrinhoStore = useCarrinhoStore();
 
 const router = useRouter()
 

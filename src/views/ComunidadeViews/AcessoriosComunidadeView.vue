@@ -5,10 +5,10 @@
       </div>
       <div class="main-content">
         <aside class="filter-container hidden">
-          <input type="text" placeholder="Filtrar produtos" class="filter-input" />
+          <input type="text" placeholder="Filtrar produtos" v-model="filterText" class="filter-input" />
         </aside>
         <div class="product-list">
-          <div class="product-item hidden" v-for="product in acessorios" :key="product.id" :product="product">
+          <div class="product-item hidden" v-for="product in filteredProducts" :key="product.id" :product="product">
             <button class="btn-more" @click="visualizar(product.id)">
       <img :src="product.image1" :alt="product.name" class="product-image" />
     </button>
@@ -28,15 +28,11 @@
   </template>
   
   <script setup>
-  import { computed } from 'vue';
+  import { computed, ref } from 'vue';
   import { useComunidadeStore } from '@/stores/comunidade';
-  import { useCarrinhoStore } from '@/stores/carrinho';
   import { useRouter } from 'vue-router';
   import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
-
 useIntersectionObserver
-  
-  const carrinhoStore = useCarrinhoStore();
   
   const router = useRouter()
   
@@ -47,9 +43,14 @@ useIntersectionObserver
   const comunidadeStore = useComunidadeStore();
   
   
-  const acessorios = computed(() =>
-    comunidadeStore.comunidade.filter(comunidade => comunidade.acessorios)
-  );
+  const filterText = ref('')
+
+const filteredProducts = computed(() => 
+  comunidadeStore.comunidade.filter(product => 
+    product.acessorios && 
+    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
+  )
+);
   </script>
   
   

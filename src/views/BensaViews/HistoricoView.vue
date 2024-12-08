@@ -12,8 +12,9 @@
           <img :src="purchase.productImage" alt="Imagem do produto" class="product-image" />
         </div>
       </div>
-      <div v-else class="toRight">
-        <p class="no-purchases">Você ainda não tem compras registradas.</p>
+      <div v-else class="historicoVazio toRight">
+        <img src="@\assets\img\Banners\historicovazio.jpg" alt="">
+        <p class="no-purchases">Parece que você ainda não comprou nada. Explore nossos produtos e encontre o que mais combina com você!</p>
       </div>
     </div>
   </template>
@@ -35,6 +36,30 @@ const historicoStore = useHistoricoStore()
   </script>
   
   <style scoped>
+.historicoVazio{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.historicoVazio img{
+  width: 100%;
+  height: 60dvh;
+}
+
+.no-purchases {
+  position: absolute;
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+    font-weight: bold;
+    background: #fff;
+    padding: 5px;
+    border-radius: 7px;
+  }
+
   .purchase-history {
     display: flex;
     flex-direction: column;

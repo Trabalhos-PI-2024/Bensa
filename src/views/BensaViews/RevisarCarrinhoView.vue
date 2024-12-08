@@ -53,7 +53,9 @@
         </div>
       </div>
       <div class="semProdutoCarrinho toRight" v-else>
-        <h3>Ops, você não possui itens na Sacola</h3>
+        <img src="@\assets\img\Banners\sacolavazia.jpg" alt="sacola">
+        <h3>Ops, nada por aqui ainda!</h3>
+        <p> Explore nossos produtos e encha sua sacola de estilo.</p>
       </div>
       <div class="resumo toLeft">
         <div class="title">
@@ -163,8 +165,11 @@ body {
 .semProdutoCarrinho {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 2.5px;
   min-height: 10dvh;
+  text-align: center;
 }
 
 .order-review {
@@ -237,6 +242,7 @@ h1 {
   flex-direction: column;
   gap: 15px;
   width: 600px;
+  max-width: 600px;
   max-height: 600px;
   overflow-y: auto;
 }
@@ -403,7 +409,7 @@ h1 {
   align-items: start;
   gap: 120px;
 }
-@media (max-width: 768px) {
+@media (max-width: 970px) {
   .order-review {
     padding: 15px;
   }
@@ -433,6 +439,17 @@ h1 {
   .current-step p {
     font-size: 12px;
   }
+
+  .ahh{
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-list{
+    width: 100%;
+  }
+  .semProdutoCarrinho p{
+  max-width: 300px;
+}
 }
 
 @media (max-width: 480px) {
@@ -454,6 +471,11 @@ h1 {
 
   .current-step p {
     font-size: 10px;
+  }
+  .size-selection button {
+    font-size: 7px;
+    padding: 1.75px 2.5px;
+    border-radius: 2.5px;
   }
 }
 </style>
