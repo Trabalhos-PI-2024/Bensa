@@ -36,6 +36,7 @@ useIntersectionObserver();
     width: 105px;
     height: auto;
     max-width: 100%;
+    z-index: 1;
 }
 
 .marcas:nth-child(3) img{

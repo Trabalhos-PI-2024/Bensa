@@ -23,6 +23,8 @@ import PagamentoView from '../views/BensaViews/PagamentoView.vue'
 import ConfirmaçãoView from '../views/BensaViews/ConfirmaçãoView.vue'
 import HistoricoView from '../views/BensaViews/HistoricoView.vue'
 import ProductComunidade from '@/views/ComunidadeViews/ProductComunidade.vue'
+import CarrinhoView from '@/views/BensaViews/CarrinhoView.vue'
+import LoginView from '@/views/BensaViews/LoginView.vue'
 const routes = [
   {
     path: '/',
@@ -146,7 +148,17 @@ const routes = [
     path: '/historico',
     name: 'historico',
     component: HistoricoView
-  }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/carrinho',
+    name: 'carrinho',
+    component: CarrinhoView
+  },
 ]
 
 const router = createRouter({

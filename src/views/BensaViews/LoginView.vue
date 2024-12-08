@@ -66,7 +66,7 @@ function validacao() {
 <template>
   <div v-if="isOpen" class="login-overlay">
     <div class="content">
-      <button class="close-button" @click="closeModal"><img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho"></button>
+      <router-link to="/" class="close-button"><img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho"></router-link>
       <div class="ImgLogin">
         <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="logo" />
       </div>

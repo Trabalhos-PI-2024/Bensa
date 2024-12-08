@@ -57,51 +57,24 @@ section {
   transition: all 2s ease;
   opacity: 1;
   transform: translateY(0) translateX(0);
+  z-index: 1 !important;
 }
 
 .hidden {
   opacity: 0;
-  transition: all 1s ease;
   transform: translateY(-50px);
+  z-index: 3;
 }
 
 .toLeft{
-  transition: all 1s ease;
   opacity: 0;
   transform: translateX(50%);
+  z-index: 3;
 }
 
 .toRight{
-  transition: all 1s ease;
   opacity: 0;
+  z-index: 3;
   transform: translateX(-50%);
-}
-
-.lancamentos :nth-child(2){
-  animation-delay: 400ms;
-}
-
-.lancamentos :nth-child(3){
-  animation-delay: 700ms;
-}
-
-.lancamentos :nth-child(4){
-  animation-delay: 1000ms;
-}
-
-.lancamentos :nth-child(5){
-  animation-delay: 1300ms;
-}
-
-.allMarcas :nth-child(2){
-  animation-delay: 400ms;
-}
-
-.allMarcas :nth-child(3){
-  animation-delay: 700ms;
-}
-
-.allMarcas :nth-child(4){
-  animation-delay: 1000ms;
 }
 </style>

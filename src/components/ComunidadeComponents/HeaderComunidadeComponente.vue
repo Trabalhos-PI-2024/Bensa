@@ -70,8 +70,8 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
-import CarrinhoComponente from '../BensaComponents/CarrinhoComponente.vue'
+import LoginComponente from '@/views/BensaViews/LoginView.vue'
+import CarrinhoComponente from '../../views/BensaViews/CarrinhoView.vue'
 import { useCarrinhoStore } from '@/stores/carrinho';
 
 const carrinhoStore = useCarrinhoStore();

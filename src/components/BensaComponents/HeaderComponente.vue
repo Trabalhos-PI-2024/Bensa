@@ -33,19 +33,14 @@
         </nav>
 
         <div class="icon" v-if="!isSearchOpen || windowWidth > 768">
-          <button @click="toggleLogin" class="icon-button">
+          <router-link to="/login" class="icon-button">
             <img src="/src/assets/img/Icons/user.svg" alt="Usuário" />
-          </button>
-          <button @click="toggleCart" class="icon-button">
+          </router-link>
+          <router-link to="/revisar" class="icon-button">
             <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" />
-          </button>
+          </router-link>
         </div>
       </div>
-      
-      <LoginComponente v-if="showLogin" />
-      <CarrinhoComponente v-if="carrinhoStore.isOpen" :cartItems="cartItems" @click="toggleCart" />
-      
-     
     </div>
   </header>
   <hr />
@@ -53,26 +48,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
-import CarrinhoComponente from '../BensaComponents/CarrinhoComponente.vue'
-import { useCarrinhoStore } from '@/stores/carrinho';
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
 
 useIntersectionObserver()
 
-const carrinhoStore = useCarrinhoStore();
-
-
-const showLogin = ref(false)
-const cartItems = ref([])
-
-const toggleLogin = () => {
-  showLogin.value = !showLogin.value
-}
-
-const toggleCart = () => {
-  carrinhoStore.isOpen = !carrinhoStore.isOpen
-}
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
 const windowWidth = ref(window.innerWidth)

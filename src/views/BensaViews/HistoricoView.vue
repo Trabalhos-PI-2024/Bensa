@@ -1,7 +1,7 @@
 <template>
     <div class="purchase-history">
-      <h1>Histórico de Compras</h1>
-      <div v-if="historicoStore.historico.length > 0" class="purchases-list">
+      <h1 class="hidden">Histórico de Compras</h1>
+      <div v-if="historicoStore.historico.length > 0" class="purchases-list toLeft">
         <div v-for="purchase in historicoStore.historico" :key="purchase.id" class="purchase-item">
           <div class="purchase-details">
             <h2>{{ purchase.name }}</h2>
@@ -12,7 +12,7 @@
           <img :src="purchase.productImage" alt="Imagem do produto" class="product-image" />
         </div>
       </div>
-      <div v-else>
+      <div v-else class="toRight">
         <p class="no-purchases">Você ainda não tem compras registradas.</p>
       </div>
     </div>
@@ -21,6 +21,9 @@
   <script setup>
   
 import { useHistoricoStore } from '@/stores/historico'
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
+
+useIntersectionObserver()
 
 const historicoStore = useHistoricoStore()
   
