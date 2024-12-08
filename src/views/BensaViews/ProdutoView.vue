@@ -1,10 +1,10 @@
 <template>
   <div class="product-page">
     <div class="product-container">
-      <div class="product-image">
+      <div class="product-image toRight">
         <img :src="product.image1" alt="Product Image" />
       </div>
-      <div class="product-details">
+      <div class="product-details toLeft">
         <div class="product-rating">
           <span>★★★★★</span>
           <span class="rating-count">(120)</span>
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="product-description">
+    <div class="product-description hidden">
       <h2>Descrição</h2>
       <p>{{ product.descricao }}</p>
     </div>
@@ -50,6 +50,9 @@
 import { onMounted, ref } from 'vue';
 import { useCarrinhoStore } from '@/stores/carrinho';
 import { useProductStore } from '@/stores/products';
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
 
 const carrinhoStore = useCarrinhoStore();
 const productStore = useProductStore();

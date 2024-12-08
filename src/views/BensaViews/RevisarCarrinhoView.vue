@@ -134,21 +134,18 @@ const selectSize = (productId, size) => {
 
 const verificarCarrinho = () => {
   const produtoSemTamanho = carrinhoStore.carrinho.find((produto) => !produto.selectedSize)
+  const semProdutoCarrinho = carrinhoStore.carrinho.length
+ 
+  if (semProdutoCarrinho == 0) {
+    showWarning2(semProdutoCarrinho)
+    return
+  }
 
   if (produtoSemTamanho) {
     showWarning(produtoSemTamanho)
     return
   }
-
-  const semProdutoCarrinho = carrinhoStore.carrinho
-
-  if (semProdutoCarrinho == []) {
-    showWarning2(semProdutoCarrinho)
-    return
-  }
-
   router.push('/pagar')
-  console.log('vai tomando')
 }
 
 const totalAPagar = computed(() => {

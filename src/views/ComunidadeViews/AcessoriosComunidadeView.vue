@@ -1,14 +1,14 @@
 <template>
     <div class="page-container">
-      <div class="logo-container">
+      <div class="logo-container hidden">
         <h1>Acessórios</h1>
       </div>
       <div class="main-content">
-        <aside class="filter-container">
+        <aside class="filter-container hidden">
           <input type="text" placeholder="Filtrar produtos" class="filter-input" />
         </aside>
         <div class="product-list">
-          <div class="product-item" v-for="product in acessorios" :key="product.id" :product="product">
+          <div class="product-item hidden" v-for="product in acessorios" :key="product.id" :product="product">
             <button class="btn-more" @click="visualizar(product.id)">
       <img :src="product.image1" :alt="product.name" class="product-image" />
     </button>
@@ -32,6 +32,9 @@
   import { useComunidadeStore } from '@/stores/comunidade';
   import { useCarrinhoStore } from '@/stores/carrinho';
   import { useRouter } from 'vue-router';
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
   
   const carrinhoStore = useCarrinhoStore();
   

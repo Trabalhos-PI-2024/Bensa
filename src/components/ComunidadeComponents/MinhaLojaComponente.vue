@@ -1,6 +1,6 @@
 <template>
   <div class="pagina-perfil">
-    <div class="banner">
+    <div class="banner hidden">
       <input
         type="file"
         id="banner-input"
@@ -15,7 +15,7 @@
     </div>
       <div class="perfil-conteudo">
         <div class="mainUsuario">
-        <div class="perfil-info">
+        <div class="perfil-info toRight">
           <div class="imagem-bola">
             <div class="bola">
               <input
@@ -34,13 +34,13 @@
               <img v-if="imagemBola" :src="imagemBola" alt="Imagem do Usuário" />
             </div>
           </div>
-          <div class="informacoes-usuario">
+          <div class="informacoes-usuario toRight">
             <!-- Acesso correto ao primeiro item do array cliente -->
             <h2>{{ loginStore.cliente[0]?.nome }} {{ loginStore.cliente[0]?.sobrenome }}</h2>
             <p>{{ loginStore.cliente[0]?.cidade }}, {{ loginStore.cliente[0]?.estado }}</p>
           </div>
         </div>
-        <div class="botoes-perfil">
+        <div class="botoes-perfil hidden">
           <button @click="toggleEditar" class="botao-editar-perfil">
             {{ editar ? 'Salvar' : 'Editar Perfil' }}
           </button>
@@ -49,15 +49,15 @@
           </router-link>
         </div>
       </div>
-        <div class="avaliacoes">
+        <div class="avaliacoes toLeft">
           <div class="estrelas">
             <span v-for="star in 5" :key="star" class="estrela">&#9733;</span>
           </div>
           <p>({{ numeroAvaliacoes }})</p>
         </div>
       </div>
-    <h1 class="tittle">Produtos</h1>
-    <div class="status-produtos">
+    <h1 class="tittle hidden">Produtos</h1>
+    <div class="status-produtos hidden">
       <span :class="{ ativo: abaAtiva === 'venda' }" @click="mudarAba('venda')"> à venda </span>
       <span :class="{ ativo: abaAtiva === 'vendidos' }" @click="mudarAba('vendidos')">
         vendidos
@@ -93,6 +93,9 @@ import { ref } from 'vue'
 import CardVendidoComponente from '@/components/ComunidadeComponents/CardVendidoComponente.vue'
 import CardVendaComponente from '@/components/ComunidadeComponents/CardVendaComponente.vue'
 import { useLoginStore } from '@/stores/login';
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
 
 const loginStore = useLoginStore();
 
