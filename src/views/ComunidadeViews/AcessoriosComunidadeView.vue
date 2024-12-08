@@ -32,6 +32,9 @@
   import { useComunidadeStore } from '@/stores/comunidade';
   import { useRouter } from 'vue-router';
   import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+  import { useCarrinhoStore } from '@/stores/carrinho';
+
+const carrinhoStore = useCarrinhoStore();
 useIntersectionObserver
   
   const router = useRouter()
