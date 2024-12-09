@@ -2,13 +2,13 @@
   <header class="hidden">
     <div class="header" ref="mainHeader">
       <div class="mainHeader">
-        <div class="hamburger" @click="toggleMenu">
-          <div :class="{ open: isMenuOpen }">
+        <router-link to="/header" class="hamburger">
+          <div>
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
           </div>
-        </div>
+        </router-link>
 
         <div class="logo" v-if="!isSearchOpen || windowWidth > 768">
           <RouterLink to="/">
@@ -16,7 +16,7 @@
           </RouterLink>
         </div>
 
-        <nav class="nav" :class="{ active: isMenuOpen }">
+        <nav class="nav">
           <button class="close-menu" v-if="isMenuOpen" @click="toggleMenu">X</button>
           <RouterLink to="/roupas" class="routerLink">
             <p>Roupas</p>

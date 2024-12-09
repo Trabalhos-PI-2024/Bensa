@@ -2,13 +2,13 @@
   <header class="hidden">
     <div class="header">
       <div class="mainHeader">
-        <div class="hamburger" @click="toggleMenu">
-          <div :class="{ open: isMenuOpen }">
+        <router-link to="/headerComunidade" class="hamburger">
+          <div>
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
           </div>
-        </div>
+        </router-link>
 
         <button
           v-if="windowWidth <= 768 && !isSearchOpen"
