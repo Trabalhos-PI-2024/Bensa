@@ -63,11 +63,15 @@
         </div>
         <div class="infos">
           <p>Valor dos Produtos: R${{ totalAPagar }}</p>
-          <p>Frete: A Calcular</p>
+          <p>Frete: {{ frete }}</p>
           <p>Descontos: Nenhum</p>
           <p>Valor da Compra: R${{ totalAPagar }}</p>
         </div>
         <div class="last">
+          <div class="calcularCEP">
+            <label>Calcular Frete:</label>
+            <input type="text" placeholder="0000-000">
+          </div>
           <router-link to="/historico" @click="carrinhoStore.closeModal()" class="historico-button"
             >Histórico de Compras</router-link
           >
@@ -408,6 +412,24 @@ h1 {
   justify-content: center;
   align-items: start;
   gap: 120px;
+}
+
+.calcularCEP{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.calcularCEP input{
+  width: 90px;
+  padding: 2.5px 10px;
+  border-radius: 12px;
+  border: 1px solid #0d0d0d;
 }
 @media (max-width: 970px) {
   .order-review {
