@@ -1,10 +1,10 @@
 <template>
     <div class="product-page">
       <div class="product-container">
-        <div class="product-image">
+        <div class="product-image toRight">
           <img :src="comunity.image1" alt="Product Image" />
         </div>
-        <div class="product-details">
+        <div class="product-details toLeft">
           <div class="product-rating">
             <span>★★★★★</span>
             <span class="rating-count">(120)</span>
@@ -22,7 +22,7 @@
         </div>
       </div>
   
-      <div class="product-description">
+      <div class="product-description hidden">
         <h2>Descrição</h2>
         <p>{{ comunity.descricao }}</p>
       </div>
@@ -33,6 +33,9 @@
   import { onMounted, ref } from 'vue';
   import { useComunidadeStore } from '@/stores/comunidade';
   import { useCarrinhoStore } from '@/stores/carrinho'
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
 
 const carrinhoStore = useCarrinhoStore()
   const comunidadeStore = useComunidadeStore();
@@ -81,7 +84,7 @@ const carrinhoStore = useCarrinhoStore()
     align-items: center;
     padding: 10px 20px;
     border-radius: 7px;
-    border: 1px solid transparent;
+    border: 1px solid #0d0d0d;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
   }

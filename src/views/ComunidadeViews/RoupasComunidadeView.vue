@@ -1,14 +1,14 @@
 <template>
     <div class="page-container">
-      <div class="logo-container">
+      <div class="logo-container hidden">
         <h1>Roupas</h1>
       </div>
       <div class="main-content">
-        <aside class="filter-container">
-          <input type="text" placeholder="Filtrar produtos" class="filter-input" />
+        <aside class="filter-container hidden">
+          <input type="text" placeholder="Filtrar produtos" v-model="filterText" class="filter-input" />
         </aside>
         <div class="product-list">
-          <div class="product-item" v-for="product in roupa" :key="product.id" :product="product">
+          <div class="product-item hidden" v-for="product in filteredProducts" :key="product.id" :product="product">
             <button class="btn-more" @click="visualizar(product.id)">
       <img :src="product.image1" :alt="product.name" class="product-image" />
     </button>
@@ -28,12 +28,14 @@
   </template>
   
   <script setup>
-  import { computed } from 'vue';
+  import { computed, ref } from 'vue';
   import { useComunidadeStore } from '@/stores/comunidade';
-  import { useCarrinhoStore } from '@/stores/carrinho';
   import { useRouter } from 'vue-router';
-  
-  const carrinhoStore = useCarrinhoStore();
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+  import { useCarrinhoStore } from '@/stores/carrinho';
+
+const carrinhoStore = useCarrinhoStore();
+  useIntersectionObserver
   
   const router = useRouter()
   
@@ -43,10 +45,14 @@
   
   const comunidadeStore = useComunidadeStore();
   
-  
-  const roupa = computed(() =>
-    comunidadeStore.comunidade.filter(comunidade => comunidade.roupa)
-  );
+  const filterText = ref('')
+
+const filteredProducts = computed(() => 
+  comunidadeStore.comunidade.filter(product => 
+    product.roupa && 
+    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
+  )
+);
   </script>
   
   <style scoped>

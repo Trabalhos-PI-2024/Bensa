@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer hidden">
     <div class="top-footer">
       <div class="footer-content">
         <div class="mainFooter">

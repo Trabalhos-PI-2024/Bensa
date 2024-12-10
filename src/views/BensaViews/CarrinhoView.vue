@@ -1,11 +1,12 @@
 <template>
-  <div v-if="carrinhoStore.isOpen" class="divCarrinho">
-    <div class="fecharCarrinho">
-      <img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho" />
-    </div>
     <div class="titleCarrinho">
-      <h2>SACOLA</h2>
+      <h2>SUA SACOLA</h2>
+      <router-link to="/" class="fecharCarrinho">
+      <img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho" />
+    </router-link>
     </div>
+  <div class="divCarrinho">
+    <div class="mainSacola">
     <div class="produtosCarrinho" v-if="carrinhoStore.carrinho.length > 0">
       <div
         v-for="carrinho in carrinhoStore.carrinho"
@@ -49,6 +50,7 @@
     <div class="semProdutoCarrinho" v-else>
           <h3>Ops, você não possui itens na Sacola</h3>
         </div>
+      </div>
     <div class="infoCarrinhoContainer">
       <div class="boxTotalaPagar">
         <label>Total a Pagar: R$</label>
@@ -59,9 +61,9 @@
           >Histórico de Compras</router-link
         >
       </div>
-    </div>
-    <div class="buttonComprarCarrinho" @click.stop>
+      <div class="buttonComprarCarrinho" @click.stop>
       <button @click="verificarCarrinho()">COMPRAR</button>
+    </div>
     </div>
   </div>
 </template>
@@ -71,6 +73,9 @@ import { computed, ref } from 'vue'
 import { useCarrinhoStore } from '@/stores/carrinho'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver()
 
 const toast = useToast()
 
@@ -92,7 +97,7 @@ function showWarning(produtoSemTamanho) {
     closeButton: 'button',
     icon: true,
     rtl: false,
-    zIndex: 9999
+    zIndex: 9999,
   })
 }
 
@@ -115,7 +120,6 @@ const verificarCarrinho = () => {
     return
   }
 
-  // Somente chama closeModal e redireciona se todos os tamanhos estiverem selecionados
   router.push('/revisar')
   console.log('vai tomando')
   carrinhoStore.closeModal()
@@ -124,23 +128,31 @@ const verificarCarrinho = () => {
 
 <style scoped>
 .divCarrinho {
-  width: auto;
-  position: fixed;
-  top: 0;
-  right: 0;
+  width: 100%;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-evenly;
   gap: 50px;
   padding: 40px 60px;
   background: #fff;
   border-radius: 10px;
-  border: 1px solid #e7e7e7;
-  z-index: 100;
 }
 
 .titleCarrinho {
   font-size: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+
+.mainSacola{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .produtosCarrinho {
@@ -157,7 +169,6 @@ const verificarCarrinho = () => {
 }
 
 .infoProduto {
-  width: 350px;
   display: flex;
   background: #f6f6f9;
   border-radius: 7px;
@@ -181,13 +192,13 @@ const verificarCarrinho = () => {
 }
 
 .infoCarrinhoContainer {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  min-height: 50dvh;
+  padding: 0 0 0 20px;
+  border-left: 1px solid #4b4b4b;
 }
 
 .boxTotalaPagar {
@@ -231,8 +242,7 @@ const verificarCarrinho = () => {
 
 .fecharCarrinho {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  right: 40px;
 }
 
 .fecharCarrinho button {

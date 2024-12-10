@@ -1,7 +1,7 @@
 <template>
     <div class="purchase-history">
-      <h1>Histórico de Compras</h1>
-      <div v-if="historicoStore.historico.length > 0" class="purchases-list">
+      <h1 class="hidden">Histórico de Compras</h1>
+      <div v-if="historicoStore.historico.length > 0" class="purchases-list toLeft">
         <div v-for="purchase in historicoStore.historico" :key="purchase.id" class="purchase-item">
           <div class="purchase-details">
             <h2>{{ purchase.name }}</h2>
@@ -12,8 +12,9 @@
           <img :src="purchase.productImage" alt="Imagem do produto" class="product-image" />
         </div>
       </div>
-      <div v-else>
-        <p class="no-purchases">Você ainda não tem compras registradas.</p>
+      <div v-else class="historicoVazio toRight">
+        <img src="@\assets\img\Banners\historicovazio.jpg" alt="">
+        <p class="no-purchases">Parece que você ainda não comprou nada. Explore nossos produtos e encontre o que mais combina com você!</p>
       </div>
     </div>
   </template>
@@ -21,6 +22,9 @@
   <script setup>
   
 import { useHistoricoStore } from '@/stores/historico'
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
+
+useIntersectionObserver()
 
 const historicoStore = useHistoricoStore()
   
@@ -32,6 +36,30 @@ const historicoStore = useHistoricoStore()
   </script>
   
   <style scoped>
+.historicoVazio{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.historicoVazio img{
+  width: 100%;
+  height: 60dvh;
+}
+
+.no-purchases {
+  position: absolute;
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+    font-weight: bold;
+    background: #fff;
+    padding: 5px;
+    border-radius: 7px;
+  }
+
   .purchase-history {
     display: flex;
     flex-direction: column;

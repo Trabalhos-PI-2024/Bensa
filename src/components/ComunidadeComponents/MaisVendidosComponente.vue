@@ -1,7 +1,7 @@
 <template>
   <div class="releases-container">
     <div class="releases-list">
-      <div v-for="release in releases" :key="release.id" class="release-item">
+      <div v-for="release in releases" :key="release.id" class="release-item toLeft">
         <button class="btn-more" @click="visualizar(release.id)">
         <div class="release-details">
           <img :src="release.image1" alt="Tênis" class="release-image" />
@@ -20,6 +20,9 @@
 import { computed } from 'vue';
 import { useComunidadeStore } from '@/stores/comunidade';
 import { useRouter } from 'vue-router';
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
 
 const comunidadeStore = useComunidadeStore();
 const router = useRouter();

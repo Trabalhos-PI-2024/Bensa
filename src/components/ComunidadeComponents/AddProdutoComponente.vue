@@ -2,24 +2,24 @@
     <div class="product-form">
         <h1 class="form-title">Publicar Produto</h1>
 
-        <div class="input-container">
+        <div class="input-container toRight">
             <label for="product-title">Título do Produto</label>
             <input type="text" id="product-title" v-model="product.title" placeholder="Ex: Camiseta Estampada"
                 required />
         </div>
 
-        <div class="input-container">
+        <div class="input-container toLeft">
             <label for="brand">Marca</label>
             <input type="text" id="brand" v-model="product.brand" placeholder="Ex: Nike" required />
         </div>
 
-        <div class="input-container">
+        <div class="input-container toRight">
             <label for="description">Descrição do Produto (até 350 caracteres)</label>
             <textarea id="description" v-model="product.description" maxlength="350"
                 placeholder="Descreva o produto aqui..." required></textarea>
         </div>
 
-        <div class="input-container">
+        <div class="input-container toLeft">
             <label for="category">Categoria</label>
             <select id="category" v-model="product.category" @change="resetSize" required>
                 <option value="" disabled>Selecione uma categoria</option>
@@ -29,12 +29,12 @@
             </select>
         </div>
 
-        <div class="input-container">
+        <div class="input-container toRight">
             <label for="price">Preço</label>
             <input type="number" id="price" v-model="product.price" placeholder="Ex: 99.99" required />
         </div>
 
-        <div class="input-container">
+        <div class="input-container toLeft">
             <label for="size">Tamanho</label>
             <select id="size" v-model="product.size" required>
                 <option value="" disabled>Selecione um tamanho</option>
@@ -42,7 +42,7 @@
             </select>
         </div>
 
-        <div class="image-upload">
+        <div class="image-upload hidden">
             <h2>Adicionar Fotos</h2>
             <div class="image-grid">
                 <label class="image-box main-image">
@@ -78,6 +78,9 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
 
 const product = ref({
     title: '',

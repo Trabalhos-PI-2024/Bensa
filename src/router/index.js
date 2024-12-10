@@ -23,11 +23,26 @@ import PagamentoView from '../views/BensaViews/PagamentoView.vue'
 import ConfirmaçãoView from '../views/BensaViews/ConfirmaçãoView.vue'
 import HistoricoView from '../views/BensaViews/HistoricoView.vue'
 import ProductComunidade from '@/views/ComunidadeViews/ProductComunidade.vue'
+import CarrinhoView from '@/views/BensaViews/CarrinhoView.vue'
+import LoginView from '@/views/BensaViews/LoginView.vue'
+import HeaderView from '@/views/BensaViews/HeaderView.vue'
+import HeaderComunidade from '@/views/ComunidadeViews/HeaderComunidade.vue'
+
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/header',
+    name: 'header',
+    component: HeaderView
+  },
+  {
+    path: '/headerComunidade',
+    name: 'headerComunidade',
+    component: HeaderComunidade
   },
   {
     path: '/acessorios',
@@ -146,7 +161,17 @@ const routes = [
     path: '/historico',
     name: 'historico',
     component: HistoricoView
-  }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/carrinho',
+    name: 'carrinho',
+    component: CarrinhoView
+  },
 ]
 
 const router = createRouter({
