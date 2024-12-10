@@ -28,33 +28,42 @@
   </template>
   
   <script setup>
-  import { computed, ref } from 'vue';
-  import { useComunidadeStore } from '@/stores/comunidade';
-  import { useRouter } from 'vue-router';
-  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
-  import { useCarrinhoStore } from '@/stores/carrinho';
+  // Importando hooks e stores necessários do Vue e outras dependências
+  import { computed, ref } from 'vue'; // Usando ref e computed do Vue para propriedades reativas
+  import { useComunidadeStore } from '@/stores/comunidade'; // Store para acessar os produtos da comunidade
+  import { useRouter } from 'vue-router'; // Para navegação entre páginas
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Hook personalizado para observar a visibilidade de elementos
+  import { useCarrinhoStore } from '@/stores/carrinho'; // Store para manipular o carrinho de compras
 
-const carrinhoStore = useCarrinhoStore();
-useIntersectionObserver
-  
+  // Usando o hook de IntersectionObserver (geralmente utilizado para otimizar carregamento de itens ou animações ao rolar a página)
+  useIntersectionObserver()
+
+  // Instanciando o store do carrinho para manipular os produtos no carrinho de compras
+  const carrinhoStore = useCarrinhoStore();
+
+  // Instanciando o roteador para navegação entre páginas
   const router = useRouter()
-  
+
+  // Função chamada quando o usuário clica no botão "visualizar" de um produto, que redireciona para a página de detalhes do produto na comunidade
   function visualizar(id) {
-    router.push(`/produtoComunidade/${id}`)
+    router.push(`/produtoComunidade/${id}`) // Navega para a página do produto com o id correspondente
   }
-  
+
+  // Instanciando o store da comunidade para acessar os produtos da comunidade
   const comunidadeStore = useComunidadeStore();
-  
-  
+
+  // Definindo a propriedade reativa filterText para armazenar o texto de filtro que o usuário digita
   const filterText = ref('')
 
-const filteredProducts = computed(() => 
-  comunidadeStore.comunidade.filter(product => 
-    product.acessorios && 
-    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
-  )
-);
-  </script>
+  // Computed que retorna os produtos filtrados com base no filtro de texto inserido pelo usuário e a condição de serem acessórios
+  const filteredProducts = computed(() => 
+    comunidadeStore.comunidade.filter(product => 
+      product.acessorios && // Filtra os produtos para exibir apenas os que têm a propriedade 'acessorios'
+      (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase())) // Aplica o filtro de texto se o filtro não estiver vazio
+    )
+  );
+</script>
+
   
   
   <style scoped>

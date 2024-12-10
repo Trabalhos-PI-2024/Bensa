@@ -28,30 +28,45 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref } from 'vue'; 
+// Importa funcionalidades do Vue para reatividade e computação de propriedades.
+
 import { useProductStore } from '@/stores/products';
+// Acessa o store de produtos para obter e gerenciar a lista de produtos.
+
 import { useCarrinhoStore } from '@/stores/carrinho';
+// Acessa o store do carrinho para gerenciar os itens no carrinho de compras.
+
 import { useRouter } from 'vue-router';
+// Acessa o Vue Router para navegação entre páginas.
 
 const carrinhoStore = useCarrinhoStore();
+// Inicializa o store do carrinho para adicionar produtos ao carrinho.
 
 const router = useRouter()
+// Inicializa o roteador para navegação entre páginas.
 
 function visualizar(id) {
+  // Função para redirecionar para a página de detalhes do produto com base no ID.
   router.push(`/produto/${id}`)
 }
 
 const productStore = useProductStore();
+// Inicializa o store de produtos para acessar a lista de produtos.
 
 const filterText = ref('')
+// Cria uma variável reativa para armazenar o texto do filtro de produtos.
 
 const filteredProducts = computed(() => 
+  // Filtra os produtos com base no nome e no filtro de texto digitado.
   productStore.products.filter(product => 
     product.vans && 
     (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
   )
 );
+// Retorna a lista de produtos filtrada, considerando o filtro de texto e a marca 'Vans'.
 </script>
+
 
 <style scoped>
 .page-container {

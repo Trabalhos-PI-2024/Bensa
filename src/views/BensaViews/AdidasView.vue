@@ -38,34 +38,42 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useProductStore } from '@/stores/products'
-import { useCarrinhoStore } from '@/stores/carrinho'
-import { useRouter } from 'vue-router'
-import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+  // Importando os hooks e stores necessários do Vue e outras dependências
+  import { ref, computed } from 'vue' // Usando ref e computed do Vue para propriedades reativas
+  import { useProductStore } from '@/stores/products' // Store para acessar os produtos
+  import { useCarrinhoStore } from '@/stores/carrinho' // Store para manipular o carrinho de compras
+  import { useRouter } from 'vue-router' // Para navegar entre as páginas
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Hook personalizado para observação de interseção de elementos
 
-useIntersectionObserver()
+  // Utilizando o hook de IntersectionObserver (provavelmente para manipulação de visibilidade de elementos enquanto o usuário rola a página)
+  useIntersectionObserver()
 
-const carrinhoStore = useCarrinhoStore()
-const router = useRouter()
+  // Instanciando o store do carrinho
+  const carrinhoStore = useCarrinhoStore()
 
-function visualizar(id) {
-  router.push(`/produto/${id}`)
-}
+  // Instanciando o router para navegação
+  const router = useRouter()
 
-const productStore = useProductStore()
+  // Função para redirecionar o usuário para a página de detalhes do produto
+  function visualizar(id) {
+    router.push(`/produto/${id}`) // Navega para a página do produto específico
+  }
 
-// Propriedade reativa para o texto de filtro
-const filterText = ref('')
+  // Instanciando o store dos produtos
+  const productStore = useProductStore()
 
-const filteredProducts = computed(() => 
-  productStore.products.filter(product => 
-    product.adidas && 
-    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
-  )
-);
+  // Definindo a propriedade reativa filterText para o filtro de produtos
+  const filterText = ref('')
 
+  // Computed que retorna os produtos filtrados com base no filtro de texto e somente produtos da Adidas
+  const filteredProducts = computed(() => 
+    productStore.products.filter(product => 
+      product.adidas && // Filtra somente os produtos da Adidas
+      (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase())) // Aplica o filtro de texto se houver
+    )
+  );
 </script>
+
 
 
 <style scoped>

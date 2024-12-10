@@ -30,23 +30,32 @@
   </template>
   
   <script setup>
-  import { onMounted, ref } from 'vue';
-  import { useComunidadeStore } from '@/stores/comunidade';
-  import { useCarrinhoStore } from '@/stores/carrinho'
-  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+  // Importando funções necessárias do Vue e outras dependências
+  import { onMounted, ref } from 'vue'; // 'onMounted' para realizar ações após o componente ser montado, 'ref' para criar variáveis reativas
+  import { useComunidadeStore } from '@/stores/comunidade'; // Importando o store da comunidade (para acessar os dados do produto)
+  import { useCarrinhoStore } from '@/stores/carrinho'; // Importando o store do carrinho (para adicionar produtos ao carrinho)
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Importando o hook para detecção de elementos visíveis (não está sendo usado aqui)
 
-useIntersectionObserver
+  // Utilizando o hook 'useIntersectionObserver', mas não está sendo utilizado diretamente neste componente
+  useIntersectionObserver
 
-const carrinhoStore = useCarrinhoStore()
-  const comunidadeStore = useComunidadeStore();
-  const comunity = ref({});
- 
-  const props = defineProps(['id']);
-  
+  // Instanciando os stores de carrinho e comunidade
+  const carrinhoStore = useCarrinhoStore(); // Acesso ao carrinho do usuário
+  const comunidadeStore = useComunidadeStore(); // Acesso aos dados dos produtos
+
+  // Inicializando a variável reativa 'comunity' para armazenar as informações do produto
+  const comunity = ref({}); // O produto será armazenado nesta variável reativa
+
+  // 'props' será usado para pegar o ID do produto, passado na rota (via URL ou de outro componente)
+  const props = defineProps(['id']); // Definindo as propriedades que serão passadas para o componente, neste caso, 'id'
+
+  // Usando 'onMounted' para pegar o produto ao montar o componente, com base no 'id' passado
   onMounted(() => {
+    // Buscando os detalhes do produto usando o método 'getProductById' do store da comunidade, com o ID fornecido
     comunity.value = comunidadeStore.getProductById(props.id);
   });
-  </script>
+</script>
+
   
   <style scoped>
   .product-page {

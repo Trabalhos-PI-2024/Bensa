@@ -28,27 +28,30 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useProductStore } from '@/stores/products';
-import { useRouter } from 'vue-router';
+import { computed, ref } from 'vue'; // Importa funções necessárias do Vue
+import { useProductStore } from '@/stores/products'; // Acessa o store de produtos
+import { useRouter } from 'vue-router'; // Acessa o roteador para navegação
 
-const router = useRouter()
+const router = useRouter() // Inicializa o roteador
 
+// Função para redirecionar para a página de detalhes do produto
 function visualizar(id) {
   router.push(`/produto/${id}`)
 }
 
-const productStore = useProductStore();
+const productStore = useProductStore(); // Acessa o store de produtos
 
-const filterText = ref('')
+const filterText = ref('') // Variável reativa para o texto do filtro
 
+// Computed para filtrar os produtos com base no texto do filtro
 const filteredProducts = computed(() => 
   productStore.products.filter(product => 
-    product.sneakers && 
-    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
+    product.sneakers && // Filtra apenas produtos da categoria 'sneakers'
+    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase())) // Filtra os produtos pelo nome
   )
 );
 </script>
+
 
 <style scoped>
 .page-container {
