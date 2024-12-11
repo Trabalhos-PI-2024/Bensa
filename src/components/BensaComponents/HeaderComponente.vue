@@ -48,31 +48,44 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+// Importa funções do Vue para criar reatividade e registrar/deregistrar eventos no ciclo de vida do componente.
+
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+// Importa um observer personalizado para detectar quando o elemento entra em interseção com o viewport. Não está claro no código atual onde é usado, mas pode estar relacionado à visibilidade do `header`.
 
 useIntersectionObserver()
+// Provavelmente inicializa o observer mencionado acima.
 
 const isMenuOpen = ref(false)
-const isSearchOpen = ref(false)
-const windowWidth = ref(window.innerWidth)
+// Cria uma variável reativa para controlar o estado de abertura do menu responsivo.
 
+const isSearchOpen = ref(false)
+// Cria uma variável reativa para controlar o estado de abertura da busca (não está implementado no template).
+
+const windowWidth = ref(window.innerWidth)
+// Cria uma variável reativa que armazena a largura atual da janela, usada para responsividade.
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
+// Função para alternar o estado do menu entre aberto e fechado.
 
 const updateWindowWidth = () => {
   windowWidth.value = window.innerWidth
 }
+// Função que atualiza a largura da janela na variável reativa toda vez que a janela é redimensionada.
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
 })
+// Registra um listener para o evento de redimensionamento da janela quando o componente é montado, para garantir que `windowWidth` seja atualizado dinamicamente.
 
 onUnmounted(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
+// Remove o listener do evento de redimensionamento quando o componente é desmontado, evitando vazamento de memória.
 </script>
+
 
 <style scoped>
 .header {
