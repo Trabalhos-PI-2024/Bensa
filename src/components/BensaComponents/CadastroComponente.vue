@@ -13,25 +13,23 @@
       <h1>Cadastro</h1>
 
       <p>
-        <label for="nome_cad">Seu e-mail</label>
-        <input v-model="loginStore.clienteInfo.email" id="nome_cad" name="nome_cad" type="text" placeholder="xaolinmatador@gmail.com" />
+        <label for="email">Seu e-mail</label>
+        <input v-model="loginStore.clienteInfo.email" id="email" name="email" type="email" placeholder="xaolinmatador@gmail.com" />
       </p>
 
       <p>
-        <label for="email_cad">Sua Senha</label>
-        <input v-model="loginStore.clienteInfo.senha" id="email_cad" name="email_cad" type="email" placeholder="1234" />
+        <label for="senha">Sua Senha</label>
+        <input v-model="loginStore.clienteInfo.senha" id="senha" name="senha" type="password" placeholder="1234" />
       </p>
 
       <p>
-        <label for="senha_cad">Confirmar Senha</label>
-        <input id="senha_cad" name="senha_cad" type="password" placeholder="1234" />
+        <label for="confirmar_senha">Confirmar Senha</label>
+        <input id="confirmar_senha" name="confirmar_senha" type="password" placeholder="1234" />
       </p>
 
-      <router-link to="/endereco">
         <p>
           <input type="submit" value="Próximo" class="submit-button" />
         </p>
-      </router-link>
 
       <p class="link">
         Já tem conta? <router-link to="/">Voltar</router-link>
@@ -41,18 +39,25 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
 import { useLoginStore } from '@/stores/login';
+import api from '@/axios'; // Importando configuração do Axios
+import { useRouter } from 'vue-router';
 
 const loginStore = useLoginStore();
+const router = useRouter();
 
-  const formCadastro = () => {
-    loginStore.atualizarCliente({
-      estado: loginStore.clienteInfo.estado,
-      cidade: loginStore.clienteInfo.cidade,
-    });
-    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
-  };
+const formCadastro = async () => {
+  try {
+    // Enviar os dados do cliente para o backend
+    const response = await api.post('/usuarios/', loginStore.clienteInfo);
+    console.log('Dados enviados com sucesso:', response.data);
+
+    // Redirecionar para a próxima etapa após o sucesso
+    router.push('/endereco');
+  } catch (error) {
+    console.error('Erro ao enviar dados:', error.response?.data || error.message);
+  }
+};
 </script>
 
 <style scoped>
@@ -98,11 +103,10 @@ const loginStore = useLoginStore();
 }
 
 .line {
-  width: 30%;
-  height: 1.8px;
-  background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%,
-      rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
-  margin: 20px auto;
+  width: 60%; 
+    height: 2px;
+    background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%, rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+    margin: 5px auto; 
 }
 
 p {

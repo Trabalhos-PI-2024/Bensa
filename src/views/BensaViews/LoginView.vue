@@ -1,86 +1,101 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useLoginStore } from '@/stores/login';
+import axios from 'axios'; // Certifique-se de configurar a baseURL no axios
 import { useToast } from "vue-toastification";
+import api from '@/axios';
 
+const router = useRouter();
 const toast = useToast();
 
-const exibirErro = () => {
-  toast.error("Erro!! Verifique se digitou seu Email ou Senha certo.", {
-    position: "top-center",
-    timeout: 3143,
-    closeOnClick: true,
-    pauseOnFocusLoss: true,
-    pauseOnHover: true,
-    draggable: true,
-    draggablePercent: 0.93,
-    showCloseButtonOnHover: false,
-    hideProgressBar: true,
-    closeButton: "button",
-    icon: true,
-    rtl: false,
-  });
-};
+// Controle de estado do formulário
+const email = ref('');
+const senha = ref('');
+const isLoading = ref(false);
+const isOpen = ref(true); // Controla a exibição do modal
 
-const loginStore = useLoginStore();
-const router = useRouter();
-
-const isOpen = ref(true);
-const email = loginStore.clienteInfo.email;
-const senha = loginStore.clienteInfo.senha;
-const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
-const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
-
-const closeComponent = () => {
-  loginStore.closeComponent();
-};
-
-function closeModal() {
+// Fecha o modal
+const closeModal = () => {
   isOpen.value = false;
-}
+};
 
-function goToCadastro() {
+// Redireciona para a página de cadastro
+const goToCadastro = () => {
   closeModal();
   router.push('/cadastro');
-}
-
-const formCadastro = () => {
-  loginStore.atualizarCliente({
-    confirmarEmail: loginStore.clienteInfo.confirmarEmail,
-    confirmarSenha: loginStore.clienteInfo.confirmarSenha,
-  });
-  console.log('Dados do cliente atualizados', loginStore.clienteInfo);
 };
 
-function validacao() {
-  if (confirmarEmail == email && confirmarSenha == senha) {
-    closeModal();
-    closeComponent();
-  } else {
-    exibirErro();
+// Realiza o login
+const loginRequest = async () => {
+  if (!email.value || !senha.value) {
+    toast.error("Preencha todos os campos!");
+    return;
   }
-}
+
+  isLoading.value = true;
+
+  try {
+    const response = await api.post('loginBensa/', { 
+      email: email.value,
+      password: senha.value,
+    });
+
+    if (response.status === 200) {
+      const { access, refresh } = response.data;
+
+      // Salvar tokens no localStorage
+      localStorage.setItem('accessToken', access);
+      localStorage.setItem('refreshToken', refresh);
+
+      // Configurar o Axios com o token para requisições futuras
+      axios.defaults.headers.common['Authorization'] = `Bearer ${access}`;
+
+      toast.success("Login realizado com sucesso!");
+      closeModal();
+      router.push('/'); // Redireciona para a página inicial
+    }
+  } catch (error) {
+    toast.error("Erro no login. Verifique suas credenciais.");
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
   <div v-if="isOpen" class="login-overlay">
     <div class="content">
-      <router-link to="/" class="close-button"><img src="/src/assets/img/Icons/excluir.png" alt="Fechar Carrinho"></router-link>
+      <router-link to="/" class="close-button" @click="closeModal">
+        <img src="/src/assets/img/Icons/excluir.png" alt="Fechar Modal" />
+      </router-link>
       <div class="ImgLogin">
-        <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="logo" />
+        <img src="/src/assets/img/Icons/user.svg" alt="Logo Login" class="logo" />
       </div>
-      <form method="post"  @submit.prevent="formCadastro" >
+      <form @submit.prevent="loginRequest">
         <div class="form-header">
           <a href="#" class="active">Login</a>
           <a href="#" @click="goToCadastro" class="sign-up">Sign Up</a>
         </div>
         <div class="line"></div>
         <p>
-          <input id="email_login" name="email_login" required type="text" v-model="loginStore.clienteInfo.confirmarEmail" placeholder="EMAIL" />
+          <input
+            id="email_login"
+            name="email_login"
+            type="text"
+            v-model="email"
+            placeholder="EMAIL"
+            required
+          />
         </p>
         <p>
-          <input id="senha_login" name="senha_login" required type="password" v-model="loginStore.clienteInfo.confirmarSenha" placeholder="SENHA" />
+          <input
+            id="senha_login"
+            name="senha_login"
+            type="password"
+            v-model="senha"
+            placeholder="SENHA"
+            required
+          />
         </p>
         <div class="login-options">
           <div class="login-options-group">
@@ -90,7 +105,10 @@ function validacao() {
           <a href="#forgot-password" class="forgot-password">Esqueci a Senha</a>
         </div>
         <div class="user-form-buttons">
-          <button class="large-button" @click="validacao()">Próximo</button>
+          <button class="large-button" type="submit" :disabled="isLoading">
+            <span v-if="isLoading">Carregando...</span>
+            <span v-else>Próximo</span>
+          </button>
         </div>
         <p class="link">
           Ainda não tem conta?
@@ -142,7 +160,7 @@ function validacao() {
   background-color: #fff;
 }
 
-.close-button img{
+.close-button img {
   width: 45px;
 }
 
@@ -150,7 +168,6 @@ function validacao() {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-
 }
 
 .logo {
@@ -196,6 +213,11 @@ input {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 30px;
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
 
 .login-options {

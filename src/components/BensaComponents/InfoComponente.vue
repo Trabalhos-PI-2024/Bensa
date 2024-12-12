@@ -30,7 +30,7 @@
             </div>
             <div class="email-container">
               <label for="email">E-mail</label>
-              <input v-model="loginStore.clienteInfo.email" type="email" id="email" required placeholder="Ex: exemplo@dominio.com" />
+              <input type="email" id="email" required placeholder="Ex: exemplo@dominio.com" />
             </div>
           </div>
           <div class="user-form-grupo inline-group">
@@ -39,48 +39,49 @@
               <input v-model="loginStore.clienteInfo.cpf" type="text" id="cpf" required placeholder="Ex: 123.456.789-00" />
             </div>
             <div class="data-nascimento-container">
-              <label for="data-nascimento">Data de Nascimento</label>
-              <input v-model="loginStore.clienteInfo.dataNascimento" type="date" id="data-nascimento" required />
+              <label for="data_nascimento">Data de Nascimento</label>
+              <input v-model="loginStore.clienteInfo.data_nascimento" type="date" id="data_nascimento" required />
             </div>
             <div class="sexo-container">
               <label for="sexo">Sexo</label>
               <select v-model="loginStore.clienteInfo.sexo" id="sexo" required>
                 <option value="">Selecione</option>
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="outro">Outro</option>
+                <option value='M'>Masculino</option>
+                <option value='F'>Feminino</option>
+                <option value='O'>Outro</option>
               </select>
             </div>
           </div>
         </div>
         <div class="user-form-buttons">
-            <router-link to="/">
           <button type="submit" class="large-button">Salvar</button>
-        </router-link>
         </div>
       </form>
     </div>
   </template>
   
   <script setup>
-  import { ref, computed } from 'vue'
-  import { useLoginStore } from '@/stores/login';
-  
-  const loginStore = useLoginStore();
-  
-  const formCadastro = () => {
-    loginStore.atualizarCliente({
-      nome: loginStore.clienteInfo.nome,
-      sobrenome: loginStore.clienteInfo.sobrenome,
-      telefone: loginStore.clienteInfo.telefone,
-      email: loginStore.clienteInfo.email,
-      cpf: loginStore.clienteInfo.cpf,
-      dataNascimento: loginStore.clienteInfo.dataNascimento,
-      sexo: loginStore.clienteInfo.sexo
-    });
-    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
-  };
-  </script>
+import { useLoginStore } from '@/stores/login';
+import api from '@/axios'; // Importando configuração do Axios
+import { useRouter } from 'vue-router';
+
+const loginStore = useLoginStore();
+const router = useRouter();
+
+const formCadastro = async () => {
+  try {
+    // Enviar os dados do cliente para o backend
+    const response = await api.post('/infos/', loginStore.clienteInfo);
+    console.log('Dados enviados com sucesso:', response.data);
+
+    // Redirecionar para a próxima etapa após o sucesso
+    router.push('/');
+  } catch (error) {
+    console.error('Erro ao enviar dados:', error.response?.data || error.message);
+  }
+};
+</script>
+
 
 <style scoped>
 .user-container {

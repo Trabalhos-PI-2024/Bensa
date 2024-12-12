@@ -16,28 +16,28 @@
                 <div class="form-grupo inline-group">
                     <div class="cep-container">
                         <label for="cep">CEP</label>
-                        <input  type="text" id="cep" required placeholder="Ex: 12345-678" />
+                        <input v-model="loginStore.clienteInfo.cep" type="text" id="cep" required placeholder="Ex: 12345-678" />
                     </div>
                     <div class="endereco-container">
-                        <label for="endereco">Endereço</label>
-                        <input  type="text" id="endereco" required
+                        <label for="endereço">Endereço</label>
+                        <input v-model="loginStore.clienteInfo.endereço" type="text" id="endereço" required
                             placeholder="Ex: Rua das Flores" />
                     </div>
                 </div>
                 <div class="form-grupo inline-group">
                     <div class="numero-container">
-                        <label for="numero">Número</label>
-                        <input type="text" id="numero" required placeholder="Ex: 123" />
+                        <label for="número">Número</label>
+                        <input v-model="loginStore.clienteInfo.número" type="text" id="número" required placeholder="Ex: 123" />
                     </div>
                     <div class="complemento-container">
                         <label for="complemento">Complemento</label>
-                        <input type="text" id="complemento" placeholder="Ex: Apto 456" />
+                        <input v-model="loginStore.clienteInfo.complemento" type="text" id="complemento" placeholder="Ex: Apto 456" />
                     </div>
                 </div>
                 <div class="form-grupo inline-group">
                     <div class="bairro-container">
                         <label for="bairro">Bairro</label>
-                        <input type="text" id="bairro" required placeholder="Ex: Centro" />
+                        <input v-model="loginStore.clienteInfo.bairro" type="text" id="bairro" required placeholder="Ex: Centro" />
                     </div>
                     <div class="cidade-container">
                         <label for="cidade">Cidade</label>
@@ -50,26 +50,34 @@
                 </div>
             </div>
             <div class="form-buttons">
-                <router-link to="/info" class="large-button">Próximo</router-link>
+                <button class="large-button">Próximo</button>
             </div>
         </form>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { useLoginStore } from '@/stores/login';
+import api from '@/axios'; // Importando configuração do Axios
+import { useRouter } from 'vue-router';
 
 const loginStore = useLoginStore();
+const router = useRouter();
 
-  const formCadastro = () => {
-    loginStore.atualizarCliente({
-      estado: loginStore.clienteInfo.estado,
-      cidade: loginStore.clienteInfo.cidade,
-    });
-    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
-  };
+const formCadastro = async () => {
+  try {
+    // Enviar os dados do cliente para o backend
+    const response = await api.post('/enderecos/', loginStore.clienteInfo);
+    console.log('Dados enviados com sucesso:', response.data);
+
+    // Redirecionar para a próxima etapa após o sucesso
+    router.push('/info');
+  } catch (error) {
+    console.error('Erro ao enviar dados:', error.response?.data || error.message);
+  }
+};
 </script>
+
 
 <style scoped>
 .container {
@@ -85,17 +93,19 @@ const loginStore = useLoginStore();
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: -100px 35px 0px 35px;
+    margin: 0px 35px 0px 35px;
 }
 
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .logo {
     width: 80px;
+    margin-bottom: 20px;
 }
 
 .titulo-section {
@@ -114,10 +124,6 @@ const loginStore = useLoginStore();
     margin: 0 20px;
     cursor: pointer;
     color: #000000;
-}
-
-.titulo.active {
-    color: #252627;
 }
 
 .underline {
