@@ -60,16 +60,26 @@
 import { ref } from 'vue';
 import { useLoginStore } from '@/stores/login';
 
-const loginStore = useLoginStore();
+/* Importa 'ref' do Vue para trabalhar com reatividade local, e a store 'useLoginStore' para acessar 
+   e modificar dados globais relacionados ao login e informações do cliente. */
 
-  const formCadastro = () => {
-    loginStore.atualizarCliente({
-      estado: loginStore.clienteInfo.estado,
-      cidade: loginStore.clienteInfo.cidade,
-    });
-    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
-  };
+const loginStore = useLoginStore();
+/* Cria uma instância da store 'loginStore', que será usada para acessar os dados e métodos relacionados ao cliente. */
+
+const formCadastro = () => {
+  /* Função chamada ao submeter o formulário. Ela realiza uma atualização dos dados do cliente na store. */
+  
+  loginStore.atualizarCliente({
+    estado: loginStore.clienteInfo.estado,
+    cidade: loginStore.clienteInfo.cidade,
+  });
+  /* Atualiza as informações do cliente na store com os valores inseridos nos campos de "cidade" e "estado". */
+
+  console.log('Dados do cliente atualizados', loginStore.clienteInfo);
+  /* Exibe no console as informações atualizadas do cliente, útil para verificar se a store foi alterada corretamente. */
+};
 </script>
+
 
 <style scoped>
 .container {

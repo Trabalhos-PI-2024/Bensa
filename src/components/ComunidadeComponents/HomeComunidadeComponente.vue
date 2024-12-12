@@ -4,11 +4,11 @@
   </div>
 
   <div class="comunidade-page">
-    <h1>Em Alta</h1>
+    <h1 class="hidden">Em Alta</h1>
     <CarroselComponente />
 
     <div class="titulo-container">
-      <h3 class="titulo-calçados">Best Sellers</h3>
+      <h3 class="titulo-calçados hidden">Best Sellers</h3>
     </div>
     <MaisVendidosComponente />
 
@@ -17,10 +17,10 @@
         <div class="banner">
           <img src="/src/assets/img/Banners/teniscomunidade.webp" alt="Banner da Comunidade" />
         </div>
-        <h3 class="titulo-calçados">Calçados</h3>
+        <h3 class="titulo-calçados hidden">Calçados</h3>
         <CarroselComponente />
         <div class="cards-container">
-          <div class="card-produto" v-for="produto in tenis" :key="produto.id">
+          <div class="card-produto hidden" v-for="produto in tenis" :key="produto.id">
             <button class="btn-more" @click="visualizar(produto.id)">
               <img :src="produto.image1" alt="Produto" class="imagem-produto" />
             </button>
@@ -42,10 +42,10 @@
         <div class="banner">
           <img src="/src/assets/img/Banners/roupascomunidade.webp" alt="Banner da Comunidade" />
         </div>
-        <h3 class="titulo-calçados">Roupas</h3>
+        <h3 class="titulo-calçados hidden">Roupas</h3>
         <CarroselComponente />
         <div class="cards-container">
-          <div class="card-produto" v-for="produto in roupa" :key="produto.id">
+          <div class="card-produto hidden" v-for="produto in roupa" :key="produto.id">
             <button class="btn-more" @click="visualizar(produto.id)">
               <img :src="produto.image1" alt="Produto" class="imagem-produto" />
             </button>
@@ -67,10 +67,10 @@
         <div class="banner">
           <img src="/src/assets/img/Banners/acessoriocomunidade.webp" alt="Banner da Comunidade" />
         </div>
-        <h3 class="titulo-calçados">Acessórios</h3>
+        <h3 class="titulo-calçados hidden">Acessórios</h3>
         <CarroselComponente />
         <div class="cards-container">
-          <div class="card-produto" v-for="produto in acessorios" :key="produto.id">
+          <div class="card-produto hidden" v-for="produto in acessorios" :key="produto.id">
             <button class="btn-more" @click="visualizar(produto.id)">
               <img :src="produto.image1" alt="Produto" class="imagem-produto" />
             </button>
@@ -105,7 +105,7 @@ const router = useRouter();
 const showAlert = ref(true); 
 
 function visualizar(id) {
-  router.push(`/produto/${id}`);
+  router.push(`/produtoComunidade/${id}`);
 }
 
 const tenis = computed(() =>

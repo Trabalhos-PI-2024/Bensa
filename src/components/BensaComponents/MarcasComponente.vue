@@ -1,19 +1,25 @@
 <template>
     <div class="allMarcas">
-        <div class="marcas">
+        <div class="marcas toRight">
             <RouterLink to="/nike"><img src="/src/assets/img/Logos/nike.svg" alt="Nike"></RouterLink>
         </div>
-        <div class="marcas">
+        <div class="marcas toRight">
             <RouterLink to="/adidas"><img src="/src/assets/img/Logos/adidas.svg" alt="Adidas"></RouterLink>
         </div>
-        <div class="marcas">
+        <div class="marcas toRight">
             <RouterLink to="/vans"><img src="/src/assets/img/Logos/vans.jpg" alt="Vans"></RouterLink>
         </div>
-        <div class="marcas">
+        <div class="marcas toRight">
             <RouterLink to="/stussy"><img src="/src/assets/img/Logos/stussy.svg" alt="Stussy"></RouterLink>
         </div>
     </div>
 </template>
+
+<script setup>
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver();
+</script>
 
 <style scoped>
 .allMarcas {
@@ -30,6 +36,7 @@
     width: 105px;
     height: auto;
     max-width: 100%;
+    z-index: 1;
 }
 
 .marcas:nth-child(3) img{

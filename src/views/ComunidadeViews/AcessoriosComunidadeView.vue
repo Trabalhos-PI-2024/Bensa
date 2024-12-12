@@ -1,14 +1,14 @@
 <template>
     <div class="page-container">
-      <div class="logo-container">
+      <div class="logo-container hidden">
         <h1>Acessórios</h1>
       </div>
       <div class="main-content">
-        <aside class="filter-container">
-          <input type="text" placeholder="Filtrar produtos" class="filter-input" />
+        <aside class="filter-container hidden">
+          <input type="text" placeholder="Filtrar produtos" v-model="filterText" class="filter-input" />
         </aside>
         <div class="product-list">
-          <div class="product-item" v-for="product in acessorios" :key="product.id" :product="product">
+          <div class="product-item hidden" v-for="product in filteredProducts" :key="product.id" :product="product">
             <button class="btn-more" @click="visualizar(product.id)">
       <img :src="product.image1" :alt="product.name" class="product-image" />
     </button>
@@ -28,26 +28,42 @@
   </template>
   
   <script setup>
-  import { computed } from 'vue';
-  import { useComunidadeStore } from '@/stores/comunidade';
-  import { useCarrinhoStore } from '@/stores/carrinho';
-  import { useRouter } from 'vue-router';
-  
+  // Importando hooks e stores necessários do Vue e outras dependências
+  import { computed, ref } from 'vue'; // Usando ref e computed do Vue para propriedades reativas
+  import { useComunidadeStore } from '@/stores/comunidade'; // Store para acessar os produtos da comunidade
+  import { useRouter } from 'vue-router'; // Para navegação entre páginas
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Hook personalizado para observar a visibilidade de elementos
+  import { useCarrinhoStore } from '@/stores/carrinho'; // Store para manipular o carrinho de compras
+
+  // Usando o hook de IntersectionObserver (geralmente utilizado para otimizar carregamento de itens ou animações ao rolar a página)
+  useIntersectionObserver()
+
+  // Instanciando o store do carrinho para manipular os produtos no carrinho de compras
   const carrinhoStore = useCarrinhoStore();
-  
+
+  // Instanciando o roteador para navegação entre páginas
   const router = useRouter()
-  
+
+  // Função chamada quando o usuário clica no botão "visualizar" de um produto, que redireciona para a página de detalhes do produto na comunidade
   function visualizar(id) {
-    router.push(`/produto/${id}`)
+    router.push(`/produtoComunidade/${id}`) // Navega para a página do produto com o id correspondente
   }
-  
+
+  // Instanciando o store da comunidade para acessar os produtos da comunidade
   const comunidadeStore = useComunidadeStore();
-  
-  
-  const acessorios = computed(() =>
-    comunidadeStore.comunidade.filter(comunidade => comunidade.acessorios)
+
+  // Definindo a propriedade reativa filterText para armazenar o texto de filtro que o usuário digita
+  const filterText = ref('')
+
+  // Computed que retorna os produtos filtrados com base no filtro de texto inserido pelo usuário e a condição de serem acessórios
+  const filteredProducts = computed(() => 
+    comunidadeStore.comunidade.filter(product => 
+      product.acessorios && // Filtra os produtos para exibir apenas os que têm a propriedade 'acessorios'
+      (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase())) // Aplica o filtro de texto se o filtro não estiver vazio
+    )
   );
-  </script>
+</script>
+
   
   
   <style scoped>

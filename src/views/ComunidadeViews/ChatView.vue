@@ -33,25 +33,34 @@
   </template>
   
   <script setup>
+  // Importando a função `ref` do Vue para criar variáveis reativas
   import { ref } from 'vue'
   
+  // Definição de um objeto `seller` com informações do vendedor, incluindo nome e imagem
   const seller = {
-    name: 'Vendedor Nome',
-    image: 'path/to/seller-image.jpg'
+    name: 'Vendedor Nome',  // Nome do vendedor
+    image: 'path/to/seller-image.jpg'  // Caminho para a imagem do vendedor
   }
   
-  const messages = ref([])
+  // Definindo uma variável reativa `messages` para armazenar as mensagens enviadas no chat
+  const messages = ref([])  // Inicializa um array vazio para armazenar as mensagens
+  
+  // Definindo uma variável reativa `newMessage` para armazenar a nova mensagem digitada pelo usuário
   const newMessage = ref('')
   
+  // Função chamada ao enviar uma mensagem
   function sendMessage() {
+    // Verifica se o campo `newMessage` não está vazio
     if (newMessage.value.trim()) {
+      // Adiciona a nova mensagem ao array `messages`, com o remetente sendo o usuário
       messages.value.push({ text: newMessage.value, sender: 'user' })
+      
+      // Limpa o campo de entrada após o envio
       newMessage.value = ''
     }
   }
-  
- 
-  </script>
+</script>
+
   
   <style scoped>
   .chat-container {

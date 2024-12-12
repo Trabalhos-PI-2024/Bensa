@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from "vue";
-import LoginComponente from "./LoginComponente.vue"; 
+import LoginComponente from "../../views/BensaViews/LoginView.vue"; 
 import { useLoginStore } from '@/stores/login';
 
 const loginStore = useLoginStore();

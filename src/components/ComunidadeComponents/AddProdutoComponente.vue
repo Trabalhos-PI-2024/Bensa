@@ -2,24 +2,24 @@
     <div class="product-form">
         <h1 class="form-title">Publicar Produto</h1>
 
-        <div class="input-container">
+        <div class="input-container toRight">
             <label for="product-title">Título do Produto</label>
             <input type="text" id="product-title" v-model="product.title" placeholder="Ex: Camiseta Estampada"
                 required />
         </div>
 
-        <div class="input-container">
+        <div class="input-container toLeft">
             <label for="brand">Marca</label>
             <input type="text" id="brand" v-model="product.brand" placeholder="Ex: Nike" required />
         </div>
 
-        <div class="input-container">
+        <div class="input-container toRight">
             <label for="description">Descrição do Produto (até 350 caracteres)</label>
             <textarea id="description" v-model="product.description" maxlength="350"
                 placeholder="Descreva o produto aqui..." required></textarea>
         </div>
 
-        <div class="input-container">
+        <div class="input-container toLeft">
             <label for="category">Categoria</label>
             <select id="category" v-model="product.category" @change="resetSize" required>
                 <option value="" disabled>Selecione uma categoria</option>
@@ -29,12 +29,12 @@
             </select>
         </div>
 
-        <div class="input-container">
+        <div class="input-container toRight">
             <label for="price">Preço</label>
             <input type="number" id="price" v-model="product.price" placeholder="Ex: 99.99" required />
         </div>
 
-        <div class="input-container">
+        <div class="input-container toLeft">
             <label for="size">Tamanho</label>
             <select id="size" v-model="product.size" required>
                 <option value="" disabled>Selecione um tamanho</option>
@@ -42,7 +42,7 @@
             </select>
         </div>
 
-        <div class="image-upload">
+        <div class="image-upload hidden">
             <h2>Adicionar Fotos</h2>
             <div class="image-grid">
                 <label class="image-box main-image">
@@ -77,55 +77,59 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed } from "vue"; // Importa as funções ref e computed do Vue para criar dados reativos e propriedades computadas
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Importa o hook de observação de interseção
 
-const product = ref({
+useIntersectionObserver // Chama o hook para observar a interseção do componente (não está sendo usado diretamente aqui, mas foi importado)
+
+const product = ref({ // Cria um objeto reativo para armazenar os dados do produto
     title: '',
     brand: '',
     description: '',
     category: '',
     price: '',
     size: '',
-    images: Array(5).fill(null),
+    images: Array(5).fill(null), // Inicializa um array de imagens com 5 slots vazios
 });
 
-const sizeOptions = ref([]);
+const sizeOptions = ref([]); // Cria uma lista reativa para armazenar as opções de tamanho, que serão atualizadas conforme a categoria
 
+// Função para lidar com a mudança de imagem ao selecionar uma foto
 const handleImageChange = (index) => {
-    const input = event.target;
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            product.value.images[index] = e.target.result;
+    const input = event.target; // Acessa o input de imagem
+    if (input.files && input.files[0]) { // Verifica se foi selecionado um arquivo
+        const reader = new FileReader(); // Cria um leitor de arquivo
+        reader.onload = (e) => { // Quando o arquivo for lido
+            product.value.images[index] = e.target.result; // Armazena o resultado da leitura (base64 da imagem) no array de imagens
         };
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(input.files[0]); // Lê o arquivo como uma URL de dados
     }
 };
 
+// Função que será chamada ao mudar a categoria, para resetar o tamanho
 const resetSize = () => {
-    product.value.size = '';
-    updateSizeOptions();
+    product.value.size = ''; // Reseta o tamanho do produto
+    updateSizeOptions(); // Atualiza as opções de tamanho conforme a categoria
 };
 
+// Função para atualizar as opções de tamanho com base na categoria do produto
 const updateSizeOptions = () => {
-    switch (product.value.category) {
+    switch (product.value.category) { // Verifica a categoria do produto
         case 'roupas':
-            sizeOptions.value = ['P', 'M', 'G', 'GG', 'XGG'];
+            sizeOptions.value = ['P', 'M', 'G', 'GG', 'XGG']; // Opções de tamanho para roupas
             break;
         case 'calçados':
-            sizeOptions.value = ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47'];
+            sizeOptions.value = ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47']; // Opções de tamanho para calçados
             break;
         case 'acessórios':
-            sizeOptions.value = ['Tamanho Único'];
+            sizeOptions.value = ['Tamanho Único']; // Opção única para acessórios
             break;
         default:
-            sizeOptions.value = [];
+            sizeOptions.value = []; // Caso a categoria não seja reconhecida, limpa as opções de tamanho
     }
 };
-
-
-
 </script>
+
 
 <style scoped>
 .product-form {

@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
-    <div class="logo-container">
+    <div class="logo-container hidden">
       <h1>Acessórios</h1>
     </div>
     <div class="main-content">
-      <aside class="filter-container">
+      <aside class="filter-container hidden">
         <input
           type="text"
           placeholder="Filtrar produtos"
@@ -13,7 +13,7 @@
         />
       </aside>
       <div class="product-list">
-        <div class="product-item" v-for="product in filteredProducts" :key="product.id" :product="product">
+        <div class="product-item hidden" v-for="product in filteredProducts" :key="product.id" :product="product">
           <button class="btn-more" @click="visualizar(product.id)">
     <img :src="product.image1" :alt="product.name" class="product-image" />
   </button>
@@ -33,30 +33,42 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useProductStore } from '@/stores/products';
-import { useCarrinhoStore } from '@/stores/carrinho';
-import { useRouter } from 'vue-router';
+  // Importando hooks e stores necessários do Vue e outras dependências
+  import { computed, ref } from 'vue'; // Usando ref e computed do Vue para propriedades reativas
+  import { useProductStore } from '@/stores/products'; // Store para acessar os produtos
+  import { useCarrinhoStore } from '@/stores/carrinho'; // Store para manipular o carrinho de compras
+  import { useRouter } from 'vue-router'; // Para navegação entre páginas
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Hook personalizado para observar a visibilidade de elementos
 
-const carrinhoStore = useCarrinhoStore();
+  // Usando o hook de IntersectionObserver (geralmente utilizado para otimizar carregamento de itens ou animações ao rolar a página)
+  useIntersectionObserver()
 
-const router = useRouter()
+  // Instanciando o store do carrinho para manipular os produtos no carrinho de compras
+  const carrinhoStore = useCarrinhoStore();
 
-function visualizar(id) {
-  router.push(`/produto/${id}`)
-}
+  // Instanciando o roteador para navegação entre páginas
+  const router = useRouter()
 
-const productStore = useProductStore();
+  // Função chamada quando o usuário clica no botão "visualizar" de um produto, que redireciona para a página de detalhes do produto
+  function visualizar(id) {
+    router.push(`/produto/${id}`) // Navega para a página do produto com o id correspondente
+  }
 
-const filterText = ref('')
+  // Instanciando o store dos produtos para acessar os dados dos produtos disponíveis
+  const productStore = useProductStore();
 
-const filteredProducts = computed(() => 
-  productStore.products.filter(product => 
-    product.acessoriosView && 
-    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
-  )
-);
+  // Definindo a propriedade reativa filterText para armazenar o texto de filtro que o usuário digita
+  const filterText = ref('')
+
+  // Computed que retorna os produtos filtrados com base no filtro de texto inserido pelo usuário e a condição de serem acessórios
+  const filteredProducts = computed(() => 
+    productStore.products.filter(product => 
+      product.acessoriosView && // Filtra os produtos para exibir apenas os que têm a propriedade 'acessoriosView'
+      (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase())) // Aplica o filtro de texto se o filtro não estiver vazio
+    )
+  );
 </script>
+
 
 
 <style scoped>

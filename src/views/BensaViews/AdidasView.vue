@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
-    <div class="logo-container">
+    <div class="logo-container hidden">
       <img src="/src/assets/img/Logos/adidas.svg" alt="Adidas Logo" class="adidas-logo" />
     </div>
     <div class="main-content">
-      <aside class="filter-container">
+      <aside class="filter-container hidden">
         <input
           type="text"
           placeholder="Filtrar produtos"
@@ -14,7 +14,7 @@
       </aside>
       <div class="product-list">
         <div
-          class="product-item"
+          class="product-item hidden"
           v-for="product in filteredProducts"
           :key="product.id"
           :product="product"
@@ -38,31 +38,42 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useProductStore } from '@/stores/products'
-import { useCarrinhoStore } from '@/stores/carrinho'
-import { useRouter } from 'vue-router'
+  // Importando os hooks e stores necessários do Vue e outras dependências
+  import { ref, computed } from 'vue' // Usando ref e computed do Vue para propriedades reativas
+  import { useProductStore } from '@/stores/products' // Store para acessar os produtos
+  import { useCarrinhoStore } from '@/stores/carrinho' // Store para manipular o carrinho de compras
+  import { useRouter } from 'vue-router' // Para navegar entre as páginas
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Hook personalizado para observação de interseção de elementos
 
-const carrinhoStore = useCarrinhoStore()
-const router = useRouter()
+  // Utilizando o hook de IntersectionObserver (provavelmente para manipulação de visibilidade de elementos enquanto o usuário rola a página)
+  useIntersectionObserver()
 
-function visualizar(id) {
-  router.push(`/produto/${id}`)
-}
+  // Instanciando o store do carrinho
+  const carrinhoStore = useCarrinhoStore()
 
-const productStore = useProductStore()
+  // Instanciando o router para navegação
+  const router = useRouter()
 
-// Propriedade reativa para o texto de filtro
-const filterText = ref('')
+  // Função para redirecionar o usuário para a página de detalhes do produto
+  function visualizar(id) {
+    router.push(`/produto/${id}`) // Navega para a página do produto específico
+  }
 
-const filteredProducts = computed(() => 
-  productStore.products.filter(product => 
-    product.adidas && 
-    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
-  )
-);
+  // Instanciando o store dos produtos
+  const productStore = useProductStore()
 
+  // Definindo a propriedade reativa filterText para o filtro de produtos
+  const filterText = ref('')
+
+  // Computed que retorna os produtos filtrados com base no filtro de texto e somente produtos da Adidas
+  const filteredProducts = computed(() => 
+    productStore.products.filter(product => 
+      product.adidas && // Filtra somente os produtos da Adidas
+      (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase())) // Aplica o filtro de texto se houver
+    )
+  );
 </script>
+
 
 
 <style scoped>

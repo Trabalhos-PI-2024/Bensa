@@ -1,5 +1,5 @@
 <template>
-  <div class="card-produto-vendido">
+  <div class="card-produto-vendido hidden">
     <img :src="imagem" alt="Imagem do Produto" class="imagem-produto" />
     <div class="info-produto">
       <h3 class="titulo-produto">{{ titulo }}</h3>
@@ -12,6 +12,9 @@
 
 <script setup>
 import { defineProps } from 'vue';
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
 
 defineProps({
   imagem: {

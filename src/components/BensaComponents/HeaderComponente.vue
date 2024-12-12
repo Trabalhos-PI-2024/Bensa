@@ -1,14 +1,14 @@
 <template>
-  <header>
+  <header class="hidden">
     <div class="header" ref="mainHeader">
       <div class="mainHeader">
-        <div class="hamburger" @click="toggleMenu">
-          <div :class="{ open: isMenuOpen }">
+        <router-link to="/header" class="hamburger">
+          <div>
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
           </div>
-        </div>
+        </router-link>
 
         <div class="logo" v-if="!isSearchOpen || windowWidth > 768">
           <RouterLink to="/">
@@ -16,7 +16,7 @@
           </RouterLink>
         </div>
 
-        <nav class="nav" :class="{ active: isMenuOpen }">
+        <nav class="nav">
           <button class="close-menu" v-if="isMenuOpen" @click="toggleMenu">X</button>
           <RouterLink to="/roupas" class="routerLink">
             <p>Roupas</p>
@@ -33,19 +33,14 @@
         </nav>
 
         <div class="icon" v-if="!isSearchOpen || windowWidth > 768">
-          <button @click="toggleLogin" class="icon-button">
+          <router-link to="/login" class="icon-button">
             <img src="/src/assets/img/Icons/user.svg" alt="Usuário" />
-          </button>
-          <button @click="toggleCart" class="icon-button">
+          </router-link>
+          <router-link to="/revisar" class="icon-button">
             <img src="/src/assets/img/Icons/carrinho.svg" alt="Carrinho" />
-          </button>
+          </router-link>
         </div>
       </div>
-      
-      <LoginComponente v-if="showLogin" />
-      <CarrinhoComponente v-if="carrinhoStore.isOpen" :cartItems="cartItems" @click="toggleCart" />
-      
-     
     </div>
   </header>
   <hr />
@@ -53,44 +48,44 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import LoginComponente from '@/components/BensaComponents/LoginComponente.vue'
-import CarrinhoComponente from '../BensaComponents/CarrinhoComponente.vue'
-import { useCarrinhoStore } from '@/stores/carrinho';
+// Importa funções do Vue para criar reatividade e registrar/deregistrar eventos no ciclo de vida do componente.
 
-const carrinhoStore = useCarrinhoStore();
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+// Importa um observer personalizado para detectar quando o elemento entra em interseção com o viewport. Não está claro no código atual onde é usado, mas pode estar relacionado à visibilidade do `header`.
 
+useIntersectionObserver()
+// Provavelmente inicializa o observer mencionado acima.
 
-const showLogin = ref(false)
-const cartItems = ref([])
-
-const toggleLogin = () => {
-  showLogin.value = !showLogin.value
-}
-
-const toggleCart = () => {
-  carrinhoStore.isOpen = !carrinhoStore.isOpen
-}
 const isMenuOpen = ref(false)
-const isSearchOpen = ref(false)
-const windowWidth = ref(window.innerWidth)
+// Cria uma variável reativa para controlar o estado de abertura do menu responsivo.
 
+const isSearchOpen = ref(false)
+// Cria uma variável reativa para controlar o estado de abertura da busca (não está implementado no template).
+
+const windowWidth = ref(window.innerWidth)
+// Cria uma variável reativa que armazena a largura atual da janela, usada para responsividade.
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
+// Função para alternar o estado do menu entre aberto e fechado.
 
 const updateWindowWidth = () => {
   windowWidth.value = window.innerWidth
 }
+// Função que atualiza a largura da janela na variável reativa toda vez que a janela é redimensionada.
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
 })
+// Registra um listener para o evento de redimensionamento da janela quando o componente é montado, para garantir que `windowWidth` seja atualizado dinamicamente.
 
 onUnmounted(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
+// Remove o listener do evento de redimensionamento quando o componente é desmontado, evitando vazamento de memória.
 </script>
+
 
 <style scoped>
 .header {

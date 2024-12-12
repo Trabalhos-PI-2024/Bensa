@@ -2,7 +2,7 @@
   <div class="navegacao">
     <button @click="moverEsquerda" class="btn-navegacao">&#9664;</button>
     <div class="produtos-container">
-      <div class="card-produto" v-for="produto in produtosVisiveis" :key="produto.id">
+      <div class="card-produto toRight" v-for="produto in produtosVisiveis" :key="produto.id">
         <button class="btn-more" @click="visualizar(produto.id)">
           <img :src="produto.image1" alt="Produto" class="imagem-produto" />
         </button>
@@ -26,6 +26,9 @@ import { ref, computed } from 'vue'
 import { useComunidadeStore } from '@/stores/comunidade'
 import { useCarrinhoStore } from '@/stores/carrinho';
   import { useRouter } from 'vue-router';
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+useIntersectionObserver
   
   const carrinhoStore = useCarrinhoStore();
 
@@ -35,7 +38,7 @@ const comunidadeStore = useComunidadeStore()
 const router = useRouter()
 
 function visualizar(id) {
-  router.push(`/produto/${id}`)
+  router.push(`/produtoComunidade/${id}`)
 }
 
 const indexAtual = ref(0)

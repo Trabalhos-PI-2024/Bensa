@@ -10,7 +10,7 @@ import StussyView from '../views/BensaViews/StussyView.vue'
 import VansView from '../views/BensaViews/VansView.vue'
 import EnderecoView from '../views/BensaViews/EnderecoView.vue'
 import InfoView from '../views/BensaViews/InfoView.vue'
-import ProdutoView from '../views/ComunidadeViews/ProdutoView.vue'
+import ProdutoView from '../views/BensaViews/ProdutoView.vue'
 import ComunidadeView from '../views/ComunidadeViews/ComunidadeView.vue'
 import MinhaLojaView from '../views/ComunidadeViews/MinhaLojaView.vue'
 import AddProdutoView from '../views/ComunidadeViews/AddProdutoView.vue';
@@ -22,11 +22,27 @@ import RevisarCarrinhoViewView from '../views/BensaViews/RevisarCarrinhoView.vue
 import PagamentoView from '../views/BensaViews/PagamentoView.vue'
 import ConfirmaçãoView from '../views/BensaViews/ConfirmaçãoView.vue'
 import HistoricoView from '../views/BensaViews/HistoricoView.vue'
+import ProductComunidade from '@/views/ComunidadeViews/ProductComunidade.vue'
+import CarrinhoView from '@/views/BensaViews/CarrinhoView.vue'
+import LoginView from '@/views/BensaViews/LoginView.vue'
+import HeaderView from '@/views/BensaViews/HeaderView.vue'
+import HeaderComunidade from '@/views/ComunidadeViews/HeaderComunidade.vue'
+
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/header',
+    name: 'header',
+    component: HeaderView
+  },
+  {
+    path: '/headerComunidade',
+    name: 'headerComunidade',
+    component: HeaderComunidade
   },
   {
     path: '/acessorios',
@@ -95,6 +111,12 @@ const routes = [
     props: true,
   },
   {
+    path: '/produtoComunidade/:id',
+    name: 'produtoComunidade',
+    component: ProductComunidade,
+    props: true,
+  },
+  {
     path: '/addproduto',
     name: 'addproduto',
     component: AddProdutoView,
@@ -139,7 +161,17 @@ const routes = [
     path: '/historico',
     name: 'historico',
     component: HistoricoView
-  }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/carrinho',
+    name: 'carrinho',
+    component: CarrinhoView
+  },
 ]
 
 const router = createRouter({

@@ -52,4 +52,29 @@ section {
   background: #ffffff;
   width: 100%;
 }
+
+.show{
+  transition: all 2s ease;
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+  z-index: 1 !important;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-50px);
+  z-index: 3;
+}
+
+.toLeft{
+  opacity: 0;
+  transform: translateX(50%);
+  z-index: 3;
+}
+
+.toRight{
+  opacity: 0;
+  z-index: 3;
+  transform: translateX(-50%);
+}
 </style>

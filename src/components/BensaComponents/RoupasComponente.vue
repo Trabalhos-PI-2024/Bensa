@@ -8,7 +8,7 @@
       <div class="navegacao">
       <button @click="moverEsquerda" class="btn-navegacao">&#9664;</button>
       <div class="produtos-container">
-        <div class="produtos" v-for="product in produtosVisiveis" :key="product.id">
+        <div class="produtos toLeft" v-for="product in produtosVisiveis" :key="product.id">
           <button class="btn-more" @click="visualizar(product.id)"> 
           <img :src="product.image1" :alt="product.name" />
         </button>
@@ -26,11 +26,11 @@
       <button @click="moverDireita" class="btn-navegacao">&#9654;</button>
     </div>
     </div>
-    <div class="imgAcessorios">
+    <div class="imgAcessorios toRight">
       <img src="/src/assets/img/roupas/Roupa.jpg" alt="Acessórios" />
     </div>
   </div>
-  <marquee direction="right" class="line">
+  <marquee direction="right" class="line hidden">
     <div class="line">
     <img src="/src/assets/img/Lancamentos/truck-loading-load-a-truck-svgrepo-com.svg" alt="">
     <p>Frete grátis para a região sul e sudeste a partir de R$ 299</p>
@@ -41,45 +41,53 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { useProductStore } from '@/stores/products'
-import { useCarrinhoStore } from '@/stores/carrinho'
-import { useRouter } from 'vue-router'
+import { computed, ref } from 'vue' // Importando as funções necessárias do Vue
+import { useProductStore } from '@/stores/products' // Importando o store de produtos
+import { useCarrinhoStore } from '@/stores/carrinho' // Importando o store de carrinho
+import { useRouter } from 'vue-router' // Importando o router para navegação
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Importando o hook personalizado de observer
 
-const carrinhoStore = useCarrinhoStore()
+useIntersectionObserver(); // Chamando o hook de observação de interseção
 
-const router = useRouter()
+const carrinhoStore = useCarrinhoStore() // Criando uma referência ao store de carrinho
 
-function visualizar(id) {
-  router.push(`/produto/${id}`)
+const router = useRouter() // Criando uma referência ao router para navegação
+
+function visualizar(id) { // Função para redirecionar para a página do produto
+  router.push(`/produto/${id}`) // Navegar para a página do produto com o ID passado
 }
 
-const productStore = useProductStore()
+const productStore = useProductStore() // Criando uma referência ao store de produtos
 
-const indexAtual = ref(0)
-const produtosPorPagina = ref(4)
+const indexAtual = ref(0) // Variável reativa que controla o índice atual de produtos visíveis
+const produtosPorPagina = ref(4) // Variável reativa que controla o número de produtos por página
 
+// Computed que retorna os produtos filtrados por categoria "roupas" e limita o número de itens visíveis
 const produtosVisiveis = computed(() => {
   return productStore.products
-    .filter(products => products.roupas === true)
-    .slice(indexAtual.value, indexAtual.value + produtosPorPagina.value)
+    .filter(products => products.roupas === true) // Filtrando os produtos de "roupas"
+    .slice(indexAtual.value, indexAtual.value + produtosPorPagina.value) // Retornando os produtos dentro do intervalo da página atual
 })
 
+// Função para mover os produtos para a esquerda (retroceder a página)
 const moverEsquerda = () => {
-  if (indexAtual.value > 0) {
-    indexAtual.value -= produtosPorPagina.value
+  if (indexAtual.value > 0) { // Verifica se não está na primeira página
+    indexAtual.value -= produtosPorPagina.value // Decrementa o índice atual para exibir produtos anteriores
   }
 }
 
+// Função para mover os produtos para a direita (avançar para a próxima página)
 const moverDireita = () => {
-  if (indexAtual.value + produtosPorPagina.value < productStore.products.length) {
-    indexAtual.value += produtosPorPagina.value
+  if (indexAtual.value + produtosPorPagina.value < productStore.products.length) { // Verifica se há mais produtos para exibir
+    indexAtual.value += produtosPorPagina.value // Incrementa o índice atual para exibir os próximos produtos
   }
 }
 
+// Função que atualiza o número de produtos por página com base na largura da tela
 const atualizarProdutosPorPagina = () => {
-  const larguraTela = window.innerWidth
+  const larguraTela = window.innerWidth // Obtendo a largura da tela
 
+  // Ajusta o número de produtos visíveis de acordo com a largura da tela
   if (larguraTela >= 1700) {
     produtosPorPagina.value = 6
   } else if (larguraTela >= 1400) {
@@ -91,8 +99,9 @@ const atualizarProdutosPorPagina = () => {
   }
 }
 
+// Adicionando um listener para atualizar a quantidade de produtos por página quando a tela for redimensionada
 window.addEventListener('resize', atualizarProdutosPorPagina)
-atualizarProdutosPorPagina()
+atualizarProdutosPorPagina() // Chamando a função ao carregar a página para definir o número de produtos
 </script>
 
 <style scoped>

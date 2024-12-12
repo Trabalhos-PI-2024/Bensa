@@ -1,51 +1,73 @@
 <template>
     <div class="purchase-history">
-      <h1>Histórico de Compras</h1>
-      <div v-if="purchases.length > 0" class="purchases-list">
-        <div v-for="purchase in purchases" :key="purchase.id" class="purchase-item">
+      <h1 class="hidden">Histórico de Compras</h1>
+      <div v-if="historicoStore.historico.length > 0" class="purchases-list toLeft">
+        <div v-for="purchase in historicoStore.historico" :key="purchase.id" class="purchase-item">
           <div class="purchase-details">
-            <h2>{{ purchase.productName }}</h2>
+            <h2>{{ purchase.name }}</h2>
             <p><strong>Data da Compra:</strong> {{ formatDate(purchase.date) }}</p>
-            <p><strong>Quantidade:</strong> {{ purchase.quantity }}</p>
-            <p><strong>Valor Total:</strong> R$ {{ purchase.totalPrice.toFixed(2) }}</p>
+            <p><strong>Tamanho:</strong> {{ purchase.sizes }}</p>
+            <p><strong>Valor Total:</strong> R$ {{ purchase.price.toFixed(2) }}</p>
           </div>
           <img :src="purchase.productImage" alt="Imagem do produto" class="product-image" />
         </div>
       </div>
-      <div v-else>
-        <p class="no-purchases">Você ainda não tem compras registradas.</p>
+      <div v-else class="historicoVazio toRight">
+        <img src="@\assets\img\Banners\sacolavazia.jpg" alt="">
+        <p class="no-purchases">Parece que você ainda não comprou nada. Explore nossos produtos e encontre o que mais combina com você!</p>
       </div>
     </div>
   </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue'
+  // Importando o store de histórico de compras
+  import { useHistoricoStore } from '@/stores/historico';
   
-  const purchases = ref([])
+  // Importando o composable para detecção de visibilidade (não está sendo utilizado diretamente aqui, mas é chamado)
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+
+  // Inicializando o useIntersectionObserver (pode estar monitorando a visibilidade de algum elemento, mas não está claro no código)
+  useIntersectionObserver();
+
+  // Acessando o store de histórico de compras
+  const historicoStore = useHistoricoStore();
   
-  function fetchPurchaseHistory() {
-    purchases.value = [
-      { id: 1, productName: 'Tênis Adidas', date: '2024-01-15', quantity: 2, totalPrice: 1220.90, productImage: 'https://droper-media.us-southeast-1.linodeobjects.com/2720240431943.webp' },
-      { id: 2, productName: 'Tênis Nike', date: '2024-03-22', quantity: 1, totalPrice: 1420.80, productImage: 'https://droper-media.us-southeast-1.linodeobjects.com/1972024202252349.webp' },
-      { id: 3, productName: 'Camiseta Supreme', date: '2024-05-05', quantity: 1, totalPrice: 329.90, productImage: 'https://droper-lapse.us-southeast-1.linodeobjects.com/20241015202245592-955.webp' },
-    ]
-  }
-  
+  // Função para formatar a data de cada compra para o formato brasileiro
   function formatDate(dateStr) {
-    const date = new Date(dateStr)
-    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    // Convertendo a string de data em um objeto Date
+    const date = new Date(dateStr);
+    // Retornando a data formatada para o padrão pt-BR (ex: 10/12/2024)
+    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
   }
-  
-  onMounted(() => {
-    fetchPurchaseHistory()
-  })
-  </script>
-  
+</script>
+
   <style scoped>
+.historicoVazio{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.historicoVazio img{
+  width: 100%;
+  height: 60dvh;
+}
+
+.no-purchases {
+    text-align: center;
+    font-size: 1.2em;
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 7px;
+  }
+
   .purchase-history {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     min-height: 100vh;
     background-color: #f9f9f9;
@@ -56,8 +78,8 @@
   h1 {
     font-size: 2.5em;
     color: #862222;
-    margin-bottom: 30px;
-  }
+    margin-top: 30px;
+    }
   
   .purchases-list {
     width: 100%;
@@ -76,6 +98,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-left: 6px solid #862923;
     justify-content: space-between; 
+    margin-top: 30px;
   }
   
   .product-image {

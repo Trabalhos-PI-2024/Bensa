@@ -1,6 +1,6 @@
 <template>
   <div class="pagina-perfil">
-    <div class="banner">
+    <div class="banner hidden">
       <input
         type="file"
         id="banner-input"
@@ -15,7 +15,7 @@
     </div>
       <div class="perfil-conteudo">
         <div class="mainUsuario">
-        <div class="perfil-info">
+        <div class="perfil-info toRight">
           <div class="imagem-bola">
             <div class="bola">
               <input
@@ -34,13 +34,13 @@
               <img v-if="imagemBola" :src="imagemBola" alt="Imagem do Usuário" />
             </div>
           </div>
-          <div class="informacoes-usuario">
+          <div class="informacoes-usuario toRight">
             <!-- Acesso correto ao primeiro item do array cliente -->
             <h2>{{ loginStore.cliente[0]?.nome }} {{ loginStore.cliente[0]?.sobrenome }}</h2>
             <p>{{ loginStore.cliente[0]?.cidade }}, {{ loginStore.cliente[0]?.estado }}</p>
           </div>
         </div>
-        <div class="botoes-perfil">
+        <div class="botoes-perfil hidden">
           <button @click="toggleEditar" class="botao-editar-perfil">
             {{ editar ? 'Salvar' : 'Editar Perfil' }}
           </button>
@@ -49,15 +49,15 @@
           </router-link>
         </div>
       </div>
-        <div class="avaliacoes">
+        <div class="avaliacoes toLeft">
           <div class="estrelas">
             <span v-for="star in 5" :key="star" class="estrela">&#9733;</span>
           </div>
           <p>({{ numeroAvaliacoes }})</p>
         </div>
       </div>
-    <h1 class="tittle">Produtos</h1>
-    <div class="status-produtos">
+    <h1 class="tittle hidden">Produtos</h1>
+    <div class="status-produtos hidden">
       <span :class="{ ativo: abaAtiva === 'venda' }" @click="mudarAba('venda')"> à venda </span>
       <span :class="{ ativo: abaAtiva === 'vendidos' }" @click="mudarAba('vendidos')">
         vendidos
@@ -89,50 +89,59 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import CardVendidoComponente from '@/components/ComunidadeComponents/CardVendidoComponente.vue'
-import CardVendaComponente from '@/components/ComunidadeComponents/CardVendaComponente.vue'
-import { useLoginStore } from '@/stores/login';
+import { ref } from 'vue' // Importa a função ref do Vue para criar dados reativos
+import CardVendidoComponente from '@/components/ComunidadeComponents/CardVendidoComponente.vue' // Importa o componente para produtos vendidos
+import CardVendaComponente from '@/components/ComunidadeComponents/CardVendaComponente.vue' // Importa o componente para produtos à venda
+import { useLoginStore } from '@/stores/login'; // Importa a store para o gerenciamento de login
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Importa um hook para observação de interseção (não está sendo usado diretamente)
 
-const loginStore = useLoginStore();
+useIntersectionObserver // Chama o hook para observar a interseção do componente (não está sendo utilizado diretamente aqui)
 
-const editar = ref(false)
-const banner = ref(null)
-const imagemBola = ref(null)
-const numeroAvaliacoes = ref(0)
-const abaAtiva = ref('venda')
-const produtos = ref([
+const loginStore = useLoginStore(); // Inicializa a store de login, que pode ser utilizada para acessar dados do usuário logado
+
+// Variáveis reativas
+const editar = ref(false) // Controle para alternar entre os modos de edição
+const banner = ref(null) // Armazena a URL da imagem do banner
+const imagemBola = ref(null) // Armazena a URL da imagem da bola
+const numeroAvaliacoes = ref(0) // Armazena o número de avaliações
+const abaAtiva = ref('venda') // Controla qual aba está ativa (venda ou vendido)
+const produtos = ref([ // Array de produtos, cada um com ID, imagem, título, preço e comprador (se já vendido)
   {
     id: 1,
-    imagem: 'https://droper-lapse.us-southeast-1.linodeobjects.com/20241018225641239-253.webp',
-    titulo: 'Camiseta Nike',
-    preco: 120.0,
-    vendidoPara: 'Davi'
+    imagem: 'https://droper-lapse.us-southeast-1.linodeobjects.com/20241018225641239-253.webp', // URL da imagem do produto
+    titulo: 'Camiseta Nike', // Título do produto
+    preco: 120.0, // Preço do produto
+    vendidoPara: 'Davi' // Nome do comprador, caso o produto tenha sido vendido
   }
 ])
 
+// Função para alternar o estado de edição
 const toggleEditar = () => {
-  editar.value = !editar.value
+  editar.value = !editar.value // Alterna entre verdadeiro ou falso
 }
 
+// Função para atualizar a imagem do banner
 const atualizarBanner = (event) => {
-  const file = event.target.files[0]
+  const file = event.target.files[0] // Acessa o arquivo selecionado
   if (file) {
-    banner.value = URL.createObjectURL(file)
+    banner.value = URL.createObjectURL(file) // Cria uma URL de objeto para o arquivo e armazena em 'banner'
   }
 }
 
+// Função para atualizar a imagem da bola
 const atualizarImagemBola = (event) => {
-  const file = event.target.files[0]
+  const file = event.target.files[0] // Acessa o arquivo selecionado
   if (file) {
-    imagemBola.value = URL.createObjectURL(file)
+    imagemBola.value = URL.createObjectURL(file) // Cria uma URL de objeto para o arquivo e armazena em 'imagemBola'
   }
 }
 
+// Função para mudar a aba ativa entre "venda" e "vendido"
 const mudarAba = (aba) => {
-  abaAtiva.value = aba
+  abaAtiva.value = aba // Atualiza a aba ativa para a aba passada como parâmetro
 }
 </script>
+
 
 <style scoped>
 .mainUsuario{

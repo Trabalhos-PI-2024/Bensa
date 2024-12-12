@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <div class="logo-container">
+    <div class="logo-container hidden">
       <img src="/src/assets/img/Logos/nike.svg" alt="Nike Logo" class="nike-logo" />
     </div>
     <div class="main-content">
@@ -8,7 +8,7 @@
         <input type="text" placeholder="Filtrar produtos" v-model="filterText" class="filter-input" />
       </aside>
       <div class="product-list">
-        <div class="product-item" v-for="product in filteredProducts" :key="product.id" :product="product">
+        <div class="product-item hidden" v-for="product in filteredProducts" :key="product.id" :product="product">
           <button class="btn-more" @click="visualizar(product.id)">
     <img :src="product.image1" :alt="product.name" class="product-image" />
   </button>
@@ -28,31 +28,39 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useProductStore } from '@/stores/products';
-import { useCarrinhoStore } from '@/stores/carrinho';
-import { useRouter } from 'vue-router';
+  // Importação dos hooks e stores do Vue
+  import { computed, ref } from 'vue'; // 'computed' é usado para propriedades reativas baseadas em outras, e 'ref' para criar variáveis reativas
+  import { useProductStore } from '@/stores/products'; // Acesso à store de produtos para manipular a lista de produtos
+  import { useCarrinhoStore } from '@/stores/carrinho'; // Acesso à store do carrinho para adicionar produtos
+  import { useRouter } from 'vue-router'; // Hook para navegação entre páginas no Vue
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Hook personalizado para observar a visibilidade de elementos na tela
 
-const carrinhoStore = useCarrinhoStore();
+  // Chama o hook 'useIntersectionObserver' para monitorar a visibilidade dos elementos na tela (exemplo de lazy loading ou animações)
+  useIntersectionObserver();
 
-const router = useRouter()
+  // Criação das referências para as stores e variáveis reativas
+  const carrinhoStore = useCarrinhoStore(); // Acesso à store do carrinho, onde os produtos podem ser adicionados
+  const router = useRouter(); // Acesso ao roteador Vue para navegar entre páginas
 
-function visualizar(id) {
-  router.push(`/produto/${id}`)
-}
+  // Função que é chamada quando o usuário clica para visualizar os detalhes do produto
+  function visualizar(id) {
+    router.push(`/produto/${id}`); // Redireciona o usuário para a página do produto usando o ID
+  }
 
-const productStore = useProductStore();
+  const productStore = useProductStore(); // Acesso à store de produtos, onde podemos obter a lista de produtos
 
+  // Criação de uma variável reativa 'filterText' para armazenar o texto digitado no campo de filtro
+  const filterText = ref('');
 
-const filterText = ref('')
-
-const filteredProducts = computed(() => 
-  productStore.products.filter(product => 
-    product.nike && 
-    (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase()))
-  )
-);
+  // Computed que retorna a lista de produtos filtrada com base no nome e que são da Nike
+  const filteredProducts = computed(() => 
+    productStore.products.filter(product => 
+      product.nike &&  // Filtra apenas produtos que são da Nike
+      (!filterText.value || product.name.toLowerCase().includes(filterText.value.toLowerCase())) // Filtra por nome do produto com base no texto digitado
+    )
+  );
 </script>
+
 
 <style scoped>
 .page-container {

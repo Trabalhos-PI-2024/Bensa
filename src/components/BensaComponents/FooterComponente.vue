@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer hidden">
     <div class="top-footer">
       <div class="footer-content">
         <div class="mainFooter">
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="logo">
-        <a href="https://youtu.be/vj4hp9XCT6A?feature=shared">
+        <a href="https://youtu.be/vj4hp9XCT6A?feature=shared">  
           <img src="/src/assets/img/Logos/hands.png" alt="Logo" />
         </a>
       </div>

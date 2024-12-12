@@ -3,7 +3,7 @@
     <div class="ImgLogin">
       <img src="/src/assets/img/Icons/user.svg" alt="Logo de Cadastro" class="logo" />
     </div>
-    <form method="post" @submit.prevent="formCadastro" >
+    <form method="post" @submit.prevent="formCadastro">
       <div class="form-header">
         <router-link to="/">Sign Up</router-link>
         <router-link to="/">Login</router-link>
@@ -14,12 +14,24 @@
 
       <p>
         <label for="nome_cad">Seu e-mail</label>
-        <input v-model="loginStore.clienteInfo.email" id="nome_cad" name="nome_cad" type="text" placeholder="xaolinmatador@gmail.com" />
+        <input
+          v-model="loginStore.clienteInfo.email"
+          id="nome_cad"
+          name="nome_cad"
+          type="text"
+          placeholder="xaolinmatador@gmail.com"
+        />
       </p>
 
       <p>
         <label for="email_cad">Sua Senha</label>
-        <input v-model="loginStore.clienteInfo.senha" id="email_cad" name="email_cad" type="email" placeholder="1234" />
+        <input
+          v-model="loginStore.clienteInfo.senha"
+          id="email_cad"
+          name="email_cad"
+          type="email"
+          placeholder="1234"
+        />
       </p>
 
       <p>
@@ -33,26 +45,33 @@
         </p>
       </router-link>
 
-      <p class="link">
-        Já tem conta? <router-link to="/">Voltar</router-link>
-      </p>
-
+      <p class="link">Já tem conta? <router-link to="/">Voltar</router-link></p>
     </form>
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
-import { useLoginStore } from '@/stores/login';
+import { ref } from 'vue'
+import { useLoginStore } from '@/stores/login'
+/* Importa o método 'ref' da API reativa do Vue e a store 'useLoginStore' 
+   para gerenciar o estado global relacionado ao login. */
 
-const loginStore = useLoginStore();
+const loginStore = useLoginStore()
+/* Cria uma instância da store 'loginStore', permitindo o acesso e a modificação
+   dos dados armazenados globalmente. */
 
-  const formCadastro = () => {
-    loginStore.atualizarCliente({
-      estado: loginStore.clienteInfo.estado,
-      cidade: loginStore.clienteInfo.cidade,
-    });
-    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
-  };
+const formCadastro = () => {
+  /* Define a função 'formCadastro', que será executada ao submeter o formulário. */
+
+  loginStore.atualizarCliente({
+    estado: loginStore.clienteInfo.estado,
+    cidade: loginStore.clienteInfo.cidade
+  })
+  /* Atualiza os dados do cliente na store com as informações do estado e cidade
+     obtidas do objeto reativo 'clienteInfo'. */
+
+  console.log('Dados do cliente atualizados', loginStore.clienteInfo)
+  /* Exibe no console os dados atualizados do cliente para fins de depuração. */
+}
 </script>
 
 <style scoped>
@@ -60,7 +79,7 @@ const loginStore = useLoginStore();
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .cadastro {
@@ -70,7 +89,6 @@ const loginStore = useLoginStore();
   border-top: 1px solid #e7e7e7;
   display: flex;
   flex-direction: column;
-
 }
 
 .ImgLogin {
@@ -89,19 +107,23 @@ const loginStore = useLoginStore();
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
-
 }
 
 .form-header a {
   color: black;
-
 }
 
 .line {
   width: 30%;
   height: 1.8px;
-  background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(219, 0, 0, 0.8) 20%,
-      rgb(143, 0, 0) 53%, rgba(12, 0, 0, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+  background: -webkit-linear-gradient(
+    left,
+    rgba(147, 184, 189, 0) 0%,
+    rgba(219, 0, 0, 0.8) 20%,
+    rgb(143, 0, 0) 53%,
+    rgba(12, 0, 0, 0.8) 79%,
+    rgba(147, 184, 189, 0) 100%
+  );
   margin: 20px auto;
 }
 
@@ -119,7 +141,7 @@ input {
   border-radius: 8px;
 }
 
-input[type="submit"] {
+input[type='submit'] {
   width: 40%;
 
   cursor: pointer;
@@ -137,13 +159,12 @@ input[type="submit"] {
   display: flex;
 }
 
-input[type="submit"]:hover {
+input[type='submit']:hover {
   transform: scale(1.04);
 }
 
 .link {
   position: relative;
   text-align: right;
-
 }
 </style>
