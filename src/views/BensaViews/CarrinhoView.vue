@@ -69,62 +69,75 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { useCarrinhoStore } from '@/stores/carrinho'
-import { useRouter } from 'vue-router'
-import { useToast } from 'vue-toastification'
-import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
+  // Importando as dependências necessárias
+  import { computed, ref } from 'vue' // Usando as funcionalidades do Vue, como computed e ref
+  import { useCarrinhoStore } from '@/stores/carrinho' // Importando o store do carrinho
+  import { useRouter } from 'vue-router' // Para navegação entre rotas
+  import { useToast } from 'vue-toastification' // Para exibir notificações tipo toast
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Para usar o observer de interseção
 
-useIntersectionObserver()
+  // Utiliza o hook do Intersection Observer (provavelmente para monitoramento de visibilidade de elementos)
+  useIntersectionObserver()
 
-const toast = useToast()
+  // Inicializa o Toast para mostrar mensagens de aviso
+  const toast = useToast()
 
-const router = useRouter()
+  // Instância do Router para redirecionamento de páginas
+  const router = useRouter()
 
-const carrinhoStore = useCarrinhoStore()
+  // Acessando o store do carrinho
+  const carrinhoStore = useCarrinhoStore()
 
-function showWarning(produtoSemTamanho) {
-  toast.warning(`Escolha o tamanho de "${produtoSemTamanho.name}" antes de prosseguir.`, {
-    position: 'top-center',
-    timeout: 5000,
-    closeOnClick: true,
-    pauseOnFocusLoss: true,
-    pauseOnHover: true,
-    draggable: true,
-    draggablePercent: 0.6,
-    showCloseButtonOnHover: false,
-    hideProgressBar: false,
-    closeButton: 'button',
-    icon: true,
-    rtl: false,
-    zIndex: 9999,
+  // Função para exibir um toast de aviso quando algum produto não tiver tamanho selecionado
+  function showWarning(produtoSemTamanho) {
+    toast.warning(`Escolha o tamanho de "${produtoSemTamanho.name}" antes de prosseguir.`, {
+      position: 'top-center', // Define a posição do toast
+      timeout: 5000, // Tempo de exibição do toast
+      closeOnClick: true, // Fecha o toast ao clicar
+      pauseOnFocusLoss: true, // Pausa o tempo ao perder o foco
+      pauseOnHover: true, // Pausa o tempo ao passar o mouse sobre o toast
+      draggable: true, // Permite arrastar o toast
+      draggablePercent: 0.6, // Ajusta a porcentagem para arrastar
+      showCloseButtonOnHover: false, // Não exibe botão de fechar ao passar o mouse
+      hideProgressBar: false, // Exibe a barra de progresso
+      closeButton: 'button', // Exibe um botão de fechar
+      icon: true, // Exibe o ícone no toast
+      rtl: false, // Não é RTL (direita para esquerda)
+      zIndex: 9999, // Define o índice z para o toast
+    })
+  }
+
+  // Computed para calcular o total a pagar, somando os preços dos itens no carrinho
+  const totalAPagar = computed(() => {
+    return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price, 0).toFixed(2)
   })
-}
 
-const totalAPagar = computed(() => {
-  return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price, 0).toFixed(2)
-})
-
-const selectSize = (productId, size) => {
-  const product = carrinhoStore.carrinho.find((item) => item.id === productId)
-  if (product) {
-    product.selectedSize = size
-  }
-}
-
-const verificarCarrinho = () => {
-  const produtoSemTamanho = carrinhoStore.carrinho.find((produto) => !produto.selectedSize)
-
-  if (produtoSemTamanho) {
-    showWarning(produtoSemTamanho)
-    return
+  // Função para selecionar o tamanho de um produto no carrinho
+  const selectSize = (productId, size) => {
+    const product = carrinhoStore.carrinho.find((item) => item.id === productId) // Encontra o produto
+    if (product) {
+      product.selectedSize = size // Atualiza o tamanho selecionado do produto
+    }
   }
 
-  router.push('/revisar')
-  console.log('vai tomando')
-  carrinhoStore.closeModal()
-}
+  // Função que valida o carrinho antes de proceder para a página de revisão
+  const verificarCarrinho = () => {
+    // Verifica se algum produto no carrinho não tem tamanho selecionado
+    const produtoSemTamanho = carrinhoStore.carrinho.find((produto) => !produto.selectedSize)
+
+    // Se algum produto não tiver tamanho, exibe um aviso e impede de prosseguir
+    if (produtoSemTamanho) {
+      showWarning(produtoSemTamanho)
+      return
+    }
+
+    // Se todos os produtos tiverem tamanho, o usuário é redirecionado para a página de revisão
+    router.push('/revisar')
+    console.log('vai tomando') // Esta linha parece ser um log para depuração, talvez possa ser removida
+    carrinhoStore.closeModal() // Fecha o modal do carrinho
+  }
 </script>
+
 
 <style scoped>
 .divCarrinho {

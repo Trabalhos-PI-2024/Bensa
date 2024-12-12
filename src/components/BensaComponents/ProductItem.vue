@@ -11,27 +11,37 @@
 </template>
 
 <script setup>
+// Importa a store de produtos para gerenciar o estado do carrinho
 import { useProductStore } from '@/stores/products';
+// Importa funções do Vue, como `defineProps` e `inject`, para lidar com propriedades e injeção de dependências
 import { defineProps, inject } from 'vue';
 
+// Define as propriedades que o componente espera receber
 const props = defineProps({
   product: {
-    type: Object,
-    required: true,
+    type: Object, // O tipo de dado esperado para o produto é um objeto
+    required: true, // A propriedade é obrigatória
   },
 });
 
+// Injeta a função `addToCart` para adicionar um produto ao carrinho, que foi fornecida por um componente pai
 const addToCart = inject('addToCart');
 
+// Função para lidar com a adição do produto ao carrinho, chamando a função injetada
 const handleAddToCart = () => {
+  // Exibe um log no console indicando que o produto está sendo adicionado ao carrinho
   console.log('Adicionando ao carrinho:', props.product);
+  // Chama a função `addToCart` passando o produto como argumento
   addToCart(props.product);
 };
 
+// Função para exibir mais detalhes do produto quando o botão "Saiba Mais" é clicado
 const showMoreDetails = () => {
+  // Exibe um alerta com o nome do produto, indicando que mais detalhes podem ser mostrados
   alert(`Mais detalhes sobre: ${props.product.name}`);
 };
 </script>
+
 
 <style scoped>
 .product-item {

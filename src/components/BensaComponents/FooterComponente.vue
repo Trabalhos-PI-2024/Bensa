@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="logo">
-        <a href="https://youtu.be/vj4hp9XCT6A?feature=shared">
+        <a href="https://youtu.be/vj4hp9XCT6A?feature=shared">  
           <img src="/src/assets/img/Logos/hands.png" alt="Logo" />
         </a>
       </div>

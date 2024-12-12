@@ -13,31 +13,37 @@
         </div>
       </div>
       <div v-else class="historicoVazio toRight">
-        <img src="@\assets\img\Banners\historicovazio.jpg" alt="">
+        <img src="@\assets\img\Banners\sacolavazia.jpg" alt="">
         <p class="no-purchases">Parece que você ainda não comprou nada. Explore nossos produtos e encontre o que mais combina com você!</p>
       </div>
     </div>
   </template>
   
   <script setup>
+  // Importando o store de histórico de compras
+  import { useHistoricoStore } from '@/stores/historico';
   
-import { useHistoricoStore } from '@/stores/historico'
-import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
+  // Importando o composable para detecção de visibilidade (não está sendo utilizado diretamente aqui, mas é chamado)
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
 
-useIntersectionObserver()
+  // Inicializando o useIntersectionObserver (pode estar monitorando a visibilidade de algum elemento, mas não está claro no código)
+  useIntersectionObserver();
 
-const historicoStore = useHistoricoStore()
+  // Acessando o store de histórico de compras
+  const historicoStore = useHistoricoStore();
   
+  // Função para formatar a data de cada compra para o formato brasileiro
   function formatDate(dateStr) {
-    const date = new Date(dateStr)
-    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    // Convertendo a string de data em um objeto Date
+    const date = new Date(dateStr);
+    // Retornando a data formatada para o padrão pt-BR (ex: 10/12/2024)
+    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
   }
+</script>
 
-  </script>
-  
   <style scoped>
 .historicoVazio{
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,12 +56,10 @@ const historicoStore = useHistoricoStore()
 }
 
 .no-purchases {
-  position: absolute;
     text-align: center;
     font-size: 1.2em;
-    color: #888;
+    color: black;
     font-weight: bold;
-    background: #fff;
     padding: 5px;
     border-radius: 7px;
   }
@@ -74,8 +78,8 @@ const historicoStore = useHistoricoStore()
   h1 {
     font-size: 2.5em;
     color: #862222;
-    margin-bottom: 30px;
-  }
+    margin-top: 30px;
+    }
   
   .purchases-list {
     width: 100%;
@@ -94,6 +98,7 @@ const historicoStore = useHistoricoStore()
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-left: 6px solid #862923;
     justify-content: space-between; 
+    margin-top: 30px;
   }
   
   .product-image {

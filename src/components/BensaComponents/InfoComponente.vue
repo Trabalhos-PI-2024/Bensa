@@ -63,24 +63,30 @@
   </template>
   
   <script setup>
-  import { ref, computed } from 'vue'
-  import { useLoginStore } from '@/stores/login';
-  
-  const loginStore = useLoginStore();
-  
-  const formCadastro = () => {
-    loginStore.atualizarCliente({
-      nome: loginStore.clienteInfo.nome,
-      sobrenome: loginStore.clienteInfo.sobrenome,
-      telefone: loginStore.clienteInfo.telefone,
-      email: loginStore.clienteInfo.email,
-      cpf: loginStore.clienteInfo.cpf,
-      dataNascimento: loginStore.clienteInfo.dataNascimento,
-      sexo: loginStore.clienteInfo.sexo
-    });
-    console.log('Dados do cliente atualizados', loginStore.clienteInfo);
-  };
-  </script>
+import { ref } from 'vue'
+// Importa a função ref para criar reatividade.
+
+import { useLoginStore } from '@/stores/login'
+// Importa a store de login para gerenciar dados globais.
+
+const loginStore = useLoginStore()
+// Inicializa a store para acessar ou alterar os dados do cliente.
+
+const formCadastro = () => {
+  // Função chamada ao enviar o formulário.
+  loginStore.atualizarCliente({
+    nome: loginStore.clienteInfo.nome,
+    sobrenome: loginStore.clienteInfo.sobrenome,
+    telefone: loginStore.clienteInfo.telefone,
+    email: loginStore.clienteInfo.email,
+    cpf: loginStore.clienteInfo.cpf,
+    dataNascimento: loginStore.clienteInfo.dataNascimento,
+    sexo: loginStore.clienteInfo.sexo
+  });
+  console.log('Dados do cliente atualizados', loginStore.clienteInfo);
+  // Exibe no console os dados atualizados do cliente.
+};
+</script>
 
 <style scoped>
 .user-container {

@@ -16,23 +16,33 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
-  import { useEmailStore } from '@/stores/email';
-  import { useToast } from 'vue-toastification';  
-  import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
-
-useIntersectionObserver();
+  // Importa as funções e stores necessárias para o funcionamento do componente
+  import { ref } from 'vue'; // Ref é usado para criar variáveis reativas
+  import { useEmailStore } from '@/stores/email'; // Store para gerenciar o envio de e-mail
+  import { useToast } from 'vue-toastification'; // Toast para mostrar notificações
+  import { useIntersectionObserver } from '@/composables/useIntersectionObserver'; // Hook para observação de interseção de elementos
   
+  // Chama o hook de interseção para controlar o comportamento de visibilidade do componente
+  useIntersectionObserver();
+  
+  // Declara uma variável reativa para armazenar o e-mail inserido pelo usuário
   const email = ref('');
+  
+  // A store que será usada para enviar o e-mail
   const emailStore = useEmailStore();
+  
+  // Função para mostrar notificações de sucesso ou erro
   const toast = useToast();  
   
+  // Função que será chamada ao clicar no botão "Enviar"
   const enviarEmail = async () => {
+    // Verifica se o campo de e-mail está vazio
     if (!email.value) {
+      // Exibe uma notificação de erro se o e-mail não for fornecido
       toast.error('Por favor, insira um e-mail válido.', {
         position: "top-center",  
-        timeout: 5000,
-        closeOnClick: true,
+        timeout: 5000, // Tempo de exibição da notificação
+        closeOnClick: true, // Permite fechar a notificação clicando nela
         pauseOnFocusLoss: true,
         pauseOnHover: true,
         draggable: true,
@@ -47,7 +57,9 @@ useIntersectionObserver();
     }
   
     try {
+      // Tenta enviar o e-mail através da store
       await emailStore.enviarEmail(email.value);
+      // Exibe uma notificação de sucesso caso o envio seja bem-sucedido
       toast.success("E-mail enviado com sucesso!", {
         position: "top-center",  
         timeout: 3000,
@@ -62,8 +74,10 @@ useIntersectionObserver();
         icon: true,
         rtl: false
       });
+      // Limpa o campo de e-mail após o envio
       email.value = ''; 
     } catch (error) {
+      // Exibe uma notificação de erro caso ocorra algum erro no envio do e-mail
       console.error(error);
       toast.error("E-mail inválido.", {
         position: "top-center",  
@@ -81,7 +95,8 @@ useIntersectionObserver();
       });
     }
   };
-  </script>
+</script>
+
   
   <style scoped>
 .boxOferta {

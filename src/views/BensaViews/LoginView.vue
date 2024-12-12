@@ -1,67 +1,81 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useLoginStore } from '@/stores/login';
-import { useToast } from "vue-toastification";
+  // Importação de dependências
+  import { ref } from 'vue'; // 'ref' para criar variáveis reativas
+  import { useRouter } from 'vue-router'; // 'useRouter' para navegação entre páginas
+  import { useLoginStore } from '@/stores/login'; // Acesso à store de login, onde estão as informações do cliente
+  import { useToast } from "vue-toastification"; // Acesso à biblioteca de notificações para exibir mensagens de erro ou sucesso
 
-const toast = useToast();
+  // Criação da instância do Toast
+  const toast = useToast();
 
-const exibirErro = () => {
-  toast.error("Erro!! Verifique se digitou seu Email ou Senha certo.", {
-    position: "top-center",
-    timeout: 3143,
-    closeOnClick: true,
-    pauseOnFocusLoss: true,
-    pauseOnHover: true,
-    draggable: true,
-    draggablePercent: 0.93,
-    showCloseButtonOnHover: false,
-    hideProgressBar: true,
-    closeButton: "button",
-    icon: true,
-    rtl: false,
-  });
-};
+  // Função para exibir uma mensagem de erro caso o login falhe
+  const exibirErro = () => {
+    toast.error("Erro!! Verifique se digitou seu Email ou Senha certo.", {
+      position: "top-center", // Posição do toast na tela
+      timeout: 3143, // Duração do toast (3 segundos)
+      closeOnClick: true, // Permite fechar o toast ao clicar
+      pauseOnFocusLoss: true, // Pausa o tempo do toast quando a página perde foco
+      pauseOnHover: true, // Pausa o tempo do toast ao passar o mouse sobre ele
+      draggable: true, // Permite arrastar o toast
+      draggablePercent: 0.93, // Percentual de área que o toast pode ser arrastado
+      showCloseButtonOnHover: false, // Não exibe o botão de fechar ao passar o mouse
+      hideProgressBar: true, // Oculta a barra de progresso
+      closeButton: "button", // Tipo do botão de fechar (em forma de botão)
+      icon: true, // Exibe o ícone de erro
+      rtl: false, // Direção do texto (não precisa para esse caso)
+    });
+  };
 
-const loginStore = useLoginStore();
-const router = useRouter();
+  // Instanciação da store de login e do roteador
+  const loginStore = useLoginStore(); // Acesso à store que armazena as informações do cliente
+  const router = useRouter(); // Instância do roteador para navegação
 
-const isOpen = ref(true);
-const email = loginStore.clienteInfo.email;
-const senha = loginStore.clienteInfo.senha;
-const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
-const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
+  // Variável reativa para controlar se o modal está aberto ou fechado
+  const isOpen = ref(true);
 
-const closeComponent = () => {
-  loginStore.closeComponent();
-};
+  // Acessando os dados do cliente da store de login
+  const email = loginStore.clienteInfo.email;
+  const senha = loginStore.clienteInfo.senha;
+  const confirmarEmail = loginStore.clienteInfo.confirmarEmail;
+  const confirmarSenha = loginStore.clienteInfo.confirmarSenha;
 
-function closeModal() {
-  isOpen.value = false;
-}
+  // Função para fechar o componente de login
+  const closeComponent = () => {
+    loginStore.closeComponent(); // Fecha o componente de login na store
+  };
 
-function goToCadastro() {
-  closeModal();
-  router.push('/cadastro');
-}
-
-const formCadastro = () => {
-  loginStore.atualizarCliente({
-    confirmarEmail: loginStore.clienteInfo.confirmarEmail,
-    confirmarSenha: loginStore.clienteInfo.confirmarSenha,
-  });
-  console.log('Dados do cliente atualizados', loginStore.clienteInfo);
-};
-
-function validacao() {
-  if (confirmarEmail == email && confirmarSenha == senha) {
-    closeModal();
-    closeComponent();
-  } else {
-    exibirErro();
+  // Função para fechar o modal de login
+  function closeModal() {
+    isOpen.value = false; // Altera o valor de 'isOpen' para fechar o modal
   }
-}
+
+  // Função para redirecionar o usuário para a página de cadastro
+  function goToCadastro() {
+    closeModal(); // Fecha o modal antes de redirecionar
+    router.push('/cadastro'); // Redireciona para a página de cadastro
+  }
+
+  // Função para atualizar os dados do cliente no store durante o cadastro
+  const formCadastro = () => {
+    loginStore.atualizarCliente({
+      confirmarEmail: loginStore.clienteInfo.confirmarEmail,
+      confirmarSenha: loginStore.clienteInfo.confirmarSenha,
+    });
+    console.log('Dados do cliente atualizados', loginStore.clienteInfo); // Exibe os dados atualizados no console
+  };
+
+  // Função de validação do login
+  function validacao() {
+    // Verifica se o email e senha confirmados são iguais aos dados armazenados
+    if (confirmarEmail == email && confirmarSenha == senha) {
+      closeModal(); // Fecha o modal de login
+      closeComponent(); // Fecha o componente de login na store
+    } else {
+      exibirErro(); // Se a validação falhar, exibe a mensagem de erro
+    }
+  }
 </script>
+
 
 <template>
   <div v-if="isOpen" class="login-overlay">

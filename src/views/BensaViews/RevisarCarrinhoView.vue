@@ -53,9 +53,9 @@
         </div>
       </div>
       <div class="semProdutoCarrinho toRight" v-else>
-        <img src="@\assets\img\Banners\sacolavazia.jpg" alt="sacola">
+        <img src="@\assets\img\Banners/sacolavazia.jpg" alt="sacola" />
         <h3>Ops, nada por aqui ainda!</h3>
-        <p> Explore nossos produtos e encha sua sacola de estilo.</p>
+        <p>Explore nossos produtos e encha sua sacola de estilo.</p>
       </div>
       <div class="resumo toLeft">
         <div class="title">
@@ -79,16 +79,17 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { useCarrinhoStore } from '@/stores/carrinho'
-import { useRouter } from 'vue-router'
-import { useToast } from 'vue-toastification'
-import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
+import { computed, ref } from 'vue' // Importa funções necessárias do Vue
+import { useCarrinhoStore } from '@/stores/carrinho' // Acessa o store do carrinho
+import { useRouter } from 'vue-router' // Acessa o roteador para navegação
+import { useToast } from 'vue-toastification' // Acessa a biblioteca de notificações
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver' // Acessa o composable para observação de interseções
 
-useIntersectionObserver()
+useIntersectionObserver() // Inicializa a observação de interseções
 
-const toast = useToast()
+const toast = useToast() // Inicializa o serviço de notificações
 
+// Função para exibir um alerta caso o produto não tenha tamanho selecionado
 function showWarning(produtoSemTamanho) {
   toast.warning(`Escolha o tamanho de "${produtoSemTamanho.name}" antes de prosseguir.`, {
     position: 'top-center',
@@ -106,6 +107,8 @@ function showWarning(produtoSemTamanho) {
     zIndex: 9999
   })
 }
+
+// Função para exibir um alerta caso não haja produtos no carrinho
 function showWarning2(semProdutoCarrinho) {
   toast.warning(`Sem Produto na Sacola`, {
     position: 'top-center',
@@ -123,35 +126,41 @@ function showWarning2(semProdutoCarrinho) {
     zIndex: 9999
   })
 }
-const carrinhoStore = useCarrinhoStore()
 
-const router = useRouter()
+const carrinhoStore = useCarrinhoStore() // Acessa o store do carrinho
 
+const router = useRouter() // Inicializa o roteador
+
+// Função para selecionar o tamanho do produto
 const selectSize = (productId, size) => {
-  const product = carrinhoStore.carrinho.find((item) => item.id === productId)
+  const product = carrinhoStore.carrinho.find((item) => item.id === productId) // Encontra o produto no carrinho
   if (product) {
-    product.selectedSize = size
+    product.selectedSize = size // Define o tamanho selecionado
   }
 }
 
+// Função para verificar o carrinho antes de prosseguir para o pagamento
 const verificarCarrinho = () => {
-  const produtoSemTamanho = carrinhoStore.carrinho.find((produto) => !produto.selectedSize)
-  const semProdutoCarrinho = carrinhoStore.carrinho.length
- 
+  const produtoSemTamanho = carrinhoStore.carrinho.find((produto) => !produto.selectedSize) // Verifica se há produto sem tamanho selecionado
+  const semProdutoCarrinho = carrinhoStore.carrinho.length // Verifica se o carrinho está vazio
+
   if (semProdutoCarrinho == 0) {
-    showWarning2(semProdutoCarrinho)
+    // Se o carrinho estiver vazio
+    showWarning2(semProdutoCarrinho) // Exibe o alerta de carrinho vazio
     return
   }
 
   if (produtoSemTamanho) {
-    showWarning(produtoSemTamanho)
+    // Se algum produto não tem tamanho
+    showWarning(produtoSemTamanho) // Exibe o alerta de produto sem tamanho selecionado
     return
   }
-  router.push('/pagar')
+  router.push('/pagar') // Redireciona para a página de pagamento
 }
 
+// Computa o valor total a ser pago
 const totalAPagar = computed(() => {
-  return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price, 0).toFixed(2)
+  return carrinhoStore.carrinho.reduce((acc, carrinho) => acc + carrinho.price, 0).toFixed(2) // Soma os preços dos produtos
 })
 </script>
 
@@ -170,6 +179,9 @@ body {
   gap: 2.5px;
   min-height: 10dvh;
   text-align: center;
+}
+.semProdutoCarrinho img {
+  height: 300px;
 }
 
 .order-review {
@@ -398,7 +410,7 @@ h1 {
   gap: 10px;
 }
 
-.infos p{
+.infos p {
   font-weight: 600;
 }
 
@@ -440,16 +452,16 @@ h1 {
     font-size: 12px;
   }
 
-  .ahh{
+  .ahh {
     flex-direction: column;
     align-items: center;
   }
-  .product-list{
+  .product-list {
     width: 100%;
   }
-  .semProdutoCarrinho p{
-  max-width: 300px;
-}
+  .semProdutoCarrinho p {
+    max-width: 300px;
+  }
 }
 
 @media (max-width: 480px) {
